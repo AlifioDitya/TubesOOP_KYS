@@ -32,16 +32,17 @@ public:
     ~GameState();
 
     // Setters
-    void setPlayerList();
+    void setPlayerList(vector<Player>);
 
-    void setCurrentTurn();
+    void setCurrentTurn(int);
 
-    void setRound();
+    void setRound(int);
 
-    void setTableCards();
+    void setPoints(int);
 
-    void setDeckCards();
+    void setTableCards(TableCard);
 
+    void setDeckCards(DeckCard);
 };
 
 #endif

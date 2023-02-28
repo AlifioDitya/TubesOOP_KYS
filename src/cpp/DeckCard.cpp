@@ -1,5 +1,5 @@
 // DeckCard.cpp
-#include "../header/DeckCard.hpp"
+#include "../header/GameEnvironment/DeckCard.hpp"
 
 int DeckCard::countItems() const {
     return (this->deck).size();

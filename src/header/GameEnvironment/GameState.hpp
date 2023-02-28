@@ -21,7 +21,13 @@ public:
     GameState();
 
     // Specified ctor
-    // GameState(PlayerList, int, TableCard, DeckCard);
+    GameState(vector<Player>, int, TableCard, DeckCard);
+
+    // cctor
+    GameState(const GameState&);
+
+    // dtor
+    ~GameState();
 };
 
 #endif

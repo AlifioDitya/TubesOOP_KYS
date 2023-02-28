@@ -1,9 +1,10 @@
-#include "../header/GameEnvironment/GameState.hpp"
+// GameState.cpp
+#include "../../header/GameEnvironment/GameState.hpp"
 
 // Default ctor
 GameState::GameState() {
     // Initialize default values
-    PlayerList = vector<Player>();
+    playerList = vector<Player>();
     currentTurnIdx = 0;
     round = 1;
     points = 0;
@@ -13,7 +14,7 @@ GameState::GameState() {
 
 // Specified ctor
 GameState::GameState(vector<Player> playerList, int currentTurn, int roundNum, int pointVal, TableCard tblCard, DeckCard dckCard) {
-    PlayerList = playerList;
+    playerList = playerList;
     currentTurnIdx = currentTurn;
     round = roundNum;
     points = pointVal;
@@ -23,7 +24,7 @@ GameState::GameState(vector<Player> playerList, int currentTurn, int roundNum, i
 
 // Copy ctor
 GameState::GameState(const GameState& gs) {
-    PlayerList = gs.PlayerList;
+    playerList = gs.playerList;
     currentTurnIdx = gs.currentTurnIdx;
     round = gs.round;
     points = gs.points;
@@ -38,7 +39,7 @@ GameState::~GameState() {
 
 // Setters
 void GameState::setPlayerList(vector<Player> playerList) {
-    PlayerList = playerList;
+    this->playerList = playerList;
 }
 
 void GameState::setCurrentTurn(int currentTurn) {
@@ -59,4 +60,29 @@ void GameState::setTableCards(TableCard tblCard) {
 
 void GameState::setDeckCards(DeckCard dckCard) {
     deckCards = dckCard;
+}
+
+// Getters
+vector<Player> GameState::getPlayerList() {
+    return playerList;
+}
+
+int GameState::getCurrentTurn() {
+    return currentTurnIdx;
+}
+
+int GameState::getRound() {
+    return round;
+}
+
+int GameState::getPoints() {
+    return points;
+}
+
+TableCard GameState::getTableCards() {
+    return tableCards;
+}
+
+DeckCard GameState::getDeckCards() {
+    return deckCards;
 }

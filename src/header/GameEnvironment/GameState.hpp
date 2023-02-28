@@ -11,7 +11,7 @@ using std::vector;
 
 class GameState {
 private:
-    vector<Player> PlayerList;
+    vector<Player> playerList;
     int currentTurnIdx;
     int round;
     int points;
@@ -43,6 +43,19 @@ public:
     void setTableCards(TableCard);
 
     void setDeckCards(DeckCard);
+
+    // Getters
+    vector<Player> getPlayerList();
+
+    int getCurrentTurn();
+
+    int getRound();
+
+    int getPoints();
+
+    TableCard getTableCards();
+
+    DeckCard getDeckCards();
 };
 
 #endif

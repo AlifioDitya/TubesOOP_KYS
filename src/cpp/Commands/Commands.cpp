@@ -1,5 +1,5 @@
 // Commands.cpp
-#include "../header/Commands.hpp"
+#include "../../header/Commands/Commands.hpp"
 
 // Default ctor
 Commands::Commands() {
@@ -14,9 +14,4 @@ Commands::Commands(CmdType command) {
 // cctor
 Commands::Commands(const Commands& cmd) {
     this->command = cmd.command;
-}
-
-// Getter
-CmdType Commands::getCommand() {
-    return this->command;
 }

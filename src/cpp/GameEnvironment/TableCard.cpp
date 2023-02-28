@@ -1,5 +1,5 @@
 // TableCard.cpp
-#include "../header/GameEnvironment/TableCard.hpp"
+#include "../../header/GameEnvironment/TableCard.hpp"
 
 int TableCard::countItems() const {
     return cards.size();

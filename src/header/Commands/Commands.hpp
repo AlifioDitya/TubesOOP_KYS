@@ -24,6 +24,9 @@ public:
 
     // Getter
     virtual CmdType getCommandType() const = 0;
+
+    // Method
+    virtual void executeCommand() const = 0;
 };
 
 #endif

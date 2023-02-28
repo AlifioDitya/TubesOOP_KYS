@@ -1,10 +1,11 @@
 #ifndef INVENTORYHOLDER_HPP
 #define INVENTORYHOLDER_HPP
-#include <vector>
 
+#include "Card.hpp"
 using std::vector;
 
 class InventoryHolder {
+
 public:
     virtual ~InventoryHolder();
 
@@ -12,10 +13,10 @@ public:
     virtual int countItems() const = 0;
 
     // Adds an item to the inventory
-    virtual void addItem() = 0;
+    virtual void addItem(Card) = 0;
 
-    // Removes an item from the inventory
-    virtual void removeItem() = 0;
+    // Removes all item from the inventory
+    virtual void clear() = 0;
 };
 
 #endif

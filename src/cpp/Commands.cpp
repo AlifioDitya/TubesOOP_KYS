@@ -1,5 +1,5 @@
 // Commands.cpp
-#include "../header/Commands.hpp"
+#include "../header/Commands/Commands.hpp"
 
 // Default ctor
 Commands::Commands() {

@@ -4,19 +4,26 @@
 
 #include "InventoryHolder.hpp"
 #include "Card.hpp"
+#include <vector>
 
 class TableCard : public InventoryHolder {
+
 private:
     std::vector<Card> cards;
 
 public:
+
+    // Returns the number of items in the inventory
     virtual int countItems() const;
 
-    // Add a new card to the table
-    virtual void addItem();
+    // Adds an item to the inventory
+    virtual void addItem(Card);
 
-    // Remove all cards from the table
-    virtual void removeItem();
+    // Removes an item from the inventory
+    virtual void clear();
+
+    // Show all cards at table that is relevant to current gamestate
+    std::vector<Card> getCards();
 
     // ...
 

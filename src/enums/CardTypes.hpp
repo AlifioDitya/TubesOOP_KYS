@@ -3,10 +3,10 @@
 #define CARDENUMS_HPP
 
 enum Suit {
-    CLUBS,
-    DIAMONDS,
-    HEARTS,
-    SPADES
+    CLUBS = 0,
+    DIAMONDS = 1,
+    HEARTS = 2,
+    SPADES = 3
 };
 
 enum Rank {

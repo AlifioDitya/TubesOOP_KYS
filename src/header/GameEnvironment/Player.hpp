@@ -6,15 +6,13 @@
 #include "Card.hpp"
 #include <vector>
 
-using std::vector;
 
 class Player: public InventoryHolder {
 private:
-    int playerID;
-    vector<Card> hand;
+    const int playerID;
+    std::vector<Card> hand;
+
 public:
-    // Default ctor
-    Player();
 
     // Specified ctor
     Player(int);
@@ -22,19 +20,17 @@ public:
     // cctor
     Player(const Player&);
 
-    virtual int countItems() const override {
-        return hand.size();
-    }
+    // Return player id
+    int getId() const;
 
-    virtual void addItem() override {
-        // Deal a new card to the player's hand
-        hand.push_back(Card());
-    }
+     // Returns the number of items in the inventory
+    virtual int countItems() const;
 
-    virtual void removeItem() override {
-        // Discard the player's hand
-        hand.clear();
-    }
+    // Adds an item to the inventory
+    virtual void addItem(Card);
+
+    // Removes an item from the inventory
+    virtual void clear();
 
     // ...
 };

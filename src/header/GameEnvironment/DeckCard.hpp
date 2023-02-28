@@ -12,8 +12,6 @@ class DeckCard : public InventoryHolder {
 private:
    std::stack<Card> deck;
 
-   void shuffle(Card (&cards)[]);
-
 public:
 
    DeckCard();

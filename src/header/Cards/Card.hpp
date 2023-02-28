@@ -3,7 +3,7 @@
 #define CARD_HPP
 
 #include <string>
-#include "../enums/CardTypes.hpp"
+#include "../../enums/CardTypes.hpp"
 
 using std::string;
 

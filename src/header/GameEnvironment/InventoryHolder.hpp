@@ -1,8 +1,7 @@
 #ifndef INVENTORYHOLDER_HPP
 #define INVENTORYHOLDER_HPP
 
-#include "Card.hpp"
-using std::vector;
+#include "./Cards/Card.hpp"
 
 class InventoryHolder {
 

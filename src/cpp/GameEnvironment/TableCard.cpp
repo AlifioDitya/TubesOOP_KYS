@@ -1,4 +1,6 @@
 // TableCard.cpp
+using namespace std;
+
 #include "../../header/GameEnvironment/TableCard.hpp"
 
 

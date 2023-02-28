@@ -4,7 +4,7 @@
 #include "../enums/CmdType.hpp"
 
 class Commands {
-private:
+protected:
     CmdType command;
 public:
     // Default ctor
@@ -16,11 +16,17 @@ public:
     // cctor
     Commands(const Commands&);
 
+    // dtor
+    virtual ~Commands();
+
     // operator
     Commands& operator=(const Commands&);
 
     // Getter
-    CmdType getCommand();
+    CmdType getCommandType() const;
+
+    // Method
+    virtual void executeCommand() const = 0;
 };
 
 #endif

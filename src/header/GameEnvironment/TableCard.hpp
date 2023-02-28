@@ -3,8 +3,9 @@
 #define TABLE_CARD_HPP
 
 #include "InventoryHolder.hpp"
-#include "Card.hpp"
+#include "../Cards/Card.hpp"
 #include <vector>
+
 
 class TableCard : public InventoryHolder {
 

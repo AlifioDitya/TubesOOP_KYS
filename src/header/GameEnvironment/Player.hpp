@@ -3,7 +3,7 @@
 #define PLAYER_HPP
 
 #include "InventoryHolder.hpp"
-#include "Card.hpp"
+#include "../Cards/Card.hpp"
 #include <vector>
 
 

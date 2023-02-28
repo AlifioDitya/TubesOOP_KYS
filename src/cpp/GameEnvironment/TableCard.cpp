@@ -1,5 +1,5 @@
 // TableCard.cpp
-#include "../header/GameEnvironment/TableCard.hpp"
+#include "../../header/GameEnvironment/TableCard.hpp"
 
 
 // Returns the number of items in the inventory

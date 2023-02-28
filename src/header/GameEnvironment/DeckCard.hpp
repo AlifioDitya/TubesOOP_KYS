@@ -3,9 +3,9 @@
 #define DECK_CARD_HPP
 
 #include "InventoryHolder.hpp"
-#include "Card.hpp"
 #include <stack>
 #include <vector>
+#include "../Cards/Card.hpp"
 
 class DeckCard : public InventoryHolder {
 

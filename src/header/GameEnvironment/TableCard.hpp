@@ -3,7 +3,7 @@
 #define TABLE_CARD_HPP
 
 #include "InventoryHolder.hpp"
-#include "Card.hpp"
+#include "../Cards/Card.hpp"
 
 class TableCard : public InventoryHolder {
 private:

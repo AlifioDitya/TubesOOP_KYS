@@ -16,11 +16,14 @@ public:
     // cctor
     Commands(const Commands&);
 
+    // dtor
+    virtual ~Commands();
+
     // operator
     Commands& operator=(const Commands&);
 
     // Getter
-    CmdType getCommand();
+    virtual CmdType getCommandType() const = 0;
 };
 
 #endif

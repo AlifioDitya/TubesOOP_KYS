@@ -13,21 +13,35 @@ class GameState {
 private:
     vector<Player> PlayerList;
     int currentTurnIdx;
+    int round;
+    int points;
     TableCard tableCards;
     DeckCard deckCards;
-
+    
 public:
     // Default ctor
     GameState();
 
     // Specified ctor
-    GameState(vector<Player>, int, TableCard, DeckCard);
+    GameState(vector<Player>, int, int, int, TableCard, DeckCard);
 
     // cctor
     GameState(const GameState&);
 
     // dtor
     ~GameState();
+
+    // Setters
+    void setPlayerList();
+
+    void setCurrentTurn();
+
+    void setRound();
+
+    void setTableCards();
+
+    void setDeckCards();
+
 };
 
 #endif

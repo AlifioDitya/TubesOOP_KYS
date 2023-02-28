@@ -3,7 +3,7 @@
 #define PLAYER_HPP
 
 #include "InventoryHolder.hpp"
-#include "Card.hpp"
+#include "../Cards/Card.hpp"
 #include <vector>
 
 using std::vector;
@@ -22,16 +22,16 @@ public:
     // cctor
     Player(const Player&);
 
-    virtual int countItems() const override {
+    virtual int countItems() const {
         return hand.size();
     }
 
-    virtual void addItem() override {
+    virtual void addItem() {
         // Deal a new card to the player's hand
         hand.push_back(Card());
     }
 
-    virtual void removeItem() override {
+    virtual void removeItem() {
         // Discard the player's hand
         hand.clear();
     }

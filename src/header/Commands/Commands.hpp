@@ -28,7 +28,8 @@ public:
     CmdTypes getCommandType() const;
 
     // Method
-    virtual void executeCommand(GameState&) const = 0;
+    // Returns true if command succeeds
+    virtual bool executeCommand(GameState&) const = 0;
 };
 
 #endif

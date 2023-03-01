@@ -15,7 +15,7 @@ public:
     ~Next();
 
     // Executes next
-    void executeCommand(GameState& gameState);
+    bool executeCommand(GameState& gameState);
 };
 
 #endif

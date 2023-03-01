@@ -21,42 +21,52 @@ Reroll::~Reroll() {
 }
 
 // Execute method
-void Reroll::executeCommand(GameState& gameState) {
+bool Reroll::executeCommand(GameState& gameState) {
     if (this->command != CmdTypes::Reroll) {
-        return;
+        cout << "Command tidak tepat." << endl;
+        return false;
     }
 
     // Check if the player has already used the Re-Roll ability
     if (gameState.getCurrentTurnPlayer().hasUsedAbility(AbilityTypes::Reroll)) {
-        cout << "You have already used the Re-Roll ability this turn." << endl;
-        return;
+        cout << "Maaf, kamu sudah menggunakan Reroll sebelumnya." << endl;
+        return false;
     }
 
     // Check if the player has the Re-Roll ability
     if (!gameState.getCurrentTurnPlayer().hasAbility(AbilityTypes::Reroll)) {
-        cout << "You do not have the Re-Roll ability." << endl;
-        return;
+        cout << "Maaf, kamu tidak memiliki ability untuk Reroll." << endl;
+        return false;
     }
 
-    // Empty the player's hand
-    gameState.getCurrentTurnPlayer().clear();
-
-    // Draw two new cards
+    // Get the deck
     DeckCard& deck = gameState.getDeckCards();
-    cout << "Drawing two new cards..." << endl;
 
     // Check if there is enough cards in the deck
     if (deck.countItems() < 2) {
-        cout << "Not enough cards in the deck." << endl;
-        return;
+        cout << "Maaf, deck tidak memiliki kartu yang cukup." << endl;
+        return false;
     }
 
-    // Add the new cards to the player's hand
-    gameState.getCurrentTurnPlayer().addItem(deck.drawCard());
-    gameState.getCurrentTurnPlayer().addItem(deck.drawCard());
+    // Empty the player's hand
+    cout << "Melakukan pembuangan dua kartu yang dimiliki" << endl;
+    gameState.getCurrentTurnPlayer().clear();
 
-    cout << "Cards drawn" << endl;
+    // Draw two new cards
+    cout << "Kamu mendapatkan dua kartu baru yaitu:" << endl;
+
+    // Add the new cards to the player's hand
+    Card card1 = deck.drawCard();
+    Card card2 = deck.drawCard();
+
+    gameState.getCurrentTurnPlayer().addItem(card1);
+    gameState.getCurrentTurnPlayer().addItem(card2);
+
+    cout << "1. " << card1.getRank() << " " << card1.getColorString() << endl;
+    cout << "2. " << card2.getRank() << " " << card2.getColorString() << endl;
 
     // Set the ability used flag to true and end the turn
     gameState.getCurrentTurnPlayer().setAbilityUsed(AbilityTypes::Reroll, true);
+    
+    return true;
 }

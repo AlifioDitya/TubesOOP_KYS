@@ -1,19 +1,18 @@
-// Reroll.hpp
-#ifndef REROLL_HPP
-#define REROLL_HPP
+#ifndef QUADRUPLE_HPP
+#define QUADRUPLE_HPP
 
 #include "Commands.hpp"
 #include "../GameEnvironment/GameState.hpp"
 
-class Reroll : public Commands {
+class Quadruple : public Commands {
 public:
     // ctor
-    Reroll();
+    Quadruple();
 
     // dtor
-    ~Reroll();
+    virtual ~Quadruple();
 
-    // Executes Reroll
+    // Executes Quadruple
     bool executeCommand(GameState& gameState);
 };
 

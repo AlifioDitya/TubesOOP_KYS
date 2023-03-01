@@ -1,19 +1,18 @@
-// Reroll.hpp
-#ifndef REROLL_HPP
-#define REROLL_HPP
+#ifndef DOUBLE_HPP
+#define DOUBLE_HPP
 
 #include "Commands.hpp"
 #include "../GameEnvironment/GameState.hpp"
 
-class Reroll : public Commands {
+class Double : public Commands {
 public:
     // ctor
-    Reroll();
+    Double();
 
     // dtor
-    ~Reroll();
+    virtual ~Double();
 
-    // Executes Reroll
+    // Executes double
     bool executeCommand(GameState& gameState);
 };
 

@@ -4,6 +4,9 @@
 
 #include "../../enums/CardTypes.hpp"
 #include "CardInterface.hpp"
+#include <string>
+
+using std::string;
 
 class Card : public CardInterface {
    private:
@@ -27,11 +30,14 @@ class Card : public CardInterface {
     bool operator>=(const Card&);
     bool operator<=(const Card&);
 
-    // Getters for suit and rank
-    Color getSuit() const;
+    // Getters for color and rank
+    Color getColor() const;
     int getRank() const;
 
     float getValue() const;
+
+    // Get string representation
+    string getColorString() const;
 };
 
 #endif

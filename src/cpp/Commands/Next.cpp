@@ -18,11 +18,14 @@ Next::~Next() {
 }
 
 // Execute method
-void Next::executeCommand(GameState& gameState) {
-    if (this->command == CmdTypes::Next) {
-        int nextPlayerIdx = (gameState.getCurrentTurnIdx() + 1) % gameState.getPlayerList().size();
-        gameState.setCurrentTurnIdx(nextPlayerIdx);
-    } else {
-        cout << "Invalid command" << endl;
+bool Next::executeCommand(GameState& gameState) {
+    if (this->command != CmdTypes::Next) {
+        cout << "Command tidak tepat." << endl;
+        return false;
     }
+
+    int nextPlayerIdx = (gameState.getCurrentTurnIdx() + 1) % gameState.getPlayerList().size();
+    gameState.setCurrentTurnIdx(nextPlayerIdx);
+    cout << "Giliran dilanjut ke pemain selanjutnya." << endl;
+    return true;
 }

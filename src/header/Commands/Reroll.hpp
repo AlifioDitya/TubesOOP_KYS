@@ -1,20 +1,19 @@
-// Next.hpp
-// Next.hpp
-#ifndef NEXT_HPP
-#define NEXT_HPP
+// Reroll.hpp
+#ifndef REROLL_HPP
+#define REROLL_HPP
 
 #include "Commands.hpp"
 #include "../GameEnvironment/GameState.hpp"
 
-class Next : public Commands {
+class Reroll : public Commands {
 public:
     // ctor
-    Next();
+    Reroll();
 
     // dtor
-    ~Next();
+    ~Reroll();
 
-    // Executes next
+    // Executes Reroll
     void executeCommand(GameState& gameState);
 };
 

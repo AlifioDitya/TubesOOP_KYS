@@ -1,17 +1,19 @@
+// Commands.hpp
 #ifndef COMMANDS_HPP
 #define COMMANDS_HPP
 
-#include "../enums/CmdType.hpp"
+#include "GameState.hpp"
+#include "../../enums/CmdTypes.hpp"
 
 class Commands {
 protected:
-    CmdType command;
+    CmdTypes command;
 public:
     // Default ctor
     Commands();
 
     // Specified ctor
-    Commands(CmdType);
+    Commands(CmdTypes);
 
     // cctor
     Commands(const Commands&);
@@ -23,10 +25,10 @@ public:
     Commands& operator=(const Commands&);
 
     // Getter
-    CmdType getCommandType() const;
+    CmdTypes getCommandType() const;
 
     // Method
-    virtual void executeCommand() const = 0;
+    virtual void executeCommand(GameState&) const = 0;
 };
 
 #endif

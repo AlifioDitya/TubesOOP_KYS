@@ -17,6 +17,7 @@ public:
    DeckCard();
 
    DeckCard(const vector<Card>&);
+   
    // Returns the number of items in the inventory
    virtual int countItems() const;
 

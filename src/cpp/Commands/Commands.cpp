@@ -1,14 +1,13 @@
 // Commands.cpp
 #include "../../header/Commands/Commands.hpp"
 
-
 // Default ctor
 Commands::Commands() {
     this->command = Next;
 }
 
 // Specified ctor
-Commands::Commands(CmdType command) {
+Commands::Commands(CmdTypes command) {
     this->command = command;
 }
 
@@ -29,6 +28,6 @@ Commands& Commands::operator=(const Commands& other) {
 }
 
 // Getter
-CmdType Commands::getCommandType() const {
+CmdTypes Commands::getCommandType() const {
     return this->command;
 }

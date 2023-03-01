@@ -1,7 +1,7 @@
 #ifndef COMMANDENUMS_HPP
 #define COMMANDENUMS_HPP
 
-enum CmdType {
+enum CmdTypes {
     Next = 1,
     Reroll = 2,
     Double = 3,

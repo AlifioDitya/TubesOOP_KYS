@@ -1,4 +1,3 @@
-// CardEnums.hpp
 #ifndef CARDENUMS_HPP
 #define CARDENUMS_HPP
 

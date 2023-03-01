@@ -4,13 +4,15 @@
 
 #include "InventoryHolder.hpp"
 #include "../Cards/Card.hpp"
+#include "../../enums/AbilityTypes.hpp"
 #include <vector>
 
+using std::vector;
 
 class Player: public InventoryHolder {
 private:
     const int playerID;
-    std::vector<Card> hand;
+    vector<Card> hand;
 
 public:
 
@@ -23,6 +25,9 @@ public:
     // Return player id
     int getId() const;
 
+    // Return player hand
+    vector<Card> getHand() const;
+
      // Returns the number of items in the inventory
     virtual int countItems() const;
 
@@ -31,6 +36,15 @@ public:
 
     // Removes an item from the inventory
     virtual void clear();
+
+    // Set ability used
+    bool setAbilityUsed(AbilityTypes, bool);
+
+    // Check if player has ability
+    bool hasAbility(AbilityTypes);
+    
+    // Check if player has used an ability
+    bool hasUsedAbility(AbilityTypes);
 
     // ...
 };

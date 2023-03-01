@@ -2,8 +2,6 @@ using namespace std;
 
 #include "../../header/GameEnvironment/Player.hpp"
 
- // Default ctor
-
 // Specified ctor
 Player::Player(int id): playerID(id) {
 
@@ -17,6 +15,11 @@ Player::Player(const Player& other): playerID(other.playerID) {
 // Return player id
 int Player::getId() const {
     return playerID;
+}
+
+// Return player hand
+vector<Card> Player::getHand() const {
+    return hand;
 }
 
 // Returns the number of items in the inventory

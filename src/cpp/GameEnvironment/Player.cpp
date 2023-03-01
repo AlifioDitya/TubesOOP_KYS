@@ -1,9 +1,12 @@
 #include "../../header/GameEnvironment/Player.hpp"
 #include <string>
 #include <vector>
+#include <iostream>
 
 using std::string;
 using std::vector;
+using std::cout;
+using std::endl;
 
 // Default ctor
 Player::Player(): playerID(-1), hand(vector<Card>()), point(0), name("Username"), hasPlayed(false) {
@@ -80,6 +83,26 @@ void Player::clear() {
 
 bool Player::hasPlayedThisRound() {
     return hasPlayed;
+}
+
+// Switch cards
+void Player::switchCards(Player& other) {
+    vector<Card> temp = this->getHand();
+    this->setHand(other.getHand());
+    other.setHand(temp);
+}
+
+void Player::switchCards(int idx1, int idx2, Player& other) {
+    Card temp = this->getHand()[idx1];
+    this->setHand(idx1, other.getHand()[idx2]);
+    other.setHand(temp);
+}
+
+void Player::printHand() {
+    if (hand.size() == 2) {
+        cout << this->getHand()[0].getRank() << " " << this->getHand()[0].getColorString() << endl;
+        cout << this->getHand()[1].getRank() << " " << this->getHand()[1].getColorString() << endl;
+    }
 }
 
 // ...

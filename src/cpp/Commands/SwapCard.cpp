@@ -85,11 +85,7 @@ bool SwapCard::executeCommand(GameState& gameState) {
         }
     }
 
-    Card playerCard1 = gameState.getPlayerList()[playerIdx1].getHand()[selectIdx1];
-    Card playerCard2 = gameState.getPlayerList()[playerIdx2].getHand()[selectIdx2];
-    
-    gameState.getPlayerRefAt(playerIdx1).setHand(selectIdx1, playerCard2);
-    gameState.getPlayerRefAt(playerIdx2).setHand(selectIdx2, playerCard1);
+    gameState.getPlayerRefAt(playerIdx1).switchCards(selectIdx1, selectIdx2, gameState.getPlayerRefAt(playerIdx2));
 
     return true;
 }

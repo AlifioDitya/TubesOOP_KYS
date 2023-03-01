@@ -9,9 +9,6 @@ public:
     // ctor
     Double();
 
-    // dtor
-    virtual ~Double();
-
     // Executes double
     bool executeCommand(GameState& gameState);
 };

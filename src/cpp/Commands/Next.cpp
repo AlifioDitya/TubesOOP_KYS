@@ -12,11 +12,6 @@ Next::Next() {
     this->command = CmdTypes::Next;
 }
 
-// dtor
-Next::~Next() {
-    // Do nothing
-}
-
 // Execute method
 bool Next::executeCommand(GameState& gameState) {
     if (this->command != CmdTypes::Next) {

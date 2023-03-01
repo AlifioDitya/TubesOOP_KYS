@@ -9,9 +9,6 @@ public:
     // ctor
     Quadruple();
 
-    // dtor
-    virtual ~Quadruple();
-
     // Executes Quadruple
     bool executeCommand(GameState& gameState);
 };

@@ -15,11 +15,6 @@ Reroll::Reroll() {
     this->command = CmdTypes::Reroll;
 }
 
-// dtor
-Reroll::~Reroll() {
-    // Do nothing
-}
-
 // Execute method
 bool Reroll::executeCommand(GameState& gameState) {
     if (this->command != CmdTypes::Reroll) {

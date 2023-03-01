@@ -1,16 +1,16 @@
-// Reroll.hpp
-#ifndef REROLL_HPP
-#define REROLL_HPP
+// Half.hpp
+#ifndef HALF_HPP
+#define HALF_HPP
 
 #include "Commands.hpp"
 #include "../GameEnvironment/GameState.hpp"
 
-class Reroll : public Commands {
+class Half : public Commands {
 public:
     // ctor
-    Reroll();
+    Half();
 
-    // Executes Reroll
+    // Executes Half
     bool executeCommand(GameState& gameState);
 };
 

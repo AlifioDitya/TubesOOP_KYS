@@ -13,11 +13,6 @@ Quadruple::Quadruple() {
     this->command = CmdTypes::Quadruple;
 }
 
-// dtor
-Quadruple::~Quadruple() {
-    // Do nothing
-}
-
 // Execute method
 bool Quadruple::executeCommand(GameState& gameState) {
     if (this->command != CmdTypes::Quadruple) {
@@ -27,7 +22,7 @@ bool Quadruple::executeCommand(GameState& gameState) {
 
     // Check if the player has the Quadruple ability
     if (!gameState.getCurrentTurnPlayer().hasAbility(AbilityTypes::Quadruple)) {
-        cout << "Maaf, kamu tidak memiliki ability untuk Quadruple." << endl;
+        cout << "Ets, tidak bisa. Kamu tidak punya kartu Ability untuk QUADRUPLE." << endl;
         return false;
     }
     
@@ -35,6 +30,6 @@ bool Quadruple::executeCommand(GameState& gameState) {
     int newPoints = oldPoints * 4;
     gameState.setPointPool(newPoints);
 
-    cout << "melakukan Quadruple! Poin hadiah naik dari " << oldPoints << " menjadi " << newPoints << "!" << endl; 
+    cout << "melakukan QUADRUPLE! Poin hadiah naik dari " << oldPoints << " menjadi " << newPoints << "!" << endl; 
     return true;
 }

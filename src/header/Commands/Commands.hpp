@@ -19,7 +19,7 @@ public:
     Commands(const Commands&);
 
     // dtor
-    virtual ~Commands();
+    ~Commands();
 
     // operator
     Commands& operator=(const Commands&);

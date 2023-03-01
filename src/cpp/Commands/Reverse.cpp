@@ -52,14 +52,12 @@ bool Reverse::executeCommand(GameState& gameState) {
 
     // Print out player order
     cout << gameState.getCurrentTurnPlayer().getName() << " melakukan reverse!" << endl
-         << "Urutan eksekusi giliran ini: ";
+         << "Urutan eksekusi giliran ini: " << endl;
     gameState.printPlayerList();
-    
-    cout << "Urutan eksekusi giliran selanjutnya: ";
-    for (int i = 0; i < playerList.size(); i++) {
-        cout << "<" << playerList[i].getId() << "> ";
-    }
     cout << endl;
+    cout << "Urutan eksekusi giliran selanjutnya: " << endl;
+
+    gameState.printPlayerList(playerList);
 
     // Set the player list in reverse order
     gameState.setPlayerList(playerList);

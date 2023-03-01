@@ -32,19 +32,8 @@ public:
     // operator=
     Player& operator=(const Player&);
 
-    // Return player id
-    int getId() const;
-
-    // Return player hand
-    vector<Card> getHand() const;
-
-    // Return player points
-    int getPoint() const;
-
-    // Return player name
-    string getName() const;
-
-     // Returns the number of items in the inventory
+    // Virtual overrides
+    // Returns the number of items in the inventory
     virtual int countItems() const;
 
     // Adds an item to the inventory
@@ -53,9 +42,30 @@ public:
     // Removes an item from the inventory
     virtual void clear();
 
+    // ========== Getters ==========
+    // Return player id
+    int getId() const;
+    
+    // Return player points
+    int getPoint() const;
+
+    // Return player name
+    string getName() const;
+
+    // Return player hand
+    vector<Card> getHand() const;
+
+    // ========== Setters ==========
+    // Set player hand on index
+    void setHand(int, Card);
+
+    // Set player hand as vector
+    void setHand(vector<Card>);
+
     // Set ability used
     bool setAbilityUsed(AbilityTypes, bool);
 
+    // ========== Predicates ==========
     // Check if player has ability
     bool hasAbility(AbilityTypes);
     

@@ -3,9 +3,7 @@
 
 enum AbilityTypes {
     Reroll,
-    Double,
     Quadruple,
-    Half,
     Quarter,
     Reverse,
     SwapCard,

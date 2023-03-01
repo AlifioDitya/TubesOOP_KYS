@@ -45,9 +45,11 @@ public:
     void setDeckCards(DeckCard);
 
     // Getters
-    vector<Player>& getPlayerList();
+    vector<Player> getPlayerList();
 
     Player& getCurrentTurnPlayer();
+
+    Player& getPlayerRefAt(int);
 
     int getCurrentTurnIdx();
 
@@ -61,6 +63,8 @@ public:
 
     // Method to print player list
     void printPlayerList();
+
+    void printPlayerList(vector<Player> playerVec);
 };
 
 #endif

@@ -68,12 +68,16 @@ void GameState::setDeckCards(DeckCard dckCard) {
 }
 
 // Getters
-vector<Player>& GameState::getPlayerList() {
+vector<Player> GameState::getPlayerList() {
     return playerList;
 }
 
 Player& GameState::getCurrentTurnPlayer() {
     return playerList[currentTurnIdx];
+}
+
+Player& GameState::getPlayerRefAt(int idx) {
+    return playerList[idx];
 }
 
 int GameState::getCurrentTurnIdx() {
@@ -96,10 +100,15 @@ DeckCard& GameState::getDeckCards() {
     return deckCards;
 }
 
+// Methods for printing player list
 void GameState::printPlayerList() {
     for (int i = 0; i < playerList.size(); i++) {
-        cout << "<" << playerList[i].getId() << "> ";
+        cout << i+1 << ". " << playerList[i].getName() << endl;
     }
+}
 
-    cout << endl;
+void GameState::printPlayerList(vector<Player> playerVec) {
+    for (int i = 0; i < playerVec.size(); i++) {
+        cout << i+1 << ". " << playerVec[i].getName() << endl;
+    }
 }

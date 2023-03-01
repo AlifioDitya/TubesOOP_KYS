@@ -49,6 +49,15 @@ vector<Card> Player::getHand() const {
     return hand;
 }
 
+// Set player hand on index
+void Player::setHand(int idx, Card newCard) {
+    this->hand[idx] = newCard;
+} 
+
+void Player::setHand(vector<Card> newHand) {
+    this->hand = newHand;
+}
+
 // Returns the number of items in the inventory
 int Player::countItems() const {
     return hand.size();

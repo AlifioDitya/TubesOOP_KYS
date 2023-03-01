@@ -7,15 +7,17 @@ GameState::GameState() {
     playerList = vector<Player>();
     currentTurnIdx = 0;
     round = 1;
+    pointPool = 64;
     tableCards = TableCard();
     deckCards = DeckCard();
 }
 
 // Specified ctor
-GameState::GameState(vector<Player> playerList, int currentTurn, int roundNum, TableCard tblCard, DeckCard dckCard) {
+GameState::GameState(vector<Player> playerList, int currentTurn, int roundNum, int points, TableCard tblCard, DeckCard dckCard) {
     playerList = playerList;
     currentTurnIdx = currentTurn;
     round = roundNum;
+    pointPool = points;
     tableCards = tblCard;
     deckCards = dckCard;
 }
@@ -25,6 +27,7 @@ GameState::GameState(const GameState& gs) {
     playerList = gs.playerList;
     currentTurnIdx = gs.currentTurnIdx;
     round = gs.round;
+    pointPool = gs.pointPool;
     tableCards = gs.tableCards;
     deckCards = gs.deckCards;
 }
@@ -45,6 +48,10 @@ void GameState::setCurrentTurnIdx(int currentTurn) {
 
 void GameState::setRound(int roundNum) {
     round = roundNum;
+}
+
+void GameState::setPointPool(int points) {
+    pointPool = points;
 }
 
 void GameState::setTableCards(TableCard tblCard) {
@@ -70,6 +77,10 @@ int GameState::getCurrentTurnIdx() {
 
 int GameState::getRound() {
     return round;
+}
+
+int GameState::getPointPool() {
+    return pointPool;
 }
 
 TableCard& GameState::getTableCards() {

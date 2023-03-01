@@ -13,6 +13,7 @@ class Player: public InventoryHolder {
 private:
     const int playerID;
     vector<Card> hand;
+    int point;
 
 public:
 
@@ -27,6 +28,9 @@ public:
 
     // Return player hand
     vector<Card> getHand() const;
+
+    // Return player points
+    int getPoint() const;
 
      // Returns the number of items in the inventory
     virtual int countItems() const;

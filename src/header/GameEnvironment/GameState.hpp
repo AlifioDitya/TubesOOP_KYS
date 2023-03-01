@@ -14,6 +14,7 @@ private:
     vector<Player> playerList;
     int currentTurnIdx;
     int round;
+    int pointPool;
     TableCard tableCards;
     DeckCard deckCards;
     
@@ -22,7 +23,7 @@ public:
     GameState();
 
     // Specified ctor
-    GameState(vector<Player>, int, int, TableCard, DeckCard);
+    GameState(vector<Player>, int, int, int, TableCard, DeckCard);
 
     // cctor
     GameState(const GameState&);
@@ -37,6 +38,8 @@ public:
 
     void setRound(int);
 
+    void setPointPool(int);
+
     void setTableCards(TableCard);
 
     void setDeckCards(DeckCard);
@@ -49,6 +52,8 @@ public:
     int getCurrentTurnIdx();
 
     int getRound();
+
+    int getPointPool();
 
     TableCard& getTableCards();
 

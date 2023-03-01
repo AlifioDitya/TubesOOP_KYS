@@ -23,6 +23,6 @@ bool Double::executeCommand(GameState& gameState) {
     int newPoints = oldPoints * 2;
     gameState.setPointPool(newPoints);
 
-    cout << "melakukan DOUBLE! Poin hadiah naik dari " << oldPoints << " menjadi " << newPoints << "!" << endl;
+    cout << gameState.getCurrentTurnPlayer().getName() << "melakukan DOUBLE! Poin hadiah naik dari " << oldPoints << " menjadi " << newPoints << "!" << endl;
     return true;
 }

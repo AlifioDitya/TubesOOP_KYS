@@ -58,6 +58,9 @@ public:
     TableCard& getTableCards();
 
     DeckCard& getDeckCards();
+
+    // Method to print player list
+    void printPlayerList();
 };
 
 #endif

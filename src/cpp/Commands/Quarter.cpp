@@ -26,7 +26,7 @@ bool Quarter::executeCommand(GameState& gameState) {
         return false;
     }
 
-    cout << "melakukan QUARTER! ";
+    cout << gameState.getCurrentTurnPlayer().getName() << "melakukan QUARTER! ";
     
     int oldPoint = gameState.getPointPool();
     int newPoint = oldPoint / 4;

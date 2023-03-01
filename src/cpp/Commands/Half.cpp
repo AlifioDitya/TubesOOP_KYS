@@ -1,7 +1,6 @@
 // Half.cpp
 #include "../../header/Commands/Half.hpp"
 #include "../../enums/CmdTypes.hpp"
-#include "../../enums/AbilityTypes.hpp"
 
 #include <iostream>
 
@@ -20,7 +19,7 @@ bool Half::executeCommand(GameState& gameState) {
         return false;
     }
 
-    cout << "melakukan HALF! ";
+    cout << gameState.getCurrentTurnPlayer().getName() << "melakukan HALF! ";
 
     int oldPoint = gameState.getPointPool();
     int newPoint = oldPoint / 2;

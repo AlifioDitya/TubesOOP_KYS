@@ -6,22 +6,31 @@
 #include "../Cards/Card.hpp"
 #include "../../enums/AbilityTypes.hpp"
 #include <vector>
+#include <string>
 
 using std::vector;
+using std::string;
 
 class Player: public InventoryHolder {
 private:
-    const int playerID;
+    int playerID;
     vector<Card> hand;
     int point;
+    string name;
+    bool hasPlayed;
 
 public:
+    // Default ctor
+    Player();
 
     // Specified ctor
-    Player(int);
+    Player(int, vector<Card>, int, string, bool);
 
     // cctor
     Player(const Player&);
+
+    // operator=
+    Player& operator=(const Player&);
 
     // Return player id
     int getId() const;
@@ -31,6 +40,9 @@ public:
 
     // Return player points
     int getPoint() const;
+
+    // Return player name
+    string getName() const;
 
      // Returns the number of items in the inventory
     virtual int countItems() const;
@@ -49,6 +61,9 @@ public:
     
     // Check if player has used an ability
     bool hasUsedAbility(AbilityTypes);
+
+    // Check if player has played this round
+    bool hasPlayedThisRound();
 
     // ...
 };

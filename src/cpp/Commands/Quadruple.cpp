@@ -30,6 +30,6 @@ bool Quadruple::executeCommand(GameState& gameState) {
     int newPoints = oldPoints * 4;
     gameState.setPointPool(newPoints);
 
-    cout << "melakukan QUADRUPLE! Poin hadiah naik dari " << oldPoints << " menjadi " << newPoints << "!" << endl; 
+    cout << gameState.getCurrentTurnPlayer().getName() << "melakukan QUADRUPLE! Poin hadiah naik dari " << oldPoints << " menjadi " << newPoints << "!" << endl; 
     return true;
 }

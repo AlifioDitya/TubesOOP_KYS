@@ -24,13 +24,13 @@ bool Reroll::executeCommand(GameState& gameState) {
 
     // Check if the player has already used the Re-Roll ability
     if (gameState.getCurrentTurnPlayer().hasUsedAbility(AbilityTypes::Reroll)) {
-        cout << "Maaf, kamu sudah menggunakan Reroll sebelumnya." << endl;
+        cout << "Maaf, kamu sudah pernah menggunakan REROLL." << endl;
         return false;
     }
 
     // Check if the player has the Re-Roll ability
     if (!gameState.getCurrentTurnPlayer().hasAbility(AbilityTypes::Reroll)) {
-        cout << "Maaf, kamu tidak memiliki ability untuk Reroll." << endl;
+        cout << "Maaf, kamu tidak punya kartu Ability REROLL." << endl;
         return false;
     }
 

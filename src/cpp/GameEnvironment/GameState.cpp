@@ -1,6 +1,11 @@
 // GameState.cpp
 #include "../../header/GameEnvironment/GameState.hpp"
 
+#include <iostream>
+
+using std::cout;
+using std::endl;
+
 // Default ctor
 GameState::GameState() {
     // Initialize default values
@@ -89,4 +94,12 @@ TableCard& GameState::getTableCards() {
 
 DeckCard& GameState::getDeckCards() {
     return deckCards;
+}
+
+void GameState::printPlayerList() {
+    for (int i = 0; i < playerList.size(); i++) {
+        cout << "<" << playerList[i].getId() << "> ";
+    }
+
+    cout << endl;
 }

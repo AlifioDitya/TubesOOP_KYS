@@ -9,34 +9,37 @@ using std::cout;
 using std::endl;
 
 // Default ctor
-Player::Player(): playerID(-1), hand(vector<Card>()), point(0), name("Username"), hasPlayed(false) {
+Player::Player(): Player(-1, vector<Card>(), 0, "Username", false) {
 
 }
 
 // Specified ctor
-Player::Player(int id, vector<Card> hand, int point, string name, bool hasPlayed): playerID(id), hand(hand), point(point), name(name), hasPlayed(hasPlayed) {
-
+Player::Player(int id, vector<Card> hand, int point, string name, bool hasPlayed) {
+    this->playerID = playerID;
+    this->hand = hand;
+    this->point = point;
+    this->name = name;
+    this->hasPlayed = hasPlayed;
 }
 
 // cctor
-Player::Player(const Player& other): playerID(other.playerID), point(other.point), name(other.name), hasPlayed(other.hasPlayed) {
-    copy(other.hand.begin(), other.hand.end(), back_inserter(hand)); 
+Player::Player(const Player& other) {
+    playerID = other.playerID;
+    point = other.point;
+    name = other.name;
+    hand = other.hand;
+    hasPlayed = other.hasPlayed;
 }
 
 // operator
 Player& Player::operator=(const Player& other) {
     if (this != &other) {
-        // copy player ID
-        this->playerID = other.playerID;
 
-        // copy hand
-        this->hand.clear();
-        for (const Card& card : other.hand) {
-            this->hand.push_back(card);
-        }
-
-        // copy point
-        this->point = other.point;
+        playerID = other.playerID;
+        point = other.point;
+        name = other.name;
+        hand = other.hand;
+        hasPlayed = other.hasPlayed;
     }
 
     return *this;
@@ -61,10 +64,6 @@ void Player::setHand(vector<Card> newHand) {
     this->hand = newHand;
 }
 
-// Set abilityless
-bool Player::setNerfed(bool nerf) {
-    this->nerfed = nerf;
-}
 
 // Returns the number of items in the inventory
 int Player::countItems() const {
@@ -90,10 +89,6 @@ bool Player::hasPlayedThisRound() {
     return hasPlayed;
 }
 
-// Predicates
-bool Player::hasUsedAbility() {
-    return usedAbility;
-}
 
 // Switch cards
 void Player::switchCards(Player& other) {

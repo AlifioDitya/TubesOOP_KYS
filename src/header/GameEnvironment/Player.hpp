@@ -12,14 +12,12 @@ using std::vector;
 using std::string;
 
 class Player: public InventoryHolder {
-private:
+protected:
     int playerID;
     vector<Card> hand;
     int point;
     string name;
     bool hasPlayed;
-    bool usedAbility;
-    bool nerfed;
 
 public:
     // Default ctor

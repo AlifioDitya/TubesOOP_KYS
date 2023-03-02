@@ -61,6 +61,11 @@ void Player::setHand(vector<Card> newHand) {
     this->hand = newHand;
 }
 
+// Set abilityless
+bool Player::setNerfed(bool nerf) {
+    this->nerfed = nerf;
+}
+
 // Returns the number of items in the inventory
 int Player::countItems() const {
     return hand.size();
@@ -85,6 +90,11 @@ bool Player::hasPlayedThisRound() {
     return hasPlayed;
 }
 
+// Predicates
+bool Player::hasUsedAbility() {
+    return usedAbility;
+}
+
 // Switch cards
 void Player::switchCards(Player& other) {
     vector<Card> temp = this->getHand();
@@ -95,7 +105,7 @@ void Player::switchCards(Player& other) {
 void Player::switchCards(int idx1, int idx2, Player& other) {
     Card temp = this->getHand()[idx1];
     this->setHand(idx1, other.getHand()[idx2]);
-    other.setHand(temp);
+    other.setHand(idx2, temp);
 }
 
 void Player::printHand() {

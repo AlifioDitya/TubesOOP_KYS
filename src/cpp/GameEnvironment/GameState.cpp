@@ -100,6 +100,17 @@ DeckCard& GameState::getDeckCards() {
     return deckCards;
 }
 
+// Predicates
+bool GameState::hasAllUsedAbility() {
+    for (Player p: this->playerList) {
+        if (!p.hasUsedAbility()) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 // Methods for printing player list
 void GameState::printPlayerList() {
     for (int i = 0; i < playerList.size(); i++) {

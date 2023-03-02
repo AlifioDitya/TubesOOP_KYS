@@ -61,6 +61,9 @@ public:
 
     DeckCard& getDeckCards();
 
+    // Predicates
+    bool hasAllUsedAbility();
+
     // Method to print player list
     void printPlayerList();
 

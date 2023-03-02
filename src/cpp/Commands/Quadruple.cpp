@@ -14,7 +14,7 @@ Quadruple::Quadruple() {
 }
 
 // Execute method
-bool Quadruple::executeCommand(GameState& gameState) {
+bool Quadruple::executeCommand(CandyGameState& gameState) {
     if (this->command != CmdTypes::Quadruple) {
         cout << "Command tidak tepat." << endl;
         return false;

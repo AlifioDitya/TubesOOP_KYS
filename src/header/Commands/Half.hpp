@@ -11,7 +11,7 @@ public:
     Half();
 
     // Executes Half
-    bool executeCommand(GameState& gameState);
+    bool executeCommand(CandyGameState& gameState);
 };
 
 #endif

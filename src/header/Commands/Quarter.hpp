@@ -4,6 +4,7 @@
 
 #include "Commands.hpp"
 #include "../GameEnvironment/GameState.hpp"
+#include "../GameEnvironment/CandyPlayer.hpp"
 
 class Quarter : public Commands {
 public:
@@ -11,7 +12,7 @@ public:
     Quarter();
 
     // Executes Quarter
-    bool executeCommand(GameState& gameState);
+    bool executeCommand(CandyGameState& gameState);
 };
 
 #endif

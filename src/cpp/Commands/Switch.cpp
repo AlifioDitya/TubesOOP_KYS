@@ -15,7 +15,7 @@ Switch::Switch() {
 }
 
 // Execute method
-bool Switch::executeCommand(GameState& gameState) {
+bool Switch::executeCommand(CandyGameState& gameState) {
     if (this->command != CmdTypes::Switch) {
         cout << "Command tidak tepat." << endl;
         return false;
@@ -34,7 +34,7 @@ bool Switch::executeCommand(GameState& gameState) {
     gameState.getCurrentTurnPlayer().printHand();
 
     // Get list of players other than currently playing
-    vector<Player> otherPlayers = gameState.getPlayerList();
+    vector<CandyPlayer> otherPlayers = gameState.getPlayerList();
     otherPlayers.erase(otherPlayers.begin() + gameState.getCurrentTurnIdx());
 
     // Select player to switch

@@ -5,6 +5,7 @@
 #include "./GameEnvironment/GameState.hpp"
 #include "../../enums/CmdTypes.hpp"
 #include <string>
+#include "../GameEnvironment/CandyGameState.hpp"
 
 using std::string;
 
@@ -32,7 +33,7 @@ public:
 
     // Method
     // Returns true if command succeeds
-    virtual bool executeCommand(GameState&) const = 0;
+    virtual bool executeCommand(CandyGameState&) const = 0;
 
     // Static method to parse string to command type
     static CmdTypes parseCommand(string);

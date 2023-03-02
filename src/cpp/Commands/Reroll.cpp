@@ -16,7 +16,7 @@ Reroll::Reroll() {
 }
 
 // Execute method
-bool Reroll::executeCommand(GameState& gameState) {
+bool Reroll::executeCommand(CandyGameState& gameState) {
     if (this->command != CmdTypes::Reroll) {
         cout << "Command tidak tepat." << endl;
         return false;

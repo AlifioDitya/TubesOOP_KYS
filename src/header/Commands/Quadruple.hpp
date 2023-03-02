@@ -10,7 +10,7 @@ public:
     Quadruple();
 
     // Executes Quadruple
-    bool executeCommand(GameState& gameState);
+    bool executeCommand(CandyGameState& gameState);
 };
 
 #endif

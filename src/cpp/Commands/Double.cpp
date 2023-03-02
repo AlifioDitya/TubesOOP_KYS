@@ -13,7 +13,7 @@ Double::Double() {
 }
 
 // Execute method
-bool Double::executeCommand(GameState& gameState) {
+bool Double::executeCommand(CandyGameState& gameState) {
     if (this->command != CmdTypes::Double) {
         cout << "Command tidak tepat." << endl;
         return false;

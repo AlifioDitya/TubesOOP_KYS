@@ -13,7 +13,7 @@ Half::Half() {
 }
 
 // Execute method
-bool Half::executeCommand(GameState& gameState) {
+bool Half::executeCommand(CandyGameState& gameState) {
     if (this->command != CmdTypes::Half) {
         cout << "Command tidak tepat." << endl;
         return false;

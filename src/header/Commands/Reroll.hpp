@@ -11,7 +11,7 @@ public:
     Reroll();
 
     // Executes Reroll
-    bool executeCommand(GameState& gameState);
+    bool executeCommand(CandyGameState& gameState);
 };
 
 #endif

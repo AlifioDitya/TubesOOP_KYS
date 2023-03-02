@@ -15,7 +15,7 @@ SwapCard::SwapCard() {
 }
 
 // Execute method
-bool SwapCard::executeCommand(GameState& gameState) {
+bool SwapCard::executeCommand(CandyGameState& gameState) {
     if (this->command != CmdTypes::SwapCard) {
         cout << "Command tidak tepat." << endl;
         return false;
@@ -30,7 +30,7 @@ bool SwapCard::executeCommand(GameState& gameState) {
     cout << gameState.getCurrentTurnPlayer().getName() << " melakukan SWAPCARD." << endl;
 
     // Get list of players other than currently playing
-    vector<Player> otherPlayers = gameState.getPlayerList();
+    vector<CandyPlayer> otherPlayers = gameState.getPlayerList();
     otherPlayers.erase(otherPlayers.begin() + gameState.getCurrentTurnIdx());
 
     // Select Player 1

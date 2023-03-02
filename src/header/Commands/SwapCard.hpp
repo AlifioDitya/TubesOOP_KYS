@@ -11,7 +11,7 @@ public:
     SwapCard();
 
     // Executes SwapCard
-    bool executeCommand(GameState& gameState);
+    bool executeCommand(CandyGameState& gameState);
 };
 
 #endif

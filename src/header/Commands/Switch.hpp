@@ -11,7 +11,7 @@ public:
     Switch();
 
     // Executes Switch
-    bool executeCommand(GameState& gameState);
+    bool executeCommand(CandyGameState& gameState);
 };
 
 #endif

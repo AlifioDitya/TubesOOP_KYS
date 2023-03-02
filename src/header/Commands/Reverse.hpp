@@ -11,7 +11,7 @@ public:
     Reverse();
 
     // Executes Reverse
-    bool executeCommand(GameState& gameState);
+    bool executeCommand(CandyGameState& gameState);
 };
 
 #endif

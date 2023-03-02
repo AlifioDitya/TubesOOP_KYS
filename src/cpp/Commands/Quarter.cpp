@@ -14,7 +14,7 @@ Quarter::Quarter() {
 }
 
 // Execute method
-bool Quarter::executeCommand(GameState& gameState) {
+bool Quarter::executeCommand(CandyGameState& gameState) {
     if (this->command != CmdTypes::Quarter) {
         cout << "Command tidak tepat." << endl;
         return false;

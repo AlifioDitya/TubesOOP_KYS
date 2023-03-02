@@ -11,7 +11,7 @@ public:
     Abilityless();
 
     // Executes Abilityless
-    bool executeCommand(GameState& gameState);
+    bool executeCommand(CandyGameState& gameState);
 };
 
 #endif

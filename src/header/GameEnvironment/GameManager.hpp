@@ -4,13 +4,9 @@
 
 #include "GameState.hpp"
 
-
-
 class GameManager {
-    private:
+    protected:
     
-    GameState gameState;
-
     virtual void checkWinner() = 0;
     virtual void nextRound() = 0;
     virtual void nextTurn() = 0;

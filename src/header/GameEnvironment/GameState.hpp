@@ -9,9 +9,10 @@
 
 using std::vector;
 
+template <class T>
 class GameState {
-private:
-    vector<Player> playerList;
+protected:
+    vector<T> playerList;
     int currentTurnIdx;
     int round;
     int pointPool;
@@ -23,7 +24,7 @@ public:
     GameState();
 
     // Specified ctor
-    GameState(vector<Player>, int, int, int, TableCard, DeckCard);
+    GameState(vector<T>, int, int, int, TableCard, DeckCard);
 
     // cctor
     GameState(const GameState&);
@@ -32,7 +33,7 @@ public:
     ~GameState();
 
     // Setters
-    void setPlayerList(vector<Player>);
+    void setPlayerList(vector<T>);
 
     void setCurrentTurnIdx(int);
 
@@ -45,11 +46,11 @@ public:
     void setDeckCards(DeckCard);
 
     // Getters
-    vector<Player> getPlayerList();
+    vector<T> getPlayerList();
 
-    Player& getCurrentTurnPlayer();
+    T& getCurrentTurnPlayer();
 
-    Player& getPlayerRefAt(int);
+    T& getPlayerRefAt(int);
 
     int getCurrentTurnIdx();
 
@@ -61,13 +62,12 @@ public:
 
     DeckCard& getDeckCards();
 
-    // Predicates
-    bool hasAllUsedAbility();
-
     // Method to print player list
     void printPlayerList();
 
-    void printPlayerList(vector<Player> playerVec);
+    void printPlayerList(vector<T> playerVec);
 };
+
+#include "../../cpp/GameEnvironment/GameState.cpp"
 
 #endif

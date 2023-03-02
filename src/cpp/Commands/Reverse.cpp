@@ -15,7 +15,7 @@ Reverse::Reverse() {
 }
 
 // Execute method
-bool Reverse::executeCommand(GameState& gameState) {
+bool Reverse::executeCommand(CandyGameState& gameState) {
     if (this->command != CmdTypes::Reverse) {
         cout << "Command tidak tepat." << endl;
         return false;
@@ -27,7 +27,7 @@ bool Reverse::executeCommand(GameState& gameState) {
         return false;
     }
 
-    vector<Player> playerList = gameState.getPlayerList();
+    vector<CandyPlayer> playerList = gameState.getPlayerList();
     int currentPlayerIdx = gameState.getCurrentTurnIdx();
 
     // Reverse player order before current player

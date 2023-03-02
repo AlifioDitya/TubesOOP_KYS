@@ -13,7 +13,7 @@ Next::Next() {
 }
 
 // Execute method
-bool Next::executeCommand(GameState& gameState) {
+bool Next::executeCommand(CandyGameState& gameState) {
     if (this->command != CmdTypes::Next) {
         cout << "Command tidak tepat." << endl;
         return false;

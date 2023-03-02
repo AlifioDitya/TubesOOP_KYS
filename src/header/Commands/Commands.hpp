@@ -4,6 +4,9 @@
 
 #include "GameState.hpp"
 #include "../../enums/CmdTypes.hpp"
+#include <string>
+
+using std::string;
 
 class Commands {
 protected:
@@ -30,6 +33,9 @@ public:
     // Method
     // Returns true if command succeeds
     virtual bool executeCommand(GameState&) const = 0;
+
+    // Static method to parse string to command type
+    static CmdTypes parseCommand(string);
 };
 
 #endif

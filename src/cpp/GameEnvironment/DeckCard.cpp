@@ -15,7 +15,7 @@ DeckCard::DeckCard() {
     {
         for(int j = 1; j <= 13; i++)
         {
-            tempCards.push_back(Card((Suit)i, (Rank)j));
+            tempCards.push_back(Card((Color)i, (Rank)j));
         }
     }
 

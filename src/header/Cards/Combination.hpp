@@ -1,7 +1,6 @@
 #ifndef COMBINATION_HPP
 #define COMBINATION_HPP
 
-#include ""
 #include "CardInterface.hpp"
 
 // KELAS SANGAT AMBIGU

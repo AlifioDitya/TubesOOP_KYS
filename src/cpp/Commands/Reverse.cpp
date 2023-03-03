@@ -12,20 +12,13 @@ using std::swap;
 // ctor
 Reverse::Reverse() {
     this->command = CmdTypes::Reverse;
+    this->abilityType = AbilityTypes::Reverse;
 }
 
 // Execute method
-bool Reverse::executeCommand(CandyGameState& gameState) {
-    if (this->command != CmdTypes::Reverse) {
-        cout << "Command tidak tepat." << endl;
-        return false;
-    }
+void Reverse::executeCommand(CandyGameState& gameState) {
 
-    // Check if the player has the Reverse ability
-    if (!gameState.getCurrentTurnPlayer().hasAbility(AbilityTypes::Reverse)) {
-        cout << "Ets, tidak bisa. Kamu tidak punya kartu Ability untuk Reverse." << endl;
-        return false;
-    }
+    validateAbility(gameState);
 
     vector<CandyPlayer> playerList = gameState.getPlayerList();
     int currentPlayerIdx = gameState.getCurrentTurnIdx();
@@ -62,5 +55,4 @@ bool Reverse::executeCommand(CandyGameState& gameState) {
     // Set the player list in reverse order
     gameState.setPlayerList(playerList);
 
-    return true;
 }

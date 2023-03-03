@@ -1,16 +1,16 @@
 #ifndef QUADRUPLE_HPP
 #define QUADRUPLE_HPP
 
-#include "Commands.hpp"
-#include "../GameEnvironment/GameState.hpp"
+#include "Ability.hpp"
+#include "../GameEnvironment/CandyGameState.hpp"
 
-class Quadruple : public Commands {
+class Quadruple : public Ability {
 public:
     // ctor
     Quadruple();
 
     // Executes Quadruple
-    bool executeCommand(CandyGameState& gameState);
+    void executeCommand(CandyGameState& gameState);
 };
 
 #endif

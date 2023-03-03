@@ -2,6 +2,7 @@
 #include "../../header/Commands/Quadruple.hpp"
 #include "../../enums/CmdTypes.hpp"
 #include "../../enums/AbilityTypes.hpp"
+#include "../../header/Exception/CommandException.h"
 
 #include <iostream>
 
@@ -11,19 +12,17 @@ using std::endl;
 // ctor
 Quadruple::Quadruple() {
     this->command = CmdTypes::Quadruple;
+    this->abilityType = AbilityTypes::Quadruple;
 }
 
 // Execute method
-bool Quadruple::executeCommand(CandyGameState& gameState) {
-    if (this->command != CmdTypes::Quadruple) {
-        cout << "Command tidak tepat." << endl;
-        return false;
-    }
+void Quadruple::executeCommand(CandyGameState& gameState) {
 
+    validateAbility(gameState);
+    
     // Check if the player has the Quadruple ability
     if (!gameState.getCurrentTurnPlayer().hasAbility(AbilityTypes::Quadruple)) {
-        cout << "Ets, tidak bisa. Kamu tidak punya kartu Ability untuk QUADRUPLE." << endl;
-        return false;
+        throw MissingAbility(AbilityTypes::Quadruple);
     }
     
     int oldPoints = gameState.getPointPool();
@@ -31,5 +30,5 @@ bool Quadruple::executeCommand(CandyGameState& gameState) {
     gameState.setPointPool(newPoints);
 
     cout << gameState.getCurrentTurnPlayer().getName() << "melakukan QUADRUPLE! Poin hadiah naik dari " << oldPoints << " menjadi " << newPoints << "!" << endl; 
-    return true;
+
 }

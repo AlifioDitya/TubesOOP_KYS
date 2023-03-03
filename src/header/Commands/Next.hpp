@@ -11,7 +11,7 @@ public:
     Next();
 
     // Executes next
-    bool executeCommand(CandyGameState& gameState);
+    void executeCommand(CandyGameState& gameState);
 };
 
 #endif

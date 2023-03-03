@@ -1,6 +1,7 @@
 // Double.cpp
 #include "../../header/Commands/Double.hpp"
 #include "../../enums/CmdTypes.hpp"
+#include "../../header/Exception/CommandException.h"
 
 #include <iostream>
 
@@ -13,16 +14,12 @@ Double::Double() {
 }
 
 // Execute method
-bool Double::executeCommand(CandyGameState& gameState) {
-    if (this->command != CmdTypes::Double) {
-        cout << "Command tidak tepat." << endl;
-        return false;
-    }
+void Double::executeCommand(CandyGameState& gameState) {
+
     
     int oldPoints = gameState.getPointPool();
     int newPoints = oldPoints * 2;
     gameState.setPointPool(newPoints);
 
     cout << gameState.getCurrentTurnPlayer().getName() << "melakukan DOUBLE! Poin hadiah naik dari " << oldPoints << " menjadi " << newPoints << "!" << endl;
-    return true;
 }

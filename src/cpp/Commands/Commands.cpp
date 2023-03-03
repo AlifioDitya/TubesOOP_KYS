@@ -8,14 +8,9 @@ using std::map;
 using std::transform;
 using std::tolower;
 
-// Default ctor
+// ctor
 Commands::Commands() {
-    this->command = Next;
-}
 
-// Specified ctor
-Commands::Commands(CmdTypes command) {
-    this->command = command;
 }
 
 // cctor

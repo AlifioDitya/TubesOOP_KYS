@@ -12,20 +12,13 @@ using std::endl;
 // ctor
 SwapCard::SwapCard() {
     this->command = CmdTypes::SwapCard;
+    this->abilityType = AbilityTypes::SwapCard;
 }
 
 // Execute method
-bool SwapCard::executeCommand(CandyGameState& gameState) {
-    if (this->command != CmdTypes::SwapCard) {
-        cout << "Command tidak tepat." << endl;
-        return false;
-    }
-
-    // Check if the player has the SwapCard ability
-    if (!gameState.getCurrentTurnPlayer().hasAbility(AbilityTypes::SwapCard)) {
-        cout << "Ets, tidak bisa. Kamu tidak punya kartu Ability untuk SWAPCARD." << endl;
-        return false;
-    }
+void SwapCard::executeCommand(CandyGameState& gameState) {
+    
+    validateAbility(gameState);
 
     cout << gameState.getCurrentTurnPlayer().getName() << " melakukan SWAPCARD." << endl;
 
@@ -87,5 +80,4 @@ bool SwapCard::executeCommand(CandyGameState& gameState) {
 
     gameState.getPlayerRefAt(playerIdx1).switchCards(selectIdx1, selectIdx2, gameState.getPlayerRefAt(playerIdx2));
 
-    return true;
 }

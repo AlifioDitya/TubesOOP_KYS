@@ -13,14 +13,9 @@ Next::Next() {
 }
 
 // Execute method
-bool Next::executeCommand(CandyGameState& gameState) {
-    if (this->command != CmdTypes::Next) {
-        cout << "Command tidak tepat." << endl;
-        return false;
-    }
+void Next::executeCommand(CandyGameState& gameState) {
 
     int nextPlayerIdx = (gameState.getCurrentTurnIdx() + 1) % gameState.getPlayerList().size();
     gameState.setCurrentTurnIdx(nextPlayerIdx);
     cout << "Giliran dilanjut ke pemain selanjutnya." << endl;
-    return true;
 }

@@ -2,16 +2,16 @@
 #ifndef REVERSE_HPP
 #define REVERSE_HPP
 
-#include "Commands.hpp"
-#include "../GameEnvironment/GameState.hpp"
+#include "Ability.hpp"
+#include "../GameEnvironment/CandyGameState.hpp"
 
-class Reverse : public Commands {
+class Reverse : public Ability {
 public:
     // ctor
     Reverse();
 
     // Executes Reverse
-    bool executeCommand(CandyGameState& gameState);
+    void executeCommand(CandyGameState& gameState);
 };
 
 #endif

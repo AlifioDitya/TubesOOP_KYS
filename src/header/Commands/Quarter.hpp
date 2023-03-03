@@ -2,17 +2,16 @@
 #ifndef QUARTER_HPP
 #define QUARTER_HPP
 
-#include "Commands.hpp"
-#include "../GameEnvironment/GameState.hpp"
-#include "../GameEnvironment/CandyPlayer.hpp"
+#include "Ability.hpp"
+#include "../GameEnvironment/CandyGameState.hpp"
 
-class Quarter : public Commands {
+class Quarter : public Ability {
 public:
     // ctor
     Quarter();
 
     // Executes Quarter
-    bool executeCommand(CandyGameState& gameState);
+    void executeCommand(CandyGameState& gameState);
 };
 
 #endif

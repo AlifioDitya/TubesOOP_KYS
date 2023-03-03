@@ -2,16 +2,16 @@
 #ifndef REROLL_HPP
 #define REROLL_HPP
 
-#include "Commands.hpp"
-#include "../GameEnvironment/GameState.hpp"
+#include "Ability.hpp"
+#include "../GameEnvironment/CandyGameState.hpp"
 
-class Reroll : public Commands {
+class Reroll : public Ability {
 public:
     // ctor
     Reroll();
 
     // Executes Reroll
-    bool executeCommand(CandyGameState& gameState);
+    void executeCommand(CandyGameState& gameState);
 };
 
 #endif

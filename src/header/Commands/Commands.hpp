@@ -12,12 +12,10 @@ using std::string;
 class Commands {
 protected:
     CmdTypes command;
+    
 public:
     // Default ctor
     Commands();
-
-    // Specified ctor
-    Commands(CmdTypes);
 
     // cctor
     Commands(const Commands&);
@@ -33,7 +31,7 @@ public:
 
     // Method
     // Returns true if command succeeds
-    virtual bool executeCommand(CandyGameState&) const = 0;
+    virtual void executeCommand(CandyGameState&) const = 0;
 
     // Static method to parse string to command type
     static CmdTypes parseCommand(string);

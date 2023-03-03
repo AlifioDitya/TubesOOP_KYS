@@ -2,16 +2,16 @@
 #ifndef SWAPCARD_HPP
 #define SWAPCARD_HPP
 
-#include "Commands.hpp"
-#include "../GameEnvironment/GameState.hpp"
+#include "Ability.hpp"
+#include "../GameEnvironment/CandyGameState.hpp"
 
-class SwapCard : public Commands {
+class SwapCard : public Ability {
 public:
     // ctor
     SwapCard();
 
     // Executes SwapCard
-    bool executeCommand(CandyGameState& gameState);
+    void executeCommand(CandyGameState& gameState);
 };
 
 #endif

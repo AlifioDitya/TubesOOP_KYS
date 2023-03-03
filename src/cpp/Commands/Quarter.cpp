@@ -2,6 +2,7 @@
 #include "../../header/Commands/Quarter.hpp"
 #include "../../enums/CmdTypes.hpp"
 #include "../../enums/AbilityTypes.hpp"
+#include "../../header/Exception/CommandException.h"
 
 #include <iostream>
 
@@ -11,19 +12,17 @@ using std::endl;
 // ctor
 Quarter::Quarter() {
     this->command = CmdTypes::Quarter;
+    this->abilityType = AbilityTypes::Quarter;
 }
 
 // Execute method
-bool Quarter::executeCommand(CandyGameState& gameState) {
-    if (this->command != CmdTypes::Quarter) {
-        cout << "Command tidak tepat." << endl;
-        return false;
-    }
+void Quarter::executeCommand(CandyGameState& gameState) {
+
+    validateAbility(gameState);
 
     // Check if the player has the Quarter ability
     if (!gameState.getCurrentTurnPlayer().hasAbility(AbilityTypes::Quarter)) {
-        cout << "Ets, tidak bisa. Kamu tidak punya kartu Ability untuk Quarter." << endl;
-        return false;
+        throw MissingAbility(AbilityTypes::Quarter);
     }
 
     cout << gameState.getCurrentTurnPlayer().getName() << "melakukan QUARTER! ";
@@ -42,5 +41,4 @@ bool Quarter::executeCommand(CandyGameState& gameState) {
 
     cout << "Poin hadiah turun dari " << oldPoint << " menjadi " << newPoint << "!" << endl;
 
-    return true;
 }

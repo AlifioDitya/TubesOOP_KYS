@@ -1,6 +1,7 @@
 // Half.cpp
 #include "../../header/Commands/Half.hpp"
 #include "../../enums/CmdTypes.hpp"
+#include "../../header/Exception/CommandException.h"
 
 #include <iostream>
 
@@ -13,11 +14,7 @@ Half::Half() {
 }
 
 // Execute method
-bool Half::executeCommand(CandyGameState& gameState) {
-    if (this->command != CmdTypes::Half) {
-        cout << "Command tidak tepat." << endl;
-        return false;
-    }
+void Half::executeCommand(CandyGameState& gameState) {
 
     cout << gameState.getCurrentTurnPlayer().getName() << "melakukan HALF! ";
 
@@ -34,6 +31,4 @@ bool Half::executeCommand(CandyGameState& gameState) {
     gameState.setPointPool(newPoint);
 
     cout << "Poin hadiah turun dari " << oldPoint << " menjadi " << newPoint << "!" << endl;
-
-    return true;
 }

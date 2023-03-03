@@ -46,26 +46,26 @@ public:
     void setDeckCards(DeckCard);
 
     // Getters
-    vector<T> getPlayerList();
+    vector<T> getPlayerList() const;
 
     T& getCurrentTurnPlayer();
 
     T& getPlayerRefAt(int);
 
-    int getCurrentTurnIdx();
+    int getCurrentTurnIdx() const;
 
-    int getRound();
+    int getRound() const;
 
-    int getPointPool();
+    int getPointPool() const;
 
     TableCard& getTableCards();
 
     DeckCard& getDeckCards();
 
     // Method to print player list
-    void printPlayerList();
+    void printPlayerList() const;
 
-    void printPlayerList(vector<T> playerVec);
+    void printPlayerList(vector<T> playerVec) const;
 };
 
 #include "../../cpp/GameEnvironment/GameState.cpp"

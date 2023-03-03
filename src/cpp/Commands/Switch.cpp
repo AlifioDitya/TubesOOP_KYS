@@ -12,20 +12,13 @@ using std::endl;
 // ctor
 Switch::Switch() {
     this->command = CmdTypes::Switch;
+    this->abilityType = AbilityTypes::Switch;
 }
 
 // Execute method
-bool Switch::executeCommand(CandyGameState& gameState) {
-    if (this->command != CmdTypes::Switch) {
-        cout << "Command tidak tepat." << endl;
-        return false;
-    }
-
-    // Check if the player has the Switch ability
-    if (!gameState.getCurrentTurnPlayer().hasAbility(AbilityTypes::Switch)) {
-        cout << "Ets, tidak bisa. Kamu tidak punya kartu Ability untuk SWITCH." << endl;
-        return false;
-    }
+void Switch::executeCommand(CandyGameState& gameState) {
+    
+    validateAbility(gameState);
 
     cout << gameState.getCurrentTurnPlayer().getName() << " melakukan SWITCH!" << endl;
 
@@ -58,5 +51,4 @@ bool Switch::executeCommand(CandyGameState& gameState) {
     cout << "Kartumu sekarang adalah:" << endl;
     gameState.getCurrentTurnPlayer().printHand();
 
-    return true;
 }

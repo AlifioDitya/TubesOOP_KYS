@@ -2,16 +2,16 @@
 #ifndef ABILITYLESS_HPP
 #define ABILITYLESS_HPP
 
-#include "Commands.hpp"
-#include "../GameEnvironment/GameState.hpp"
+#include "Ability.hpp"
+#include "../GameEnvironment/CandyGameState.hpp"
 
-class Abilityless : public Commands {
+class Abilityless : public Ability {
 public:
     // ctor
     Abilityless();
 
     // Executes Abilityless
-    bool executeCommand(CandyGameState& gameState);
+    void executeCommand(CandyGameState& gameState);
 };
 
 #endif

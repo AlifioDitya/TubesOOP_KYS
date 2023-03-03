@@ -10,7 +10,7 @@ public:
     Double();
 
     // Executes double
-    bool executeCommand(CandyGameState& gameState);
+    void executeCommand(CandyGameState& gameState);
 };
 
 #endif

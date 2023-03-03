@@ -2,16 +2,16 @@
 #ifndef SWITCH_HPP
 #define SWITCH_HPP
 
-#include "Commands.hpp"
-#include "../GameEnvironment/GameState.hpp"
+#include "Ability.hpp"
+#include "../GameEnvironment/CandyGameState.hpp"
 
-class Switch : public Commands {
+class Switch : public Ability {
 public:
     // ctor
     Switch();
 
     // Executes Switch
-    bool executeCommand(CandyGameState& gameState);
+    void executeCommand(CandyGameState& gameState);
 };
 
 #endif

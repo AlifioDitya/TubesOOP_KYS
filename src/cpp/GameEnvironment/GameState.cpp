@@ -79,7 +79,7 @@ void GameState<T>::setDeckCards(DeckCard dckCard) {
 
 // Getters
 template <class T>
-vector<T> GameState<T>::getPlayerList() {
+vector<T> GameState<T>::getPlayerList() const {
     return playerList;
 }
 
@@ -94,17 +94,17 @@ T& GameState<T>::getPlayerRefAt(int idx) {
 }
 
 template <class T>
-int GameState<T>::getCurrentTurnIdx() {
+int GameState<T>::getCurrentTurnIdx() const {
     return currentTurnIdx;
 }
 
 template <class T>
-int GameState<T>::getRound() {
+int GameState<T>::getRound() const {
     return round;
 }
 
 template <class T>
-int GameState<T>::getPointPool() {
+int GameState<T>::getPointPool() const {
     return pointPool;
 }
 
@@ -120,14 +120,14 @@ DeckCard& GameState<T>::getDeckCards() {
 
 // Methods for printing player list
 template <class T>
-void GameState<T>::printPlayerList() {
+void GameState<T>::printPlayerList() const {
     for (int i = 0; i < playerList.size(); i++) {
         cout << i+1 << ". " << playerList[i].getName() << endl;
     }
 }
 
 template <class T>
-void GameState<T>::printPlayerList(vector<T> playerVec) {
+void GameState<T>::printPlayerList(vector<T> playerVec) const {
     for (int i = 0; i < playerVec.size(); i++) {
         cout << i+1 << ". " << playerVec[i].getName() << endl;
     }

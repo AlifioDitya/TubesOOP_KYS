@@ -2,13 +2,12 @@
 #ifndef SWAPCARD_HPP
 #define SWAPCARD_HPP
 
-#include "Ability.hpp"
+#include "PlayerInvolvedAbility.hpp"
 #include "../GameEnvironment/CandyGameState.hpp"
-#include <string>
 
-class SwapCard : public Ability {
+class SwapCard : public PlayerInvolvedAbility {
 private:
-
+    int SwapCard::selectCard(string playerName);
 public:
     // ctor
     SwapCard();

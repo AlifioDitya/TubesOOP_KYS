@@ -2,10 +2,10 @@
 #ifndef ABILITYLESS_HPP
 #define ABILITYLESS_HPP
 
-#include "Ability.hpp"
+#include "PlayerInvolvedAbility.hpp"
 #include "../GameEnvironment/CandyGameState.hpp"
 
-class Abilityless : public Ability {
+class Abilityless : public PlayerInvolvedAbility {
 public:
     // ctor
     Abilityless();

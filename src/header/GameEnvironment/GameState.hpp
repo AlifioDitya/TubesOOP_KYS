@@ -62,6 +62,8 @@ public:
 
     DeckCard& getDeckCards();
 
+    int getPlayerIdx(int id) const;
+
     // Method to print player list
     void printPlayerList() const;
 

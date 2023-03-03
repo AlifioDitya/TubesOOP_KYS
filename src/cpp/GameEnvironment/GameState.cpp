@@ -118,6 +118,19 @@ DeckCard& GameState<T>::getDeckCards() {
     return deckCards;
 }
 
+template <class T>
+int GameState<T>::getPlayerIdx(int id) const {
+    
+    for (int i = 0; i < playerList.size(); i++) {
+
+        if (playerList[i].getId() == id) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
 // Methods for printing player list
 template <class T>
 void GameState<T>::printPlayerList() const {

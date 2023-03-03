@@ -2,7 +2,6 @@
 #include "../../header/Commands/SwapCard.hpp"
 #include "../../enums/CmdTypes.hpp"
 #include "../../enums/AbilityTypes.hpp"
-#include "../../header/Exception/IOException.h"
 #include "algorithm"
 #include <iostream>
 
@@ -16,52 +15,12 @@ SwapCard::SwapCard() {
     this->abilityType = AbilityTypes::SwapCard;
 }
 
-// return integer choice from input
-int getInput(int lowerBound, int upperBound) {
-    int choice = NULL;
-
-    while (choice == NULL) {
-        try {
-            cin >> choice;
-
-            if (choice < lowerBound || choice > upperBound) {
-                throw InvalidChoice();
-            
-            }
-        }
-
-        catch(exception& err) {
-            cout << err.what() << endl;
-            choice = NULL;
-        }
-    }
-
-    return choice;
-}
-
-// return player index that is chosen
-int selectPlayer(CandyGameState& gameState, const vector<CandyPlayer>& playerList, string label) {
-
-    if (playerList.empty()) {
-        throw EmptyChoice();
-    }
-
-    cout << label << endl;
-    gameState.printPlayerList(playerList);
-    
-    vector<int> ids;
-
-    cout << "Pilihan player: ";
-
-    return getInput(1, playerList.size()) - 1;
-}
-
-int selectCard(string playerName) {
+int SwapCard::selectCard(string playerName) {
 
     cout << "Silakan pilih kartu kanan/kiri dari " << playerName << endl;
     cout << "1. Kanan" << endl;
     cout << "2. Kiri" << endl;
-
+    
     return getInput(1, 2) - 1;
 }
 
@@ -96,16 +55,11 @@ void SwapCard::executeCommand(CandyGameState& gameState) {
     selectIdx2 = selectCard(selectedPlayer2.getName());
 
     // Swap the cards
-    int playerIdx1 = 0;
-    int playerIdx2 = 0;
-    for (int i = 0; i < gameState.getPlayerList().size(); i++) {
-        if (gameState.getPlayerList()[i].getId() == selectedPlayer1.getId()) {
-            playerIdx1 = i;
-        } else if (gameState.getPlayerList()[i].getId() == selectedPlayer2.getId()) {
-            playerIdx2 = i;
-        }
-    }
 
-    gameState.getPlayerRefAt(playerIdx1).switchCards(selectIdx1, selectIdx2, gameState.getPlayerRefAt(playerIdx2));
+    int idx1 = gameState.getPlayerIdx(otherPlayers[selectIdx1].getId());
+    int idx2 = gameState.getPlayerIdx(otherPlayers[selectIdx2].getId());
+
+
+    gameState.getPlayerRefAt(idx1).switchCards(selectIdx1, selectIdx2, gameState.getPlayerRefAt(idx2));
 
 }

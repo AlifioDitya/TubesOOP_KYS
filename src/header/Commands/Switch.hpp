@@ -2,10 +2,10 @@
 #ifndef SWITCH_HPP
 #define SWITCH_HPP
 
-#include "Ability.hpp"
+#include "PlayerInvolvedAbility.hpp"
 #include "../GameEnvironment/CandyGameState.hpp"
 
-class Switch : public Ability {
+class Switch : public PlayerInvolvedAbility {
 public:
     // ctor
     Switch();

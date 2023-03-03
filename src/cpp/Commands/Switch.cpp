@@ -2,18 +2,21 @@
 #include "../../header/Commands/Switch.hpp"
 #include "../../enums/CmdTypes.hpp"
 #include "../../enums/AbilityTypes.hpp"
+#include "algorithm"
 
 #include <iostream>
 
 using std::cout;
 using std::cin;
 using std::endl;
+using std::find_if;
 
 // ctor
 Switch::Switch() {
     this->command = CmdTypes::Switch;
     this->abilityType = AbilityTypes::Switch;
 }
+
 
 // Execute method
 void Switch::executeCommand(CandyGameState& gameState) {
@@ -31,21 +34,12 @@ void Switch::executeCommand(CandyGameState& gameState) {
     otherPlayers.erase(otherPlayers.begin() + gameState.getCurrentTurnIdx());
 
     // Select player to switch
-    cout << "Silakan pilih pemain yang ingin Anda tukar:" << endl;
-
-    gameState.printPlayerList(otherPlayers);
-
-    int selectIdx = 0;
-    cin >> selectIdx;
-    selectIdx--;
+    int selectIdx = selectPlayer(gameState, otherPlayers, "Silakan pilih pemain yang kartunya ingin Anda tukar:");
 
     // Switch hands
-    for (int i = 0; i < gameState.getPlayerList().size(); i++) {
-        if (gameState.getPlayerList()[i].getId() == otherPlayers[selectIdx].getId()) {
-            gameState.getCurrentTurnPlayer().switchCards(gameState.getPlayerRefAt(i));
-            break;
-        }
-    }
+    int idx = gameState.getPlayerIdx(otherPlayers[selectIdx].getId());
+
+    gameState.getCurrentTurnPlayer().switchCards(gameState.getPlayerRefAt(idx));
 
     cout << "Kedua kartu Anda telah ditukar dengan " << otherPlayers[selectIdx].getName() << "!" << endl;
     cout << "Kartumu sekarang adalah:" << endl;

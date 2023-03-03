@@ -17,7 +17,6 @@ Abilityless::Abilityless() {
 }
 
 
-
 // Execute method
 void Abilityless::executeCommand(CandyGameState& gameState) {
 
@@ -33,38 +32,29 @@ void Abilityless::executeCommand(CandyGameState& gameState) {
         cout << "Ets, ternyata semua pemain sudah memakai kartu kemampuan. Yah kamu kena sendiri deh, kemampuanmu menjadi abilityless. Penggunaan kartu kamu sia-sia :(" << endl;
 
         gameState.getCurrentTurnPlayer().setNerfed(true);
-
-        return;
-    }
-
-    cout << gameState.getCurrentTurnPlayer().getName() << " akan mematikan kartu ability lawan!" << endl;
-    
-    // Get list of players other than currently playing
-    vector<CandyPlayer> otherPlayers = gameState.getPlayerList();
-    otherPlayers.erase(otherPlayers.begin() + gameState.getCurrentTurnIdx());
-
-    // Select player to nerf
-    cout << "Silakan pilih pemain lain yang kartunya ingin Anda tukar:" << endl;
-
-    gameState.printPlayerList(otherPlayers);
-
-    int selectIdx = 0;
-    cin >> selectIdx;
-    selectIdx--;
-
-    // jika player yang dipilih sudah memakai ability
-    if (otherPlayers[selectIdx].hasUsedAbility()) {
-        cout << "Kartu ability " << otherPlayers[selectIdx].getName() << " telah dipakai sebelumnya. Yah sayang penggunaan kartu ini sia-sia :(" << endl;
     }
 
     else {
-        int nerfedPlayerIdx = 0;
-        for (int i = 0; i < gameState.getPlayerList().size(); i++) {
-            if (gameState.getPlayerList()[i].getId() == otherPlayers[selectIdx].getId()) {
-                gameState.getPlayerRefAt(i).setNerfed(true);
-                cout << "Kartu ability " << gameState.getPlayerRefAt(i).getName() << " telah dimatikan." << endl;
-                break;
-            }
+        cout << gameState.getCurrentTurnPlayer().getName() << " akan mematikan kartu ability lawan!" << endl;
+    
+        // Get list of players other than currently playing
+        vector<CandyPlayer> otherPlayers = gameState.getPlayerList();
+        otherPlayers.erase(otherPlayers.begin() + gameState.getCurrentTurnIdx());
+
+        // Select player to nerf
+        int selectIdx = selectPlayer(gameState, otherPlayers, "Silakan pilih pemain yang kartunya ingin Anda tukar:");
+
+        // jika player yang dipilih sudah memakai ability
+        if (otherPlayers[selectIdx].hasUsedAbility()) {
+            cout << "Kartu ability " << otherPlayers[selectIdx].getName() << " telah dipakai sebelumnya. Yah sayang penggunaan kartu ini sia-sia :(" << endl;
+        }
+
+        else {
+   
+            int idx = gameState.getPlayerIdx(otherPlayers[selectIdx].getId());
+             gameState.getPlayerRefAt(idx).setNerfed(true);
+            cout << "Kartu ability " << gameState.getPlayerRefAt(idx).getName() << " telah dimatikan." << endl;
+
         }
     }
 

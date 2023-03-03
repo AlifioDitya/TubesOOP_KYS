@@ -2,7 +2,8 @@
 #include "../../header/Commands/SwapCard.hpp"
 #include "../../enums/CmdTypes.hpp"
 #include "../../enums/AbilityTypes.hpp"
-
+#include "../../header/Exception/IOException.h"
+#include "algorithm"
 #include <iostream>
 
 using std::cout;
@@ -13,6 +14,55 @@ using std::endl;
 SwapCard::SwapCard() {
     this->command = CmdTypes::SwapCard;
     this->abilityType = AbilityTypes::SwapCard;
+}
+
+// return integer choice from input
+int getInput(int lowerBound, int upperBound) {
+    int choice = NULL;
+
+    while (choice == NULL) {
+        try {
+            cin >> choice;
+
+            if (choice < lowerBound || choice > upperBound) {
+                throw InvalidChoice();
+            
+            }
+        }
+
+        catch(exception& err) {
+            cout << err.what() << endl;
+            choice = NULL;
+        }
+    }
+
+    return choice;
+}
+
+// return player index that is chosen
+int selectPlayer(CandyGameState& gameState, const vector<CandyPlayer>& playerList, string label) {
+
+    if (playerList.empty()) {
+        throw EmptyChoice();
+    }
+
+    cout << label << endl;
+    gameState.printPlayerList(playerList);
+    
+    vector<int> ids;
+
+    cout << "Pilihan player: ";
+
+    return getInput(1, playerList.size()) - 1;
+}
+
+int selectCard(string playerName) {
+
+    cout << "Silakan pilih kartu kanan/kiri dari " << playerName << endl;
+    cout << "1. Kanan" << endl;
+    cout << "2. Kiri" << endl;
+
+    return getInput(1, 2) - 1;
 }
 
 // Execute method
@@ -27,45 +77,23 @@ void SwapCard::executeCommand(CandyGameState& gameState) {
     otherPlayers.erase(otherPlayers.begin() + gameState.getCurrentTurnIdx());
 
     // Select Player 1
-    cout << "Silakan pilih pemain yang kartunya ingin Anda tukar:" << endl;
 
-    gameState.printPlayerList(otherPlayers);
-
-    int selectIdx1 = 0;
-    cin >> selectIdx1;
-    selectIdx1--;
-
+    int selectIdx1 = selectPlayer(gameState, otherPlayers, "Silakan pilih pemain yang kartunya ingin Anda tukar:");
     Player selectedPlayer1 = otherPlayers[selectIdx1];
+
     otherPlayers.erase(otherPlayers.begin() + selectIdx1);
 
     // Select Player 2
-    cout << "Silakan pilih pemain lain yang kartunya ingin Anda tukar:" << endl;
-
-    gameState.printPlayerList(otherPlayers);
-
-    int selectIdx2 = 0;
-    cin >> selectIdx2;
-    selectIdx2--;
-
+    int selectIdx2 = selectPlayer(gameState, otherPlayers, "Silakan pilih pemain lain yang kartunya ingin Anda tukar:");
     Player selectedPlayer2 = otherPlayers[selectIdx2];
 
     // Select card to take from player 1
-    cout << "Silakan pilih kartu kanan/kiri dari " << selectedPlayer1.getName() << endl;
-    cout << "1. Kanan" << endl;
-    cout << "2. Kiri" << endl;
-
-    cin >> selectIdx1;
-    selectIdx1--;
+    selectIdx1 = selectCard(selectedPlayer1.getName());
 
     cout << endl;
 
     // Select card to take from player 2
-    cout << "Silakan pilih kartu kanan/kiri dari " << selectedPlayer2.getName() << endl;
-    cout << "1. Kanan" << endl;
-    cout << "2. Kiri" << endl;
-
-    cin >> selectIdx2;
-    selectIdx2--;
+    selectIdx2 = selectCard(selectedPlayer2.getName());
 
     // Swap the cards
     int playerIdx1 = 0;

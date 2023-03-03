@@ -33,7 +33,7 @@ public:
     ~GameState();
 
     // Setters
-    void setPlayerList(vector<T>);
+    void setPlayerList(const vector<T>&);
 
     void setCurrentTurnIdx(int);
 
@@ -41,9 +41,9 @@ public:
 
     void setPointPool(int);
 
-    void setTableCards(TableCard);
+    void setTableCards(const TableCard&);
 
-    void setDeckCards(DeckCard);
+    void setDeckCards(const DeckCard&);
 
     // Getters
     vector<T> getPlayerList() const;
@@ -65,7 +65,7 @@ public:
     // Method to print player list
     void printPlayerList() const;
 
-    void printPlayerList(vector<T> playerVec) const;
+    void printPlayerList(const vector<T>& playerVec) const;
 };
 
 #include "../../cpp/GameEnvironment/GameState.cpp"

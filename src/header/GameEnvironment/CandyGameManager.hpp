@@ -9,8 +9,6 @@ class GameManager {
     
     CandyGameState gameState;
     
-    void startSubGame();
-    
     public:
     
 

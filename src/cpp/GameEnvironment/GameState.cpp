@@ -48,7 +48,7 @@ GameState<T>::~GameState() {
 
 // Setters
 template <class T>
-void GameState<T>::setPlayerList(vector<T> playerList) {
+void GameState<T>::setPlayerList(const vector<T>& playerList) {
     this->playerList = playerList;
 }
 
@@ -68,12 +68,12 @@ void GameState<T>::setPointPool(int points) {
 }
 
 template <class T>
-void GameState<T>::setTableCards(TableCard tblCard) {
+void GameState<T>::setTableCards(const TableCard& tblCard) {
     tableCards = tblCard;
 }
 
 template <class T>
-void GameState<T>::setDeckCards(DeckCard dckCard) {
+void GameState<T>::setDeckCards(const DeckCard& dckCard) {
     deckCards = dckCard;
 }
 
@@ -127,7 +127,7 @@ void GameState<T>::printPlayerList() const {
 }
 
 template <class T>
-void GameState<T>::printPlayerList(vector<T> playerVec) const {
+void GameState<T>::printPlayerList(const vector<T>& playerVec) const {
     for (int i = 0; i < playerVec.size(); i++) {
         cout << i+1 << ". " << playerVec[i].getName() << endl;
     }

@@ -6,10 +6,6 @@
 
 class GameManager {
     protected:
-    
-    virtual void checkWinner() = 0;
-    virtual void nextRound() = 0;
-    virtual void nextTurn() = 0;
 
     public:
 

@@ -4,8 +4,11 @@
 
 #include "Ability.hpp"
 #include "../GameEnvironment/CandyGameState.hpp"
+#include <string>
 
 class SwapCard : public Ability {
+private:
+
 public:
     // ctor
     SwapCard();

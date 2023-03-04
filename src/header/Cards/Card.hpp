@@ -2,36 +2,28 @@
 #ifndef CARD_HPP
 #define CARD_HPP
 
+#include <string>
+
 #include "../../enums/CardTypes.hpp"
 #include "CardInterface.hpp"
+
+using std::string;
 
 class Card : public CardInterface {
    private:
     const Color color;
-    const int rank;
+    const Rank rank;
 
    public:
-    // Constructor with parameters
-    Card(Color, int);
+    // CTOR with parameters
+    Card(Color, Rank);
 
-    // Copy constructor
-    Card(const Card&);
+    // Getters for color and rank
+    Color getColor() const;
+    Rank getRank() const;
 
-    // Assignment operator
-    Card& operator=(const Card&);
-
-    // Compaarison operator
-    bool operator==(const Card&);
-    bool operator>(const Card&);
-    bool operator<(const Card&);
-    bool operator>=(const Card&);
-    bool operator<=(const Card&);
-
-    // Getters for suit and rank
-    Color getSuit() const;
-    int getRank() const;
-
-    float getValue() const;
+    // Getter for weight based on spec (assumed as high card)
+    double getWeightedValue() const;
 };
 
 #endif

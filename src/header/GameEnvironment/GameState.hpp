@@ -9,11 +9,13 @@
 
 using std::vector;
 
+template <class T>
 class GameState {
-private:
-    vector<Player> playerList;
+protected:
+    vector<T> playerList;
     int currentTurnIdx;
     int round;
+    int pointPool;
     TableCard tableCards;
     DeckCard deckCards;
     
@@ -22,7 +24,7 @@ public:
     GameState();
 
     // Specified ctor
-    GameState(vector<Player>, int, int, TableCard, DeckCard);
+    GameState(vector<T>, int, int, int, TableCard, DeckCard);
 
     // cctor
     GameState(const GameState&);
@@ -31,28 +33,43 @@ public:
     ~GameState();
 
     // Setters
-    void setPlayerList(vector<Player>);
+    void setPlayerList(const vector<T>&);
 
     void setCurrentTurnIdx(int);
 
     void setRound(int);
 
-    void setTableCards(TableCard);
+    void setPointPool(int);
 
-    void setDeckCards(DeckCard);
+    void setTableCards(const TableCard&);
+
+    void setDeckCards(const DeckCard&);
 
     // Getters
-    vector<Player>& getPlayerList();
+    vector<T> getPlayerList() const;
 
-    Player& getCurrentTurnPlayer();
+    T& getCurrentTurnPlayer();
 
-    int getCurrentTurnIdx();
+    T& getPlayerRefAt(int);
 
-    int getRound();
+    int getCurrentTurnIdx() const;
+
+    int getRound() const;
+
+    int getPointPool() const;
 
     TableCard& getTableCards();
 
     DeckCard& getDeckCards();
+
+    int getPlayerIdx(int id) const;
+
+    // Method to print player list
+    void printPlayerList() const;
+
+    void printPlayerList(const vector<T>& playerVec) const;
 };
+
+#include "../../cpp/GameEnvironment/GameState.cpp"
 
 #endif

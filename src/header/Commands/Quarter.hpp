@@ -1,16 +1,16 @@
-// Reroll.hpp
-#ifndef REROLL_HPP
-#define REROLL_HPP
+// Quarter.hpp
+#ifndef QUARTER_HPP
+#define QUARTER_HPP
 
 #include "Ability.hpp"
 #include "../GameEnvironment/CandyGameState.hpp"
 
-class Reroll : public Ability {
+class Quarter : public Ability {
 public:
     // ctor
-    Reroll();
+    Quarter();
 
-    // Executes Reroll
+    // Executes Quarter
     void executeCommand(CandyGameState& gameState);
 };
 

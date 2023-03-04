@@ -2,24 +2,26 @@
 #ifndef COMMANDS_HPP
 #define COMMANDS_HPP
 
-#include "GameState.hpp"
+#include "./GameEnvironment/GameState.hpp"
 #include "../../enums/CmdTypes.hpp"
+#include <string>
+#include "../GameEnvironment/CandyGameState.hpp"
+
+using std::string;
 
 class Commands {
 protected:
     CmdTypes command;
+    
 public:
     // Default ctor
     Commands();
-
-    // Specified ctor
-    Commands(CmdTypes);
 
     // cctor
     Commands(const Commands&);
 
     // dtor
-    virtual ~Commands();
+    ~Commands();
 
     // operator
     Commands& operator=(const Commands&);
@@ -28,7 +30,11 @@ public:
     CmdTypes getCommandType() const;
 
     // Method
-    virtual void executeCommand(GameState&) const = 0;
+    // Returns true if command succeeds
+    virtual void executeCommand(CandyGameState&) const = 0;
+
+    // Static method to parse string to command type
+    static CmdTypes parseCommand(string);
 };
 
 #endif

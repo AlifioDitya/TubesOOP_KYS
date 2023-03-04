@@ -1,9 +1,10 @@
 // DeckCard.cpp
 #include "../../header/GameEnvironment/DeckCard.hpp"
 #include "../enums/CardTypes.hpp"
+#include "../../header/Exception/DeckCardException.h"
 #include "algorithm"
 
-using namespace std;
+using std::stack;
 
 // initialize stack with cards with random order
 
@@ -15,7 +16,7 @@ DeckCard::DeckCard() {
     {
         for(int j = 1; j <= 13; i++)
         {
-            tempCards.push_back(Card((Suit)i, (Rank)j));
+            tempCards.push_back(Card((Color)i, (Rank)j));
         }
     }
 
@@ -53,8 +54,27 @@ void DeckCard::clear() {
 // Draw top card from deck stack
 Card DeckCard::drawCard(){
 
+    if (deck.empty()) {
+        throw InsufficientCards();
+    }
     Card topCard = deck.top();
     deck.pop();
 
     return topCard;
+}
+
+vector<Card> DeckCard::drawMany(int amount) {
+
+    vector<Card> drawCards;
+
+    if (deck.size() < amount) {
+        throw InsufficientCards();
+    }
+
+    for (int i = 0; i < amount; i++) {
+        drawCards.push_back(deck.top());
+        deck.pop();
+    }
+
+    return drawCards;
 }

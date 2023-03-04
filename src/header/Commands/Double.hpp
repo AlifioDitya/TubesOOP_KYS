@@ -1,16 +1,15 @@
-// Next.hpp
-#ifndef NEXT_HPP
-#define NEXT_HPP
+#ifndef DOUBLE_HPP
+#define DOUBLE_HPP
 
 #include "Commands.hpp"
 #include "../GameEnvironment/GameState.hpp"
 
-class Next : public Commands {
+class Double : public Commands {
 public:
     // ctor
-    Next();
+    Double();
 
-    // Executes next
+    // Executes double
     void executeCommand(CandyGameState& gameState);
 };
 

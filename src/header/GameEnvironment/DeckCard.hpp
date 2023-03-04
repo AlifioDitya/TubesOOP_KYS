@@ -7,10 +7,13 @@
 #include <vector>
 #include "../Cards/Card.hpp"
 
+using std::vector;
+using std::stack;
+
 class DeckCard : public InventoryHolder {
 
 private:
-   std::stack<Card> deck;
+   stack<Card> deck;
 
 public:
 
@@ -27,7 +30,11 @@ public:
    // Removes an item from the inventory
    virtual void clear();
 
+   // draw top card
    Card drawCard();
+
+   // draw many cards
+   vector<Card> drawMany(int);
    //...
 };
 

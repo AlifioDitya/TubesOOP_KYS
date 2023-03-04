@@ -1,16 +1,16 @@
-// Next.hpp
-#ifndef NEXT_HPP
-#define NEXT_HPP
+// Half.hpp
+#ifndef HALF_HPP
+#define HALF_HPP
 
 #include "Commands.hpp"
 #include "../GameEnvironment/GameState.hpp"
 
-class Next : public Commands {
+class Half : public Commands {
 public:
     // ctor
-    Next();
+    Half();
 
-    // Executes next
+    // Executes Half
     void executeCommand(CandyGameState& gameState);
 };
 

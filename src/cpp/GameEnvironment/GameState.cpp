@@ -1,81 +1,147 @@
 // GameState.cpp
 #include "../../header/GameEnvironment/GameState.hpp"
 
+#include <iostream>
+
+using std::cout;
+using std::endl;
+
 // Default ctor
-GameState::GameState() {
+template <class T>
+GameState<T>::GameState() {
     // Initialize default values
     playerList = vector<Player>();
     currentTurnIdx = 0;
     round = 1;
+    pointPool = 64;
     tableCards = TableCard();
     deckCards = DeckCard();
 }
 
 // Specified ctor
-GameState::GameState(vector<Player> playerList, int currentTurn, int roundNum, TableCard tblCard, DeckCard dckCard) {
+template <class T>
+GameState<T>::GameState(vector<T> playerList, int currentTurn, int roundNum, int points, TableCard tblCard, DeckCard dckCard) {
     playerList = playerList;
     currentTurnIdx = currentTurn;
     round = roundNum;
+    pointPool = points;
     tableCards = tblCard;
     deckCards = dckCard;
 }
 
 // Copy ctor
-GameState::GameState(const GameState& gs) {
+template <class T>
+GameState<T>::GameState(const GameState<T>& gs) {
     playerList = gs.playerList;
     currentTurnIdx = gs.currentTurnIdx;
     round = gs.round;
+    pointPool = gs.pointPool;
     tableCards = gs.tableCards;
     deckCards = gs.deckCards;
 }
 
 // Destructor
-GameState::~GameState() {
+template <class T>
+GameState<T>::~GameState() {
     // No dynamic allocation
 }
 
 // Setters
-void GameState::setPlayerList(vector<Player> playerList) {
+template <class T>
+void GameState<T>::setPlayerList(const vector<T>& playerList) {
     this->playerList = playerList;
 }
 
-void GameState::setCurrentTurnIdx(int currentTurn) {
+template <class T>
+void GameState<T>::setCurrentTurnIdx(int currentTurn) {
     currentTurnIdx = currentTurn;
 }
 
-void GameState::setRound(int roundNum) {
+template <class T>
+void GameState<T>::setRound(int roundNum) {
     round = roundNum;
 }
 
-void GameState::setTableCards(TableCard tblCard) {
+template <class T>
+void GameState<T>::setPointPool(int points) {
+    pointPool = points;
+}
+
+template <class T>
+void GameState<T>::setTableCards(const TableCard& tblCard) {
     tableCards = tblCard;
 }
 
-void GameState::setDeckCards(DeckCard dckCard) {
+template <class T>
+void GameState<T>::setDeckCards(const DeckCard& dckCard) {
     deckCards = dckCard;
 }
 
 // Getters
-vector<Player>& GameState::getPlayerList() {
+template <class T>
+vector<T> GameState<T>::getPlayerList() const {
     return playerList;
 }
 
-Player& GameState::getCurrentTurnPlayer() {
+template <class T>
+T& GameState<T>::getCurrentTurnPlayer() {
     return playerList[currentTurnIdx];
 }
 
-int GameState::getCurrentTurnIdx() {
+template <class T>
+T& GameState<T>::getPlayerRefAt(int idx) {
+    return playerList[idx];
+}
+
+template <class T>
+int GameState<T>::getCurrentTurnIdx() const {
     return currentTurnIdx;
 }
 
-int GameState::getRound() {
+template <class T>
+int GameState<T>::getRound() const {
     return round;
 }
 
-TableCard& GameState::getTableCards() {
+template <class T>
+int GameState<T>::getPointPool() const {
+    return pointPool;
+}
+
+template <class T>
+TableCard& GameState<T>::getTableCards() {
     return tableCards;
 }
 
-DeckCard& GameState::getDeckCards() {
+template <class T>
+DeckCard& GameState<T>::getDeckCards() {
     return deckCards;
+}
+
+template <class T>
+int GameState<T>::getPlayerIdx(int id) const {
+    
+    for (int i = 0; i < playerList.size(); i++) {
+
+        if (playerList[i].getId() == id) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+// Methods for printing player list
+template <class T>
+void GameState<T>::printPlayerList() const {
+    for (int i = 0; i < playerList.size(); i++) {
+        cout << i+1 << ". " << playerList[i].getName() << endl;
+    }
+}
+
+template <class T>
+void GameState<T>::printPlayerList(const vector<T>& playerVec) const {
+    for (int i = 0; i < playerVec.size(); i++) {
+        cout << i+1 << ". " << playerVec[i].getName() << endl;
+    }
 }

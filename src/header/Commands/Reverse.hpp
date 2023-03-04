@@ -1,16 +1,16 @@
-// Reroll.hpp
-#ifndef REROLL_HPP
-#define REROLL_HPP
+// Reverse.hpp
+#ifndef REVERSE_HPP
+#define REVERSE_HPP
 
 #include "Ability.hpp"
 #include "../GameEnvironment/CandyGameState.hpp"
 
-class Reroll : public Ability {
+class Reverse : public Ability {
 public:
     // ctor
-    Reroll();
+    Reverse();
 
-    // Executes Reroll
+    // Executes Reverse
     void executeCommand(CandyGameState& gameState);
 };
 

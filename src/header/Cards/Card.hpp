@@ -9,6 +9,8 @@
 
 using std::string;
 
+using std::string;
+
 class Card : public CardInterface {
    private:
     const Color color;

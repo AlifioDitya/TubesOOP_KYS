@@ -3,12 +3,11 @@
 
 #include <exception>
 
-using namespace std;
-
+using std::exception;
 
 class InsufficientCards : public exception {
+public:
 	const char* what() const throw() {
-
 		return "Kartu pada deck tidak cukup!";
 	}
 };

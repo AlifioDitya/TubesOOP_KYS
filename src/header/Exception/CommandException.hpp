@@ -4,21 +4,17 @@
 #include <exception>
 #include "../../enums/AbilityTypes.hpp"
 
-using namespace std;
-
+using std::exception;
 
 class UsedAbility : public exception  {
-	
-	private:
+private:
 	AbilityTypes targetType;
 
-	public:
-
+public:
 	UsedAbility(AbilityTypes targetType) {
 		this->targetType = targetType;
 	}
 
-	public:
 	const char* what() const throw() {
 		// PERLU MEKANISME PRINT ENUM
 		return "Maaf, kamu sudah pernah menggunakan ability [nama]";
@@ -26,25 +22,23 @@ class UsedAbility : public exception  {
 };
 
 class MissingAbility : public exception  {
-	private:
+private:
 	AbilityTypes targetType;
 
-	public:
-
+public:
 	MissingAbility(AbilityTypes targetType) {
 		this->targetType = targetType;
 	}
 
 	const char* what() const throw() {
-
 		// PERLU MEKANISME PRINT ENUM
 		return "Ets, tidak bisa. Kamu tidak punya kartu Ability [nama]";
 	}
 };
 
 class NerfedAbility : public exception {
+public:
 	const char* what() const throw() {
-
 		return "Ets, tidak bisa. Ability kamu sudah dimatikan lawan";
 	}
 };

@@ -3,11 +3,10 @@
 
 #include <exception>
 
-using namespace std;
+using std::exception;
 
 class UnmatchedType : public exception {
-
-    public:
+public:
 	const char* what() const throw() {
 
 		return "Tipe masukan tidak valid!";
@@ -15,18 +14,15 @@ class UnmatchedType : public exception {
 };
 
 class InvalidChoice : public exception {
-
-    public:
+public:
 	const char* what() const throw() {
-
 		return "Nilai pilihan tidak valid!";
 	}
 };
 
 class EmptyChoice: public exception {
-    public:
+public:
 	const char* what() const throw() {
-
 		return "Tidak ada pilihan!";
 	}
 };

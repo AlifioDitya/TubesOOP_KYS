@@ -31,4 +31,18 @@ class EmptyChoice: public exception {
 	}
 };
 
+class FileNotFoundException: public exception {
+public:
+	const char* what() const throw() {
+		return "File tidak ditemukan!";
+	}
+};
+
+class InvalidFileInputFormatException: public exception {
+public:
+	const char* what() const throw() {
+		return "Terdapat kesalahan format penulisan di dalam file";
+	}
+};
+
 #endif

@@ -12,7 +12,7 @@ using std::endl;
 
 // ctor
 SwapCard::SwapCard() {
-    this->command = CmdTypes::SwapCard;
+    this->command = CmdTypes::Ability;
     this->abilityType = AbilityTypes::SwapCard;
 }
 

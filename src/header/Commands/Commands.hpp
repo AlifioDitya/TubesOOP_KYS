@@ -31,10 +31,11 @@ public:
 
     // Method
     // Returns true if command succeeds
-    virtual void executeCommand(CandyGameState&) const = 0;
+    virtual void executeCommand(CandyGameState&) = 0;
 
     // Static method to parse string to command type
     static CmdTypes parseCommand(string);
+    static string parseCommand(CmdTypes);
 };
 
 #endif

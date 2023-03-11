@@ -12,6 +12,8 @@ protected:
     void validateAbility(CandyGameState& gameState);
 public:
 
+    static AbilityTypes parseAbility(string);
+    static string parseAbility(AbilityTypes);
 
 };
 

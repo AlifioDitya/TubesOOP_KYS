@@ -30,7 +30,8 @@ public:
     // operator=
     CandyPlayer& operator=(const CandyPlayer&);
 
-
+    // get ability
+    AbilityTypes getAbility();
     // Set ability used
     void setAbilityUsed(bool);
 

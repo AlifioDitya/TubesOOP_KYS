@@ -14,7 +14,7 @@ Player::Player(): Player(-1, vector<Card>(), 0, "Username", false) {
 }
 
 // Specified ctor
-Player::Player(int id, vector<Card> hand, int point, string name, bool hasPlayed) {
+Player::Player(int id, vector<Card> hand, long long point, string name, bool hasPlayed) {
     this->playerID = playerID;
     this->hand = hand;
     this->point = point;
@@ -68,6 +68,9 @@ void Player::setHasPlayed(bool hasPlayed) {
     this->hasPlayed = hasPlayed;
 }
 
+void Player::addPoint(long long addition) {
+    point += addition;
+}
 
 // Returns the number of items in the inventory
 int Player::countItems() const {

@@ -41,22 +41,30 @@ CmdTypes Commands::parseCommand(string commandString) {
     // Map the command string to its equivalent CmdTypes
     map<string, CmdTypes> cmdMap = {
         {"next", CmdTypes::Next},
-        {"reroll", CmdTypes::Reroll},
         {"double", CmdTypes::Double},
-        {"quadruple", CmdTypes::Quadruple},
         {"half", CmdTypes::Half},
-        {"quarter", CmdTypes::Quarter},
-        {"reverse", CmdTypes::Reverse},
-        {"swapcard", CmdTypes::SwapCard},
-        {"switch", CmdTypes::Switch},
-        {"abilityless", CmdTypes::Abilityless}
+        {"ability", CmdTypes::Ability}
     };
 
-    // Check if the command string is a valid command
-    if (cmdMap.find(commandString) == cmdMap.end()) {
-        throw "Input command tidak valid.\n";
-        return CmdTypes::Abilityless;
-    } else {
-        return cmdMap[commandString];
-    }
+    // // Check if the command string is a valid command
+    // if (cmdMap.find(commandString) == cmdMap.end()) {
+    //     throw "Input command tidak valid.\n";
+    //     }
+    return cmdMap[commandString];
+    
+}
+
+string Commands::parseCommand(CmdTypes command) {
+
+    // Map the command to its equivalent string
+    map<CmdTypes, string> cmdMap = {
+        {CmdTypes::Next, "next"},
+        {CmdTypes::Double, "double"},
+        {CmdTypes::Half, "half"},
+        {CmdTypes::Ability, "ability"},
+        
+    };
+
+    return cmdMap[command];
+    
 }

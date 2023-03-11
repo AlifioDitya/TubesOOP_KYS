@@ -11,7 +11,7 @@ using std::endl;
 
 // ctor
 Quadruple::Quadruple() {
-    this->command = CmdTypes::Quadruple;
+    this->command = CmdTypes::Ability;
     this->abilityType = AbilityTypes::Quadruple;
 }
 

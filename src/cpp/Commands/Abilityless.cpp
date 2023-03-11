@@ -12,7 +12,7 @@ using std::endl;
 
 // ctor
 Abilityless::Abilityless() {
-    this->command = CmdTypes::Abilityless;
+    this->command = CmdTypes::Ability;
     this->abilityType = AbilityTypes::Abilityless;
 }
 

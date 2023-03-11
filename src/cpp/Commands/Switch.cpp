@@ -13,7 +13,7 @@ using std::find_if;
 
 // ctor
 Switch::Switch() {
-    this->command = CmdTypes::Switch;
+    this->command = CmdTypes::Ability;
     this->abilityType = AbilityTypes::Switch;
 }
 

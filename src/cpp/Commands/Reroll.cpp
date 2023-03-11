@@ -13,7 +13,7 @@ using std::vector;
 
 // ctor
 Reroll::Reroll() {
-    this->command = CmdTypes::Reroll;
+    this->command = CmdTypes::Ability;
     this->abilityType = AbilityTypes::Reroll;
 }
 

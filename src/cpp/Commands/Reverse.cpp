@@ -14,7 +14,7 @@ using std::rotate;
 
 // ctor
 Reverse::Reverse() {
-    this->command = CmdTypes::Reverse;
+    this->command = CmdTypes::Ability;
     this->abilityType = AbilityTypes::Reverse;
 }
 

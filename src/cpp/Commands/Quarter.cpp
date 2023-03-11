@@ -11,7 +11,7 @@ using std::endl;
 
 // ctor
 Quarter::Quarter() {
-    this->command = CmdTypes::Quarter;
+    this->command = CmdTypes::Ability;
     this->abilityType = AbilityTypes::Quarter;
 }
 

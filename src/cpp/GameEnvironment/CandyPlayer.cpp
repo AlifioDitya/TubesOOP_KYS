@@ -40,6 +40,10 @@ CandyPlayer& CandyPlayer::operator=(const CandyPlayer& other) {
     return *this;
 }
 
+AbilityTypes CandyPlayer::getAbility() {
+    return ability;
+}
+
 // Set ability used
 void CandyPlayer::setAbilityUsed(bool usedAbility) {
     this->usedAbility = usedAbility;

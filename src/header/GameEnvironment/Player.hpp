@@ -15,7 +15,7 @@ class Player: public InventoryHolder<Card> {
 protected:
     int playerID;
     vector<Card> hand;
-    int point;
+    long long point;
     string name;
     bool hasPlayed;
 
@@ -24,7 +24,7 @@ public:
     Player();
 
     // Specified ctor
-    Player(int, vector<Card>, int, string, bool);
+    Player(int, vector<Card>, long long, string, bool);
 
     // cctor
     Player(const Player&);
@@ -47,7 +47,7 @@ public:
     int getId() const;
     
     // Return player points
-    int getPoint() const;
+    long long getPoint() const;
 
     // Return player name
     string getName() const;
@@ -62,6 +62,8 @@ public:
     // Set player hand as vector
     void setHand(vector<Card>);
 
+    // add point
+    void addPoint(long long);
 
     // Set hasPlayed
     void setHasPlayed(bool);

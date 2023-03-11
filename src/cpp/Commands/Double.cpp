@@ -1,7 +1,7 @@
 // Double.cpp
 #include "../../header/Commands/Double.hpp"
 #include "../../enums/CmdTypes.hpp"
-#include "../../header/Exception/CommandException.h"
+#include "../../header/Exception/CommandException.hpp"
 
 #include <iostream>
 

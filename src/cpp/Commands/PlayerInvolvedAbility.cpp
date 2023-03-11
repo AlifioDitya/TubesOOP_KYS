@@ -1,28 +1,7 @@
 // Abilityless.cpp
 #include "../../header/Commands/PlayerInvolvedAbility.hpp"
-#include "../../header/Exception/IOException.h"
-
-int PlayerInvolvedAbility::getInput(int lowerBound, int upperBound) {
-    int choice = NULL;
-
-    while (choice == NULL) {
-        try {
-            cin >> choice;
-
-            if (choice < lowerBound || choice > upperBound) {
-                throw InvalidChoice();
-            
-            }
-        }
-
-        catch(exception& err) {
-            cout << err.what() << endl;
-            choice = NULL;
-        }
-    }
-
-    return choice;
-}
+#include "../../header/Exception/IOException.hpp"
+#include "../../header/Program/IO.hpp"
 
 // return player index that is chosen
 int PlayerInvolvedAbility::selectPlayer(CandyGameState& gameState, const vector<CandyPlayer>& playerList, string label) {
@@ -35,8 +14,10 @@ int PlayerInvolvedAbility::selectPlayer(CandyGameState& gameState, const vector<
     gameState.printPlayerList(playerList);
     
     vector<int> ids;
-
+    IO choiceIO;
     cout << "Pilihan player: ";
 
-    return getInput(1, playerList.size()) - 1;
+    choiceIO.getChoice(1, playerList.size());
+
+    return choiceIO.getChoice() - 1;
 }

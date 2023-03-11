@@ -1,6 +1,6 @@
 #include "../../header/Cards/CardInterface.hpp"
 
-CardInterface::CardInterface(int weightedValue) : weightedValue(weightedValue) {
+CardInterface::CardInterface(double weightedValue) : weightedValue(weightedValue) {
 }
 
 CardInterface::~CardInterface() {

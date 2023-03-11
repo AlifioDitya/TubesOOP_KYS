@@ -5,6 +5,14 @@
 
 using namespace std;
 
+class UnmatchedType : public exception {
+
+    public:
+	const char* what() const throw() {
+
+		return "Tipe masukan tidak valid!";
+	}
+};
 
 class InvalidChoice : public exception {
 

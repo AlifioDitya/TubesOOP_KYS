@@ -1,6 +1,6 @@
 // Abilityless.cpp
 #include "../../header/Commands/Ability.hpp"
-#include "../../header/Exception/CommandException.h"
+#include "../../header/Exception/CommandException.hpp"
 
 
 void Ability::validateAbility(CandyGameState& gameState) {

@@ -23,9 +23,13 @@ class Card : public CardInterface {
     // Getters for color and rank
     Color getColor() const;
     Rank getRank() const;
+    string getColorString() const;
+    string getRankString() const;
 
     // Getter for weight based on spec (assumed as high card)
     double getWeightedValue() const;
+
+    bool operator=(const Card&);
 };
 
 #endif

@@ -6,10 +6,10 @@
 
 class GameManager {
     protected:
-
+    
     public:
-
-    void initateGame();
+    GameManager();
+    virtual void initateGame() = 0;
     virtual void startGame() = 0;
     
 

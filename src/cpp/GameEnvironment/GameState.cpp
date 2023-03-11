@@ -20,13 +20,13 @@ GameState<T>::GameState() {
 
 // Specified ctor
 template <class T>
-GameState<T>::GameState(vector<T> playerList, int currentTurn, int roundNum, int points, TableCard tblCard, DeckCard dckCard) {
+GameState<T>::GameState(vector<T> playerList, int currentTurn, int roundNum, int points, TableCard tableCard, DeckCard deckCard) {
     playerList = playerList;
     currentTurnIdx = currentTurn;
     round = roundNum;
     pointPool = points;
-    tableCards = tblCard;
-    deckCards = dckCard;
+    tableCards = tableCard;
+    deckCards = deckCard;
 }
 
 // Copy ctor

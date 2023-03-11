@@ -7,7 +7,7 @@ vector<T> toVector(const T* array, size_t size) {
     return v;
 }
 
-Combination::Combination(const vector<Card> cards) {
+Combination::Combination(const vector<Card> cards): CardInterface(0){ // NILAI CTOR CARDINTERFACE MASIH ASAL
     this->allCards = cards;
     this->bestCombination = findBestCombination(allCards);
     this->comboType = findComboType(bestCombination);

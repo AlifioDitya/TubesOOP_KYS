@@ -4,10 +4,13 @@
 #include "../../enums/AbilityTypes.hpp"
 
 #include <iostream>
+#include <algorithm>
 
 using std::cout;
 using std::endl;
+using std::reverse;
 using std::swap;
+using std::rotate;
 
 // ctor
 Reverse::Reverse() {
@@ -24,21 +27,13 @@ void Reverse::executeCommand(CandyGameState& gameState) {
     int currentPlayerIdx = gameState.getCurrentTurnIdx();
 
     // Reverse player order before current player
-    for (int i = 0; i < currentPlayerIdx / 2; i++) {
-        swap(playerList[i], playerList[currentPlayerIdx - i - 1]);
-    }
+    if (currentPlayerIdx > 0) reverse(playerList.begin(), playerList.begin() + currentPlayerIdx);
 
     // Reverse player order after current player
-    if (currentPlayerIdx != playerList.size() - 1) {
-        for (int j = currentPlayerIdx + 1; j < currentPlayerIdx + 1 + (playerList.size() - currentPlayerIdx) / 2; j++) {
-            swap(playerList[j], playerList[playerList.size() - j - 1]);
-        }
-    }
+    if (currentPlayerIdx < playerList.size() - 1) reverse(playerList.begin() + currentPlayerIdx + 1, playerList.end());
 
     // Move current player to front
-    for (int k = currentPlayerIdx; k > 0; k--) {
-        swap(playerList[k], playerList[k-1]);
-    }
+    if (currentPlayerIdx > 0) rotate(playerList.begin(), playerList.begin() + currentPlayerIdx, playerList.begin() + currentPlayerIdx + 1);
 
     // Player that executes reverse will get another turn
     gameState.setCurrentTurnIdx(0);

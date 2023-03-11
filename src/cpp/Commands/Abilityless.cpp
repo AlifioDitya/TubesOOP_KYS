@@ -2,7 +2,7 @@
 #include "../../header/Commands/Abilityless.hpp"
 #include "../../enums/CmdTypes.hpp"
 #include "../../enums/AbilityTypes.hpp"
-#include "../../header/Exception/CommandException.h"
+#include "../../header/Exception/CommandException.hpp"
 
 #include <iostream>
 

@@ -54,8 +54,11 @@ void Abilityless::executeCommand(CandyGameState& gameState) {
             int idx = gameState.getPlayerIdx(otherPlayers[selectIdx].getId());
              gameState.getPlayerRefAt(idx).setNerfed(true);
             cout << "Kartu ability " << gameState.getPlayerRefAt(idx).getName() << " telah dimatikan." << endl;
-
         }
+
     }
+
+    // Set the ability used flag to true and end the turn
+    gameState.getCurrentTurnPlayer().setAbilityUsed(true);
 
 }

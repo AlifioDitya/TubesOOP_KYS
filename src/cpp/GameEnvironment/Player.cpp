@@ -94,19 +94,6 @@ bool Player::hasPlayedThisRound() {
 }
 
 
-// Switch cards
-void Player::switchCards(Player& other) {
-    vector<Card> temp = this->getHand();
-    this->setHand(other.getHand());
-    other.setHand(temp);
-}
-
-void Player::switchCards(int idx1, int idx2, Player& other) {
-    Card temp = this->getHand()[idx1];
-    this->setHand(idx1, other.getHand()[idx2]);
-    other.setHand(idx2, temp);
-}
-
 void Player::printHand() {
     if (hand.size() == 2) {
         cout << this->getHand()[0].getRank() << " " << this->getHand()[0].getColorString() << endl;

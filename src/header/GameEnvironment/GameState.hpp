@@ -24,7 +24,7 @@ public:
     GameState();
 
     // Specified ctor
-    GameState(vector<T>, int, int, int, TableCard, DeckCard);
+    GameState(vector<T>, int, int, int, TableCard, DeckCard<Card>);
 
     // cctor
     GameState(const GameState&);
@@ -43,7 +43,7 @@ public:
 
     void setTableCards(const TableCard&);
 
-    void setDeckCards(const DeckCard&);
+    void setDeckCards(const DeckCard<Card>&);
 
     void setNextTurn();
 
@@ -62,7 +62,7 @@ public:
 
     TableCard& getTableCards();
 
-    DeckCard& getDeckCards();
+    DeckCard<Card>& getDeckCards();
 
     int getPlayerIdx(int id) const;
 
@@ -71,7 +71,7 @@ public:
 
     void printPlayerList(const vector<T>& playerVec) const;
 
-    virtual int getWinnerIndex() const = 0;
+    // virtual int getWinnerIndex() const = 0;
 };
 
 #include "../../cpp/GameEnvironment/GameState.cpp"

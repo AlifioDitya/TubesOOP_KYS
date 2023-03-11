@@ -7,7 +7,7 @@
 #include <vector>
 
 
-class TableCard : public InventoryHolder {
+class TableCard : public InventoryHolder<Card> {
 
 private:
     std::vector<Card> cards;

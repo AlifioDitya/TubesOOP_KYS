@@ -11,7 +11,7 @@
 using std::vector;
 using std::string;
 
-class Player: public InventoryHolder {
+class Player: public InventoryHolder<Card> {
 protected:
     int playerID;
     vector<Card> hand;
@@ -70,15 +70,6 @@ public:
 
     // Check if player has played this round
     bool hasPlayedThisRound();
-
-
-    // ========= Others ==========
-    // Switching cards with other player
-    // Switch hands
-    void switchCards(Player&);
-
-    // Switch specific cards
-    void switchCards(int, int, Player&);
 
     // Print hand
     void printHand();

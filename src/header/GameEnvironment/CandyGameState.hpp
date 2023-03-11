@@ -12,13 +12,13 @@ using std::vector;
 
 class CandyGameState: public GameState<CandyPlayer> {
 private:
-    
+    DeckCard<AbilityTypes> abilities;
 public:
     // Default ctor
     CandyGameState();
 
     // Specified ctor
-    CandyGameState(vector<CandyPlayer>, int, int, int, TableCard, DeckCard);
+    CandyGameState(vector<CandyPlayer>, int, int, int, TableCard, DeckCard<Card>, DeckCard<AbilityTypes>);
 
     // cctor
     CandyGameState(const CandyGameState&);
@@ -28,7 +28,11 @@ public:
 
     // Predicates
     bool hasAllUsedAbility();
-    int getWinnerIndex() const;
+    // int getWinnerIndex() const;
+
+    void setAbilities(DeckCard<AbilityTypes>);
+    
+    DeckCard<AbilityTypes>& getAbilities();
 
     static const long long initialPoint;
     static const long long winnerPoint;

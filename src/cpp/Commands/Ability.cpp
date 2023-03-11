@@ -18,7 +18,7 @@ void Ability::validateAbility(CandyGameState& gameState) {
     }
 
     // check if current player hasn't used the ability
-    if (gameState.getCurrentTurnPlayer().hasUsedAbility(abilityType)) {
+    if (gameState.getCurrentTurnPlayer().hasUsedAbility()) {
         throw UsedAbility(abilityType);
     }
 }

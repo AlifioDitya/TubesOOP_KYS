@@ -50,4 +50,7 @@ void Reverse::executeCommand(CandyGameState& gameState) {
     // Set the player list in reverse order
     gameState.setPlayerList(playerList);
 
+    // Set the ability used flag to true and end the turn
+    gameState.getCurrentTurnPlayer().setAbilityUsed(true);
+
 }

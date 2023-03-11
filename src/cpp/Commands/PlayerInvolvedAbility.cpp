@@ -20,4 +20,5 @@ int PlayerInvolvedAbility::selectPlayer(CandyGameState& gameState, const vector<
     choiceIO.getChoice(1, playerList.size());
 
     return choiceIO.getChoice() - 1;
+    
 }

@@ -5,6 +5,7 @@
 #include "../../header/Program/IO.hpp"
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 
 using std::cin;
 using std::cout;
@@ -83,6 +84,8 @@ vector<Card> readDeckConfig() {
 void CandyGameManager::inititateDeck() {
     // inisasi deck pada gamestate
 
+    gameState.setAbilities(DeckCard<AbilityTypes>());
+
     cout << "Pilihan konfigurasi deck card: " << endl;
     cout << "1. Acak" << endl;
     cout << "2. Konfigurasi File" << endl;
@@ -93,7 +96,7 @@ void CandyGameManager::inititateDeck() {
     choiceIO.getChoice(1, 2);
 
     if (choiceIO == 1) {
-        gameState.setDeckCards(DeckCard());
+        gameState.setDeckCards(DeckCard<Card>());
     }
 
     else {
@@ -171,12 +174,17 @@ void CandyGameManager::startSubGame() {
 
         startRound();
 
-        // hitung pemenang round 
+        // hitung pemenang round
         //[disini]
 
         if (gameState.getRound() == 1) {
             // kasih ability ke setiap player
-            //[disini]
+            
+            for (int i = 0; i < gameState.getPlayerList().size(); i++) {
+                CandyPlayer& player = gameState.getPlayerRefAt(i);
+
+                player.setAbility(gameState.getAbilities().drawCard());
+            }
         }
 
         // letak 1 kartu dari deck ke table
@@ -187,19 +195,33 @@ void CandyGameManager::startSubGame() {
 void CandyGameManager::startGame() {
     // mulai game keseluruhan sampai ditemukan pemenang
 
-    int winnerIdx = -1;
+    CandyPlayer leaderPlayer;
     cout << "Permainan baru dimulai!" << endl;
 
     // inisiasi gameState
-    gameState = CandyGameState(getInitialPlayerList(7), 0, 0, CandyGameState::initialPoint, TableCard(), DeckCard());
+    gameState = CandyGameState(getInitialPlayerList(7), 0, 0, CandyGameState::initialPoint, TableCard(), DeckCard<Card>(), DeckCard<AbilityTypes>());
 
     do {
 
         startSubGame();
-        winnerIdx = gameState.getWinnerIndex();
+        CandyPlayer leaderPlayer = getMax(gameState.getPlayerList());
 
-    } while(winnerIdx == -1);
+    } while(leaderPlayer.getPoint() >= CandyGameState::winnerPoint);
 
-    cout << "Pemenangnya adalah " << gameState.getPlayerList()[winnerIdx].getName() << endl;
+    cout << "Pemenangnya adalah " << leaderPlayer.getName() << endl;
 
+}
+
+template<class T>
+bool compareGeneric(T a, T b) {
+    return a.getValue() < b.getValue();
+}
+
+template<class T>
+T CandyGameManager::getMax(const vector<T>& list) {
+    // asumsi list.size() > 0
+
+    int maxValue = list[0].getValue();
+
+    return *max_element(list.begin(), list.end(), compareGeneric);
 }

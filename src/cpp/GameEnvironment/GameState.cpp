@@ -20,7 +20,7 @@ GameState<T>::GameState() {
 
 // Specified ctor
 template <class T>
-GameState<T>::GameState(vector<T> playerList, int currentTurn, int roundNum, int points, TableCard tableCard, DeckCard deckCard) {
+GameState<T>::GameState(vector<T> playerList, int currentTurn, int roundNum, int points, TableCard tableCard, DeckCard<Card> deckCard) {
     playerList = playerList;
     currentTurnIdx = currentTurn;
     round = roundNum;
@@ -73,7 +73,7 @@ void GameState<T>::setTableCards(const TableCard& tblCard) {
 }
 
 template <class T>
-void GameState<T>::setDeckCards(const DeckCard& dckCard) {
+void GameState<T>::setDeckCards(const DeckCard<Card>& dckCard) {
     deckCards = dckCard;
 }
 
@@ -114,7 +114,7 @@ TableCard& GameState<T>::getTableCards() {
 }
 
 template <class T>
-DeckCard& GameState<T>::getDeckCards() {
+DeckCard<Card>& GameState<T>::getDeckCards() {
     return deckCards;
 }
 

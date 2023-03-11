@@ -8,7 +8,6 @@ class GameManager {
     protected:
     
     public:
-    GameManager();
     virtual void startGame() = 0;
     
 

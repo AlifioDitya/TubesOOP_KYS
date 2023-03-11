@@ -2,13 +2,15 @@
 #include "../../header/GameEnvironment/DeckCard.hpp"
 #include "../enums/CardTypes.hpp"
 #include "../../header/Exception/DeckCardException.hpp"
+#include "../../enums/AbilityTypes.hpp"
 #include "algorithm"
+
 
 using std::stack;
 
 // initialize stack with cards with random order
-
-DeckCard::DeckCard() {
+template<class T>
+DeckCard<T>::DeckCard() {
     
     vector<Card> tempCards;
 
@@ -27,8 +29,19 @@ DeckCard::DeckCard() {
     }
 }
 
+template<>
+DeckCard<AbilityTypes>::DeckCard() {
+    // INISIASI 
+
+    deque<AbilityTypes> temp {Reroll, Quadruple, Quarter, Reverse, SwapCard, Switch, Abilityless};
+    random_shuffle(temp.begin(), temp.end());
+    deck = stack<AbilityTypes>(temp);
+
+}
+
 // initialize stack with cards ordered as in config and first-index card being at top
-DeckCard::DeckCard(const vector<Card>& config) {
+template<class T>
+DeckCard<T>::DeckCard(const vector<T>& config) {
     
     for (int i = config.size()-1; i >= 0; i--) {
         deck.push(config[i]);
@@ -36,23 +49,27 @@ DeckCard::DeckCard(const vector<Card>& config) {
 }
 
 // Returns the number of items in the inventory
-int DeckCard::countItems() const {
+template<class T>
+int DeckCard<T>::countItems() const {
     return deck.size();
 }
 
 // Adds an item to the inventory
-void DeckCard::addItem(Card card) {
+template<class T>
+void DeckCard<T>::addItem(T card) {
     deck.push(card);
 }
 
-void DeckCard::clear() {
+template<class T>
+void DeckCard<T>::clear() {
     
     // stack is automatically destructed after out of scope
     deck = stack<Card>();
 }
 
 // Draw top card from deck stack
-Card DeckCard::drawCard(){
+template<class T>
+T DeckCard<T>::drawCard(){
 
     if (deck.empty()) {
         throw InsufficientCards();
@@ -63,7 +80,8 @@ Card DeckCard::drawCard(){
     return topCard;
 }
 
-vector<Card> DeckCard::drawMany(int amount) {
+template<class T>
+vector<T> DeckCard<T>::drawMany(int amount) {
 
     vector<Card> drawCards;
 

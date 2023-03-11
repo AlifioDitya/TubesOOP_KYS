@@ -23,7 +23,7 @@ void Reroll::executeCommand(CandyGameState& gameState) {
     validateAbility(gameState);
     
     // Get the deck
-    DeckCard& deck = gameState.getDeckCards();
+    DeckCard<Card>& deck = gameState.getDeckCards();
 
     vector<Card> newCards = deck.drawMany(2);
 
@@ -40,6 +40,6 @@ void Reroll::executeCommand(CandyGameState& gameState) {
     cout << "2. " << newCards[1].getRank() << " " << newCards[1].getColorString() << endl;
 
     // Set the ability used flag to true and end the turn
-    gameState.getCurrentTurnPlayer().setAbilityUsed(AbilityTypes::Reroll, true);
+    gameState.getCurrentTurnPlayer().setAbilityUsed(true);
 
 }

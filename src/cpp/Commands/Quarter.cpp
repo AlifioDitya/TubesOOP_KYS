@@ -41,4 +41,7 @@ void Quarter::executeCommand(CandyGameState& gameState) {
 
     cout << "Poin hadiah turun dari " << oldPoint << " menjadi " << newPoint << "!" << endl;
 
+    // Set the ability used flag to true and end the turn
+    gameState.getCurrentTurnPlayer().setAbilityUsed(true);
+
 }

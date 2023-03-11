@@ -2,6 +2,7 @@
 #include "../../header/Commands/SwapCard.hpp"
 #include "../../enums/CmdTypes.hpp"
 #include "../../enums/AbilityTypes.hpp"
+#include "../../header/Program/IO.hpp"
 #include "algorithm"
 #include <iostream>
 
@@ -21,7 +22,9 @@ int SwapCard::selectCard(string playerName) {
     cout << "1. Kanan" << endl;
     cout << "2. Kiri" << endl;
     
-    return getInput(1, 2) - 1;
+    IO inputIO;
+    inputIO.getChoice(1, 2);
+    return inputIO.getChoice() - 1;
 }
 
 // Execute method
@@ -38,13 +41,13 @@ void SwapCard::executeCommand(CandyGameState& gameState) {
     // Select Player 1
 
     int selectIdx1 = selectPlayer(gameState, otherPlayers, "Silakan pilih pemain yang kartunya ingin Anda tukar:");
-    Player selectedPlayer1 = otherPlayers[selectIdx1];
+    CandyPlayer selectedPlayer1 = otherPlayers[selectIdx1];
 
     otherPlayers.erase(otherPlayers.begin() + selectIdx1);
 
     // Select Player 2
     int selectIdx2 = selectPlayer(gameState, otherPlayers, "Silakan pilih pemain lain yang kartunya ingin Anda tukar:");
-    Player selectedPlayer2 = otherPlayers[selectIdx2];
+    CandyPlayer selectedPlayer2 = otherPlayers[selectIdx2];
 
     // Select card to take from player 1
     selectIdx1 = selectCard(selectedPlayer1.getName());
@@ -61,5 +64,8 @@ void SwapCard::executeCommand(CandyGameState& gameState) {
 
 
     gameState.getPlayerRefAt(idx1).switchCards(selectIdx1, selectIdx2, gameState.getPlayerRefAt(idx2));
+
+    // Set the ability used flag to true and end the turn
+    gameState.getCurrentTurnPlayer().setAbilityUsed(true);
 
 }

@@ -14,6 +14,9 @@ class CandyGameManager: public GameManager {
     void inititateDeck();
     void startRound();
     void startSubGame();
+    
+    template<class T>
+    T getMax(const vector<T>&);
 
     public:
 

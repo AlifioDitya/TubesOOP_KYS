@@ -45,4 +45,7 @@ void Switch::executeCommand(CandyGameState& gameState) {
     cout << "Kartumu sekarang adalah:" << endl;
     gameState.getCurrentTurnPlayer().printHand();
 
+    // Set the ability used flag to true and end the turn
+    gameState.getCurrentTurnPlayer().setAbilityUsed(true);
+
 }

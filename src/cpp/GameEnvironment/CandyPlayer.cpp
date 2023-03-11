@@ -40,16 +40,56 @@ CandyPlayer& CandyPlayer::operator=(const CandyPlayer& other) {
     return *this;
 }
 
+// Set ability used
+void CandyPlayer::setAbilityUsed(bool usedAbility) {
+    this->usedAbility = usedAbility;
+
+}
 
 // Set abilityless
-bool CandyPlayer::setNerfed(bool nerf) {
+void CandyPlayer::setNerfed(bool nerf) {
     this->nerfed = nerf;
 }
 
-// Predicates
+// Set ability
+void CandyPlayer::setAbility(AbilityTypes ability) {
+    this->ability = ability;
+}
+
+// ========== Predicates ==========
+// Check if player has ability
+bool CandyPlayer::hasAbility(AbilityTypes target) {
+    return ability == target;
+}
+
+// Check if player has used an ability
 bool CandyPlayer::hasUsedAbility() {
     return usedAbility;
 }
 
+// Check if the player has been applied Abilityless by other player
+bool CandyPlayer::isNerfed() {
+    return isNerfed;
+}
+
+// ========= Others ==========
+// Switching cards with other player
+
+void CandyPlayer::switchCards(CandyPlayer& other) {
+    vector<Card> temp = this->getHand();
+    this->setHand(other.getHand());
+    other.setHand(temp);
+}
+
+void CandyPlayer::switchCards(int idx1, int idx2, CandyPlayer& other) {
+    Card temp = this->getHand()[idx1];
+    this->setHand(idx1, other.getHand()[idx2]);
+    other.setHand(idx2, temp);
+}
+
+
+double CandyPlayer::getValue() {
+    return getPoint();
+}
 
 // ...

@@ -1,5 +1,5 @@
-#ifndef MYEXCEPTION_H
-#define MYEXCEPTION_H
+#ifndef IOEXCEPTION_H
+#define IOEXCEPTION_H
 
 #include <exception>
 

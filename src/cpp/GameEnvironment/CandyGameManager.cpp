@@ -56,7 +56,7 @@ vector<Card> readDeckConfig() {
                 while (getline(configFile, temp)) {
                     int idx = temp.find(' '), len = temp.length();
 
-                    if ((idx != 1) || !(len == 3 || len == 4)) {
+                    if ((idx != 1) || !(len == 4 || len == 5)) {
                         throw InvalidFileInputFormatException();
                     }
 

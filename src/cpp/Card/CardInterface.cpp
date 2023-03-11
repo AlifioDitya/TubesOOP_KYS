@@ -10,10 +10,6 @@ bool CardInterface::operator==(const CardInterface& other) {
     return this->weightedValue == other.weightedValue;
 }
 
-bool CardInterface::operator==(const CardInterface& other) {
-    return this->weightedValue == other.weightedValue;
-}
-
 bool CardInterface::operator>(const CardInterface& other) {
     return this->weightedValue > other.weightedValue;
 }

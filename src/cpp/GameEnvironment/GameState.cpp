@@ -119,8 +119,12 @@ DeckCard& GameState<T>::getDeckCards() {
 }
 
 template <class T>
+void GameState<T>::setNextTurn() {
+    currentTurnIdx = (currentTurnIdx + 1) % playerList.size();
+}
+
+template <class T>
 int GameState<T>::getPlayerIdx(int id) const {
-    
     for (int i = 0; i < playerList.size(); i++) {
 
         if (playerList[i].getId() == id) {

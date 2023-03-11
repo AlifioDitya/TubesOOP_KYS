@@ -8,14 +8,15 @@
 class CandyGameManager: public GameManager {
     private:
     
+    vector<CandyPlayer> getInitialPlayerList(int playerNum);
     CandyGameState gameState;
-    void inititateNewRound();
-    void inititateDeck();
 
+    void inititateDeck();
+    void startRound();
+    void startSubGame();
 
     public:
 
-    void initateGame();
     void startGame();
     
 

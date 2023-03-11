@@ -1,7 +1,7 @@
 // DeckCard.cpp
 #include "../../header/GameEnvironment/DeckCard.hpp"
 #include "../enums/CardTypes.hpp"
-#include "../../header/Exception/DeckCardException.h"
+#include "../../header/Exception/DeckCardException.hpp"
 #include "algorithm"
 
 using std::stack;
@@ -67,7 +67,7 @@ vector<Card> DeckCard::drawMany(int amount) {
 
     vector<Card> drawCards;
 
-    if (deck.size() < amount) {
+    if (this->countItems() < amount) {
         throw InsufficientCards();
     }
 

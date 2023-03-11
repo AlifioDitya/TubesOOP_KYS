@@ -62,26 +62,15 @@ public:
     // Set player hand as vector
     void setHand(vector<Card>);
 
-    // Set ability used
-    bool setAbilityUsed(AbilityTypes, bool);
 
-    // Set abilityless
-    bool setNerfed(bool);
+    // Set hasPlayed
+    void setHasPlayed(bool);
 
     // ========== Predicates ==========
-    // Check if player has ability
-    bool hasAbility(AbilityTypes);
-    
-    // Check if player has used an ability
-    bool hasUsedAbility();
-    
-    bool hasUsedAbility(AbilityTypes);
 
     // Check if player has played this round
     bool hasPlayedThisRound();
 
-    // Check if the player has been applied Abilityless by other player
-    bool isNerfed();
 
     // ========= Others ==========
     // Switching cards with other player

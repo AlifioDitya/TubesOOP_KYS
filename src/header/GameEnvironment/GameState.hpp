@@ -45,6 +45,8 @@ public:
 
     void setDeckCards(const DeckCard&);
 
+    void setNextTurn();
+
     // Getters
     vector<T> getPlayerList() const;
 
@@ -68,6 +70,8 @@ public:
     void printPlayerList() const;
 
     void printPlayerList(const vector<T>& playerVec) const;
+
+    virtual int getWinnerIndex() const = 0;
 };
 
 #include "../../cpp/GameEnvironment/GameState.cpp"

@@ -28,6 +28,10 @@ public:
 
     // Predicates
     bool hasAllUsedAbility();
+    int getWinnerIndex() const;
+
+    static const long long initialPoint;
+    static const long long winnerPoint;
 };
 
 #endif

@@ -64,6 +64,10 @@ void Player::setHand(vector<Card> newHand) {
     this->hand = newHand;
 }
 
+void Player::setHasPlayed(bool hasPlayed) {
+    this->hasPlayed = hasPlayed;
+}
+
 
 // Returns the number of items in the inventory
 int Player::countItems() const {

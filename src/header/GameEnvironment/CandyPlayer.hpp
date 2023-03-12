@@ -43,13 +43,13 @@ public:
 
     // ========== Predicates ==========
     // Check if player has ability
-    bool hasAbility(AbilityTypes);
+    bool hasAbility(AbilityTypes) const;
     
     // Check if player has used an ability
-    bool hasUsedAbility();
+    bool hasUsedAbility() const;
 
     // Check if the player has been applied Abilityless by other player
-    bool isNerfed();
+    bool isNerfed() const;
 
     // ========= Others ==========
     // Switching cards with other player
@@ -59,7 +59,7 @@ public:
     // Switch specific cards
     void switchCards(int, int, CandyPlayer&);
 
-    double getValue();
+    double getValue() const;
 
     // ...
 };

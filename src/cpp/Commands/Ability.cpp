@@ -1,6 +1,7 @@
 // Abilityless.cpp
 #include "../../header/Commands/Ability.hpp"
 #include "../../header/Exception/CommandException.hpp"
+#include "../../header/Exception/IOException.hpp"
 #include <map>
 
 using std::map;
@@ -16,7 +17,7 @@ void Ability::validateAbility(CandyGameState& gameState) {
     // jika ability sudah dimatikan lawan
     if (currentPlayer.isNerfed())
     {
-        throw NerfedAbility();
+        throw NerfedAbility(abilityType);
     }
 
     // check if current player hasn't used the ability
@@ -42,7 +43,7 @@ AbilityTypes Ability::parseAbility(string abilityString) {
 
     // Check if the command string is a valid command
     if (abilityMap.find(abilityString) == abilityMap.end()) {
-        throw "Input command tidak valid.\n";
+        throw InvalidAbilityString();
     }
 
     return abilityMap[abilityString];
@@ -53,13 +54,13 @@ string Ability::parseAbility(AbilityTypes ability) {
 
     // Map the command to its equivalent string
     map<AbilityTypes, string> abilityMap = {
-        {AbilityTypes::Reroll, "reroll"},
-        {AbilityTypes::Quadruple, "quadruple"},
-        {AbilityTypes::Quarter, "quarter"},
-        {AbilityTypes::Reverse, "reverse"},
-        {AbilityTypes::SwapCard, "swapcard"},
-        {AbilityTypes::Switch, "switch"},
-        {AbilityTypes::Abilityless, "abilityless"}
+        {AbilityTypes::Reroll, "RE-ROLL"},
+        {AbilityTypes::Quadruple, "QUADRUPLE"},
+        {AbilityTypes::Quarter, "QUARTER"},
+        {AbilityTypes::Reverse, "REVERSE"},
+        {AbilityTypes::SwapCard, "SWAPCARD"},
+        {AbilityTypes::Switch, "SWITCH"},
+        {AbilityTypes::Abilityless, "ABILITYLESS"}
     };
 
     return abilityMap[ability];

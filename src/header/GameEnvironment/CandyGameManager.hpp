@@ -18,7 +18,7 @@ class CandyGameManager: public GameManager {
 
     // private methods
 
-    vector<CandyPlayer> getInitialPlayerList(int playerNum);
+    vector<CandyPlayer> getInitialPlayerList(int playerNum) const;
     Commands* getPlayerCommand();
     void inititateDeck();
     void startRound();

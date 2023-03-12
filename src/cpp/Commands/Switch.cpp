@@ -47,5 +47,6 @@ void Switch::executeCommand(CandyGameState& gameState) {
 
     // Set the ability used flag to true and end the turn
     gameState.getCurrentTurnPlayer().setAbilityUsed(true);
+    gameState.setNextTurn();
 
 }

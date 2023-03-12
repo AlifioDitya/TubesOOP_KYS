@@ -7,20 +7,6 @@
 
 using std::exception;
 
-class InvalidCommandString: public exception {
-
-	const char* what() const throw() {
-		return "String input bukan command yang valid!";
-	}
-};
-
-class InvalidAbilityString: public exception {
-
-	const char* what() const throw() {
-		return "String input bukan ability yang valid!";
-	}
-};
-
 class UsedAbility : public exception  {
 private:
 	AbilityTypes targetType;
@@ -32,7 +18,7 @@ public:
 
 	const char* what() const throw() {
 
-		return ("Maaf, kamu sudah pernah menggunakan ability " + Ability::parseAbility(targetType)).c_str();
+		return ("Maaf, kamu sudah pernah menggunakan ability " + Ability::parseAbility(targetType) + ".").c_str();
 	}
 };
 
@@ -47,14 +33,21 @@ public:
 
 	const char* what() const throw() {
 		// PERLU MEKANISME PRINT ENUM
-		return ("Ets, tidak bisa. Kamu tidak punya kartu Ability " + Ability::parseAbility(targetType)).c_str();
+		return ("Ets, tidak bisa. Kamu tidak punya kartu Ability " + Ability::parseAbility(targetType) + ".").c_str();
 	}
 };
 
 class NerfedAbility : public exception {
+private:
+	AbilityTypes targetType;
+
 public:
+	NerfedAbility(AbilityTypes targetType) {
+		this->targetType = targetType;
+	}
+
 	const char* what() const throw() {
-		return "Ets, tidak bisa. Ability kamu sudah dimatikan lawan";
+		return ("Oops, kartu ability "+ Ability::parseAbility(targetType) + "-mu telah dimatikan sebelumnya:(.").c_str();
 	}
 };
 

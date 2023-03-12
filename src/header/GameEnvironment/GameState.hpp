@@ -46,7 +46,9 @@ public:
     void setDeckCards(const DeckCard<Card>&);
 
     void setNextTurn();
-
+    
+    // set all player to has not played
+    void setAllNotPlayed();
     // Getters
     vector<T> getPlayerList() const;
 
@@ -59,6 +61,8 @@ public:
     int getRound() const;
 
     int getPointPool() const;
+
+    bool hasAllPlayed() const;
 
     TableCard& getTableCards();
 

@@ -71,7 +71,7 @@ public:
     // ========== Predicates ==========
 
     // Check if player has played this round
-    bool hasPlayedThisRound();
+    bool hasPlayedThisRound() const;
 
     // Print hand
     void printHand();

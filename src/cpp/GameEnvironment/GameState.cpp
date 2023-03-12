@@ -5,6 +5,7 @@
 
 using std::cout;
 using std::endl;
+using std::find;
 
 // Default ctor
 template <class T>
@@ -77,6 +78,32 @@ void GameState<T>::setDeckCards(const DeckCard<Card>& dckCard) {
     deckCards = dckCard;
 }
 
+template <class T>
+void GameState<T>::setNextTurn() {
+
+    Player& currentPlayer = getCurrentTurnPlayer();
+    currentPlayer.setHasPlayed(true);
+
+    if (hasAllPlayed()) {
+
+        currentTurnIdx = (currentTurnIdx + 1) % playerList.size();     
+
+    }
+
+    else {
+        while(currentPlayer.hasPlayedThisRound()) currentTurnIdx = (currentTurnIdx + 1) % playerList.size();
+    }
+}
+
+template <class T>
+void GameState<T>::setAllNotPlayed() {
+    for (int i = 0; i < getPlayerList().size(); i++) {
+        CandyPlayer& player = getPlayerRefAt(i);
+
+        player.setHasPlayed(false);
+    }
+}
+
 // Getters
 template <class T>
 vector<T> GameState<T>::getPlayerList() const {
@@ -118,9 +145,13 @@ DeckCard<Card>& GameState<T>::getDeckCards() {
     return deckCards;
 }
 
-template <class T>
-void GameState<T>::setNextTurn() {
-    currentTurnIdx = (currentTurnIdx + 1) % playerList.size();
+bool hasPlayerNotPlayed(const Player& player) {
+    return player.hasPlayedThisRound();
+}
+
+template<class T>
+bool GameState<T>::hasAllPlayed() const {
+    return find(playerList.begin(), playerList.end(), hasPlayerNotPlayed) == playerList.end();
 }
 
 template <class T>

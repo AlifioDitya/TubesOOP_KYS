@@ -144,7 +144,7 @@ void CandyGameManager::inititateDeck() {
     }
 }
 
-vector<CandyPlayer> CandyGameManager::getInitialPlayerList(int playerNum) {
+vector<CandyPlayer> CandyGameManager::getInitialPlayerList(int playerNum) const {
 
     // inisiasi setiap player beserta namanya
 
@@ -165,23 +165,12 @@ vector<CandyPlayer> CandyGameManager::getInitialPlayerList(int playerNum) {
 }
 
 
-Commands* CandyGameManager::getPlayerCommand()
-{
+Commands* CandyGameManager::getPlayerCommand() {
+
+    // menerima input aksi pemain saat ini
     IO choiceIO;
     CandyPlayer currentPlayer = gameState.getCurrentTurnPlayer();
     int lower = 1, upper;
-
-    cout << "Pilihan perintah: " << endl;
-    cout << "1. DOUBLE" << endl;
-    cout << "2. HALF" << endl;
-    cout << "3. NEXT" << endl;
-    cout << "4. ABILITYLESS" << endl;
-    cout << "5. QUADRUPLE" << endl;
-    cout << "6. QUARTER" << endl;
-    cout << "7. RE-ROLL" << endl;
-    cout << "8. REVERSE" << endl;
-    cout << "9. SWAPCARD" << endl;
-    cout << "10. SWITCH" << endl; 
 
     cout << "Pilihanmu (Contoh: DOUBLE) : ";
 
@@ -210,39 +199,41 @@ Commands* CandyGameManager::getPlayerCommand()
         catch(const exception& err) {
             cout << err.what() << endl;
         }
-        
+
     } while(!command);
 
-    // jika pilihan ability
     return command;
 }
 
 void CandyGameManager::startRound() {
 
-    // counter player yang sudah dapat giliran
-    int count = 0;
+    gameState.setAllNotPlayed();
 
-    // 
-
-    while (count < gameState.getPlayerList().size()) {
+    while (!gameState.hasAllPlayed()) {
         
         // aksi pemain
+        CandyPlayer& currentPlayer = gameState.getCurrentTurnPlayer();
+        cout << "Giliran pemain " << currentPlayer.getId() << ". " << currentPlayer.getName() << endl;
+        cout << "Pilihan perintah: " << endl;
+        cout << "1. DOUBLE" << endl;
+        cout << "2. HALF" << endl;
+        cout << "3. NEXT" << endl;
+        cout << "4. ABILITYLESS" << endl;
+        cout << "5. QUADRUPLE" << endl;
+        cout << "6. QUARTER" << endl;
+        cout << "7. RE-ROLL" << endl;
+        cout << "8. REVERSE" << endl;
+        cout << "9. SWAPCARD" << endl;
+        cout << "10. SWITCH" << endl; 
 
         try {
-            CandyPlayer& currentPlayer = gameState.getCurrentTurnPlayer();
-            cout << "Giliran pemain " << currentPlayer.getId() << ". " << currentPlayer.getName() << endl;
             Commands* command = getPlayerCommand();
+            
             command->executeCommand(gameState);
-
-            // giliran pemain selanjutnya
-            currentPlayer.setHasPlayed(true);
-            while(currentPlayer.hasPlayedThisRound()) gameState.setNextTurn();
-            count++;
         }
 
         catch (const exception& err) {
-            cout << err.what() << endl;
-            cout << "Giliran pemain saat ini diulang" << endl;
+            cout << err.what() << " Silahkan lakukan perintah lain." << endl;
         }
     }
 }
@@ -272,12 +263,6 @@ void CandyGameManager::startSubGame() {
 
         // round selanjutnya
         gameState.setRound(gameState.getRound() + 1);
-
-        for (int i = 0; i < gameState.getPlayerList().size(); i++) {
-            CandyPlayer& player = gameState.getPlayerRefAt(i);
-
-            player.setHasPlayed(false);
-        }
 
         startRound();
 

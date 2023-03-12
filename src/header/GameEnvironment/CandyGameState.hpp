@@ -27,8 +27,9 @@ public:
     ~CandyGameState();
 
     // Predicates
-    bool hasAllUsedAbility();
-    // int getWinnerIndex() const;
+
+    // check if all player used ability
+    bool hasAllUsedAbility() const;
 
     void setAbilities(DeckCard<AbilityTypes>);
     

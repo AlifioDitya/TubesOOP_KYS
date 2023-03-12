@@ -34,7 +34,12 @@ CandyGameState::~CandyGameState() {
 }
 
 // Predicates
-bool CandyGameState::hasAllUsedAbility() {
+
+bool playerHasUsedAbility(const CandyPlayer& player) {
+    return player.hasUsedAbility();
+}
+bool CandyGameState::hasAllUsedAbility() const {
+
     for (CandyPlayer p: this->playerList) {
         if (!p.hasUsedAbility()) {
             return false;

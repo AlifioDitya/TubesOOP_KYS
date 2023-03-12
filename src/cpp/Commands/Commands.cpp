@@ -1,6 +1,6 @@
 // Commands.cpp
 #include "../../header/Commands/Commands.hpp"
-#include "../../header/Exception/CommandException.hpp"
+#include "../../header/Exception/IOException.hpp"
 #include <algorithm>
 #include <map>
 
@@ -65,10 +65,10 @@ string Commands::parseCommand(CmdTypes command) {
 
     // Map the command to its equivalent string
     map<CmdTypes, string> cmdMap = {
-        {CmdTypes::Next, "next"},
-        {CmdTypes::Double, "double"},
-        {CmdTypes::Half, "half"},
-        {CmdTypes::Ability, "ability"},
+        {CmdTypes::Next, "NEXT"},
+        {CmdTypes::Double, "DOUBLE"},
+        {CmdTypes::Half, "HALF"},
+        {CmdTypes::Ability, "ABILITY"},
         
     };
 

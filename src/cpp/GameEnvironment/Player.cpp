@@ -92,7 +92,7 @@ void Player::clear() {
     hand.clear();
 }
 
-bool Player::hasPlayedThisRound() {
+bool Player::hasPlayedThisRound() const {
     return hasPlayed;
 }
 

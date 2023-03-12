@@ -62,17 +62,17 @@ void CandyPlayer::setAbility(AbilityTypes ability) {
 
 // ========== Predicates ==========
 // Check if player has ability
-bool CandyPlayer::hasAbility(AbilityTypes target) {
+bool CandyPlayer::hasAbility(AbilityTypes target) const {
     return ability == target;
 }
 
 // Check if player has used an ability
-bool CandyPlayer::hasUsedAbility() {
+bool CandyPlayer::hasUsedAbility() const {
     return usedAbility;
 }
 
 // Check if the player has been applied Abilityless by other player
-bool CandyPlayer::isNerfed() {
+bool CandyPlayer::isNerfed() const {
     return isNerfed;
 }
 
@@ -92,7 +92,7 @@ void CandyPlayer::switchCards(int idx1, int idx2, CandyPlayer& other) {
 }
 
 
-double CandyPlayer::getValue() {
+double CandyPlayer::getValue() const {
     return getPoint();
 }
 

@@ -26,6 +26,9 @@ public:
     // Specified ctor
     Player(int id, const vector<Card>& hand, long long point, string name, bool hasPlayed);
 
+    // dtor
+    ~Player();
+
     // cctor
     Player(const Player&);
 

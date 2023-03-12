@@ -13,6 +13,10 @@ Player::Player(): Player(-1, vector<Card>(), 0, "Username", false) {
 
 }
 
+// dtor
+Player::~Player() {
+}
+
 // Specified ctor
 Player::Player(int id, const vector<Card>& hand, long long point, string name, bool hasPlayed) {
     this->playerID = playerID;

@@ -3,7 +3,6 @@
 #define SWAPCARD_HPP
 
 #include "PlayerInvolvedAbility.hpp"
-#include "../GameEnvironment/CandyGameState.hpp"
 
 class SwapCard : public PlayerInvolvedAbility {
 private:

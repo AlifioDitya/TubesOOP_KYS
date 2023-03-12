@@ -2,7 +2,6 @@
 #define QUADRUPLE_HPP
 
 #include "Ability.hpp"
-#include "../GameEnvironment/CandyGameState.hpp"
 
 class Quadruple : public Ability {
 public:

@@ -3,7 +3,6 @@
 #define HALF_HPP
 
 #include "Commands.hpp"
-#include "../GameEnvironment/GameState.hpp"
 
 class Half : public Commands {
 public:

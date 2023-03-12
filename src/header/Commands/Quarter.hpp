@@ -3,7 +3,6 @@
 #define QUARTER_HPP
 
 #include "Ability.hpp"
-#include "../GameEnvironment/CandyGameState.hpp"
 
 class Quarter : public Ability {
 public:

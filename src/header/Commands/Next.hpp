@@ -3,7 +3,6 @@
 #define NEXT_HPP
 
 #include "Commands.hpp"
-#include "../GameEnvironment/GameState.hpp"
 
 class Next : public Commands {
 public:

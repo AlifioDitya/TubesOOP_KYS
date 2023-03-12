@@ -3,7 +3,6 @@
 #define ABILITYLESS_HPP
 
 #include "PlayerInvolvedAbility.hpp"
-#include "../GameEnvironment/CandyGameState.hpp"
 
 class Abilityless : public PlayerInvolvedAbility {
 public:

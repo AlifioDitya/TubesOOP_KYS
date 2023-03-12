@@ -2,7 +2,6 @@
 #ifndef COMMANDS_HPP
 #define COMMANDS_HPP
 
-#include "../GameEnvironment/GameState.hpp"
 #include "../../enums/CmdTypes.hpp"
 #include <string>
 #include "../GameEnvironment/CandyGameState.hpp"

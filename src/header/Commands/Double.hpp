@@ -2,7 +2,6 @@
 #define DOUBLE_HPP
 
 #include "Commands.hpp"
-#include "../GameEnvironment/GameState.hpp"
 
 class Double : public Commands {
 public:

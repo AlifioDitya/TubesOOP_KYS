@@ -10,6 +10,9 @@ class GameDeckCard:public DeckCard<Card> {
     private:
     
     public:
+
+    GameDeckCard();
+    GameDeckCard(const vector<Card>&);
     void defaultConfig();
 
 };

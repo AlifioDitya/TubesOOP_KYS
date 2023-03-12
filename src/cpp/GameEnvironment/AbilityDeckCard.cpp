@@ -1,5 +1,12 @@
 #include "../../header/GameEnvironment/AbilityDeckCard.hpp"
 
+AbilityDeckCard::AbilityDeckCard() {
+    defaultConfig();
+}
+
+AbilityDeckCard::AbilityDeckCard(const vector<AbilityTypes>& cards): DeckCard<AbilityTypes>(cards) {
+}
+
 void AbilityDeckCard::defaultConfig() {
     // INISIASI 
 

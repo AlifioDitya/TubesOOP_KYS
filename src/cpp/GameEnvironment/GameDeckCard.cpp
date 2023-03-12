@@ -1,5 +1,12 @@
 #include "../../header/GameEnvironment/GameDeckCard.hpp"
 
+GameDeckCard::GameDeckCard() {
+    defaultConfig();
+}
+
+GameDeckCard::GameDeckCard(const vector<Card>& cards): DeckCard<Card>(cards) {
+}
+
 void GameDeckCard::defaultConfig() {
     vector<Card> tempCards;
 

@@ -2,6 +2,7 @@
 #include "../../header/GameEnvironment/GameState.hpp"
 
 #include <iostream>
+#include "algorithm"
 
 using std::cout;
 using std::endl;
@@ -74,12 +75,12 @@ void GameState<T>::setPointPool(int points) {
 
 template <class T>
 void GameState<T>::setTableCards(const vector<Card>& cards) {
-    tableCards;
+    tableCards.setCards(cards);
 }
 
 template <class T>
 void GameState<T>::setDeckCards(const vector<Card>& cards) {
-    deckCards = deckCard;
+    deckCards.setCards(cards);
 }
 
 template<class T>

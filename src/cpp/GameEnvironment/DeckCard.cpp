@@ -13,17 +13,6 @@ using std::deque;
 // initialize stack with cards with random order
 template<class T>
 DeckCard<T>::DeckCard() {
-    
-    defaultConfig();
-}
-
-template<>
-DeckCard<AbilityTypes>::DeckCard() {
-    // INISIASI 
-
-    deque<AbilityTypes> temp {Reroll, Quadruple, Quarter, Reverse, SwapCard, Switch, Abilityless};
-    random_shuffle(temp.begin(), temp.end());
-    deck = stack<AbilityTypes>(temp);
 
 }
 

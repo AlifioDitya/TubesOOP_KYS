@@ -9,6 +9,8 @@ class AbilityDeckCard:public DeckCard<AbilityTypes> {
     private:
     
     public:
+    AbilityDeckCard();
+    AbilityDeckCard(const vector<AbilityTypes>&);
     void defaultConfig();
 
 };

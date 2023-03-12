@@ -40,11 +40,11 @@ public:
    vector<T> drawMany(int);
 
    // set cards
-   void setCards(const vector<T>& cards)
+   void setCards(const vector<T>& cards);
 
    //...
 };
 
-#include "../../cpp/GameEnvironment/DeckCard.cpp"
+// #include "../../cpp/GameEnvironment/DeckCard.cpp"
 
 #endif

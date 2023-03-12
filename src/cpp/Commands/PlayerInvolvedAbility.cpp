@@ -2,6 +2,9 @@
 #include "../../header/Commands/PlayerInvolvedAbility.hpp"
 #include "../../header/Exception/IOException.hpp"
 #include "../../header/Program/IO.hpp"
+#include <iostream>
+using std::endl;
+using std::cout;
 
 // return player index that is chosen
 int PlayerInvolvedAbility::selectPlayer(CandyGameState& gameState, const vector<CandyPlayer>& playerList, string label) {

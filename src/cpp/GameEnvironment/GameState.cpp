@@ -1,6 +1,6 @@
 // GameState.cpp
 #include "../../header/GameEnvironment/GameState.hpp"
-
+#include "../../header/GameEnvironment/CandyPlayer.hpp"
 #include <iostream>
 #include "algorithm"
 
@@ -194,4 +194,9 @@ void GameState<T>::printPlayerList(const vector<T>& playerVec) const {
     for (long unsigned int i = 0; i < playerVec.size(); i++) {
         cout << i+1 << ". " << playerVec[i].getName() << endl;
     }
+}
+
+void TemporaryFunction ()
+{
+    GameState<CandyPlayer> temp1;
 }

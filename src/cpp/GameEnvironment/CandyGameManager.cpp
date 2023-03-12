@@ -13,7 +13,9 @@
 #include "../../header/Commands/Reverse.hpp"
 #include "../../header/Commands/SwapCard.hpp"
 #include "../../header/Commands/Switch.hpp"
+#include "../../header/Cards/Combination.hpp"
 
+#include <map>
 #include <iostream>
 #include <fstream>
 #include <algorithm>
@@ -23,6 +25,7 @@ using std::cout;
 using std::ifstream;
 using std::max_element;
 using std::endl;
+using std::map;
 
 CandyGameManager::CandyGameManager() {
     actions = vector<Commands*>{
@@ -283,11 +286,28 @@ void CandyGameManager::startSubGame() {
         gameState.getTableCards().addItem(gameState.getDeckCards().drawCard());
     }
 
-    // hitung pemenang subgame berdasarkan combo
-    // [DISINI]
-    // CandyPlayer& winner = ...;
+    class ComboCompare
+    {
+        public:
+        bool operator() (const Combination& a, const Combination& b) const
+        {
+            return a.getValue() < b.getValue();
+        }
+    };
 
-    // winner.addPoint(gameState.getPointPool());
+    map<Combination, CandyPlayer, ComboCompare> combosMap;
+    vector<Combination> combos;
+    // hitung pemenang subgame berdasarkan combo
+    for (auto player: gameState.getPlayerList())
+    {
+        Combination combo(gameState.getTableCards().getCards(), player.getHand());
+        combosMap[combo] = player;
+        combos.push_back(combo);
+    }
+
+    CandyPlayer& winner = gameState.getPlayerRefAt(gameState.getPlayerIdx(combosMap[getMax(combos)].getId()));
+
+    winner.addPoint(gameState.getPointPool());
 }
 
 void CandyGameManager::startGame() {

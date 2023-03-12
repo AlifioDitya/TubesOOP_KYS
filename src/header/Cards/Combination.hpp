@@ -23,15 +23,15 @@ class Combination : public CardInterface {
         FourOfAKind = 115,
         StraightFlush = 129
     };
-    bool ofSameColor(vector<Card>);
-    bool inSequence(vector<Card>);
-    bool hasFourOfAKind(vector<Card>);
-    bool isFullHouse(vector<Card>);
-    bool hasThreeOfAKind(vector<Card>);
-    pair<int, int> findPairIdx(vector<Card>);
+    bool ofSameColor(const vector<Card>&);
+    bool inSequence(const vector<Card>&);
+    bool hasFourOfAKind(const vector<Card>&);
+    bool isFullHouse(const vector<Card>&);
+    bool hasThreeOfAKind(const vector<Card>&);
+    pair<int, int> findPairIdx(const vector<Card>&);
 
-    vector<Card> findBestCombination(vector<Card>, vector<Card>);
-    ComboTypes findComboType(vector<Card>);
+    vector<Card> findBestCombination(const vector<Card>& tableCards, const vector<Card>& handCards);
+    ComboTypes findComboType(const vector<Card>&);
     double calculateWeightedValue(vector<Card>, ComboTypes);
 
    protected:
@@ -42,7 +42,7 @@ class Combination : public CardInterface {
 
    public:
     // CTOR
-    Combination(const vector<Card>, const vector<Card>);
+    Combination(const vector<Card>&, const vector<Card>&);
 
     ~Combination();
 

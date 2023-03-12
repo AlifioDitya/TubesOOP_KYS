@@ -7,7 +7,7 @@ using std::cout;
 using std::endl;
 using std::sort;
 
-Combination::Combination(const vector<Card> tableCards, const vector<Card> handCards)
+Combination::Combination(const vector<Card>& tableCards, const vector<Card>& handCards)
     : CardInterface(0),
       tableCards(tableCards),
       handCards(handCards),
@@ -19,7 +19,8 @@ Combination::Combination(const vector<Card> tableCards, const vector<Card> handC
 Combination::~Combination() {
 }
 
-ComboTypes Combination::findComboType(vector<Card> cards) {
+
+ComboTypes Combination::findComboType(const vector<Card>& cards) {
     ComboTypes type;
     pair<int, int> cardPair;
 
@@ -48,7 +49,7 @@ ComboTypes Combination::findComboType(vector<Card> cards) {
     return type;
 }
 
-vector<Card> Combination::findBestCombination(vector<Card> tableCards, vector<Card> handCards) {
+vector<Card> Combination::findBestCombination(const vector<Card>& tableCards, const vector<Card>& handCards) {
     vector<Card> cards(tableCards);
     cards.insert(cards.end(), handCards.begin(), handCards.end());
     sort(cards.begin(), cards.end());
@@ -110,7 +111,7 @@ double Combination::calculateWeightedValue(vector<Card> cards, ComboTypes type) 
     return cards[4].getValue();
 }
 
-bool Combination::ofSameColor(vector<Card> cards) {
+bool Combination::ofSameColor(const vector<Card>& cards) {
     int color = cards[0].getColor();
     for (long unsigned int i = 1; i < cards.size(); i++) {
         if (cards[i].getColor() != color)
@@ -119,7 +120,7 @@ bool Combination::ofSameColor(vector<Card> cards) {
     return true;
 }
 
-bool Combination::inSequence(vector<Card> cards) {
+bool Combination::inSequence(const vector<Card>& cards) {
     for (long unsigned int i = 0; i < cards.size() - 1; i++) {
         if (cards[i].getRank() != cards[i + 1].getRank() - 1)
             return false;
@@ -127,7 +128,7 @@ bool Combination::inSequence(vector<Card> cards) {
     return true;
 }
 
-bool Combination::isFullHouse(vector<Card> cards) {
+bool Combination::isFullHouse(const vector<Card>& cards) {
     if (cards.size() == 5) {
         pair<int, int> pairIdx = findPairIdx(cards);
         if (pairIdx.second == 1 || pairIdx.first == 3) {
@@ -145,7 +146,7 @@ bool Combination::isFullHouse(vector<Card> cards) {
     return false;
 }
 
-bool Combination::hasFourOfAKind(vector<Card> cards) {
+bool Combination::hasFourOfAKind(const vector<Card>& cards) {
     for (long unsigned int i = 0; i < cards.size() - 3; i++) {
         if (cards[i].getRank() == cards[i + 1].getRank() &&
             cards[i + 1].getRank() == cards[i + 2].getRank() &&
@@ -155,7 +156,7 @@ bool Combination::hasFourOfAKind(vector<Card> cards) {
     return false;
 }
 
-bool Combination::hasThreeOfAKind(vector<Card> cards) {
+bool Combination::hasThreeOfAKind(const vector<Card>& cards) {
     for (long unsigned int i = 0; i < cards.size() - 2; i++) {
         if (cards[i].getRank() == cards[i + 1].getRank() &&
             cards[i + 1].getRank() == cards[i + 2].getRank())
@@ -164,7 +165,7 @@ bool Combination::hasThreeOfAKind(vector<Card> cards) {
     return false;
 }
 
-pair<int, int> Combination::findPairIdx(vector<Card> cards) {
+pair<int, int> Combination::findPairIdx(const vector<Card>& cards) {
     pair<int, int> cardPairIdx(-1, -1);
     for (long unsigned int i = 0; i < cards.size() - 1; i++) {
         if (cards[i].getRank() == cards[i + 1].getRank()) {

@@ -17,7 +17,7 @@ protected:
     int round;
     int pointPool;
     TableCard tableCards;
-    DeckCard deckCards;
+    DeckCard<Card> deckCards;
     
 public:
     // Default ctor

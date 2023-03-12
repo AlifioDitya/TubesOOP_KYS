@@ -10,7 +10,7 @@ using std::vector;
 using std::stack;
 
 template <class T>
-class DeckCard : public InventoryHolder {
+class DeckCard : public InventoryHolder<T> {
 
 private:
    stack<T> deck;

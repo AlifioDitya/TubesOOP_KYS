@@ -5,6 +5,7 @@
 #define GAMEDECKCARD_HPP
 
 #include "DeckCard.hpp"
+#include "../Cards/Card.hpp"
 
 class GameDeckCard:public DeckCard<Card> {
     private:

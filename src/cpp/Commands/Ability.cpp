@@ -3,7 +3,9 @@
 #include "../../header/Exception/CommandException.hpp"
 #include "../../header/Exception/IOException.hpp"
 #include <map>
+#include <algorithm>
 
+using std::transform;
 using std::map;
 
 void Ability::validateAbility(CandyGameState& gameState) {

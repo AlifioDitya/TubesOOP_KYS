@@ -4,6 +4,7 @@
 #define ABILITYDECKCARD_HPP
 
 #include "DeckCard.hpp"
+#include "../../enums/AbilityTypes.hpp"
 
 class AbilityDeckCard:public DeckCard<AbilityTypes> {
     private:

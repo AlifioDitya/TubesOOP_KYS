@@ -9,7 +9,7 @@ SOURCES=cpp/Card/Card.cpp cpp/Card/CardInterface.cpp cpp/Card/Combination.cpp \
         cpp/Commands/PlayerInvolvedAbility.cpp cpp/Commands/Quadruple.cpp cpp/Commands/Reroll.cpp \
         cpp/Commands/SwapCard.cpp cpp/Commands/Switch.cpp \
         cpp/GameEnvironment/CandyGameManager.cpp cpp/GameEnvironment/CandyGameState.cpp \
-        cpp/GameEnvironment/CandyPlayer.cpp cpp/GameEnvironment/DeckCard.cpp \
+        cpp/GameEnvironment/CandyPlayer.cpp cpp/GameEnvironment/DeckCard.cpp cpp/GameEnvironment/GameDeckCard.cpp cpp/GameEnvironment/AbilityDeckCard.cpp \
         cpp/GameEnvironment/GameManager.cpp cpp/GameEnvironment/GameState.cpp \
         cpp/GameEnvironment/InventoryHolder.cpp cpp/GameEnvironment/Player.cpp \
         cpp/GameEnvironment/TableCard.cpp \

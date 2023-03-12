@@ -1,5 +1,4 @@
 #include "../../header/GameEnvironment/AbilityDeckCard.hpp"
-#include "../../enums/AbilityTypes.hpp"
 
 #include "algorithm"
 #include "deque"

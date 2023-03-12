@@ -1,5 +1,8 @@
 #include "../../header/GameEnvironment/GameDeckCard.hpp"
 
+#include <algorithm>
+using std::random_shuffle;
+
 GameDeckCard::GameDeckCard() {
     defaultConfig();
 }

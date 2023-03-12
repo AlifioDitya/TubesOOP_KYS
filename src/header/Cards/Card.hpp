@@ -13,8 +13,8 @@ using std::string;
 
 class Card : public CardInterface {
    private:
-    const Color color;
-    const Rank rank;
+    Color color;
+    Rank rank;
 
    public:
     // CTOR with parameters
@@ -27,9 +27,7 @@ class Card : public CardInterface {
     string getRankString() const;
 
     // Getter for weight based on spec (assumed as high card)
-    double getWeightedValue() const;
-
-    bool operator=(const Card&);
+    double getValue() const;
 };
 
 #endif

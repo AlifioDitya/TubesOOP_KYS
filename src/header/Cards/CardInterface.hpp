@@ -3,13 +3,13 @@
 
 class CardInterface {
    protected:
-    double weightedValue;
-   public:
+    double value;
 
+   public:
     CardInterface(double);
     virtual ~CardInterface();
     // Getter for value as specified weights in spec
-    double virtual getWeightedValue() const = 0;
+    double virtual getValue() const = 0;
 
     // Comparison operators
     bool operator==(const CardInterface&);

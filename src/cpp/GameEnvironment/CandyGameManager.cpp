@@ -22,6 +22,7 @@ using std::cin;
 using std::cout;
 using std::ifstream;
 using std::max_element;
+using std::endl;
 
 CandyGameManager::CandyGameManager() {
     actions = vector<Commands*>{

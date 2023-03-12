@@ -1,4 +1,10 @@
 #include "../../header/GameEnvironment/AbilityDeckCard.hpp"
+#include "../../enums/AbilityTypes.hpp"
+
+#include "algorithm"
+#include "deque"
+using std::random_shuffle;
+using std::deque;
 
 AbilityDeckCard::AbilityDeckCard() {
     defaultConfig();

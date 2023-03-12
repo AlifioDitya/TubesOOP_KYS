@@ -9,7 +9,7 @@ class IO {
     IO();
 
     // get integer input in range [lowerBound, upperBound]
-    void getChoice(int lowerBound, int upperBound);
+    void getInput(int lowerBound, int upperBound);
 
     bool operator==(const int);
     int getChoice() const;

@@ -1,16 +1,23 @@
 #include "../../header/Program/IO.hpp"
 #include "../../header/Exception/IOException.hpp"
 #include <iostream>
+#include "string"
+
+using std::cin;
+using std::cout;
+using std::endl;
+using std::string;
+using std::stoi;
 
 IO::IO() {
     choice = -1;
 }
 
 // get integer input in range [lowerBound, upperBound]
-void IO::getChoice(int lowerBound, int upperBound) {
-    int temp = NULL;
+void IO::getInput(int lowerBound, int upperBound) {
+    int temp = -1;
 
-    while (temp == NULL) {
+    while (temp == -1) {
         try {
 
             string userInput;
@@ -37,7 +44,7 @@ void IO::getChoice(int lowerBound, int upperBound) {
 
         catch(const exception& err) {
             cout << err.what() << endl;
-            temp = NULL;
+            temp = -1;
         }
     }
 

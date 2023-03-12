@@ -129,7 +129,7 @@ void CandyGameManager::inititateDeck() {
     IO choiceIO;
     cout << "Pilihan player: ";
 
-    choiceIO.getChoice(1, 2);
+    choiceIO.getInput(1, 2);
 
     if (choiceIO == 1) {
         gameState.setDeckCards(DeckCard<Card>());
@@ -184,7 +184,7 @@ Commands* CandyGameManager::getPlayerCommand()
     }  
 
     cout << "Pilihanmu : ";
-    choiceIO.getChoice(lower, upper);
+    choiceIO.getInput(lower, upper);
     int choice = choiceIO.getChoice();
 
     if (choice != 4) return actions[choice-1];

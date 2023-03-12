@@ -4,9 +4,11 @@
 #include "../../header/Exception/DeckCardException.hpp"
 #include "../../enums/AbilityTypes.hpp"
 #include "algorithm"
-
+#include "deque"
 
 using std::stack;
+using std::random_shuffle;
+using std::deque;
 
 // initialize stack with cards with random order
 template<class T>

@@ -17,7 +17,7 @@ int PlayerInvolvedAbility::selectPlayer(CandyGameState& gameState, const vector<
     IO choiceIO;
     cout << "Pilihan player: ";
 
-    choiceIO.getChoice(1, playerList.size());
+    choiceIO.getInput(1, playerList.size());
 
     return choiceIO.getChoice() - 1;
     

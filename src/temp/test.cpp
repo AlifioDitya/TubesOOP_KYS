@@ -1,21 +1,21 @@
 #include <iostream>
+#include "IO.cpp"
 using namespace std;
-enum c {
-    Bruh=1
-};
 
-template <class T>
-class a {
-
-    public:
-    T b;
-};
 
 int main() {
-    a <c> d;    
+    IO a;
 
-    cout << d.b;
+    while(true) {
+        try {
+            a.getInput(1, 3);
 
-    return 0;
+            cout << a.getChoice() << endl;
+            cout << "nice\n";
+        }
+
+        catch(exception& err) {
+            cout << err.what();
+        }
+    }
 }
-

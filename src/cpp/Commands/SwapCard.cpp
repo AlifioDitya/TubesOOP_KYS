@@ -23,7 +23,7 @@ int SwapCard::selectCard(string playerName) {
     cout << "2. Kiri" << endl;
     
     IO inputIO;
-    inputIO.getChoice(1, 2);
+    inputIO.getInput(1, 2);
     return inputIO.getChoice() - 1;
 }
 

@@ -31,7 +31,7 @@ AbilityTypes Ability::parseAbility(string abilityString) {
 
     // Map the command string to its equivalent CmdTypes
     map<string, AbilityTypes> abilityMap = {
-        {"reroll",AbilityTypes::Reroll},
+        {"re-roll",AbilityTypes::Reroll},
         {"quadruple", AbilityTypes::Quadruple},
         {"quarter", AbilityTypes::Quarter},
         {"reverse", AbilityTypes::Reverse},
@@ -40,10 +40,11 @@ AbilityTypes Ability::parseAbility(string abilityString) {
         {"abilityless", AbilityTypes::Abilityless}
     };
 
-    // // Check if the command string is a valid command
-    // if (cmdMap.find(commandString) == cmdMap.end()) {
-    //     throw "Input command tidak valid.\n";
-    //     }
+    // Check if the command string is a valid command
+    if (abilityMap.find(abilityString) == abilityMap.end()) {
+        throw "Input command tidak valid.\n";
+    }
+
     return abilityMap[abilityString];
     
 }

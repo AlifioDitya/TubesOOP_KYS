@@ -15,7 +15,7 @@ Next::Next() {
 // Execute method
 void Next::executeCommand(CandyGameState& gameState) {
 
-    int nextPlayerIdx = (gameState.getCurrentTurnIdx() + 1) % gameState.getPlayerList().size();
-    gameState.setCurrentTurnIdx(nextPlayerIdx);
+    // int nextPlayerIdx = (gameState.getCurrentTurnIdx() + 1) % gameState.getPlayerList().size();
+    // gameState.setCurrentTurnIdx(nextPlayerIdx);
     cout << "Giliran dilanjut ke pemain selanjutnya." << endl;
 }

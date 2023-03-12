@@ -1,5 +1,6 @@
 // Commands.cpp
 #include "../../header/Commands/Commands.hpp"
+#include "../../header/Exception/CommandException.hpp"
 #include <algorithm>
 #include <map>
 
@@ -43,13 +44,19 @@ CmdTypes Commands::parseCommand(string commandString) {
         {"next", CmdTypes::Next},
         {"double", CmdTypes::Double},
         {"half", CmdTypes::Half},
-        {"ability", CmdTypes::Ability}
+        {"abilityless", CmdTypes::Ability},
+        {"quadruple", CmdTypes::Ability},
+        {"quarter", CmdTypes::Ability},
+        {"re-roll", CmdTypes::Ability},
+        {"reverse", CmdTypes::Ability},
+        {"swapcard", CmdTypes::Ability},
+        {"switch", CmdTypes::Ability}
     };
 
-    // // Check if the command string is a valid command
-    // if (cmdMap.find(commandString) == cmdMap.end()) {
-    //     throw "Input command tidak valid.\n";
-    //     }
+    // Check if the command string is a valid command
+    if (cmdMap.find(commandString) == cmdMap.end()) {
+        throw InvalidCommandString();
+    }
     return cmdMap[commandString];
     
 }

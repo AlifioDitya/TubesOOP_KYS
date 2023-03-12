@@ -45,6 +45,10 @@ CandyGameManager::~CandyGameManager() {
     for (Commands* action: actions) {
         delete action;
     }
+
+    for (auto abilityPair: abilities) {
+        delete abilityPair.second;
+    }
 }
 
 string fixFileExtension(string fileName) {
@@ -168,30 +172,49 @@ Commands* CandyGameManager::getPlayerCommand()
     int lower = 1, upper;
 
     cout << "Pilihan perintah: " << endl;
-    cout << "1. Double" << endl;
-    cout << "2. Half" << endl;
-    cout << "3. Next" << endl;
-    
-    // jika player dapat menggunakan ability
-    if (currentPlayer.getAbility() != AbilityTypes::None && !currentPlayer.hasUsedAbility() && !currentPlayer.isNerfed())
-    {   
-        upper = 4;
-        cout << "4. Ability (" << Ability::parseAbility(gameState.getCurrentTurnPlayer().getAbility()) << ")" << endl;
-    }
+    cout << "1. DOUBLE" << endl;
+    cout << "2. HALF" << endl;
+    cout << "3. NEXT" << endl;
+    cout << "4. ABILITYLESS" << endl;
+    cout << "5. QUADRUPLE" << endl;
+    cout << "6. QUARTER" << endl;
+    cout << "7. RE-ROLL" << endl;
+    cout << "8. REVERSE" << endl;
+    cout << "9. SWAPCARD" << endl;
+    cout << "10. SWITCH" << endl; 
 
-    else {
-        upper = 3;
-    }  
+    cout << "Pilihanmu (Contoh: DOUBLE) : ";
 
-    cout << "Pilihanmu : ";
-    choiceIO.getInput(lower, upper);
-    int choice = choiceIO.getChoice();
+    string commandString;
 
-    if (choice != 4) return actions[choice-1];
+    cin >> commandString;
+
+    Commands* command = nullptr;
+
+    do {
+
+        try {
+            CmdTypes commandType = Commands::parseCommand(commandString);
+
+            if (commandType == CmdTypes::Ability)
+            {
+                command = abilities[Ability::parseAbility(commandString)];
+            }
+
+            else
+            {
+                command = actions[commandType];
+            }
+        }
+
+        catch(const exception& err) {
+            cout << err.what() << endl;
+        }
+        
+    } while(!command);
 
     // jika pilihan ability
-    return abilities[currentPlayer.getAbility()];
-
+    return command;
 }
 
 void CandyGameManager::startRound() {
@@ -290,7 +313,7 @@ void CandyGameManager::startGame() {
     gameState = CandyGameState(getInitialPlayerList(7), 0, 0, CandyGameState::initialPoint, TableCard(), DeckCard<Card>(), DeckCard<AbilityTypes>());
 
     do {
-  
+
         startSubGame();
 
         CandyPlayer leaderPlayer = getMax(gameState.getPlayerList());
@@ -298,7 +321,6 @@ void CandyGameManager::startGame() {
     } while(leadingPlayer.getPoint() >= CandyGameState::winnerPoint);
 
     cout << "Pemenangnya adalah " << leadingPlayer.getName() << endl;
-
 }
 
 template<class T>

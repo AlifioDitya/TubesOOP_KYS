@@ -9,7 +9,6 @@ class GameManager {
     
     public:
     virtual void startGame() = 0;
-    
 
 };
 

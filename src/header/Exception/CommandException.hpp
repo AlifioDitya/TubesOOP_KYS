@@ -2,9 +2,24 @@
 #define COMMANDEXCEPTION_H
 
 #include <exception>
-#include "../../enums/AbilityTypes.hpp"
+#include "../enums/AbilityTypes.hpp"
+#include "../Commands/Ability.hpp"
 
 using std::exception;
+
+class InvalidCommandString: public exception {
+
+	const char* what() const throw() {
+		return "String input bukan command yang valid!";
+	}
+};
+
+class InvalidAbilityString: public exception {
+
+	const char* what() const throw() {
+		return "String input bukan ability yang valid!";
+	}
+};
 
 class UsedAbility : public exception  {
 private:
@@ -16,8 +31,8 @@ public:
 	}
 
 	const char* what() const throw() {
-		// PERLU MEKANISME PRINT ENUM
-		return "Maaf, kamu sudah pernah menggunakan ability [nama]";
+
+		return ("Maaf, kamu sudah pernah menggunakan ability " + Ability::parseAbility(targetType)).c_str();
 	}
 };
 
@@ -32,7 +47,7 @@ public:
 
 	const char* what() const throw() {
 		// PERLU MEKANISME PRINT ENUM
-		return "Ets, tidak bisa. Kamu tidak punya kartu Ability [nama]";
+		return ("Ets, tidak bisa. Kamu tidak punya kartu Ability " + Ability::parseAbility(targetType)).c_str();
 	}
 };
 

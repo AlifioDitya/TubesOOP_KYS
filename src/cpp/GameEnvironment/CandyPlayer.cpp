@@ -15,7 +15,7 @@ CandyPlayer::CandyPlayer() {
 }
 
 // Specified ctor
-CandyPlayer::CandyPlayer(int id, vector<Card> hand, int point, string name, bool hasPlayed): Player(id, hand, point, name, hasPlayed) {
+CandyPlayer::CandyPlayer(int id, const vector<Card>& hand, int point, string name, bool hasPlayed): Player(id, hand, point, name, hasPlayed) {
     usedAbility = false;
     nerfed = false;
 }

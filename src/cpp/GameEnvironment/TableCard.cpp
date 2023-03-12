@@ -9,7 +9,7 @@ int TableCard::countItems() const {
     return cards.size();
 }
 // Adds an item to the inventory
-void TableCard::addItem(Card card) {
+void TableCard::addItem(const Card& card) {
     cards.push_back(card);
 }
 

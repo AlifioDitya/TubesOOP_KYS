@@ -13,7 +13,7 @@ public:
     virtual int countItems() const = 0;
 
     // Adds an item to the inventory
-    virtual void addItem(T) = 0;
+    virtual void addItem(const T&) = 0;
 
     // Removes all item from the inventory
     virtual void clear() = 0;

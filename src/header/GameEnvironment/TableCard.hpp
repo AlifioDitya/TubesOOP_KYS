@@ -18,7 +18,7 @@ public:
     virtual int countItems() const;
 
     // Adds an item to the inventory
-    virtual void addItem(Card);
+    virtual void addItem(const Card&);
 
     // Removes an item from the inventory
     virtual void clear();

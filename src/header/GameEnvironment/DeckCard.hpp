@@ -25,7 +25,7 @@ public:
    int countItems() const;
 
    // Adds an item to the inventory
-   void addItem(T);
+   void addItem(const T&);
 
    // Removes an item from the inventory
    void clear();

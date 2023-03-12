@@ -34,7 +34,7 @@ public:
     virtual void executeCommand(CandyGameState&) = 0;
 
     // Static method to parse string to command type
-    static CmdTypes parseCommand(string);
+    static CmdTypes parseCommand(string commandString);
     static string parseCommand(CmdTypes);
 };
 

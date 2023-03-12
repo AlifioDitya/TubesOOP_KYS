@@ -26,7 +26,18 @@ class CandyGameManager: public GameManager {
     void startSubGame();
 
     template<class T>
-    T getMax(vector<T>&);
+    T getMax(vector<T>& list) {
+        // asumsi list.size() > 0
+
+        T maxElmt = list[0];
+
+        for (auto i = list.begin() + 1; i != list.end(); i++)
+        {
+            if (i->getValue() > maxElmt.getValue()) maxElmt = *i;
+        }
+        
+        return maxElmt;
+    }
 
     public:
     CandyGameManager();

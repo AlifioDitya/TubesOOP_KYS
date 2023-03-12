@@ -7,7 +7,9 @@ template <class T>
 class InventoryHolder {
 
 public:
-    virtual ~InventoryHolder();
+    virtual ~InventoryHolder() {
+        
+    }
 
     // Returns the number of items in the inventory
     virtual int countItems() const = 0;

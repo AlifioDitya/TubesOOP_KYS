@@ -26,9 +26,6 @@ class DeckCard : public InventoryHolder<T> {
     // initialize stack with cards with random order
     DeckCard(){};
 
-    // DeckCard<T>& operator=(const DeckCard<T>& other) {
-    //     deck = other.deck;
-    // }
 
     // initialize stack with cards ordered as in config and first-index card being at top
     DeckCard(const vector<T>& config) {
@@ -81,7 +78,5 @@ class DeckCard : public InventoryHolder<T> {
         deck = stack<T>(deque<T>(cards.begin(), cards.end()));
     }
 };
-
-// #include "../../cpp/GameEnvironment/DeckCard.cpp"
 
 #endif

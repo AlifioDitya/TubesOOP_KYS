@@ -187,9 +187,6 @@ class GameState {
         }
     }
 
-    // virtual int getWinnerIndex() const = 0;
 };
-
-// #include "../../cpp/GameEnvironment/GameState.cpp"
 
 #endif

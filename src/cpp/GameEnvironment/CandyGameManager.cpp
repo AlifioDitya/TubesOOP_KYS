@@ -330,21 +330,17 @@ void CandyGameManager::startGame() {
     cout << "Pemenangnya adalah " << leadingPlayer.getName() << endl;
 }
 
-template<class T>
-bool compareGeneric(T a, T b) {
-    return a.getValue() < b.getValue();
-}
 
-template<class T>
-T CandyGameManager::getMax(vector<T>& list) {
-    // asumsi list.size() > 0
+// template<class T>
+// T CandyGameManager::getMax(vector<T>& list) {
+//     // asumsi list.size() > 0
 
-    T maxElmt = list[0];
+//     T maxElmt = list[0];
 
-    for (auto i = list.begin() + 1; i != list.end(); i++)
-    {
-        if (i->getValue() > maxElmt.getValue()) maxElmt = *i;
-    }
+//     for (auto i = list.begin() + 1; i != list.end(); i++)
+//     {
+//         if (i->getValue() > maxElmt.getValue()) maxElmt = *i;
+//     }
     
-    return maxElmt;
-}
+//     return maxElmt;
+// }

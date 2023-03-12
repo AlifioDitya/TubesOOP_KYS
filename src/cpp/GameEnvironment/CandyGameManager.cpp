@@ -246,6 +246,7 @@ void CandyGameManager::startSubGame() {
     gameState.setRound(0);
     gameState.setPointPool(CandyGameState::initialPoint);
     gameState.getTableCards().clear();
+    gameState.setIsReversed(false);
 
     // reset deck
     inititateDeck();
@@ -295,7 +296,7 @@ void CandyGameManager::startGame() {
     cout << "Permainan baru dimulai!" << endl;
 
     // inisiasi gameState
-    gameState = CandyGameState(getInitialPlayerList(7), 0, 0, CandyGameState::initialPoint, TableCard(), DeckCard<Card>(), DeckCard<AbilityTypes>());
+    gameState = CandyGameState(getInitialPlayerList(7), 0, CandyGameState::initialPoint, TableCard(), DeckCard<Card>(), DeckCard<AbilityTypes>(), false);
 
     do {
 

@@ -24,7 +24,7 @@ public:
     Player();
 
     // Specified ctor
-    Player(int, vector<Card>, long long, string, bool);
+    Player(int id, const vector<Card>& hand, long long point, string name, bool hasPlayed);
 
     // cctor
     Player(const Player&);
@@ -37,7 +37,7 @@ public:
     virtual int countItems() const;
 
     // Adds an item to the inventory
-    virtual void addItem(Card);
+    virtual void addItem(const Card&);
 
     // Removes an item from the inventory
     virtual void clear();

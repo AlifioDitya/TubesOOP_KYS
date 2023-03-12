@@ -22,7 +22,7 @@ public:
     CandyPlayer();
 
     // Specified ctor
-    CandyPlayer(int id, vector<Card> hand, int point, string name, bool hasPlayed);
+    CandyPlayer(int id, const vector<Card>& hand, int point, string name, bool hasPlayed);
 
     // cctor
     CandyPlayer(const CandyPlayer&);
@@ -57,7 +57,7 @@ public:
     void switchCards(CandyPlayer&);
 
     // Switch specific cards
-    void switchCards(int, int, CandyPlayer&);
+    void switchCards(int idx1, int idx2, CandyPlayer& other);
 
     double getValue() const;
 

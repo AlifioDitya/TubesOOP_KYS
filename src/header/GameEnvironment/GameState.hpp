@@ -5,15 +5,16 @@
 #include "Player.hpp"
 #include "DeckCard.hpp"
 #include "TableCard.hpp"
-#include <vector>
+#include <deque>
 
-using std::vector;
+using std::deque;
 
 template <class T>
 class GameState {
 protected:
-    vector<T> playerList;
-    int currentTurnIdx;
+    deque<T> playerList;
+    // giliran selalu indeks 0
+    // int currentTurnIdx;
     int round;
     int pointPool;
     TableCard tableCards;
@@ -24,7 +25,7 @@ public:
     GameState();
 
     // Specified ctor
-    GameState(vector<T>, int, int, int, TableCard, DeckCard<Card>);
+    GameState(const vector<T>& playerList, int roundNum, int points, const TableCard& tableCard, const DeckCard<Card>& deckCard);
 
     // cctor
     GameState(const GameState&);
@@ -35,7 +36,7 @@ public:
     // Setters
     void setPlayerList(const vector<T>&);
 
-    void setCurrentTurnIdx(int);
+    // void setCurrentTurnIdx(int);
 
     void setRound(int);
 
@@ -45,7 +46,9 @@ public:
 
     void setDeckCards(const DeckCard<Card>&);
 
-    void setNextTurn();
+    virtual void setNextTurn();
+
+    void skipCurrentPlayer();
     
     // set all player to has not played
     void setAllNotPlayed();
@@ -56,7 +59,7 @@ public:
 
     T& getPlayerRefAt(int);
 
-    int getCurrentTurnIdx() const;
+    // int getCurrentTurnIdx() const;
 
     int getRound() const;
 

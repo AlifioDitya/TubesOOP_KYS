@@ -24,19 +24,19 @@ void Reverse::executeCommand(CandyGameState& gameState) {
     validateAbility(gameState);
 
     vector<CandyPlayer> playerList = gameState.getPlayerList();
-    int currentPlayerIdx = gameState.getCurrentTurnIdx();
+    // int currentPlayerIdx = gameState.getCurrentTurnIdx();
 
-    // Reverse player order before current player
-    if (currentPlayerIdx > 0) reverse(playerList.begin(), playerList.begin() + currentPlayerIdx);
+    // // Reverse player order before current player
+    // if (currentPlayerIdx > 0) reverse(playerList.begin(), playerList.begin() + currentPlayerIdx);
 
     // Reverse player order after current player
-    if (currentPlayerIdx < playerList.size() - 1) reverse(playerList.begin() + currentPlayerIdx + 1, playerList.end());
+    reverse(playerList.begin() + 1, playerList.end());
 
-    // Move current player to front
-    if (currentPlayerIdx > 0) rotate(playerList.begin(), playerList.begin() + currentPlayerIdx, playerList.begin() + currentPlayerIdx + 1);
+    // // Move current player to front (TIDAK PERLU?)
+    // if (currentPlayerIdx > 0) rotate(playerList.begin(), playerList.begin() + currentPlayerIdx, playerList.begin() + currentPlayerIdx + 1);
 
     // Player that executes reverse will get another turn
-    gameState.setCurrentTurnIdx(0);
+    // gameState.setCurrentTurnIdx(0); (TIDAK PERLU?)
 
     // Print out player order
     cout << gameState.getCurrentTurnPlayer().getName() << " melakukan reverse!" << endl
@@ -52,5 +52,7 @@ void Reverse::executeCommand(CandyGameState& gameState) {
 
     // Set the ability used flag to true and end the turn
     gameState.getCurrentTurnPlayer().setAbilityUsed(true);
+
+    // Player that executes reverse will get another turn
 
 }

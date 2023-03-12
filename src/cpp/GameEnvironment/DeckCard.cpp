@@ -58,7 +58,7 @@ int DeckCard<T>::countItems() const {
 
 // Adds an item to the inventory
 template<class T>
-void DeckCard<T>::addItem(T card) {
+void DeckCard<T>::addItem(const T& card) {
     deck.push(card);
 }
 

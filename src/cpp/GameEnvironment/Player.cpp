@@ -14,7 +14,7 @@ Player::Player(): Player(-1, vector<Card>(), 0, "Username", false) {
 }
 
 // Specified ctor
-Player::Player(int id, vector<Card> hand, long long point, string name, bool hasPlayed) {
+Player::Player(int id, const vector<Card>& hand, long long point, string name, bool hasPlayed) {
     this->playerID = playerID;
     this->hand = hand;
     this->point = point;
@@ -83,7 +83,7 @@ string Player::getName() const {
 }
 
 // Adds an item to the inventory
-void Player::addItem(Card card) {
+void Player::addItem(const Card& card) {
     hand.push_back(card);
 }
 

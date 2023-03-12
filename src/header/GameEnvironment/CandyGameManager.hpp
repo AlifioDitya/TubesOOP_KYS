@@ -4,21 +4,34 @@
 
 #include "GameManager.hpp"
 #include "CandyGameState.hpp"
+#include "../Commands/Commands.hpp"
+
+#include <map>
+
+using std::map;
 
 class CandyGameManager: public GameManager {
     private:
-    
-    vector<CandyPlayer> getInitialPlayerList(int playerNum);
+    vector<Commands*> actions;
+    map<AbilityTypes, class Ability*> abilities;
     CandyGameState gameState;
 
+
+    // private methods
+
+    vector<CandyPlayer> getInitialPlayerList(int playerNum) const;
+    Commands* getPlayerCommand();
     void inititateDeck();
     void startRound();
     void startSubGame();
 
-    public:
+    template<class T>
+    T getMax(vector<T>&);
 
-    void startGame();
-    
+    public:
+    CandyGameManager();
+    ~CandyGameManager();
+    void startGame();    
 
 };
 

@@ -4,21 +4,24 @@
 
 #include "CandyPlayer.hpp"
 #include "GameState.hpp"
-#include "DeckCard.hpp"
-#include "TableCard.hpp"
+#include "GameDeckCard.hpp"
+#include "AbilityDeckCard.hpp"
 #include <vector>
 
 using std::vector;
 
 class CandyGameState: public GameState<CandyPlayer> {
 private:
-    
+    AbilityDeckCard abilities;
+    bool isReversed;
+
 public:
     // Default ctor
     CandyGameState();
 
     // Specified ctor
-    CandyGameState(vector<CandyPlayer>, int, int, int, TableCard, DeckCard);
+    CandyGameState(const vector<CandyPlayer>& playerList, int roundNum, int points, const TableCard& tableCard, 
+        const GameDeckCard& deckCard, const AbilityDeckCard& abilities, bool isReversed);
 
     // cctor
     CandyGameState(const CandyGameState&);
@@ -27,8 +30,18 @@ public:
     ~CandyGameState();
 
     // Predicates
-    bool hasAllUsedAbility();
-    int getWinnerIndex() const;
+    bool getIsReversed() const;
+
+    // check if all player used ability
+    bool hasAllUsedAbility() const;
+
+    void setAbilities(const AbilityDeckCard&);
+
+    void setNextTurn();
+
+    void setIsReversed(bool);
+    
+    AbilityDeckCard& getAbilities();
 
     static const long long initialPoint;
     static const long long winnerPoint;

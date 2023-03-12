@@ -31,4 +31,6 @@ void Half::executeCommand(CandyGameState& gameState) {
     gameState.setPointPool(newPoint);
 
     cout << "Poin hadiah turun dari " << oldPoint << " menjadi " << newPoint << "!" << endl;
+
+    gameState.setNextTurn();
 }

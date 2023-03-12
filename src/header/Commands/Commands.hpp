@@ -2,7 +2,7 @@
 #ifndef COMMANDS_HPP
 #define COMMANDS_HPP
 
-#include "./GameEnvironment/GameState.hpp"
+#include "../GameEnvironment/GameState.hpp"
 #include "../../enums/CmdTypes.hpp"
 #include <string>
 #include "../GameEnvironment/CandyGameState.hpp"
@@ -21,7 +21,7 @@ public:
     Commands(const Commands&);
 
     // dtor
-    ~Commands();
+    virtual ~Commands();
 
     // operator
     Commands& operator=(const Commands&);
@@ -31,10 +31,11 @@ public:
 
     // Method
     // Returns true if command succeeds
-    virtual void executeCommand(CandyGameState&) const = 0;
+    virtual void executeCommand(CandyGameState&) = 0;
 
     // Static method to parse string to command type
-    static CmdTypes parseCommand(string);
+    static CmdTypes parseCommand(string commandString);
+    static string parseCommand(CmdTypes);
 };
 
 #endif

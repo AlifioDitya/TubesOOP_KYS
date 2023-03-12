@@ -1,9 +1,23 @@
-#ifndef MYEXCEPTION_H
-#define MYEXCEPTION_H
+#ifndef IOEXCEPTION_H
+#define IOEXCEPTION_H
 
 #include <exception>
 
 using std::exception;
+
+class InvalidCommandString: public exception {
+
+	const char* what() const throw() {
+		return "String input bukan command yang valid!";
+	}
+};
+
+class InvalidAbilityString: public exception {
+
+	const char* what() const throw() {
+		return "String input bukan ability yang valid!";
+	}
+};
 
 class UnmatchedType : public exception {
 public:

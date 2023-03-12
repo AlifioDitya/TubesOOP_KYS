@@ -12,7 +12,7 @@ using std::endl;
 
 // ctor
 Abilityless::Abilityless() {
-    this->command = CmdTypes::Abilityless;
+    this->command = CmdTypes::Ability;
     this->abilityType = AbilityTypes::Abilityless;
 }
 
@@ -39,7 +39,7 @@ void Abilityless::executeCommand(CandyGameState& gameState) {
     
         // Get list of players other than currently playing
         vector<CandyPlayer> otherPlayers = gameState.getPlayerList();
-        otherPlayers.erase(otherPlayers.begin() + gameState.getCurrentTurnIdx());
+        otherPlayers.erase(otherPlayers.begin());
 
         // Select player to nerf
         int selectIdx = selectPlayer(gameState, otherPlayers, "Silakan pilih pemain yang kartunya ingin Anda tukar:");
@@ -54,8 +54,12 @@ void Abilityless::executeCommand(CandyGameState& gameState) {
             int idx = gameState.getPlayerIdx(otherPlayers[selectIdx].getId());
              gameState.getPlayerRefAt(idx).setNerfed(true);
             cout << "Kartu ability " << gameState.getPlayerRefAt(idx).getName() << " telah dimatikan." << endl;
-
         }
+
     }
+
+    // Set the ability used flag to true and end the turn
+    gameState.getCurrentTurnPlayer().setAbilityUsed(true);
+    gameState.setNextTurn();
 
 }

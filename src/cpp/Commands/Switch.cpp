@@ -13,7 +13,7 @@ using std::find_if;
 
 // ctor
 Switch::Switch() {
-    this->command = CmdTypes::Switch;
+    this->command = CmdTypes::Ability;
     this->abilityType = AbilityTypes::Switch;
 }
 
@@ -31,7 +31,7 @@ void Switch::executeCommand(CandyGameState& gameState) {
 
     // Get list of players other than currently playing
     vector<CandyPlayer> otherPlayers = gameState.getPlayerList();
-    otherPlayers.erase(otherPlayers.begin() + gameState.getCurrentTurnIdx());
+    otherPlayers.erase(otherPlayers.begin());
 
     // Select player to switch
     int selectIdx = selectPlayer(gameState, otherPlayers, "Silakan pilih pemain yang kartunya ingin Anda tukar:");
@@ -44,5 +44,9 @@ void Switch::executeCommand(CandyGameState& gameState) {
     cout << "Kedua kartu Anda telah ditukar dengan " << otherPlayers[selectIdx].getName() << "!" << endl;
     cout << "Kartumu sekarang adalah:" << endl;
     gameState.getCurrentTurnPlayer().printHand();
+
+    // Set the ability used flag to true and end the turn
+    gameState.getCurrentTurnPlayer().setAbilityUsed(true);
+    gameState.setNextTurn();
 
 }

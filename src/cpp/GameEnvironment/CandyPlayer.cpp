@@ -15,7 +15,7 @@ CandyPlayer::CandyPlayer() {
 }
 
 // Specified ctor
-CandyPlayer::CandyPlayer(int id, vector<Card> hand, int point, string name, bool hasPlayed): Player(id, hand, point, name, hasPlayed) {
+CandyPlayer::CandyPlayer(int id, const vector<Card>& hand, int point, string name, bool hasPlayed): Player(id, hand, point, name, hasPlayed) {
     usedAbility = false;
     nerfed = false;
 }
@@ -40,16 +40,60 @@ CandyPlayer& CandyPlayer::operator=(const CandyPlayer& other) {
     return *this;
 }
 
+AbilityTypes CandyPlayer::getAbility() {
+    return ability;
+}
+
+// Set ability used
+void CandyPlayer::setAbilityUsed(bool usedAbility) {
+    this->usedAbility = usedAbility;
+
+}
 
 // Set abilityless
-bool CandyPlayer::setNerfed(bool nerf) {
+void CandyPlayer::setNerfed(bool nerf) {
     this->nerfed = nerf;
 }
 
-// Predicates
-bool CandyPlayer::hasUsedAbility() {
+// Set ability
+void CandyPlayer::setAbility(AbilityTypes ability) {
+    this->ability = ability;
+}
+
+// ========== Predicates ==========
+// Check if player has ability
+bool CandyPlayer::hasAbility(AbilityTypes target) const {
+    return ability == target;
+}
+
+// Check if player has used an ability
+bool CandyPlayer::hasUsedAbility() const {
     return usedAbility;
 }
 
+// Check if the player has been applied Abilityless by other player
+bool CandyPlayer::isNerfed() const {
+    return nerfed;
+}
+
+// ========= Others ==========
+// Switching cards with other player
+
+void CandyPlayer::switchCards(CandyPlayer& other) {
+    vector<Card> temp = this->getHand();
+    this->setHand(other.getHand());
+    other.setHand(temp);
+}
+
+void CandyPlayer::switchCards(int idx1, int idx2, CandyPlayer& other) {
+    Card temp = this->getHand()[idx1];
+    this->setHand(idx1, other.getHand()[idx2]);
+    other.setHand(idx2, temp);
+}
+
+
+double CandyPlayer::getValue() const {
+    return getPoint();
+}
 
 // ...

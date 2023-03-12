@@ -22,4 +22,5 @@ void Double::executeCommand(CandyGameState& gameState) {
     gameState.setPointPool(newPoints);
 
     cout << gameState.getCurrentTurnPlayer().getName() << "melakukan DOUBLE! Poin hadiah naik dari " << oldPoints << " menjadi " << newPoints << "!" << endl;
+    gameState.setNextTurn();
 }

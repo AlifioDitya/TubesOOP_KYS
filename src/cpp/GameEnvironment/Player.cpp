@@ -14,7 +14,7 @@ Player::Player(): Player(-1, vector<Card>(), 0, "Username", false) {
 }
 
 // Specified ctor
-Player::Player(int id, vector<Card> hand, int point, string name, bool hasPlayed) {
+Player::Player(int id, const vector<Card>& hand, long long point, string name, bool hasPlayed) {
     this->playerID = playerID;
     this->hand = hand;
     this->point = point;
@@ -68,6 +68,9 @@ void Player::setHasPlayed(bool hasPlayed) {
     this->hasPlayed = hasPlayed;
 }
 
+void Player::addPoint(long long addition) {
+    point += addition;
+}
 
 // Returns the number of items in the inventory
 int Player::countItems() const {
@@ -80,7 +83,7 @@ string Player::getName() const {
 }
 
 // Adds an item to the inventory
-void Player::addItem(Card card) {
+void Player::addItem(const Card& card) {
     hand.push_back(card);
 }
 
@@ -89,23 +92,10 @@ void Player::clear() {
     hand.clear();
 }
 
-bool Player::hasPlayedThisRound() {
+bool Player::hasPlayedThisRound() const {
     return hasPlayed;
 }
 
-
-// Switch cards
-void Player::switchCards(Player& other) {
-    vector<Card> temp = this->getHand();
-    this->setHand(other.getHand());
-    other.setHand(temp);
-}
-
-void Player::switchCards(int idx1, int idx2, Player& other) {
-    Card temp = this->getHand()[idx1];
-    this->setHand(idx1, other.getHand()[idx2]);
-    other.setHand(idx2, temp);
-}
 
 void Player::printHand() {
     if (hand.size() == 2) {

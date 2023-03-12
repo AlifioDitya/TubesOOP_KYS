@@ -3,28 +3,29 @@
 #define GAMESTATE_HPP
 
 #include "Player.hpp"
-#include "DeckCard.hpp"
 #include "TableCard.hpp"
-#include <vector>
+#include "GameDeckCard.hpp"
+#include <deque>
 
-using std::vector;
+using std::deque;
 
 template <class T>
 class GameState {
 protected:
-    vector<T> playerList;
-    int currentTurnIdx;
+    deque<T> playerList;
+    // giliran selalu indeks 0
+    // int currentTurnIdx;
     int round;
     int pointPool;
     TableCard tableCards;
-    DeckCard deckCards;
+    GameDeckCard deckCards;
     
 public:
     // Default ctor
     GameState();
 
     // Specified ctor
-    GameState(vector<T>, int, int, int, TableCard, DeckCard);
+    GameState(const vector<T>& playerList, int roundNum, int points, const TableCard& tableCard, const GameDeckCard& deckCard);
 
     // cctor
     GameState(const GameState&);
@@ -35,18 +36,22 @@ public:
     // Setters
     void setPlayerList(const vector<T>&);
 
-    void setCurrentTurnIdx(int);
+    // void setCurrentTurnIdx(int);
 
     void setRound(int);
 
     void setPointPool(int);
 
-    void setTableCards(const TableCard&);
+    void setTableCards(const vector<Card>&);
 
-    void setDeckCards(const DeckCard&);
+    void setDeckCards(const vector<Card>&);
 
-    void setNextTurn();
+    virtual void setNextTurn();
 
+    void skipCurrentPlayer();
+    
+    // set all player to has not played
+    void setAllNotPlayed();
     // Getters
     vector<T> getPlayerList() const;
 
@@ -54,15 +59,17 @@ public:
 
     T& getPlayerRefAt(int);
 
-    int getCurrentTurnIdx() const;
+    // int getCurrentTurnIdx() const;
 
     int getRound() const;
 
     int getPointPool() const;
 
+    bool hasAllPlayed() const;
+
     TableCard& getTableCards();
 
-    DeckCard& getDeckCards();
+    GameDeckCard& getDeckCards();
 
     int getPlayerIdx(int id) const;
 
@@ -71,9 +78,9 @@ public:
 
     void printPlayerList(const vector<T>& playerVec) const;
 
-    virtual int getWinnerIndex() const = 0;
+    // virtual int getWinnerIndex() const = 0;
 };
 
-#include "../../cpp/GameEnvironment/GameState.cpp"
+// #include "../../cpp/GameEnvironment/GameState.cpp"
 
 #endif

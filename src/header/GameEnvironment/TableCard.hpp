@@ -6,8 +6,9 @@
 #include "../Cards/Card.hpp"
 #include <vector>
 
+using std::vector;
 
-class TableCard : public InventoryHolder {
+class TableCard : public InventoryHolder<Card> {
 
 private:
     std::vector<Card> cards;
@@ -18,15 +19,16 @@ public:
     virtual int countItems() const;
 
     // Adds an item to the inventory
-    virtual void addItem(Card);
+    virtual void addItem(const Card&);
 
     // Removes an item from the inventory
     virtual void clear();
 
     // Show all cards at table that is relevant to current gamestate
-    std::vector<Card> getCards();
+    vector<Card> getCards();
+
+    void setCards(const vector<Card>& cards);
 
     // ...
-
-#endif
 };
+#endif

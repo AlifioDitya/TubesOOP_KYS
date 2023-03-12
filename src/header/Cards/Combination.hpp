@@ -10,10 +10,6 @@
 using std::pair;
 using std::vector;
 
-// KELAS SANGAT AMBIGU
-// DO NO USE
-// TP WAJIB DI SPEK
-// SEMENTARA NYIMPEN KALKULASI KOMBINASI DULU
 class Combination : public CardInterface {
    private:
     enum ComboMaxTimesTen {

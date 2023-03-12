@@ -1,5 +1,6 @@
 // Commands.cpp
 #include "../../header/Commands/Commands.hpp"
+#include "../../header/Exception/IOException.hpp"
 #include <algorithm>
 #include <map>
 
@@ -41,22 +42,36 @@ CmdTypes Commands::parseCommand(string commandString) {
     // Map the command string to its equivalent CmdTypes
     map<string, CmdTypes> cmdMap = {
         {"next", CmdTypes::Next},
-        {"reroll", CmdTypes::Reroll},
         {"double", CmdTypes::Double},
-        {"quadruple", CmdTypes::Quadruple},
         {"half", CmdTypes::Half},
-        {"quarter", CmdTypes::Quarter},
-        {"reverse", CmdTypes::Reverse},
-        {"swapcard", CmdTypes::SwapCard},
-        {"switch", CmdTypes::Switch},
-        {"abilityless", CmdTypes::Abilityless}
+        {"abilityless", CmdTypes::Ability},
+        {"quadruple", CmdTypes::Ability},
+        {"quarter", CmdTypes::Ability},
+        {"re-roll", CmdTypes::Ability},
+        {"reverse", CmdTypes::Ability},
+        {"swapcard", CmdTypes::Ability},
+        {"switch", CmdTypes::Ability}
     };
 
     // Check if the command string is a valid command
     if (cmdMap.find(commandString) == cmdMap.end()) {
-        throw "Input command tidak valid.\n";
-        return CmdTypes::Abilityless;
-    } else {
-        return cmdMap[commandString];
+        throw InvalidCommandString();
     }
+    return cmdMap[commandString];
+    
+}
+
+string Commands::parseCommand(CmdTypes command) {
+
+    // Map the command to its equivalent string
+    map<CmdTypes, string> cmdMap = {
+        {CmdTypes::Next, "NEXT"},
+        {CmdTypes::Double, "DOUBLE"},
+        {CmdTypes::Half, "HALF"},
+        {CmdTypes::Ability, "ABILITY"},
+        
+    };
+
+    return cmdMap[command];
+    
 }

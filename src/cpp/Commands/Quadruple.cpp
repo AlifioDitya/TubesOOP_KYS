@@ -11,7 +11,7 @@ using std::endl;
 
 // ctor
 Quadruple::Quadruple() {
-    this->command = CmdTypes::Quadruple;
+    this->command = CmdTypes::Ability;
     this->abilityType = AbilityTypes::Quadruple;
 }
 
@@ -31,4 +31,8 @@ void Quadruple::executeCommand(CandyGameState& gameState) {
 
     cout << gameState.getCurrentTurnPlayer().getName() << "melakukan QUADRUPLE! Poin hadiah naik dari " << oldPoints << " menjadi " << newPoints << "!" << endl; 
 
+    // Set the ability used flag to true and end the turn
+    gameState.getCurrentTurnPlayer().setAbilityUsed(true);
+
+    gameState.setNextTurn();
 }

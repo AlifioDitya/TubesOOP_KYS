@@ -1,5 +1,5 @@
-#ifndef MYEXCEPTION_H
-#define MYEXCEPTION_H
+#ifndef DECKCARDEXCEPTION_H
+#define DECKCARDEXCEPTION_H
 
 #include <exception>
 

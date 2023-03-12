@@ -9,7 +9,7 @@ int TableCard::countItems() const {
     return cards.size();
 }
 // Adds an item to the inventory
-void TableCard::addItem(Card card) {
+void TableCard::addItem(const Card& card) {
     cards.push_back(card);
 }
 
@@ -21,3 +21,7 @@ void TableCard::clear() {
 vector<Card> TableCard::getCards() {
     return cards;
 }
+
+void TableCard::setCards(const vector<Card>& cards) {
+    this->cards = cards;
+} 

@@ -17,14 +17,19 @@ CandyGameState::CandyGameState() {
 }
 
 // Specified ctor
-CandyGameState::CandyGameState(vector<CandyPlayer> playerList, int currentTurn, int roundNum, int points, TableCard tableCard, DeckCard deckCard):          
-    GameState<CandyPlayer>(playerList, currentTurn, roundNum, points, tableCard, deckCard) 
-{
+CandyGameState::CandyGameState(const vector<CandyPlayer>& playerList, int roundNum, int points, 
+        const TableCard& tableCard, const GameDeckCard& deckCard, const AbilityDeckCard& abilities, bool isReversed):      
 
+    GameState<CandyPlayer>(playerList, roundNum, points, tableCard, deckCard) 
+{
+    // ABILITIES INITIATION
+
+    this->isReversed = isReversed;
 }
 
 // Copy ctor
 CandyGameState::CandyGameState(const CandyGameState& gs):GameState<CandyPlayer>(gs) {
+    // ABILITIES COPY
 }
 
 // Destructor
@@ -33,7 +38,12 @@ CandyGameState::~CandyGameState() {
 }
 
 // Predicates
-bool CandyGameState::hasAllUsedAbility() {
+
+bool playerHasUsedAbility(const CandyPlayer& player) {
+    return player.hasUsedAbility();
+}
+bool CandyGameState::hasAllUsedAbility() const {
+
     for (CandyPlayer p: this->playerList) {
         if (!p.hasUsedAbility()) {
             return false;
@@ -43,13 +53,18 @@ bool CandyGameState::hasAllUsedAbility() {
     return true;
 }
 
-bool isWinner(const CandyPlayer& player) {
-    return player.getPoint() >= CandyGameState::winnerPoint;
+void CandyGameState::setAbilities(const AbilityDeckCard& abilities) {
+    this->abilities = abilities;
 }
-int CandyGameState::getWinnerIndex() const {
-    auto itr = find_if(playerList.begin(), playerList.end(), isWinner);
+    
+AbilityDeckCard& CandyGameState::getAbilities() {
+    return abilities;
+}
 
-    if (itr != playerList.end()) return itr - playerList.begin();
+void CandyGameState::setNextTurn() {
 
-    return -1;
+    GameState::setNextTurn();
+
+    if (hasAllPlayed()) skipCurrentPlayer();
+    
 }

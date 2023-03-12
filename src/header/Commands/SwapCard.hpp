@@ -7,7 +7,7 @@
 
 class SwapCard : public PlayerInvolvedAbility {
 private:
-    int SwapCard::selectCard(string playerName);
+    int selectCard(string playerName);
 public:
     // ctor
     SwapCard();

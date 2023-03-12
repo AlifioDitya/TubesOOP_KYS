@@ -1,8 +1,9 @@
 #ifndef INVENTORYHOLDER_HPP
 #define INVENTORYHOLDER_HPP
 
-#include "./Cards/Card.hpp"
+#include "../Cards/Card.hpp"
 
+template <class T>
 class InventoryHolder {
 
 public:
@@ -12,7 +13,7 @@ public:
     virtual int countItems() const = 0;
 
     // Adds an item to the inventory
-    virtual void addItem(Card) = 0;
+    virtual void addItem(const T&) = 0;
 
     // Removes all item from the inventory
     virtual void clear() = 0;

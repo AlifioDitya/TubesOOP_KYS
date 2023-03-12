@@ -2,6 +2,7 @@
 #define ABILITYENUMS_HPP
 
 enum AbilityTypes {
+    None,
     Reroll,
     Quadruple,
     Quarter,

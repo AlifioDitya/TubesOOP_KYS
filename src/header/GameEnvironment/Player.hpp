@@ -11,11 +11,11 @@
 using std::vector;
 using std::string;
 
-class Player: public InventoryHolder {
+class Player: public InventoryHolder<Card> {
 protected:
     int playerID;
     vector<Card> hand;
-    int point;
+    long long point;
     string name;
     bool hasPlayed;
 
@@ -24,7 +24,7 @@ public:
     Player();
 
     // Specified ctor
-    Player(int, vector<Card>, int, string, bool);
+    Player(int id, const vector<Card>& hand, long long point, string name, bool hasPlayed);
 
     // cctor
     Player(const Player&);
@@ -37,7 +37,7 @@ public:
     virtual int countItems() const;
 
     // Adds an item to the inventory
-    virtual void addItem(Card);
+    virtual void addItem(const Card&);
 
     // Removes an item from the inventory
     virtual void clear();
@@ -47,7 +47,7 @@ public:
     int getId() const;
     
     // Return player points
-    int getPoint() const;
+    long long getPoint() const;
 
     // Return player name
     string getName() const;
@@ -62,6 +62,8 @@ public:
     // Set player hand as vector
     void setHand(vector<Card>);
 
+    // add point
+    void addPoint(long long);
 
     // Set hasPlayed
     void setHasPlayed(bool);
@@ -69,16 +71,7 @@ public:
     // ========== Predicates ==========
 
     // Check if player has played this round
-    bool hasPlayedThisRound();
-
-
-    // ========= Others ==========
-    // Switching cards with other player
-    // Switch hands
-    void switchCards(Player&);
-
-    // Switch specific cards
-    void switchCards(int, int, Player&);
+    bool hasPlayedThisRound() const;
 
     // Print hand
     void printHand();

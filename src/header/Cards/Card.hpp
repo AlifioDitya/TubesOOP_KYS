@@ -1,4 +1,3 @@
-// Card.hpp
 #ifndef CARD_HPP
 #define CARD_HPP
 

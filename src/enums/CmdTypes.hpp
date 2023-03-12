@@ -2,16 +2,11 @@
 #define COMMANDENUMS_HPP
 
 enum CmdTypes {
-    Next = 1,
-    Reroll = 2,
-    Double = 3,
-    Quadruple = 4,
-    Half = 5,
-    Quarter = 6,
-    Reverse = 7,
-    SwapCard = 8,
-    Switch = 9,
-    Abilityless = 10
+    Double = 1,
+    Half = 2,
+    Next = 3,
+    Ability = 4
+
 };
 
 #endif

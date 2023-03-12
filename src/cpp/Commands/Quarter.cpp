@@ -11,7 +11,7 @@ using std::endl;
 
 // ctor
 Quarter::Quarter() {
-    this->command = CmdTypes::Quarter;
+    this->command = CmdTypes::Ability;
     this->abilityType = AbilityTypes::Quarter;
 }
 
@@ -40,5 +40,10 @@ void Quarter::executeCommand(CandyGameState& gameState) {
     gameState.setPointPool(newPoint);
 
     cout << "Poin hadiah turun dari " << oldPoint << " menjadi " << newPoint << "!" << endl;
+
+    // Set the ability used flag to true and end the turn
+    gameState.getCurrentTurnPlayer().setAbilityUsed(true);
+
+    gameState.setNextTurn();
 
 }

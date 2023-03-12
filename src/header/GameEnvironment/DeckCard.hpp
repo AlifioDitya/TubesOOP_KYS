@@ -5,37 +5,46 @@
 #include "InventoryHolder.hpp"
 #include <stack>
 #include <vector>
-#include "../Cards/Card.hpp"
 
 using std::vector;
 using std::stack;
 
-class DeckCard : public InventoryHolder {
+template <class T>
+class DeckCard : public InventoryHolder<T> {
 
-private:
-   stack<Card> deck;
+protected:
+   stack<T> deck;
 
 public:
 
    DeckCard();
 
-   DeckCard(const vector<Card>&);
+   DeckCard(const vector<T>&);
+
+   // default card configuration
+   virtual void defaultConfig() = 0;
    
    // Returns the number of items in the inventory
-   virtual int countItems() const;
+   int countItems() const;
 
    // Adds an item to the inventory
-   virtual void addItem(Card);
+   void addItem(const T&);
 
    // Removes an item from the inventory
-   virtual void clear();
+   void clear();
 
    // draw top card
-   Card drawCard();
+   T drawCard();
 
    // draw many cards
-   vector<Card> drawMany(int);
+   vector<T> drawMany(int);
+
+   // set cards
+   void setCards(const vector<T>& cards);
+
    //...
 };
+
+// #include "../../cpp/GameEnvironment/DeckCard.cpp"
 
 #endif

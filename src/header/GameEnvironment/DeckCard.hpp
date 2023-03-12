@@ -2,49 +2,85 @@
 #ifndef DECK_CARD_HPP
 #define DECK_CARD_HPP
 
-#include "InventoryHolder.hpp"
+#include <algorithm>
+#include <deque>
 #include <stack>
 #include <vector>
 
-using std::vector;
+#include "../../enums/AbilityTypes.hpp"
+#include "../../enums/CardTypes.hpp"
+#include "../../header/Exception/DeckCardException.hpp"
+#include "InventoryHolder.hpp"
+
+using std::deque;
+using std::random_shuffle;
 using std::stack;
+using std::vector;
 
 template <class T>
 class DeckCard : public InventoryHolder<T> {
+   protected:
+    stack<T> deck;
 
-protected:
-   stack<T> deck;
+   public:
+    // initialize stack with cards with random order
+    DeckCard(){};
 
-public:
+    // DeckCard<T>& operator=(const DeckCard<T>& other) {
+    //     deck = other.deck;
+    // }
 
-   DeckCard();
+    // initialize stack with cards ordered as in config and first-index card being at top
+    DeckCard(const vector<T>& config) {
+        for (int i = config.size() - 1; i >= 0; i--) {
+            deck.push(config[i]);
+        }
+    }
 
-   DeckCard(const vector<T>&);
+    // Returns the number of items in the inventory
+    int countItems() const {
+        return deck.size();
+    }
 
-   // default card configuration
-   virtual void defaultConfig() = 0;
-   
-   // Returns the number of items in the inventory
-   int countItems() const;
+    // Adds an item to the inventory
+    void addItem(const T& card) {
+        deck.push(card);
+    }
 
-   // Adds an item to the inventory
-   void addItem(const T&);
+    void clear() {
+        while (!deck.empty()) deck.pop();
+    }
 
-   // Removes an item from the inventory
-   void clear();
+    // Draw top card from deck stack
+    T drawCard() {
+        if (deck.empty()) {
+            throw InsufficientCards();
+        }
+        T topCard = deck.top();
+        deck.pop();
 
-   // draw top card
-   T drawCard();
+        return topCard;
+    }
 
-   // draw many cards
-   vector<T> drawMany(int);
+    vector<T> drawMany(int amount) {
+        vector<Card> drawCards;
 
-   // set cards
-   void setCards(const vector<T>& cards);
+        if (this->countItems() < amount) {
+            throw InsufficientCards();
+        }
 
-   //...
+        for (int i = 0; i < amount; i++) {
+            drawCards.push_back(deck.top());
+            deck.pop();
+        }
+
+        return drawCards;
+    }
+
+    void setCards(const vector<T>& cards) {
+        deck = stack<T>(deque<T>(cards.begin(), cards.end()));
+    }
 };
-
 
 // #include "../../cpp/GameEnvironment/DeckCard.cpp"
 

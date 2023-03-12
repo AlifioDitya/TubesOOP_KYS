@@ -73,7 +73,7 @@ bool CandyPlayer::hasUsedAbility() const {
 
 // Check if the player has been applied Abilityless by other player
 bool CandyPlayer::isNerfed() const {
-    return isNerfed;
+    return nerfed;
 }
 
 // ========= Others ==========

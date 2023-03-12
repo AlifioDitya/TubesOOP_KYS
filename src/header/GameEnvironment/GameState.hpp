@@ -3,8 +3,8 @@
 #define GAMESTATE_HPP
 
 #include "Player.hpp"
-#include "DeckCard.hpp"
 #include "TableCard.hpp"
+#include "GameDeckCard.hpp"
 #include <deque>
 
 using std::deque;
@@ -18,14 +18,14 @@ protected:
     int round;
     int pointPool;
     TableCard tableCards;
-    DeckCard<Card> deckCards;
+    GameDeckCard deckCards;
     
 public:
     // Default ctor
     GameState();
 
     // Specified ctor
-    GameState(const vector<T>& playerList, int roundNum, int points, const TableCard& tableCard, const DeckCard<Card>& deckCard);
+    GameState(const vector<T>& playerList, int roundNum, int points, const TableCard& tableCard, const GameDeckCard& deckCard);
 
     // cctor
     GameState(const GameState&);
@@ -42,9 +42,9 @@ public:
 
     void setPointPool(int);
 
-    void setTableCards(const TableCard&);
+    void setTableCards(const vector<Card>&);
 
-    void setDeckCards(const DeckCard<Card>&);
+    void setDeckCards(const vector<Card>&);
 
     virtual void setNextTurn();
 
@@ -69,7 +69,7 @@ public:
 
     TableCard& getTableCards();
 
-    DeckCard<Card>& getDeckCards();
+    GameDeckCard& getDeckCards();
 
     int getPlayerIdx(int id) const;
 

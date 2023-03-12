@@ -4,6 +4,7 @@
 
 #include "GameManager.hpp"
 #include "CandyGameState.hpp"
+#include "../Commands/Commands.hpp"
 
 #include <map>
 
@@ -25,7 +26,7 @@ class CandyGameManager: public GameManager {
     void startSubGame();
 
     template<class T>
-    T getMax(const vector<T>&);
+    T getMax(vector<T>&);
 
     public:
     CandyGameManager();

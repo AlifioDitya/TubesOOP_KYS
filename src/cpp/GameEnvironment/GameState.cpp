@@ -5,7 +5,7 @@
 
 using std::cout;
 using std::endl;
-using std::find;
+using std::find_if;
 
 // Default ctor
 template <class T>
@@ -19,13 +19,13 @@ GameState<T>::GameState() {
     round = 1;
     pointPool = 64;
     tableCards = TableCard();
-    deckCards = DeckCard();
+    deckCards = GameDeckCard();
 }
 
 // Specified ctor
 template <class T>
-GameState<T>::GameState(const vector<T>& playerList, int roundNum, int points, const TableCard& tableCard, const DeckCard<Card>& deckCard) {
-    this->playerList = vector<T>(playerList.begin(), playerList.end());
+GameState<T>::GameState(const vector<T>& playerList, int roundNum, int points, const TableCard& tableCard, const GameDeckCard& deckCard) {
+    this->playerList = deque<T>(playerList.begin(), playerList.end());
 
     // player giliran saat ini selalu indeks 0
     // currentTurnIdx = currentTurn;
@@ -73,19 +73,19 @@ void GameState<T>::setPointPool(int points) {
 }
 
 template <class T>
-void GameState<T>::setTableCards(const TableCard& tblCard) {
-    tableCards = tblCard;
+void GameState<T>::setTableCards(const vector<Card>& cards) {
+    tableCards;
 }
 
 template <class T>
-void GameState<T>::setDeckCards(const DeckCard<Card>& dckCard) {
-    deckCards = dckCard;
+void GameState<T>::setDeckCards(const vector<Card>& cards) {
+    deckCards = deckCard;
 }
 
 template<class T>
 void GameState<T>::skipCurrentPlayer() {
     T player = playerList[0];
-    playerList.popFront();
+    playerList.pop_front();
     playerList.push_back(player);
 }
 
@@ -101,16 +101,16 @@ void GameState<T>::setNextTurn() {
 
     else {
         while(playerList[0].hasPlayedThisRound())
-        [
+        {
             skipCurrentPlayer();
-        ]
+        }
     }
 }
 
 template <class T>
 void GameState<T>::setAllNotPlayed() {
-    for (int i = 0; i < getPlayerList().size(); i++) {
-        CandyPlayer& player = getPlayerRefAt(i);
+    for (long unsigned int i = 0; i < getPlayerList().size(); i++) {
+        T& player = getPlayerRefAt(i);
 
         player.setHasPlayed(false);
     }
@@ -119,7 +119,7 @@ void GameState<T>::setAllNotPlayed() {
 // Getters
 template <class T>
 vector<T> GameState<T>::getPlayerList() const {
-    return vector<T>(playerList.begin(), playerList.end())
+    return vector<T>(playerList.begin(), playerList.end());
 }
 
 template <class T>
@@ -153,23 +153,24 @@ TableCard& GameState<T>::getTableCards() {
 }
 
 template <class T>
-DeckCard<Card>& GameState<T>::getDeckCards() {
+GameDeckCard& GameState<T>::getDeckCards() {
     return deckCards;
 }
 
-template <class T>
-bool hasPlayerNotPlayed(const T& player) {
-    return player.hasPlayedThisRound();
-}
 
 template<class T>
 bool GameState<T>::hasAllPlayed() const {
-    return find(playerList.begin(), playerList.end(), hasPlayerNotPlayed) == playerList.end();
+
+    for (auto player: playerList) {
+        if (!player.hasPlayedThisRound()) return false;
+    }
+    
+    return true;
 }
 
 template <class T>
 int GameState<T>::getPlayerIdx(int id) const {
-    for (int i = 0; i < playerList.size(); i++) {
+    for (long unsigned int i = 0; i < playerList.size(); i++) {
 
         if (playerList[i].getId() == id) {
             return i;
@@ -189,7 +190,7 @@ void GameState<T>::printPlayerList() const {
 
 template <class T>
 void GameState<T>::printPlayerList(const vector<T>& playerVec) const {
-    for (int i = 0; i < playerVec.size(); i++) {
+    for (long unsigned int i = 0; i < playerVec.size(); i++) {
         cout << i+1 << ". " << playerVec[i].getName() << endl;
     }
 }

@@ -18,7 +18,7 @@ CandyGameState::CandyGameState() {
 
 // Specified ctor
 CandyGameState::CandyGameState(const vector<CandyPlayer>& playerList, int roundNum, int points, 
-        const TableCard& tableCard, const DeckCard<Card>& deckCard, const DeckCard<AbilityTypes>& abilities, bool isReversed):      
+        const TableCard& tableCard, const GameDeckCard& deckCard, const AbilityDeckCard& abilities, bool isReversed):      
 
     GameState<CandyPlayer>(playerList, roundNum, points, tableCard, deckCard) 
 {
@@ -53,11 +53,11 @@ bool CandyGameState::hasAllUsedAbility() const {
     return true;
 }
 
-void CandyGameState::setAbilities(const DeckCard<AbilityTypes>& abilities) {
+void CandyGameState::setAbilities(const AbilityDeckCard& abilities) {
     this->abilities = abilities;
 }
     
-DeckCard<AbilityTypes>& CandyGameState::getAbilities() {
+AbilityDeckCard& CandyGameState::getAbilities() {
     return abilities;
 }
 

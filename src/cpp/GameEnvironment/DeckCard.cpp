@@ -14,21 +14,7 @@ using std::deque;
 template<class T>
 DeckCard<T>::DeckCard() {
     
-    vector<Card> tempCards;
-
-    for (int i = 0; i < 4; i++)
-    {
-        for(int j = 1; j <= 13; i++)
-        {
-            tempCards.push_back(Card((Color)i, (Rank)j));
-        }
-    }
-
-    random_shuffle(tempCards.begin(), tempCards.end());
-
-    for (Card card: tempCards) {
-        deck.push(card);
-    }
+    defaultConfig();
 }
 
 template<>
@@ -40,6 +26,11 @@ DeckCard<AbilityTypes>::DeckCard() {
     deck = stack<AbilityTypes>(temp);
 
 }
+
+// template <class T>
+// DeckCard<T>& DeckCard<T>::operator=(const DeckCard<T>& other) {
+//     deck = other.deck;
+// }
 
 // initialize stack with cards ordered as in config and first-index card being at top
 template<class T>
@@ -65,8 +56,8 @@ void DeckCard<T>::addItem(const T& card) {
 template<class T>
 void DeckCard<T>::clear() {
     
-    // stack is automatically destructed after out of scope
-    deck = stack<Card>();
+    while (!deck.empty()) deck.pop();
+
 }
 
 // Draw top card from deck stack
@@ -76,7 +67,7 @@ T DeckCard<T>::drawCard(){
     if (deck.empty()) {
         throw InsufficientCards();
     }
-    Card topCard = deck.top();
+    T topCard = deck.top();
     deck.pop();
 
     return topCard;
@@ -97,4 +88,9 @@ vector<T> DeckCard<T>::drawMany(int amount) {
     }
 
     return drawCards;
+}
+
+template<class T>
+void DeckCard<T>::setCards(const vector<T>& cards) {
+    deck = stack<T>(deque<T>(cards.begin(), cards.end()));
 }

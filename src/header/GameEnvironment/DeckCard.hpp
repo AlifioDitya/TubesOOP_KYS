@@ -12,7 +12,7 @@ using std::stack;
 template <class T>
 class DeckCard : public InventoryHolder<T> {
 
-private:
+protected:
    stack<T> deck;
 
 public:
@@ -20,6 +20,9 @@ public:
    DeckCard();
 
    DeckCard(const vector<T>&);
+
+   // default card configuration
+   virtual void defaultConfig() = 0;
    
    // Returns the number of items in the inventory
    int countItems() const;
@@ -35,6 +38,10 @@ public:
 
    // draw many cards
    vector<T> drawMany(int);
+
+   // set cards
+   void setCards(const vector<T>& cards)
+
    //...
 };
 

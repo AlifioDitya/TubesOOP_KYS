@@ -21,3 +21,7 @@ void TableCard::clear() {
 vector<Card> TableCard::getCards() {
     return cards;
 }
+
+void TableCard::setCards(const vector<Card>& cards) {
+    this->cards = cards;
+} 

@@ -31,7 +31,7 @@ void Switch::executeCommand(CandyGameState& gameState) {
 
     // Get list of players other than currently playing
     vector<CandyPlayer> otherPlayers = gameState.getPlayerList();
-    otherPlayers.erase(otherPlayers.begin() + gameState.getCurrentTurnIdx());
+    otherPlayers.erase(otherPlayers.begin());
 
     // Select player to switch
     int selectIdx = selectPlayer(gameState, otherPlayers, "Silakan pilih pemain yang kartunya ingin Anda tukar:");

@@ -36,7 +36,7 @@ void SwapCard::executeCommand(CandyGameState& gameState) {
 
     // Get list of players other than currently playing
     vector<CandyPlayer> otherPlayers = gameState.getPlayerList();
-    otherPlayers.erase(otherPlayers.begin() + gameState.getCurrentTurnIdx());
+    otherPlayers.erase(otherPlayers.begin());
 
     // Select Player 1
 

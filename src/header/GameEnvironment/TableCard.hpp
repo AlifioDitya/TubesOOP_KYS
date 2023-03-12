@@ -6,6 +6,7 @@
 #include "../Cards/Card.hpp"
 #include <vector>
 
+using std::vector;
 
 class TableCard : public InventoryHolder<Card> {
 
@@ -24,9 +25,10 @@ public:
     virtual void clear();
 
     // Show all cards at table that is relevant to current gamestate
-    std::vector<Card> getCards();
+    vector<Card> getCards();
+
+    void setCards(const vector<Card>& cards);
 
     // ...
-
-#endif
 };
+#endif

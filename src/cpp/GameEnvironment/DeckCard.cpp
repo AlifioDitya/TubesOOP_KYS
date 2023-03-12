@@ -1,10 +1,10 @@
 // DeckCard.cpp
 #include "../../header/GameEnvironment/DeckCard.hpp"
-#include "../enums/CardTypes.hpp"
+#include "../../enums/CardTypes.hpp"
 #include "../../header/Exception/DeckCardException.hpp"
 #include "../../enums/AbilityTypes.hpp"
-#include "algorithm"
-#include "deque"
+#include <algorithm>
+#include <deque>
 
 using std::stack;
 using std::random_shuffle;

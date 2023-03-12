@@ -2,7 +2,7 @@
 #define COMMANDEXCEPTION_H
 
 #include <exception>
-#include "../enums/AbilityTypes.hpp"
+#include "../../enums/AbilityTypes.hpp"
 #include "../Commands/Ability.hpp"
 
 using std::exception;

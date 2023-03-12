@@ -22,7 +22,7 @@ GameState<T>::GameState() {
 // Specified ctor
 template <class T>
 GameState<T>::GameState(vector<T> playerList, int currentTurn, int roundNum, int points, TableCard tableCard, DeckCard<Card> deckCard) {
-    playerList = playerList;
+    this->playerList = playerList;
     currentTurnIdx = currentTurn;
     round = roundNum;
     pointPool = points;

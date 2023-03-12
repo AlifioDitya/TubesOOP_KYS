@@ -55,10 +55,9 @@ vector<Card> Combination::findBestCombination(vector<Card> tableCards, vector<Ca
 
     vector<Card> maxCombo;
     double maxValue = 0;
-    ComboTypes maxType;
 
-    for (int i = 0; i < cards.size() - 1; i++) {
-        for (int j = i + 1; j < cards.size(); j++) {
+    for (long unsigned int i = 0; i < cards.size() - 1; i++) {
+        for (long unsigned int j = i + 1; j < cards.size(); j++) {
             if ((cards[i].getValue() == handCards[0].getValue() ||
                  cards[i].getValue() == handCards[1].getValue()) &&
                 (cards[j].getValue() == handCards[0].getValue() ||
@@ -75,7 +74,6 @@ vector<Card> Combination::findBestCombination(vector<Card> tableCards, vector<Ca
             if (currValue >= maxValue) {
                 maxCombo = currPerm;
                 maxValue = currValue;
-                maxType = currType;
             }
         }
     }
@@ -114,7 +112,7 @@ double Combination::calculateWeightedValue(vector<Card> cards, ComboTypes type) 
 
 bool Combination::ofSameColor(vector<Card> cards) {
     int color = cards[0].getColor();
-    for (int i = 1; i < cards.size(); i++) {
+    for (long unsigned int i = 1; i < cards.size(); i++) {
         if (cards[i].getColor() != color)
             return false;
     }
@@ -122,7 +120,7 @@ bool Combination::ofSameColor(vector<Card> cards) {
 }
 
 bool Combination::inSequence(vector<Card> cards) {
-    for (int i = 0; i < cards.size() - 1; i++) {
+    for (long unsigned int i = 0; i < cards.size() - 1; i++) {
         if (cards[i].getRank() != cards[i + 1].getRank() - 1)
             return false;
     }
@@ -148,7 +146,7 @@ bool Combination::isFullHouse(vector<Card> cards) {
 }
 
 bool Combination::hasFourOfAKind(vector<Card> cards) {
-    for (int i = 0; i < cards.size() - 3; i++) {
+    for (long unsigned int i = 0; i < cards.size() - 3; i++) {
         if (cards[i].getRank() == cards[i + 1].getRank() &&
             cards[i + 1].getRank() == cards[i + 2].getRank() &&
             cards[i + 2].getRank() == cards[i + 3].getRank())
@@ -158,7 +156,7 @@ bool Combination::hasFourOfAKind(vector<Card> cards) {
 }
 
 bool Combination::hasThreeOfAKind(vector<Card> cards) {
-    for (int i = 0; i < cards.size() - 2; i++) {
+    for (long unsigned int i = 0; i < cards.size() - 2; i++) {
         if (cards[i].getRank() == cards[i + 1].getRank() &&
             cards[i + 1].getRank() == cards[i + 2].getRank())
             return true;
@@ -168,7 +166,7 @@ bool Combination::hasThreeOfAKind(vector<Card> cards) {
 
 pair<int, int> Combination::findPairIdx(vector<Card> cards) {
     pair<int, int> cardPairIdx(-1, -1);
-    for (int i = 0; i < cards.size() - 1; i++) {
+    for (long unsigned int i = 0; i < cards.size() - 1; i++) {
         if (cards[i].getRank() == cards[i + 1].getRank()) {
             cardPairIdx.first = i - 1;
             cardPairIdx.second = i;

@@ -67,7 +67,7 @@ class GameState {
     ~GameState(){};
 
     // Setters
-    void setPlayerList(const vector<T>&) {
+    void setPlayerList(const vector<T>& playerList) {
         this->playerList = playerList;
     };
 
@@ -197,7 +197,9 @@ class GameState {
         while (counter < playerList.size())
         {
             cout << "<" << i->getName()<< "> ";
-            i++;
+
+            int idx = i - playerList.begin();
+            i = playerList.begin() + ((idx + 1) % playerList.size());
             counter++;
         }
 

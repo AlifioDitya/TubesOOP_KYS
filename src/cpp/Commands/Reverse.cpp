@@ -30,8 +30,11 @@ void Reverse::executeCommand(CandyGameState& gameState) {
     // // Reverse player order before current player
     // if (currentPlayerIdx > 0) reverse(playerList.begin(), playerList.begin() + currentPlayerIdx);
 
+    gameState.printPlayerList();
     // Reverse player order after current player
     reverse(playerList.begin() + 1, playerList.end());
+
+    gameState.printPlayerList(playerList);
 
     // // Move current player to front (TIDAK PERLU?)
     // if (currentPlayerIdx > 0) rotate(playerList.begin(), playerList.begin() + currentPlayerIdx, playerList.begin() + currentPlayerIdx + 1);
@@ -51,9 +54,6 @@ void Reverse::executeCommand(CandyGameState& gameState) {
 
     cout << "Urutan eksekusi giliran selanjutnya: " << endl;
 
-    // Set the player list in reverse order
-    gameState.setPlayerList(playerList);
-    
     gameState.printNextRoundTurn();
 
     cout << endl;

@@ -29,6 +29,7 @@ using std::max_element;
 using std::endl;
 using std::map;
 
+
 CandyGameManager::CandyGameManager() {
     actions = map<CmdTypes, Commands*> {
         {CmdTypes::Double, new class Double()},
@@ -154,10 +155,12 @@ vector<CandyPlayer> CandyGameManager::getInitialPlayerList(int playerNum) const 
 
     for (int i = 1; i <= playerNum; i++) {
         string playerName;
-        cout << "Masukkan nama pemain " << i << " : ";
-        cin >> playerName;
+        // cout << "Masukkan nama pemain " << i << " : ";
+        // cin >> playerName;
 
-        playerList.push_back(CandyPlayer(i, vector<Card>(), 0, playerName, false));
+        // playerList.push_back(CandyPlayer(i, vector<Card>(), 0, playerName, false));
+
+        playerList.push_back(CandyPlayer(i, vector<Card>(), 0, "temp" + std::to_string(i), false));
     }
 
     return playerList;
@@ -170,13 +173,15 @@ Commands* CandyGameManager::getPlayerCommand() {
     CandyPlayer currentPlayer = gameState.getCurrentTurnPlayer();
 
     string commandString;
-    cout << "Pilihanmu (Contoh: DOUBLE) : ";
-    cin >> commandString;
 
     Commands* command = nullptr;
 
     do {
         try {
+
+            cout << "Pilihanmu (Contoh: DOUBLE) : ";
+            cin >> commandString;
+            
             CmdTypes commandType = Commands::parseCommand(commandString);
 
             if (commandType == CmdTypes::Ability)
@@ -188,9 +193,11 @@ Commands* CandyGameManager::getPlayerCommand() {
             {
                 command = actions[commandType];
             }
+
         } catch(const exception& err) {
             cout << err.what() << endl;
         }
+
     } while (!command);
 
     return command;

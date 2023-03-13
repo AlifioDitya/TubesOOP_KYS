@@ -3,11 +3,12 @@
 #include "../../enums/CmdTypes.hpp"
 #include "../../enums/AbilityTypes.hpp"
 #include "../../header/Exception/CommandException.hpp"
-
+#include <math.h>
 #include <iostream>
 
 using std::cout;
 using std::endl;
+using std::max;
 
 // ctor
 Quarter::Quarter() {
@@ -33,9 +34,9 @@ void Quarter::executeCommand(CandyGameState& gameState) {
 
     else {
     // Quarter the point pool
-    gameState.setPointPool(newPoint);
+    gameState.setPointPool(max(newPoint, 1));
 
-    cout << " Poin hadiah turun dari " << oldPoint << " menjadi " << newPoint << "!" << endl;
+    cout << " Poin hadiah turun dari " << oldPoint << " menjadi " << gameState.getPointPool() << "!" << endl;
     }
 
     // Set the ability used flag to true and end the turn

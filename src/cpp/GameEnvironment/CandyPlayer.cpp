@@ -17,7 +17,7 @@ CandyPlayer::CandyPlayer() {
 }
 
 // Specified ctor
-CandyPlayer::CandyPlayer(int id, const vector<Card>& hand, int point, string name, bool hasPlayed): Player(id, hand, point, name, hasPlayed) {
+CandyPlayer::CandyPlayer(int id, const vector<Card>& hand, unsigned long long point, string name, bool hasPlayed): Player(id, hand, point, name, hasPlayed) {
     ability = AbilityTypes::None;
     usedAbility = false;
     nerfed = false;
@@ -97,7 +97,7 @@ void CandyPlayer::switchCards(int idx1, int idx2, CandyPlayer& other) {
 }
 
 
-double CandyPlayer::getValue() const {
+unsigned long long CandyPlayer::getValue() const {
     return getPoint();
 }
 

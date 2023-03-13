@@ -20,7 +20,7 @@ public:
     CandyGameState();
 
     // Specified ctor
-    CandyGameState(const vector<CandyPlayer>& playerList, int roundNum, int points, const TableCard& tableCard, 
+    CandyGameState(const vector<CandyPlayer>& playerList, int roundNum, unsigned long long points, const TableCard& tableCard, 
         const GameDeckCard& deckCard, const AbilityDeckCard& abilities, int reversePlayerId);
 
     // cctor
@@ -43,8 +43,8 @@ public:
     
     AbilityDeckCard& getAbilities();
 
-    static const long long initialPoint;
-    static const long long winnerPoint;
+    static const unsigned long long initialPoint;
+    static const unsigned long long winnerPoint;
 };
 
 #endif

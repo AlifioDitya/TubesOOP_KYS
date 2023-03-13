@@ -14,6 +14,8 @@ using std::cout;
 using std::deque;
 using std::endl;
 using std::find_if;
+using std::sort;
+using std::greater;
 
 template <class T>
 class GameState {
@@ -41,7 +43,7 @@ class GameState {
     };
 
     // Specified ctor
-    GameState(const vector<T>& playerList, int roundNum, int points, const TableCard& tableCard,
+    GameState(const vector<T>& playerList, int roundNum, unsigned long long points, const TableCard& tableCard,
               const GameDeckCard& deckCard) {
         this->playerList = deque<T>(playerList.begin(), playerList.end());
 
@@ -76,7 +78,7 @@ class GameState {
         round = roundNum;
     };
 
-    void setPointPool(int points) {
+    void setPointPool(unsigned long long points) {
         pointPool = points;
     };
 
@@ -216,6 +218,19 @@ class GameState {
         for (long unsigned int i = 0; i < playerVec.size(); i++) {
             cout << i + 1 << ". " << playerVec[i].getName() << endl;
         }
+    }
+
+    void printLeaderBoard() const {
+        vector<T> list = getPlayerList();
+
+        sort(list.begin(), list.end());
+
+        cout << "Leaderboard :" << endl;
+
+        for (long unsigned int i = list.size() - 1; i >= 0; i--) {
+            cout << "\t" << list.size() - i << ". " << list[i].getName() << endl;
+        }
+
     }
 
 

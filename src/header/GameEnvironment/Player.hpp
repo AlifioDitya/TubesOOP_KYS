@@ -24,7 +24,7 @@ public:
     Player();
 
     // Specified ctor
-    Player(int id, const vector<Card>& hand, long long point, string name, bool hasPlayed);
+    Player(int id, const vector<Card>& hand, unsigned long long point, string name, bool hasPlayed);
 
     // dtor
     ~Player();
@@ -34,6 +34,10 @@ public:
 
     // operator=
     Player& operator=(const Player&);
+
+    bool operator<(const Player&);
+    bool operator>(const Player& other);
+
 
     // Virtual overrides
     // Returns the number of items in the inventory
@@ -50,7 +54,7 @@ public:
     int getId() const;
     
     // Return player points
-    long long getPoint() const;
+    unsigned long long getPoint() const;
 
     // Return player name
     string getName() const;
@@ -66,7 +70,7 @@ public:
     void setHand(vector<Card>);
 
     // add point
-    void addPoint(long long);
+    void addPoint(unsigned long long);
 
     // Set hasPlayed
     void setHasPlayed(bool);

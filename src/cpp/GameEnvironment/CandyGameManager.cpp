@@ -29,6 +29,13 @@ using std::max_element;
 using std::endl;
 using std::map;
 
+void border() {
+    cout << "==============================" << endl;
+}
+
+void newl() {
+    cout << endl;
+}
 
 CandyGameManager::CandyGameManager() {
     actions = map<CmdTypes, Commands*> {
@@ -137,7 +144,7 @@ void CandyGameManager::inititateDeck() {
     cout << "Pilihan konfigurasi deck card: " << endl;
     cout << "1. Acak" << endl;
     cout << "2. Konfigurasi File" << endl;
-    cout << endl;
+    newl();
 
     IO choiceIO;
     cout << "Pilihan : ";
@@ -180,7 +187,7 @@ Commands* CandyGameManager::getPlayerCommand() {
         try {
             cout << "Pilihanmu (Contoh: DOUBLE) : ";
             cin >> commandString;
-            cout << endl;
+            newl();
 
             CmdTypes commandType = Commands::parseCommand(commandString);
 
@@ -203,8 +210,9 @@ void CandyGameManager::startRound() {
     while (!gameState.hasAllPlayed()) {
         // aksi pemain
         CandyPlayer& currentPlayer = gameState.getCurrentTurnPlayer();
-        cout << endl;
-        cout << "==============================" << endl;
+        newl();
+        border();
+
         cout << "Giliran pemain " << currentPlayer.getId() << " : " << currentPlayer.getName() << endl << endl;
 
         cout << "Berikut kartu pada table : " << endl;
@@ -213,7 +221,7 @@ void CandyGameManager::startRound() {
 
         cout << "Berikut kartu yang kamu miliki : " << endl;
         currentPlayer.printHand();
-        cout << endl;
+        newl();
 
         if (currentPlayer.getAbility() != AbilityTypes::None && !currentPlayer.hasUsedAbility()) {
             cout << "Ability yang sedang dimiliki: " << Ability::parseAbility(currentPlayer.getAbility()) << endl << endl;
@@ -230,7 +238,7 @@ void CandyGameManager::startRound() {
         cout << "8. REVERSE" << endl;
         cout << "9. SWAPCARD" << endl;
         cout << "10. SWITCH" << endl;
-        cout << endl;
+        newl();
 
         bool stop = false;
 
@@ -247,10 +255,11 @@ void CandyGameManager::startRound() {
 
     }
     
-    cout << endl;
+    newl();
     cout << "Satu putaran selesai!" << endl;
-    cout << "==============================" << endl;
-    cout << endl;
+    border();
+    newl();
+    newl();
 }
 
 void CandyGameManager::startSubGame() {
@@ -279,7 +288,7 @@ void CandyGameManager::startSubGame() {
             // Memberikan ability ke setiap player
 
             cout << "Ability akan dibagikan ke setiap pemain!" << endl;
-            cout << endl;
+            newl();
 
             for (long unsigned int i = 0; i < gameState.getPlayerList().size(); i++) {
                 CandyPlayer& player = gameState.getPlayerRefAt(i);
@@ -294,7 +303,7 @@ void CandyGameManager::startSubGame() {
         //     // Memberikan ability ke setiap player
 
         //     cout << "Ability akan dibagikan ke setiap pemain!" << endl;
-        //     cout << endl;
+        //     newl();
 
         //     for (long unsigned int i = 0; i < gameState.getPlayerList().size(); i++) {
         //         CandyPlayer& player = gameState.getPlayerRefAt(i);
@@ -306,7 +315,7 @@ void CandyGameManager::startSubGame() {
         gameState.getTableCards().addItem(gameState.getDeckCards().drawCard());
 
         cout << "Satu kartu diletakkan ke meja : " << gameState.getTableCards().getCards().back() << endl;
-        cout << endl; 
+        newl(); 
     }
 
     class ComboCompare {
@@ -334,9 +343,9 @@ void CandyGameManager::startGame() {
 
     CandyPlayer leadingPlayer;
 
-    cout << endl;
+    newl();
     cout << "PERMAINAN DIMULAI!" << endl;
-    cout << endl;
+    newl();
 
     // Inisiasi gameState
     gameState = CandyGameState(getInitialPlayerList(7), 0, CandyGameState::initialPoint, TableCard(), GameDeckCard(), AbilityDeckCard(), false);
@@ -345,17 +354,28 @@ void CandyGameManager::startGame() {
 
     do {
         if (counter > 0) {
-            cout << endl;
-            cout << "Pemenang keseluruhan permainan belum ditemukan!" << endl;
+            newl();
+            border();
+            gameState.printLeaderBoard();
+            cout << "Pemenang belum ditemukan!" << endl;
             cout << "Permainan akan dilanjutkan" << endl;
-            cout << endl;
+            border();
+            newl();
         }
 
         startSubGame();
         vector<CandyPlayer> playerList = gameState.getPlayerList();
         CandyPlayer leaderPlayer = getMax(playerList);
 
+        counter++;
+
     } while(leadingPlayer.getPoint() >= CandyGameState::winnerPoint);
 
-    cout << "Pemenangnya adalah " << leadingPlayer.getName() << endl;
+    newl();
+    border();
+    gameState.printLeaderBoard();
+    cout << "Permainan Berakhir.";
+    cout << "Permainan dimenangkan oleh " << leadingPlayer.getName() << endl;
+    border();
+    newl();
 }

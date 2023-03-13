@@ -13,7 +13,7 @@ using std::endl;
 Player::Player(): Player(-1, vector<Card>(), 0, "Username", false) {}
 
 // Specified ctor
-Player::Player(int id, const vector<Card>& hand, long long point, string name, bool hasPlayed) {
+Player::Player(int id, const vector<Card>& hand, unsigned long long point, string name, bool hasPlayed) {
     this->playerID = id;
     this->hand = hand;
     this->point = point;
@@ -47,6 +47,14 @@ Player& Player::operator=(const Player& other) {
     return *this;
 }
 
+bool Player::operator<(const Player& other) {
+    return point < other.point;
+}
+
+bool Player::operator>(const Player& other) {
+    return point > other.point;
+}
+
 // Return player id
 int Player::getId() const {
     return playerID;
@@ -70,7 +78,7 @@ void Player::setHasPlayed(bool hasPlayed) {
     this->hasPlayed = hasPlayed;
 }
 
-void Player::addPoint(long long addition) {
+void Player::addPoint(unsigned long long addition) {
     point += addition;
 }
 
@@ -85,7 +93,7 @@ string Player::getName() const {
 }
 
 // Returns player point
-long long Player::getPoint() const {
+unsigned long long Player::getPoint() const {
     return point;
 }
 

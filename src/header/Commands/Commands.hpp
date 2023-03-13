@@ -3,8 +3,9 @@
 #define COMMANDS_HPP
 
 #include "../../enums/CmdTypes.hpp"
-#include <string>
 #include "../GameEnvironment/CandyGameState.hpp"
+
+#include <string>
 
 using std::string;
 
@@ -16,24 +17,27 @@ public:
     // Default ctor
     Commands();
 
-    // cctor
-    Commands(const Commands&);
-
     // dtor
     virtual ~Commands();
 
-    // operator
+    // ========== Operators ==========
+ 
     Commands& operator=(const Commands&);
 
-    // Getter
+    // ========== Getters ==========
+    
+    // getter for command type
     CmdTypes getCommandType() const;
 
-    // Method
-    // Returns true if command succeeds
+    // ========== Static Methods ==========
+
+    // Execute command
     virtual void executeCommand(CandyGameState&) = 0;
 
-    // Static method to parse string to command type
+    // convert command string to type
     static CmdTypes parseCommand(string commandString);
+
+    // convert command type to string
     static string parseCommand(CmdTypes);
 };
 

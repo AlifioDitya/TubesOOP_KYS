@@ -21,9 +21,7 @@ template <class T>
 class GameState {
    protected:
     deque<T> playerList;
-
     int round;
-    uint64_t pointPool;
     TableCard tableCards;
     GameDeckCard deckCards;
 
@@ -37,29 +35,25 @@ class GameState {
         // currentTurnIdx = 0;
 
         round = 1;
-        pointPool = 64;
         tableCards = TableCard();
         deckCards = GameDeckCard();
     };
 
     // Specified ctor
-    GameState(const vector<T>& playerList, int roundNum, uint64_t points, const TableCard& tableCard,
-              const GameDeckCard& deckCard) {
+    GameState(const vector<T>& playerList, int roundNum, const TableCard& tableCard, const GameDeckCard& deckCard) {
         this->playerList = deque<T>(playerList.begin(), playerList.end());
 
         // player giliran saat ini selalu indeks 0
         // currentTurnIdx = currentTurn;
         this->round = roundNum;
-        this->pointPool = points;
         this->tableCards = tableCard;
         this->deckCards = deckCard;
     };
 
     // cctor
-    GameState(const GameState& gameState) {
+    GameState(const GameState<T>& gameState) {
         playerList = gameState.playerList;
         round = gameState.round;
-        pointPool = gameState.pointPool;
         tableCards = gameState.tableCards;
         deckCards = gameState.deckCards;
     };
@@ -67,29 +61,29 @@ class GameState {
     // dtor
     ~GameState(){};
 
-    // Setters
+    // ========= Setters ==========
+
+    // setter for playerList
     void setPlayerList(const vector<T>& playerList) {
         this->playerList = deque<T>(playerList.begin(), playerList.end());
     };
 
-
-
+    // setter for round
     void setRound(int roundNum) {
         round = roundNum;
     };
 
-    void setPointPool(uint64_t points) {
-        pointPool = points;
-    };
-
+    // setter for tableCards
     void setTableCards(const vector<Card>& cards) {
         tableCards.setCards(cards);
     }
 
+    // setter for deckCards
     void setDeckCards(const vector<Card>& cards) {
         deckCards.setCards(cards);
     }
 
+    // setter for playerList order with front player being sent to the back of deque
     virtual void setNextTurn() {
         T& currentPlayer = getCurrentTurnPlayer();
         currentPlayer.setHasPlayed(true);
@@ -105,6 +99,7 @@ class GameState {
         }
     }
 
+    // sent front player to the back of deque
     void skipCurrentPlayer() {
         T player = playerList[0];
         playerList.pop_front();
@@ -120,35 +115,39 @@ class GameState {
         }
     };
 
-    // Getters
+    // ========= Getters ==========
+
+    // return playerList in vector
     vector<T> getPlayerList() const {
         return vector<T>(playerList.begin(), playerList.end());
     };
 
+    // return reference to front player
     T& getCurrentTurnPlayer() {
         return playerList.front();
     };
 
+    // return reference of player at certain idx
     T& getPlayerRefAt(int idx) {
         return playerList[idx];
     }
 
+    // return current round
     int getRound() const {
         return round;
     }
 
-    uint64_t getPointPool() const {
-        return pointPool;
-    }
-
+    // return reference to tableCards
     TableCard& getTableCards() {
         return tableCards;
     }
 
+    // return reference to deckCards
     GameDeckCard& getDeckCards() {
         return deckCards;
     }
 
+    // return true of all player has played in this round
     bool hasAllPlayed() const {
         for (auto player : playerList) {
             if (!player.hasPlayedThisRound())
@@ -158,6 +157,7 @@ class GameState {
         return true;
     }
 
+    // return indeks of player with certain id
     int getPlayerIdx(int id) const {
         for (long unsigned int i = 0; i < playerList.size(); i++) {
             if (playerList[i].getId() == id) {
@@ -168,7 +168,9 @@ class GameState {
         return -1;
     }
 
-    // Methods for printing player turn
+    // ========= Other Methods ==========
+
+    // Methods for printing remaining player turn in this round
     void printRemainingTurn() const {
 
         auto i = playerList.begin() + 1;
@@ -191,45 +193,18 @@ class GameState {
         cout << endl;
     }
 
-    void printNextRoundTurn() const {
-        auto i = playerList.begin() + 1;
-        long unsigned int counter = 0;
-
-        while (counter < playerList.size())
-        {
-            cout << "<" << i->getName()<< "> ";
-
-            int idx = i - playerList.begin();
-            i = playerList.begin() + ((idx + 1) % playerList.size());
-            counter++;
-        }
-
-        cout << endl;
-    }
-
-    // Methods for printing player list
+    // Methods for printing current player list
     void printPlayerList() const {
         for (long unsigned int i = 0; i < playerList.size(); i++) {
             cout << i + 1 << ". " << playerList[i].getName() << endl;
         }
     }
 
+    // method for printing input player list
     void printPlayerList(const vector<T>& playerVec) const {
         for (long unsigned int i = 0; i < playerVec.size(); i++) {
             cout << i + 1 << ". " << playerVec[i].getName() << endl;
         }
-    }
-
-    void printLeaderBoard() const {
-        vector<T> list = getPlayerList();
-
-        sort(list.begin(), list.end());
-
-        cout << "Leaderboard :" << endl;
-        for (int i = list.size() - 1; i >= 0; i--) {
-            cout << "\t" << list.size() - i << ". " << list[i].getName() << ": " << list[i].getPoint() << endl;
-        }
-
     }
 
 

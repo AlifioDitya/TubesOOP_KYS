@@ -13,6 +13,20 @@ IO::IO() {
     choice = -1;
 }
 
+// ========== Operators ==========
+
+bool IO::operator==(const int num) {
+    return choice == num;
+}
+
+// ========== Getters ==========
+
+int IO::getChoice() const {
+    return choice;
+}
+
+// ========== Other Method ========== 
+
 // get integer input in range [lowerBound, upperBound]
 void IO::getInput(int lowerBound, int upperBound) {
     int temp = -1;
@@ -20,6 +34,8 @@ void IO::getInput(int lowerBound, int upperBound) {
     while (temp == -1) {
         try {
             string userInput;
+
+            cout << "Pilihan : ";
             cin >> userInput;
     
             for (auto c: userInput) {
@@ -43,12 +59,4 @@ void IO::getInput(int lowerBound, int upperBound) {
 
     choice = temp;
 
-}
-
-bool IO::operator==(const int num) {
-    return choice == num;
-}
-
-int IO::getChoice() const {
-    return choice;
 }

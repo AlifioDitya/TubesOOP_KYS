@@ -16,6 +16,8 @@ Quarter::Quarter() {
     this->abilityType = AbilityTypes::Quarter;
 }
 
+// ========== Methods ==========
+
 // Execute method
 void Quarter::executeCommand(CandyGameState& gameState) {
 

@@ -23,11 +23,13 @@ class DeckCard : public InventoryHolder<T> {
     stack<T> deck;
 
    public:
-    // initialize stack with cards with random order
+
+    // Ctor
     DeckCard() {
 
     }
 
+    // User-defined Ctor
     // initialize stack with cards ordered as in config and first-index card being at top
     DeckCard(const vector<T>& config) {
         for (int i = config.size() - 1; i >= 0; i--) {
@@ -35,16 +37,21 @@ class DeckCard : public InventoryHolder<T> {
         }
     }
 
+    // ========= Getters ==========
+
     // Returns the number of items in the inventory
     int countItems() const {
         return deck.size();
     }
+
+    // ========= Setters/Other Methods ==========
 
     // Adds an item to the inventory
     void addItem(const T& card) {
         deck.push(card);
     }
 
+    // clear all cards
     void clear() {
         while (!deck.empty()) deck.pop();
     }
@@ -60,6 +67,7 @@ class DeckCard : public InventoryHolder<T> {
         return topCard;
     }
 
+    // Draw many cards from top of stack
     vector<T> drawMany(int amount) {
         vector<Card> drawCards;
 
@@ -75,6 +83,7 @@ class DeckCard : public InventoryHolder<T> {
         return drawCards;
     }
 
+    // setter for deck atribute
     void setCards(const vector<T>& cards) {
         deck = stack<T>(deque<T>(cards.begin(), cards.end()));
     }

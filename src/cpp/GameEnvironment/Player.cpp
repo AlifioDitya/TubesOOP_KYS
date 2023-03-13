@@ -10,13 +10,12 @@ using std::cout;
 using std::endl;
 
 // Default ctor
-Player::Player(): Player(-1, vector<Card>(), 0, "Username", false) {}
+Player::Player(): Player(-1, vector<Card>(), "Username", false) {}
 
 // Specified ctor
-Player::Player(int id, const vector<Card>& hand, uint64_t point, string name, bool hasPlayed) {
+Player::Player(int id, const vector<Card>& hand, string name, bool hasPlayed) {
     this->playerID = id;
     this->hand = hand;
-    this->point = point;
     this->name = name;
     this->hasPlayed = hasPlayed;
 }
@@ -28,17 +27,16 @@ Player::~Player() {
 // cctor
 Player::Player(const Player& other) {
     playerID = other.playerID;
-    point = other.point;
     name = other.name;
     hand = other.hand;
     hasPlayed = other.hasPlayed;
 }
 
-// operator
+// ========== Operator ==========
+
 Player& Player::operator=(const Player& other) {
     if (this != &other) {
         playerID = other.playerID;
-        point = other.point;
         name = other.name;
         hand = other.hand;
         hasPlayed = other.hasPlayed;
@@ -47,23 +45,29 @@ Player& Player::operator=(const Player& other) {
     return *this;
 }
 
-bool Player::operator<(const Player& other) {
-    return point < other.point;
-}
-
-bool Player::operator>(const Player& other) {
-    return point > other.point;
-}
+// ========== Getters ==========
 
 // Return player id
 int Player::getId() const {
     return playerID;
 }
 
+// Returns player name
+string Player::getName() const {
+    return name;
+}
+
 // Return player hand
 vector<Card> Player::getHand() const {
     return hand;
 }
+
+// Returns the number of items in the inventory
+int Player::countItems() const {
+    return hand.size();
+}
+
+// ========== Setters/Other Methods ==========
 
 // Set player hand on index
 void Player::setHand(int idx, Card newCard) {
@@ -78,25 +82,6 @@ void Player::setHasPlayed(bool hasPlayed) {
     this->hasPlayed = hasPlayed;
 }
 
-void Player::addPoint(uint64_t addition) {
-    point += addition;
-}
-
-// Returns the number of items in the inventory
-int Player::countItems() const {
-    return hand.size();
-}
-
-// Returns player name
-string Player::getName() const {
-    return name;
-}
-
-// Returns player point
-uint64_t Player::getPoint() const {
-    return point;
-}
-
 // Adds an item to the inventory
 void Player::addItem(const Card& card) {
     hand.push_back(card);
@@ -107,15 +92,14 @@ void Player::clear() {
     hand.clear();
 }
 
-bool Player::hasPlayedThisRound() const {
-    return hasPlayed;
-}
-
-
 void Player::printHand() {
     if (hand.size() == 2) {
         cout << "[" << getHand()[0] << ", " << getHand()[1] << "]" << endl;
     }
 }
+// ========== Predicates ==========
 
+bool Player::hasPlayedThisRound() const {
+    return hasPlayed;
+}
 // ...

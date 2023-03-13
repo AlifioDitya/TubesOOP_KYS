@@ -9,6 +9,8 @@ public:
     // ctor
     Abilityless();
 
+    // ========== Methods ==========
+    
     // Executes Abilityless
     void executeCommand(CandyGameState& gameState);
 };

@@ -5,23 +5,28 @@
 using std::cout;
 using std::endl;
 
+// ========== Getters ==========
+
 // Returns the number of items in the inventory
 int TableCard::countItems() const {
     return cards.size();
 }
-// Adds an item to the inventory
-void TableCard::addItem(const Card& card) {
-    cards.push_back(card);
+
+// Show all cards at table that is relevant to current gamestate
+vector<Card> TableCard::getCards() {
+    return cards;
 }
+
+// ========== Setters / Other Methods ==========
 
 // Removes an item from the inventory
 void TableCard::clear() {
     cards.clear();
 }
 
-// Show all cards at table that is relevant to current gamestate
-vector<Card> TableCard::getCards() {
-    return cards;
+// Adds an item to the inventory
+void TableCard::addItem(const Card& card) {
+    cards.push_back(card);
 }
 
 void TableCard::setCards(const vector<Card>& cards) {

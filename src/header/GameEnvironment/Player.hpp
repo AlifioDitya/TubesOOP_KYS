@@ -15,7 +15,6 @@ class Player: public InventoryHolder<Card> {
 protected:
     int playerID;
     vector<Card> hand;
-    long long point;
     string name;
     bool hasPlayed;
 
@@ -24,7 +23,7 @@ public:
     Player();
 
     // Specified ctor
-    Player(int id, const vector<Card>& hand, uint64_t point, string name, bool hasPlayed);
+    Player(int id, const vector<Card>& hand, string name, bool hasPlayed);
 
     // dtor
     ~Player();
@@ -32,29 +31,17 @@ public:
     // cctor
     Player(const Player&);
 
-    // operator=
+    // ========== Operators ==========
+
     Player& operator=(const Player&);
+    // bool operator<(const Player&);
+    // bool operator>(const Player& other);
 
-    bool operator<(const Player&);
-    bool operator>(const Player& other);
-
-
-    // Virtual overrides
-    // Returns the number of items in the inventory
-    virtual int countItems() const;
-
-    // Adds an item to the inventory
-    virtual void addItem(const Card&);
-
-    // Removes an item from the inventory
-    virtual void clear();
 
     // ========== Getters ==========
+
     // Return player id
     int getId() const;
-    
-    // Return player points
-    uint64_t getPoint() const;
 
     // Return player name
     string getName() const;
@@ -62,26 +49,33 @@ public:
     // Return player hand
     vector<Card> getHand() const;
 
-    // ========== Setters ==========
+    // Returns the number of items in the inventory
+    virtual int countItems() const;
+
+    // ========== Setters/Other Methods ==========
+
     // Set player hand on index
     void setHand(int, Card);
 
     // Set player hand as vector
     void setHand(vector<Card>);
 
-    // add point
-    void addPoint(uint64_t);
-
     // Set hasPlayed
     void setHasPlayed(bool);
+
+    // Adds an item to the inventory
+    virtual void addItem(const Card&);
+
+    // Removes an item from the inventory
+    virtual void clear();
+
+    // Print hand
+    void printHand();
 
     // ========== Predicates ==========
 
     // Check if player has played this round
     bool hasPlayedThisRound() const;
-
-    // Print hand
-    void printHand();
 
     // ...
 };

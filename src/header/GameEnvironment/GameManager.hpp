@@ -8,6 +8,10 @@ class GameManager {
     protected:
     
     public:
+
+    // ========= Methods ==========
+
+    // start whole game
     virtual void startGame() = 0;
 
 };

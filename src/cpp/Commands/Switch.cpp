@@ -17,6 +17,7 @@ Switch::Switch() {
     this->abilityType = AbilityTypes::Switch;
 }
 
+// ========== Methods ==========
 
 // Execute method
 void Switch::executeCommand(CandyGameState& gameState) {

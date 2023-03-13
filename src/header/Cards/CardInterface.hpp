@@ -8,15 +8,19 @@ class CardInterface {
    public:
     CardInterface(double);
     virtual ~CardInterface();
-    // Getter for value as specified weights in spec
-    double virtual getValue() const = 0;
 
-    // Comparison operators
+    // ========== Operators ==========
+
     bool operator==(const CardInterface&);
     bool operator>(const CardInterface&);
     bool operator<(const CardInterface&);
     bool operator>=(const CardInterface&);
     bool operator<=(const CardInterface&);
+
+    // ========== Getters ==========
+    
+    // Getter for value as specified weights
+    double virtual getValue() const = 0;
 };
 
 #endif

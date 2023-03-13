@@ -11,6 +11,8 @@ GameDeckCard::GameDeckCard() {
 
 GameDeckCard::GameDeckCard(const vector<Card>& cards): DeckCard<Card>(cards) {}
 
+// ========= Methods ==========
+
 void GameDeckCard::defaultConfig() {
     vector<Card> tempCards;
 
@@ -19,8 +21,6 @@ void GameDeckCard::defaultConfig() {
             tempCards.push_back(Card((Color)i, (Rank)j));
         }
     }
-
-    
 
     srand(time(NULL));
 

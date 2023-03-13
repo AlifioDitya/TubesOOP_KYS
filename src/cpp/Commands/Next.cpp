@@ -12,6 +12,8 @@ Next::Next() {
     this->command = CmdTypes::Next;
 }
 
+// ========== Methods ==========
+
 // Execute method
 void Next::executeCommand(CandyGameState& gameState) {
 

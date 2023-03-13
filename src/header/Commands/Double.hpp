@@ -8,6 +8,8 @@ public:
     // ctor
     Double();
 
+    // ========== Methods ==========
+    
     // Executes double
     void executeCommand(CandyGameState& gameState);
 };

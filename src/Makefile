@@ -16,7 +16,6 @@ SOURCES=cpp/Card/Card.cpp cpp/Card/CardInterface.cpp cpp/Card/Combination.cpp \
         cpp/Commands/Double.cpp cpp/Commands/Half.cpp cpp/Commands/Next.cpp \
         cpp/Commands/Ability.cpp cpp/Commands/Quarter.cpp cpp/Commands/Quadruple.cpp cpp/Commands/Reroll.cpp cpp/Commands/Reverse.cpp \
         cpp/Commands/PlayerInvolvedAbility.cpp cpp/Commands/Abilityless.cpp cpp/Commands/SwapCard.cpp cpp/Commands/Switch.cpp \
-        cpp/GameEnvironment/GameManager.cpp \
         cpp/GameEnvironment/CandyGameManager.cpp \
         main.cpp
 

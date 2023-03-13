@@ -9,6 +9,8 @@ public:
     // ctor
     Reroll();
 
+    // ========== Methods ==========
+    
     // Executes Reroll
     void executeCommand(CandyGameState& gameState);
 };

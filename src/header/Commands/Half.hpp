@@ -9,6 +9,8 @@ public:
     // ctor
     Half();
 
+    // ========== Methods ==========
+    
     // Executes Half
     void executeCommand(CandyGameState& gameState);
 };

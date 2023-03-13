@@ -5,14 +5,23 @@ class IO {
     private:
     int choice;
     public:
-
+    
+    // Ctor
     IO();
+
+    // ========== Operators ==========
+
+    bool operator==(const int);
+
+    // ========== Getters ==========
+    
+    int getChoice() const;
+
+    // ========== Other Method ========== 
 
     // get integer input in range [lowerBound, upperBound]
     void getInput(int lowerBound, int upperBound);
 
-    bool operator==(const int);
-    int getChoice() const;
 };
 
 #endif

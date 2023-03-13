@@ -13,6 +13,8 @@ Double::Double() {
     this->command = CmdTypes::Double;
 }
 
+// ========== Methods ==========
+
 // Execute method
 void Double::executeCommand(CandyGameState& gameState) {
     uint64_t oldPoints = gameState.getPointPool();

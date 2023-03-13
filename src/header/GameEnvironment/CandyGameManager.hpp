@@ -16,15 +16,21 @@ class CandyGameManager: public GameManager {
     map<AbilityTypes, class Ability*> abilities;
     CandyGameState gameState;
 
-    // private methods
-
+    // ========== Private Methods ==========
+    
+    // return initial player list with input name
     vector<CandyPlayer> getInitialPlayerList(int playerNum) const;
+    // get command input from user
     Commands* getPlayerCommand();
+    // initiate deck card (random or file input)
     void inititateDeck();
+    // start round
     void startRound();
+    // start subgame
     void startSubGame();
 
     template<class T>
+    // get object with highest value from getValue() method member
     T getMax(vector<T>& list) {
         // asumsi list.size() > 0
 
@@ -39,8 +45,15 @@ class CandyGameManager: public GameManager {
     }
 
     public:
+
+    // Ctor
     CandyGameManager();
+    // Dtor
     ~CandyGameManager();
+
+    // ========== Methods ==========
+
+    // start whole game
     void startGame();    
 
 };

@@ -16,6 +16,7 @@ Abilityless::Abilityless() {
     this->abilityType = AbilityTypes::Abilityless;
 }
 
+// ========== Methods ==========
 
 // Execute method
 void Abilityless::executeCommand(CandyGameState& gameState) {

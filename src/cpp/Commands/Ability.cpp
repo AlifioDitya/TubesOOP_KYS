@@ -8,6 +8,8 @@
 using std::transform;
 using std::map;
 
+// ========== Protected Methods ==========
+
 void Ability::validateAbility(CandyGameState& gameState) {
 
     CandyPlayer currentPlayer = gameState.getCurrentTurnPlayer();
@@ -29,6 +31,8 @@ void Ability::validateAbility(CandyGameState& gameState) {
         throw UsedAbility(abilityType);
     }
 }
+
+// ========== Static Methods ==========
 
 AbilityTypes Ability::parseAbility(string abilityString) {
     // Convert the command string to lowercase for case-insensitive comparison

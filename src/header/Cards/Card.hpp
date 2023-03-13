@@ -1,10 +1,10 @@
 #ifndef CARD_HPP
 #define CARD_HPP
 
-#include <string>
-
 #include "../../enums/CardTypes.hpp"
 #include "CardInterface.hpp"
+
+#include <string>
 
 using std::string;
 using std::ostream;
@@ -15,19 +15,25 @@ private:
     Rank rank;
 
 public:
-    // CTOR with parameters
+    // Ctor
     Card(Color, Rank);
 
-    // Getters for color and rank
-    Color getColor() const;
-    Rank getRank() const;
-    string getColorString() const;
-    string getRankString() const;
+    // ========== Operators ==========
+    friend ostream& operator<<(ostream&, const Card&);
 
-    // Getter for weight based on spec (assumed as high card)
+    // ========== Getters ==========
+
+    // Getter for color type
+    Color getColor() const;
+    // Getter for rank type
+    Rank getRank() const;
+    // Getter for color string
+    string getColorString() const;
+    // Getter for rank string
+    string getRankString() const;
+    // Getter for high card value
     double getValue() const;
     
-    friend ostream& operator<<(ostream&, const Card&);
 };
 
 #endif

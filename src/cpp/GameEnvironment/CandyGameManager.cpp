@@ -37,35 +37,6 @@ void newl() {
     cout << endl;
 }
 
-CandyGameManager::CandyGameManager() {
-    actions = map<CmdTypes, Commands*> {
-        {CmdTypes::Double, new class Double()},
-        {CmdTypes::Half, new class Half()}, 
-        {CmdTypes::Next, new class Next()}, 
-    };
-
-    abilities = map<AbilityTypes, class Ability*> {
-        {AbilityTypes::Abilityless, new class Abilityless()},
-        {AbilityTypes::Quadruple, new class Quadruple()},
-        {AbilityTypes::Quadruple, new class Quadruple()},
-        {AbilityTypes::Quarter, new class Quarter()},
-        {AbilityTypes::Reroll, new class Reroll()},
-        {AbilityTypes::Reverse, new class Reverse()},
-        {AbilityTypes::SwapCard, new class SwapCard()},
-        {AbilityTypes::Switch, new class Switch()},
-    };
-}
-
-CandyGameManager::~CandyGameManager() {
-    for (auto action: actions) {
-        delete action.second;
-    }
-
-    for (auto abilityPair: abilities) {
-        delete abilityPair.second;
-    }
-}
-
 string fixFileExtension(string fileName) {
     // Fungsi memastikan fileName memiliki format .txt
     int idx = fileName.find('.');
@@ -137,28 +108,36 @@ vector<Card> readDeckConfig() {
     }
 }
 
-void CandyGameManager::inititateDeck() {
-    // Inisiasi deck pada gameState
-    gameState.setAbilities(AbilityDeckCard());
+CandyGameManager::CandyGameManager() {
+    actions = map<CmdTypes, Commands*> {
+        {CmdTypes::Double, new class Double()},
+        {CmdTypes::Half, new class Half()}, 
+        {CmdTypes::Next, new class Next()}, 
+    };
 
-    cout << "Pilihan konfigurasi deck card: " << endl;
-    cout << "1. Acak" << endl;
-    cout << "2. Konfigurasi File" << endl;
-    newl();
+    abilities = map<AbilityTypes, class Ability*> {
+        {AbilityTypes::Abilityless, new class Abilityless()},
+        {AbilityTypes::Quadruple, new class Quadruple()},
+        {AbilityTypes::Quadruple, new class Quadruple()},
+        {AbilityTypes::Quarter, new class Quarter()},
+        {AbilityTypes::Reroll, new class Reroll()},
+        {AbilityTypes::Reverse, new class Reverse()},
+        {AbilityTypes::SwapCard, new class SwapCard()},
+        {AbilityTypes::Switch, new class Switch()},
+    };
+}
 
-    IO choiceIO;
-    cout << "Pilihan : ";
-
-    choiceIO.getInput(1, 2);
-
-    if (choiceIO == 1) {
-        gameState.getDeckCards().defaultConfig();
-    
-    } else {
-        gameState.setDeckCards(readDeckConfig());
+CandyGameManager::~CandyGameManager() {
+    for (auto action: actions) {
+        delete action.second;
     }
 
+    for (auto abilityPair: abilities) {
+        delete abilityPair.second;
+    }
 }
+
+// ========== Private Methods ==========
 
 vector<CandyPlayer> CandyGameManager::getInitialPlayerList(int playerNum) const {
     // Inisiasi setiap player beserta namanya
@@ -177,7 +156,6 @@ vector<CandyPlayer> CandyGameManager::getInitialPlayerList(int playerNum) const 
 
     return playerList;
 }
-
 
 Commands* CandyGameManager::getPlayerCommand() {
     // Menerima input aksi pemain saat ini
@@ -207,6 +185,28 @@ Commands* CandyGameManager::getPlayerCommand() {
     return command;
 }
 
+void CandyGameManager::inititateDeck() {
+    // Inisiasi deck pada gameState
+    gameState.setAbilities(AbilityDeckCard());
+
+    cout << "Pilihan konfigurasi deck card: " << endl;
+    cout << "1. Acak" << endl;
+    cout << "2. Konfigurasi File" << endl;
+    newl();
+
+    IO choiceIO;
+    
+    choiceIO.getInput(1, 2);
+
+    if (choiceIO == 1) {
+        gameState.getDeckCards().defaultConfig();
+    
+    } else {
+        gameState.setDeckCards(readDeckConfig());
+    }
+
+}
+
 void CandyGameManager::startRound() {
     gameState.setAllNotPlayed();
 
@@ -226,7 +226,7 @@ void CandyGameManager::startRound() {
         currentPlayer.printHand();
         newl();
 
-        if (currentPlayer.getAbility() != AbilityTypes::None){// && !currentPlayer.hasUsedAbility()) {
+        if (currentPlayer.getAbility() != AbilityTypes::None && !currentPlayer.hasUsedAbility()) {
             cout << "Ability yang sedang dimiliki: " << Ability::parseAbility(currentPlayer.getAbility()) << endl << endl;
         }
 
@@ -273,7 +273,7 @@ void CandyGameManager::startSubGame() {
     gameState.setRound(0);
     gameState.setPointPool(CandyGameState::initialPoint);
     gameState.getTableCards().clear();
-
+    
     // Reset deck
     inititateDeck();
 
@@ -346,6 +346,8 @@ void CandyGameManager::startSubGame() {
     winner.addPoint(gameState.getPointPool());
 
 }
+
+// ========== Methods ==========
 
 void CandyGameManager::startGame() {
     // Mulai game keseluruhan sampai ditemukan pemenang

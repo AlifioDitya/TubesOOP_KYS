@@ -11,6 +11,8 @@ public:
     // ctor
     SwapCard();
 
+    // ========== Methods ==========
+    
     // Executes SwapCard
     void executeCommand(CandyGameState& gameState);
 };

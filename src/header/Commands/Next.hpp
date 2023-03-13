@@ -9,6 +9,8 @@ public:
     // ctor
     Next();
 
+    // ========== Methods ==========
+    
     // Executes next
     void executeCommand(CandyGameState& gameState);
 };

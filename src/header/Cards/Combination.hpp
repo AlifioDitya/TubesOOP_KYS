@@ -1,11 +1,12 @@
 #ifndef COMBINATION_HPP
 #define COMBINATION_HPP
 
-#include <utility>
-#include <vector>
 
 #include "../../enums/CombinationTypes.hpp"
 #include "Card.hpp"
+
+#include <utility>
+#include <vector>
 
 using std::pair;
 using std::vector;

@@ -5,6 +5,7 @@
 
 using std::exception;
 
+// exception when command string is invalid
 class InvalidCommandString: public exception {
 
 	const char* what() const throw() {
@@ -12,6 +13,7 @@ class InvalidCommandString: public exception {
 	}
 };
 
+// exception when ability string is invalid
 class InvalidAbilityString: public exception {
 
 	const char* what() const throw() {
@@ -19,6 +21,7 @@ class InvalidAbilityString: public exception {
 	}
 };
 
+// exception when input type is invalid
 class UnmatchedType : public exception {
 public:
 	const char* what() const throw() {
@@ -27,6 +30,7 @@ public:
 	}
 };
 
+// exception when integer input is out of range
 class InvalidChoice : public exception {
 public:
 	const char* what() const throw() {
@@ -34,6 +38,7 @@ public:
 	}
 };
 
+// exception when input is empty
 class EmptyChoice: public exception {
 public:
 	const char* what() const throw() {
@@ -41,6 +46,7 @@ public:
 	}
 };
 
+// exception when file is not found
 class FileNotFoundException: public exception {
 public:
 	const char* what() const throw() {
@@ -48,6 +54,7 @@ public:
 	}
 };
 
+// exception when file format is invalid
 class InvalidFileInputFormatException: public exception {
 public:
 	const char* what() const throw() {

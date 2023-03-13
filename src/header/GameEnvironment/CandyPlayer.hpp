@@ -15,6 +15,7 @@ class CandyPlayer: public Player {
 private:
     bool usedAbility;
     bool nerfed;
+    uint64_t point;
     AbilityTypes ability;
 
 public:
@@ -27,11 +28,14 @@ public:
     // cctor
     CandyPlayer(const CandyPlayer&);
 
-    // operator=
-    CandyPlayer& operator=(const CandyPlayer&);
+    // ========== Operators ==========
 
-    // get ability
-    AbilityTypes getAbility();
+    CandyPlayer& operator=(const CandyPlayer&);
+    bool operator<(const CandyPlayer& other);
+    bool operator>(const CandyPlayer& other);
+
+    // ========== Setters ==========
+
     // Set ability used
     void setAbilityUsed(bool);
 
@@ -41,7 +45,11 @@ public:
     // Set ability
     void setAbility(AbilityTypes);
 
-    // ========== Predicates ==========
+    // ========== Predicates/Getters ==========
+
+    // get ability
+    AbilityTypes getAbility();
+
     // Check if player has ability
     bool hasAbility(AbilityTypes) const;
     
@@ -51,15 +59,22 @@ public:
     // Check if the player has been applied Abilityless by other player
     bool isNerfed() const;
 
-    // ========= Others ==========
-    // Switching cards with other player
-    // Switch hands
+    // Return player points
+    uint64_t getPoint() const;
+
+    // interface for getPoint()
+    uint64_t getValue() const;
+
+    // ========= Other Methods ==========
+
+    // add point
+    void addPoint(uint64_t);
+    
+    // Switching hands with other player
     void switchCards(CandyPlayer&);
 
     // Switch specific cards
     void switchCards(int idx1, int idx2, CandyPlayer& other);
-
-    uint64_t getValue() const;
 
     // ...
 };

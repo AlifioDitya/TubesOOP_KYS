@@ -9,6 +9,8 @@ public:
     // ctor
     Switch();
 
+    // ========== Methods ==========
+    
     // Executes Switch
     void executeCommand(CandyGameState& gameState);
 };

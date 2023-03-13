@@ -1,7 +1,10 @@
 #include "../../header/GameEnvironment/AbilityDeckCard.hpp"
 #include "../../header/GameEnvironment/DeckCard.hpp"
-#include "algorithm"
-#include "deque"
+
+#include <algorithm>
+#include <deque>
+#include <iostream>
+
 using std::random_shuffle;
 using std::deque;
 
@@ -11,6 +14,8 @@ AbilityDeckCard::AbilityDeckCard() {
 
 AbilityDeckCard::AbilityDeckCard(const vector<AbilityTypes>& cards): DeckCard<AbilityTypes>(cards) {
 }
+
+// ========== Methods ==========
 
 void AbilityDeckCard::defaultConfig() {
     // INISIASI 

@@ -1,12 +1,14 @@
 #ifndef COMMANDEXCEPTION_H
 #define COMMANDEXCEPTION_H
 
-#include <exception>
 #include "../../enums/AbilityTypes.hpp"
 #include "../Commands/Ability.hpp"
 
+#include <exception>
+
 using std::exception;
 
+// exception when ability is already used
 class UsedAbility : public exception  {
 private:
 	AbilityTypes targetType;
@@ -24,6 +26,7 @@ public:
 	}
 };
 
+// exception when current player doesn't have the target ability
 class MissingAbility : public exception  {
 private:
 	AbilityTypes targetType;
@@ -42,6 +45,7 @@ public:
 	}
 };
 
+// exception when ability is already nerfed
 class NerfedAbility : public exception {
 private:
 	AbilityTypes targetType;

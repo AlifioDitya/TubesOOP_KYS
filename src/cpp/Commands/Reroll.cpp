@@ -17,6 +17,8 @@ Reroll::Reroll() {
     this->abilityType = AbilityTypes::Reroll;
 }
 
+// ========== Methods ==========
+
 // Execute method
 void Reroll::executeCommand(CandyGameState& gameState) {
     validateAbility(gameState);

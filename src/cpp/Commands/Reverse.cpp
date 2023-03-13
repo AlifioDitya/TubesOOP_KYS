@@ -19,6 +19,8 @@ Reverse::Reverse() {
     this->abilityType = AbilityTypes::Reverse;
 }
 
+// ========== Methods ==========
+
 // Execute method
 void Reverse::executeCommand(CandyGameState& gameState) {
 

@@ -7,6 +7,8 @@
 using std::endl;
 using std::cout;
 
+// ========== Protected Methods ==========
+
 // return player index that is chosen
 int PlayerInvolvedAbility::selectPlayer(CandyGameState& gameState, const vector<CandyPlayer>& playerList, string label) {
 
@@ -19,7 +21,6 @@ int PlayerInvolvedAbility::selectPlayer(CandyGameState& gameState, const vector<
     
     vector<int> ids;
     IO choiceIO;
-    cout << "Pilihan player: ";
 
     choiceIO.getInput(1, playerList.size());
 

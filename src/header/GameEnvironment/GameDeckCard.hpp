@@ -12,8 +12,14 @@ class GameDeckCard:public DeckCard<Card> {
     
     public:
 
+    // Ctor
     GameDeckCard();
+
+    // User-defined Ctor
     GameDeckCard(const vector<Card>&);
+
+    // ========= Methods ==========
+    // inititate cards with random configuration
     void defaultConfig();
 
 };

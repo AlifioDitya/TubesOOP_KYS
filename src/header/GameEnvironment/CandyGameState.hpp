@@ -14,6 +14,7 @@ class CandyGameState: public GameState<CandyPlayer> {
 private:
     AbilityDeckCard abilities;
     int reversePlayerId;
+    uint64_t pointPool;
 
 public:
     // Default ctor
@@ -29,19 +30,45 @@ public:
     // dtor
     ~CandyGameState();
 
-    // Predicates
+    // ========== Getters ==========
+
+    // return player id that used reverse ability in this round
     int getReversePlayerId() const;
 
-    // check if all player used ability
+    // return pointPool
+    uint64_t getPointPool() const ;
+
+    // return abilities deck cards
+    AbilityDeckCard& getAbilities();
+
+    // ========== Predicates ==========
+
+    // check if all player used ability in this round
     bool hasAllUsedAbility() const;
 
+    // ========== Setters ==========
+
+    // set abilities card deck
     void setAbilities(const AbilityDeckCard&);
 
+    // move to next player turn
     void setNextTurn();
 
+    // set player id that used reverse ability in this round
     void setReversePlayerId(int);
+
+    // set pointpool value
+    void setPointPool(uint64_t points);
     
-    AbilityDeckCard& getAbilities();
+    // ========== Other Methods ==========
+
+    // print current leader board based on player point
+    void printLeaderBoard() const;
+
+    // print next round player order
+    void printNextRoundTurn() const;
+
+    // ========== Static Attributes ==========
 
     static const uint64_t initialPoint;
     static const uint64_t winnerPoint;

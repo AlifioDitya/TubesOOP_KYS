@@ -9,6 +9,8 @@ public:
     // ctor
     Quarter();
 
+    // ========== Methods ==========
+    
     // Executes Quarter
     void executeCommand(CandyGameState& gameState);
 };

@@ -9,6 +9,8 @@ public:
     // ctor
     Quadruple();
 
+    // ========== Methods ==========
+    
     // Executes Quadruple
     void executeCommand(CandyGameState& gameState);
 };

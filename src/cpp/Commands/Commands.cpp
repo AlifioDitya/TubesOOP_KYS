@@ -14,13 +14,11 @@ Commands::Commands() {
 
 }
 
-// cctor
-Commands::Commands(const Commands& cmd) {
-    this->command = cmd.command;
-}
 
 // dtor
 Commands::~Commands() {}
+
+// ========== Operators ==========
 
 // operator=
 Commands& Commands::operator=(const Commands& other) {
@@ -30,10 +28,14 @@ Commands& Commands::operator=(const Commands& other) {
     return *this;
 }
 
+// ========== Getters ==========
+
 // Getter
 CmdTypes Commands::getCommandType() const {
     return this->command;
 }
+
+// ========== Static Methods ==========
 
 CmdTypes Commands::parseCommand(string commandString) {
     // Convert the command string to lowercase for case-insensitive comparison

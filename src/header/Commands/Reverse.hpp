@@ -9,6 +9,8 @@ public:
     // ctor
     Reverse();
 
+    // ========== Methods ==========
+    
     // Executes Reverse
     void executeCommand(CandyGameState& gameState);
 };

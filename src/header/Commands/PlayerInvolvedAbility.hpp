@@ -8,6 +8,8 @@ class PlayerInvolvedAbility : public Ability {
 
 protected:
 
+    // ========== Protected Methods ==========
+
     // return player index that is chosen
     int selectPlayer(CandyGameState& gameState, const vector<CandyPlayer>& playerList, string label);
 

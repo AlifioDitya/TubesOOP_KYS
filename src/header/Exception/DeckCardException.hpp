@@ -5,6 +5,7 @@
 
 using std::exception;
 
+// exception when cards in deck is unsifficient to be drawed
 class InsufficientCards : public exception {
 public:
 	const char* what() const throw() {

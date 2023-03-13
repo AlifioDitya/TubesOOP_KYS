@@ -15,6 +15,8 @@ Quadruple::Quadruple() {
     this->abilityType = AbilityTypes::Quadruple;
 }
 
+// ========== Methods ==========
+
 // Execute method
 void Quadruple::executeCommand(CandyGameState& gameState) {
 

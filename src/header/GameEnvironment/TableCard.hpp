@@ -12,17 +12,22 @@ class TableCard : public InventoryHolder<Card> {
 private:
     std::vector<Card> cards;
 public:
+
+    // ========== Getters ==========
+
     // Returns the number of items in the inventory
     virtual int countItems() const;
+
+    // Show all cards at table that is relevant to current gamestate
+    vector<Card> getCards();
+
+    // ========== Setters / Other Methods ==========
 
     // Adds an item to the inventory
     virtual void addItem(const Card&);
 
     // Removes an item from the inventory
     virtual void clear();
-
-    // Show all cards at table that is relevant to current gamestate
-    vector<Card> getCards();
 
     void setCards(const vector<Card>& cards);
 

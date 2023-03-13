@@ -19,7 +19,7 @@ CangkulGameManager::~CangkulGameManager() {
 }
 
 void CangkulGameManager::startGame() {
-    gameState = GameState<Player>(vector<Player>(), 0, 0, TableCard(), GameDeckCard());
+    gameState = GameState<Player>(vector<Player>(), 0, TableCard(), GameDeckCard());
     startingPlayerId = 1;
 
     initializePlayerCount();
@@ -90,7 +90,7 @@ void CangkulGameManager::initializePlayerList() {
         cout << "Masukkan pemain ke-" << i <<": ";
         cin >> playerName;
 
-        players.push_back(Player(i, vector<Card>(), 0, playerName, false));
+        players.push_back(Player(i, vector<Card>(), playerName, false));
         hasWon.push_back(false);
     }
     gameState.setPlayerList(players);

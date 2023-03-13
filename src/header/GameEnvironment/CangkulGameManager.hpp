@@ -3,7 +3,7 @@
 #define CANGKULGAMEMANAGER_HPP
 
 #include "GameManager.hpp"
-#include "GameState.hpp"
+#include "CangkulGameState.hpp"
 
 #include <map>
 
@@ -12,11 +12,18 @@ using std::map;
 class CangkulGameManager: public GameManager {
 private:
     int playerCount;
-    int startingPlayerId;
     bool isClockwise;
-    GameState<Player> gameState;
-    vector<bool> hasWon;
-    vector<Player> winner;
+    CangkulGameState gameState;
+
+    // ========== Private Methods ==========
+
+    // return initial player list with input name
+    vector<Player> getInitialPlayerList(int playerNum) const;
+   
+    // get command input from user
+    // Commands* getPlayerCommand();
+
+    // initiate deck card (random or file input)
 
     void initializePlayerCount();
     void initializePlayerList();

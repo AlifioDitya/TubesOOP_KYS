@@ -122,6 +122,7 @@ vector<Card> readDeckConfig() {
             } else {
                 throw FileNotFoundException();
             }
+
         } catch(const exception& err) {
             cout << err.what() << endl;
             v.clear();

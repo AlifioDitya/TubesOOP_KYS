@@ -29,6 +29,7 @@ string Card::getColorString() const {
 
     return colorMap[color];
 }
+
 string Card::getRankString() const {
     map<Rank, string> rankMap = {
         {Rank::One, "As"},        {Rank::Two, "Two"},     {Rank::Three, "Three"},

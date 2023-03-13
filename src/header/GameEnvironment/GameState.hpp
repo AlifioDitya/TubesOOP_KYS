@@ -174,6 +174,36 @@ class GameState {
         return -1;
     }
 
+    // Methods for printing player turn
+    void printRemainingTurn() const {
+
+        auto i = playerList.begin() + 1;
+
+        while (i->hasPlayedThisRound()) i++;
+
+        while (!i->hasPlayedThisRound())
+        {
+            cout << "<" << i->getName()<< "> ";
+            i++;
+        }
+
+        cout << endl;
+    }
+
+    void printNextRoundTurn() const {
+        auto i = playerList.begin() + 1;
+        long unsigned int counter = 0;
+
+        while (counter < playerList.size())
+        {
+            cout << "<" << i->getName()<< "> ";
+            i++;
+            counter++;
+        }
+
+        cout << endl;
+    }
+
     // Methods for printing player list
     void printPlayerList() const {
         for (long unsigned int i = 0; i < playerList.size(); i++) {
@@ -186,6 +216,7 @@ class GameState {
             cout << i + 1 << ". " << playerVec[i].getName() << endl;
         }
     }
+
 
 };
 

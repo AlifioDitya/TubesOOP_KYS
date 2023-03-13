@@ -41,15 +41,22 @@ void Reverse::executeCommand(CandyGameState& gameState) {
 
     // Print out player order
     cout << gameState.getCurrentTurnPlayer().getName() << " melakukan reverse!" << endl
-         << "Urutan eksekusi giliran ini: " << endl;
-    gameState.printPlayerList();
+         << "(sisa) Urutan eksekusi giliran ini: " << endl;
+    gameState.printRemainingTurn();
     cout << endl;
-    cout << "Urutan eksekusi giliran selanjutnya: " << endl;
-
-    gameState.printPlayerList(playerList);
 
     // Set the player list in reverse order
     gameState.setPlayerList(playerList);
+
+
+    cout << "Urutan eksekusi giliran selanjutnya: " << endl;
+
+    // Set the player list in reverse order
+    gameState.setPlayerList(playerList);
+    
+    gameState.printNextRoundTurn();
+
+    cout << endl;
 
     // Set the ability used flag to true and end the turn
     gameState.getCurrentTurnPlayer().setAbilityUsed(true);

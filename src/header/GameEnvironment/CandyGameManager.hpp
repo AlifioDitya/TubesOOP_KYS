@@ -16,7 +16,6 @@ class CandyGameManager: public GameManager {
     map<AbilityTypes, class Ability*> abilities;
     CandyGameState gameState;
 
-
     // private methods
 
     vector<CandyPlayer> getInitialPlayerList(int playerNum) const;

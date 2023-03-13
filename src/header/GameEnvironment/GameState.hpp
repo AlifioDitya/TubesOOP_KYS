@@ -22,7 +22,7 @@ class GameState {
     // giliran selalu indeks 0
     // int currentTurnIdx;
     int round;
-    int pointPool;
+    unsigned long long pointPool;
     TableCard tableCards;
     GameDeckCard deckCards;
 

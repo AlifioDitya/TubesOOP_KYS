@@ -172,33 +172,24 @@ Commands* CandyGameManager::getPlayerCommand() {
     // Menerima input aksi pemain saat ini
     IO choiceIO;
     CandyPlayer currentPlayer = gameState.getCurrentTurnPlayer();
-
     string commandString;
-
     Commands* command = nullptr;
 
     do {
         try {
-
             cout << "Pilihanmu (Contoh: DOUBLE) : ";
             cin >> commandString;
             
             CmdTypes commandType = Commands::parseCommand(commandString);
 
-            if (commandType == CmdTypes::Ability)
-            {
+            if (commandType == CmdTypes::Ability) {
                 command = abilities[Ability::parseAbility(commandString)];
-            }
-
-            else
-            {
+            } else {
                 command = actions[commandType];
             }
-
-        } catch(exception* err) {
-            cout << err->what() << endl;
+        } catch(const exception& err) {
+            cout << err.what() << endl;
         }
-
     } while (!command);
 
     return command;
@@ -212,6 +203,10 @@ void CandyGameManager::startRound() {
         CandyPlayer& currentPlayer = gameState.getCurrentTurnPlayer();
         cout << endl;
         cout << "Giliran pemain " << currentPlayer.getId() << ": " << currentPlayer.getName() << endl;
+        cout << "Berikut kartu pada table:" << endl;
+        gameState.getTableCards().showCards();
+        cout << "Berikut kartu yang kamu miliki:" << endl;
+        currentPlayer.printHand();
         cout << "Pilihan perintah: " << endl;
         cout << "1. DOUBLE" << endl;
         cout << "2. HALF" << endl;
@@ -222,7 +217,7 @@ void CandyGameManager::startRound() {
         cout << "7. RE-ROLL" << endl;
         cout << "8. REVERSE" << endl;
         cout << "9. SWAPCARD" << endl;
-        cout << "10. SWITCH" << endl; 
+        cout << "10. SWITCH" << endl;
 
         try {
             Commands* command = getPlayerCommand();

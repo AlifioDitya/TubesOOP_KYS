@@ -9,12 +9,9 @@
 using std::vector;
 
 class TableCard : public InventoryHolder<Card> {
-
 private:
     std::vector<Card> cards;
-
 public:
-
     // Returns the number of items in the inventory
     virtual int countItems() const;
 
@@ -29,6 +26,7 @@ public:
 
     void setCards(const vector<Card>& cards);
 
-    // ...
+    void showCards();
 };
+
 #endif

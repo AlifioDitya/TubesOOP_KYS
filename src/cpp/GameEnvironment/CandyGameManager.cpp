@@ -375,7 +375,7 @@ void CandyGameManager::startGame() {
 
         counter++;
 
-    } while(leadingPlayer.getPoint() >= CandyGameState::winnerPoint);
+    } while(leadingPlayer.getPoint() < CandyGameState::winnerPoint);
 
     newl();
     border();

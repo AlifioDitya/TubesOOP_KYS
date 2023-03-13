@@ -21,7 +21,7 @@ class GameState {
     deque<T> playerList;
 
     int round;
-    int pointPool;
+    unsigned long long pointPool;
     TableCard tableCards;
     GameDeckCard deckCards;
 

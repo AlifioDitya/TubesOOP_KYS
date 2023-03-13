@@ -22,11 +22,6 @@ void Abilityless::executeCommand(CandyGameState& gameState) {
 
     validateAbility(gameState);
 
-    // Check if the player has the Abilityless ability
-    if (!gameState.getCurrentTurnPlayer().hasAbility(AbilityTypes::Abilityless)) {
-        throw MissingAbility(AbilityTypes::Abilityless);
-    }
-
     // Check if all players have used their abilities
     if (gameState.hasAllUsedAbility()) {
         cout << "Ets, ternyata semua pemain sudah memakai kartu kemampuan. Yah kamu kena sendiri deh, kemampuanmu menjadi abilityless. Penggunaan kartu kamu sia-sia :(" << endl;

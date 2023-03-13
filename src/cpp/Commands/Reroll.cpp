@@ -23,7 +23,7 @@ void Reroll::executeCommand(CandyGameState& gameState) {
     validateAbility(gameState);
     
     // Get the deck
-    DeckCard<Card>& deck = gameState.getDeckCards();
+    GameDeckCard deck = gameState.getDeckCards();
 
     vector<Card> newCards = deck.drawMany(2);
 

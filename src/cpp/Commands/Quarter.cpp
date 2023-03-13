@@ -20,11 +20,6 @@ void Quarter::executeCommand(CandyGameState& gameState) {
 
     validateAbility(gameState);
 
-    // Check if the player has the Quarter ability
-    if (!gameState.getCurrentTurnPlayer().hasAbility(AbilityTypes::Quarter)) {
-        throw MissingAbility(AbilityTypes::Quarter);
-    }
-
     cout << gameState.getCurrentTurnPlayer().getName() << "melakukan QUARTER! ";
     
     int oldPoint = gameState.getPointPool();

@@ -20,11 +20,6 @@ void Quadruple::executeCommand(CandyGameState& gameState) {
 
     validateAbility(gameState);
     
-    // Check if the player has the Quadruple ability
-    if (!gameState.getCurrentTurnPlayer().hasAbility(AbilityTypes::Quadruple)) {
-        throw MissingAbility(AbilityTypes::Quadruple);
-    }
-    
     int oldPoints = gameState.getPointPool();
     int newPoints = oldPoints * 4;
     gameState.setPointPool(newPoints);

@@ -23,8 +23,8 @@ void Quarter::executeCommand(CandyGameState& gameState) {
 
     cout << gameState.getCurrentTurnPlayer().getName() << " melakukan QUARTER!";
     
-    unsigned long long oldPoint = gameState.getPointPool();
-    unsigned long long newPoint = oldPoint / 4;
+    uint64_t oldPoint = gameState.getPointPool();
+    uint64_t newPoint = oldPoint / 4;
 
     // Check if point has reached one
     if (oldPoint <= 1) {

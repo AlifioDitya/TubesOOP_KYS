@@ -22,7 +22,7 @@ public:
     CandyPlayer();
 
     // Specified ctor
-    CandyPlayer(int id, const vector<Card>& hand, unsigned long long point, string name, bool hasPlayed);
+    CandyPlayer(int id, const vector<Card>& hand, uint64_t point, string name, bool hasPlayed);
 
     // cctor
     CandyPlayer(const CandyPlayer&);
@@ -59,7 +59,7 @@ public:
     // Switch specific cards
     void switchCards(int idx1, int idx2, CandyPlayer& other);
 
-    unsigned long long getValue() const;
+    uint64_t getValue() const;
 
     // ...
 };

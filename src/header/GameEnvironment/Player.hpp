@@ -24,7 +24,7 @@ public:
     Player();
 
     // Specified ctor
-    Player(int id, const vector<Card>& hand, unsigned long long point, string name, bool hasPlayed);
+    Player(int id, const vector<Card>& hand, uint64_t point, string name, bool hasPlayed);
 
     // dtor
     ~Player();
@@ -54,7 +54,7 @@ public:
     int getId() const;
     
     // Return player points
-    unsigned long long getPoint() const;
+    uint64_t getPoint() const;
 
     // Return player name
     string getName() const;
@@ -70,7 +70,7 @@ public:
     void setHand(vector<Card>);
 
     // add point
-    void addPoint(unsigned long long);
+    void addPoint(uint64_t);
 
     // Set hasPlayed
     void setHasPlayed(bool);

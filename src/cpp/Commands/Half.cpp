@@ -17,8 +17,8 @@ Half::Half() {
 void Half::executeCommand(CandyGameState& gameState) {
     cout << gameState.getCurrentTurnPlayer().getName() << " melakukan HALF! ";
 
-    unsigned long long oldPoint = gameState.getPointPool();
-    unsigned long long newPoint = oldPoint / 2;
+    uint64_t oldPoint = gameState.getPointPool();
+    uint64_t newPoint = oldPoint / 2;
 
     // Check if point has reached one
     if (oldPoint <= 1) {

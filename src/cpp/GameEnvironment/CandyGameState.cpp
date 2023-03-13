@@ -8,8 +8,8 @@ using std::cout;
 using std::endl;
 using std::find_if;
 
-const unsigned long long CandyGameState::initialPoint = 64;
-const unsigned long long CandyGameState::winnerPoint = 4294967296;
+const uint64_t CandyGameState::initialPoint = 64;
+const uint64_t CandyGameState::winnerPoint = 4294967296;
 
 // Default ctor
 CandyGameState::CandyGameState() {
@@ -17,7 +17,7 @@ CandyGameState::CandyGameState() {
 }
 
 // Specified ctor
-CandyGameState::CandyGameState(const vector<CandyPlayer>& playerList, int roundNum, unsigned long long points, 
+CandyGameState::CandyGameState(const vector<CandyPlayer>& playerList, int roundNum, uint64_t points, 
         const TableCard& tableCard, const GameDeckCard& deckCard, const AbilityDeckCard& abilities, int reversePlayerId):      
 
     GameState<CandyPlayer>(playerList, roundNum, points, tableCard, deckCard) 

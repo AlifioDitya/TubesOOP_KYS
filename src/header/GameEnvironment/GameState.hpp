@@ -23,7 +23,7 @@ class GameState {
     deque<T> playerList;
 
     int round;
-    unsigned long long pointPool;
+    uint64_t pointPool;
     TableCard tableCards;
     GameDeckCard deckCards;
 
@@ -43,7 +43,7 @@ class GameState {
     };
 
     // Specified ctor
-    GameState(const vector<T>& playerList, int roundNum, unsigned long long points, const TableCard& tableCard,
+    GameState(const vector<T>& playerList, int roundNum, uint64_t points, const TableCard& tableCard,
               const GameDeckCard& deckCard) {
         this->playerList = deque<T>(playerList.begin(), playerList.end());
 
@@ -78,7 +78,7 @@ class GameState {
         round = roundNum;
     };
 
-    void setPointPool(unsigned long long points) {
+    void setPointPool(uint64_t points) {
         pointPool = points;
     };
 
@@ -137,7 +137,7 @@ class GameState {
         return round;
     }
 
-    unsigned long long getPointPool() const {
+    uint64_t getPointPool() const {
         return pointPool;
     }
 

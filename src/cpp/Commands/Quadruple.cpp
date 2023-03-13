@@ -20,8 +20,8 @@ void Quadruple::executeCommand(CandyGameState& gameState) {
 
     validateAbility(gameState);
     
-    unsigned long long oldPoints = gameState.getPointPool();
-    unsigned long long newPoints = oldPoints * 4;
+    uint64_t oldPoints = gameState.getPointPool();
+    uint64_t newPoints = oldPoints * 4;
     gameState.setPointPool(newPoints);
 
     cout << gameState.getCurrentTurnPlayer().getName() << " melakukan QUADRUPLE! Poin hadiah naik dari " << oldPoints << " menjadi " << newPoints << "!" << endl; 

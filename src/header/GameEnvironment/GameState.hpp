@@ -226,7 +226,7 @@ class GameState {
         sort(list.begin(), list.end());
 
         cout << "Leaderboard :" << endl;
-        for (long unsigned int i = list.size() - 1; i >= 0; i--) {
+        for (int i = list.size() - 1; i >= 0; i--) {
             cout << "\t" << list.size() - i << ". " << list[i].getName() << ": " << list[i].getPoint() << endl;
         }
 

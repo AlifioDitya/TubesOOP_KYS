@@ -2,6 +2,7 @@
 #include "../../header/Commands/PlayerInvolvedAbility.hpp"
 #include "../../header/Exception/IOException.hpp"
 #include "../../header/Program/IO.hpp"
+#include "../../header/GameEnvironment/GameState.hpp"
 #include <iostream>
 using std::endl;
 using std::cout;

@@ -61,6 +61,13 @@ AbilityDeckCard& CandyGameState::getAbilities() {
     return abilities;
 }
 
+bool CandyGameState::getIsReversed() const {
+    return isReversed;
+}
+void CandyGameState::setIsReversed(bool isReverse) {
+    this->isReversed = isReverse;
+}
+
 void CandyGameState::setNextTurn() {
 
     GameState::setNextTurn();

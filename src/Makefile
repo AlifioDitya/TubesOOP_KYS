@@ -1,9 +1,10 @@
-CC=g++
-CFLAGS=-c -Wall
-LFLAGS=-Wall
+CXX := g++
+CXXFLAGS := -c -Wall
+LFLAGS := -Wall
+EXECUTABLE := candy_game  # Final executable file name
 
 # List of all the source files
-SOURCES=cpp/Card/Card.cpp cpp/Card/CardInterface.cpp cpp/Card/Combination.cpp \
+SOURCES = cpp/Card/Card.cpp cpp/Card/CardInterface.cpp cpp/Card/Combination.cpp \
         cpp/GameEnvironment/Player.cpp \
         cpp/GameEnvironment/TableCard.cpp \
         cpp/GameEnvironment/GameDeckCard.cpp cpp/GameEnvironment/AbilityDeckCard.cpp \
@@ -19,21 +20,18 @@ SOURCES=cpp/Card/Card.cpp cpp/Card/CardInterface.cpp cpp/Card/Combination.cpp \
         # cpp/Program/IO.cpp main.cpp
 
 # Generate a list of object files from the source file list
-OBJECTS=$(SOURCES:.cpp=.o)
-
-# Specify the name of the final executable file
-EXECUTABLE=candy_game
+OBJECTS = $(SOURCES:.cpp=.o)
 
 # Rule to compile each source file into an object file
 %.o: %.cpp
-	$(CC) $(CFLAGS) $< -o $@
+	$(CXX) $(CXXFLAGS) $< -o $@
 
 # Default rule to build the executable
 all: $(SOURCES) $(EXECUTABLE)
 
 # Rule to build the executable
 $(EXECUTABLE): $(OBJECTS)
-	$(CC) $(LFLAGS) $(OBJECTS) -o $@
+	$(CXX) $(LFLAGS) $(OBJECTS) -o $@
 
 # Rule to clean up object files and the executable
 clean:

@@ -35,7 +35,14 @@ void Put::validateCommand(CangkulGameState& gameState) {
     cout << "Kartu berhasil diletakkan! Giliran pemain dilanjutkan." << endl;
     gameState.getTableCards().addItem(gameState.getCurrentTurnPlayer().PutCard(choiceIO.getChoice()));
 
-    gameState.setNextTurn();
+    if (gameState.getCurrentTurnPlayer().countItems() == 0) {
+
+    }
+
+    else
+    {
+        gameState.setNextTurn();
+    }
 }
 
 

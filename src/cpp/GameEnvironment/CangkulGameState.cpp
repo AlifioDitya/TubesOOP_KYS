@@ -46,3 +46,11 @@ void CangkulGameState::moveWinningList() {
     playerList = winningList;
     winningList.clear();
 }
+
+void CangkulGameState::moveToWinningList() {
+    Player currentPlayer = playerList.front();
+
+    playerList.pop_front();
+
+    winningList.push_back(currentPlayer);
+}

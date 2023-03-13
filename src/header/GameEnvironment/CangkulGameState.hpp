@@ -46,7 +46,9 @@ public:
 
     // move player in winningList to playerList
     void moveWinningList();
- 
+
+    // move current player to winningList
+    void moveToWinningList();
 
 };
 

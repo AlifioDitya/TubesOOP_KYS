@@ -68,12 +68,10 @@ class GameState {
 
     // Setters
     void setPlayerList(const vector<T>& playerList) {
-        this->playerList = playerList;
+        this->playerList = deque<T>(playerList.begin(), playerList.end());
     };
 
-    // void setCurrentTurnIdx(int) {
-    //     currentTurnIdx = currentTurn;
-    // }
+
 
     void setRound(int roundNum) {
         round = roundNum;
@@ -134,11 +132,6 @@ class GameState {
         return playerList[idx];
     }
 
-    // template <class T>
-    // int getCurrentTurnIdx() const {
-    //     return currentTurnIdx;
-    // }
-
     int getRound() const {
         return round;
     }
@@ -179,12 +172,19 @@ class GameState {
 
         auto i = playerList.begin() + 1;
 
-        while (i->hasPlayedThisRound()) i++;
+        while (i != playerList.end() && i->hasPlayedThisRound()) i++;
 
-        while (!i->hasPlayedThisRound())
+        if (i == playerList.end()) {
+            cout << "(Tidak ada giliran player lain pada round ini)";
+        }
+
+        else
         {
-            cout << "<" << i->getName()<< "> ";
-            i++;
+            while (i != playerList.end() && !i->hasPlayedThisRound())
+            {
+                cout << "<" << i->getName()<< "> ";
+                i++;
+            }
         }
 
         cout << endl;

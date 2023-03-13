@@ -194,8 +194,8 @@ Commands* CandyGameManager::getPlayerCommand() {
                 command = actions[commandType];
             }
 
-        } catch(const exception& err) {
-            cout << err.what() << endl;
+        } catch(exception* err) {
+            cout << err->what() << endl;
         }
 
     } while (!command);

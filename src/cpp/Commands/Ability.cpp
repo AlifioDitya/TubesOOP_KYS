@@ -17,8 +17,7 @@ void Ability::validateAbility(CandyGameState& gameState) {
     }
 
     // jika ability sudah dimatikan lawan
-    if (currentPlayer.isNerfed())
-    {
+    if (currentPlayer.isNerfed()) {
         throw NerfedAbility(abilityType);
     }
 

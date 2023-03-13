@@ -12,7 +12,7 @@ using std::map;
 
 class CandyGameManager: public GameManager {
     private:
-    vector<Commands*> actions;
+    map<CmdTypes, Commands*> actions;
     map<AbilityTypes, class Ability*> abilities;
     CandyGameState gameState;
 

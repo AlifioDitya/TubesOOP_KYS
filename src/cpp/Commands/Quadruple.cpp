@@ -24,7 +24,7 @@ void Quadruple::executeCommand(CandyGameState& gameState) {
     int newPoints = oldPoints * 4;
     gameState.setPointPool(newPoints);
 
-    cout << gameState.getCurrentTurnPlayer().getName() << "melakukan QUADRUPLE! Poin hadiah naik dari " << oldPoints << " menjadi " << newPoints << "!" << endl; 
+    cout << gameState.getCurrentTurnPlayer().getName() << " melakukan QUADRUPLE! Poin hadiah naik dari " << oldPoints << " menjadi " << newPoints << "!" << endl; 
 
     // Set the ability used flag to true and end the turn
     gameState.getCurrentTurnPlayer().setAbilityUsed(true);

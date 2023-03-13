@@ -10,21 +10,19 @@ using std::cout;
 using std::endl;
 
 // Default ctor
-Player::Player(): Player(-1, vector<Card>(), 0, "Username", false) {
-
-}
-
-// dtor
-Player::~Player() {
-}
+Player::Player(): Player(-1, vector<Card>(), 0, "Username", false) {}
 
 // Specified ctor
 Player::Player(int id, const vector<Card>& hand, long long point, string name, bool hasPlayed) {
-    this->playerID = playerID;
+    this->playerID = id;
     this->hand = hand;
     this->point = point;
     this->name = name;
     this->hasPlayed = hasPlayed;
+}
+
+// dtor
+Player::~Player() {
 }
 
 // cctor
@@ -39,7 +37,6 @@ Player::Player(const Player& other) {
 // operator
 Player& Player::operator=(const Player& other) {
     if (this != &other) {
-
         playerID = other.playerID;
         point = other.point;
         name = other.name;

@@ -19,12 +19,10 @@ Reroll::Reroll() {
 
 // Execute method
 void Reroll::executeCommand(CandyGameState& gameState) {
-
     validateAbility(gameState);
     
     // Get the deck
     GameDeckCard deck = gameState.getDeckCards();
-
     vector<Card> newCards = deck.drawMany(2);
 
     // Empty the player's hand

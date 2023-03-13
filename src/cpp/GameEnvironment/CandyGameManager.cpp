@@ -30,10 +30,10 @@ using std::endl;
 using std::map;
 
 CandyGameManager::CandyGameManager() {
-    actions = vector<Commands*>{
-        new class Double(), 
-        new class Half(), 
-        new class Next(), 
+    actions = map<CmdTypes, Commands*> {
+        {CmdTypes::Double, new class Double()},
+        {CmdTypes::Half, new class Half()}, 
+        {CmdTypes::Next, new class Next()}, 
     };
 
     abilities = map<AbilityTypes, class Ability*> {
@@ -49,8 +49,8 @@ CandyGameManager::CandyGameManager() {
 }
 
 CandyGameManager::~CandyGameManager() {
-    for (Commands* action: actions) {
-        delete action;
+    for (auto action: actions) {
+        delete action.second;
     }
 
     for (auto abilityPair: abilities) {
@@ -129,8 +129,7 @@ vector<Card> readDeckConfig() {
 }
 
 void CandyGameManager::inititateDeck() {
-    // inisasi deck pada gamestate
-
+    // Inisiasi deck pada gameState
     gameState.setAbilities(AbilityDeckCard());
 
     cout << "Pilihan konfigurasi deck card: " << endl;
@@ -144,25 +143,18 @@ void CandyGameManager::inititateDeck() {
 
     if (choiceIO == 1) {
         gameState.getDeckCards().defaultConfig();
-    }
-
-    else {
+    } else {
         gameState.setDeckCards(readDeckConfig());
     }
 }
 
 vector<CandyPlayer> CandyGameManager::getInitialPlayerList(int playerNum) const {
-
-    // inisiasi setiap player beserta namanya
-
+    // Inisiasi setiap player beserta namanya
     vector<CandyPlayer> playerList;
 
-    for (int i = 1; i <= playerNum; i++)
-    {
-        cout << "Masukkan nama pemain " << i << " : ";
-
+    for (int i = 1; i <= playerNum; i++) {
         string playerName;
-        
+        cout << "Masukkan nama pemain " << i << " : ";
         cin >> playerName;
 
         playerList.push_back(CandyPlayer(i, vector<Card>(), 0, playerName, false));
@@ -173,21 +165,17 @@ vector<CandyPlayer> CandyGameManager::getInitialPlayerList(int playerNum) const 
 
 
 Commands* CandyGameManager::getPlayerCommand() {
-
-    // menerima input aksi pemain saat ini
+    // Menerima input aksi pemain saat ini
     IO choiceIO;
     CandyPlayer currentPlayer = gameState.getCurrentTurnPlayer();
 
-    cout << "Pilihanmu (Contoh: DOUBLE) : ";
-
     string commandString;
-
+    cout << "Pilihanmu (Contoh: DOUBLE) : ";
     cin >> commandString;
 
     Commands* command = nullptr;
 
     do {
-
         try {
             CmdTypes commandType = Commands::parseCommand(commandString);
 
@@ -200,26 +188,22 @@ Commands* CandyGameManager::getPlayerCommand() {
             {
                 command = actions[commandType];
             }
-        }
-
-        catch(const exception& err) {
+        } catch(const exception& err) {
             cout << err.what() << endl;
         }
-
-    } while(!command);
+    } while (!command);
 
     return command;
 }
 
 void CandyGameManager::startRound() {
-
     gameState.setAllNotPlayed();
 
     while (!gameState.hasAllPlayed()) {
-        
         // aksi pemain
         CandyPlayer& currentPlayer = gameState.getCurrentTurnPlayer();
-        cout << "Giliran pemain " << currentPlayer.getId() << ". " << currentPlayer.getName() << endl;
+        cout << endl;
+        cout << "Giliran pemain " << currentPlayer.getId() << ": " << currentPlayer.getName() << endl;
         cout << "Pilihan perintah: " << endl;
         cout << "1. DOUBLE" << endl;
         cout << "2. HALF" << endl;
@@ -234,115 +218,82 @@ void CandyGameManager::startRound() {
 
         try {
             Commands* command = getPlayerCommand();
-            
             command->executeCommand(gameState);
-        }
-
-        catch (const exception& err) {
+        } catch (const exception& err) {
             cout << err.what() << " Silahkan lakukan perintah lain." << endl;
         }
     }
 }
 
 void CandyGameManager::startSubGame() {
-    // sub game jika belum ada pemenang
-
-    // reset gamestate kecuali player dan turn
-
+    // Sub Game jika belum ada pemenang
+    // Reset gamestate kecuali player dan turn
     gameState.setRound(0);
     gameState.setPointPool(CandyGameState::initialPoint);
     gameState.getTableCards().clear();
     gameState.setIsReversed(false);
 
-    // reset deck
+    // Reset deck
     inititateDeck();
 
-
-    // setiap player ambil 2 kartu dari deck
+    // Setiap player ambil 2 kartu dari deck
     for (long unsigned int i = 0; i < gameState.getPlayerList().size(); i++) {
         CandyPlayer& player = gameState.getPlayerRefAt(i);
-
         player.setHand(gameState.getDeckCards().drawMany(2));
     }
 
-    // main sampai 6 round
+    // Main sampai 6 round
     while(gameState.getRound() < 6) {
-
-        // round selanjutnya
+        // Round selanjutnya
         gameState.setRound(gameState.getRound() + 1);
-
         startRound();
 
-
         if (gameState.getRound() == 1) {
-            // kasih ability ke setiap player
-            
+            // Memberikan ability ke setiap player
             for (long unsigned int i = 0; i < gameState.getPlayerList().size(); i++) {
                 CandyPlayer& player = gameState.getPlayerRefAt(i);
-
                 player.setAbility(gameState.getAbilities().drawCard());
             }
         }
 
-        // letak 1 kartu dari deck ke table
+        // Meletakkan 1 kartu dari deck ke table
         gameState.getTableCards().addItem(gameState.getDeckCards().drawCard());
     }
 
-    class ComboCompare
-    {
+    class ComboCompare {
         public:
-        bool operator() (const Combination& a, const Combination& b) const
-        {
+        bool operator() (const Combination& a, const Combination& b) const {
             return a.getValue() < b.getValue();
         }
     };
 
     map<Combination, CandyPlayer, ComboCompare> combosMap;
     vector<Combination> combos;
-    // hitung pemenang subgame berdasarkan combo
-    for (auto player: gameState.getPlayerList())
-    {
+    // Hitung pemenang Sub Game berdasarkan combo
+    for (auto player: gameState.getPlayerList()) {
         Combination combo(gameState.getTableCards().getCards(), player.getHand());
         combosMap[combo] = player;
         combos.push_back(combo);
     }
 
     CandyPlayer& winner = gameState.getPlayerRefAt(gameState.getPlayerIdx(combosMap[getMax(combos)].getId()));
-
     winner.addPoint(gameState.getPointPool());
 }
 
 void CandyGameManager::startGame() {
-    // mulai game keseluruhan sampai ditemukan pemenang
+    // Mulai game keseluruhan sampai ditemukan pemenang
 
     CandyPlayer leadingPlayer;
     cout << "Permainan baru dimulai!" << endl;
 
-    // inisiasi gameState
+    // Inisiasi gameState
     gameState = CandyGameState(getInitialPlayerList(7), 0, CandyGameState::initialPoint, TableCard(), GameDeckCard(), AbilityDeckCard(), false);
 
     do {
-
         startSubGame();
         vector<CandyPlayer> playerList = gameState.getPlayerList();
         CandyPlayer leaderPlayer = getMax(playerList);
-
     } while(leadingPlayer.getPoint() >= CandyGameState::winnerPoint);
 
     cout << "Pemenangnya adalah " << leadingPlayer.getName() << endl;
 }
-
-
-// template<class T>
-// T CandyGameManager::getMax(vector<T>& list) {
-//     // asumsi list.size() > 0
-
-//     T maxElmt = list[0];
-
-//     for (auto i = list.begin() + 1; i != list.end(); i++)
-//     {
-//         if (i->getValue() > maxElmt.getValue()) maxElmt = *i;
-//     }
-    
-//     return maxElmt;
-// }

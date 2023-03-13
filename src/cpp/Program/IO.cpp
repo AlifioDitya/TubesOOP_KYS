@@ -19,9 +19,7 @@ void IO::getInput(int lowerBound, int upperBound) {
 
     while (temp == -1) {
         try {
-
             string userInput;
-
             cin >> userInput;
             
             for (auto c: userInput) {
@@ -30,19 +28,13 @@ void IO::getInput(int lowerBound, int upperBound) {
                 }
             }
 
-           temp = stoi(userInput);
-
+            temp = stoi(userInput);
             if (temp < lowerBound || temp > upperBound) {
                 throw InvalidChoice();
-            
             }
-        }
-
-        catch(const UnmatchedType& err) {
+        } catch(const UnmatchedType& err) {
             cout << err.what() << " Choice should be number." << endl;
-        }
-
-        catch(const exception& err) {
+        } catch(const exception& err) {
             cout << err.what() << endl;
             temp = -1;
         }
@@ -50,8 +42,9 @@ void IO::getInput(int lowerBound, int upperBound) {
 
     choice = temp;
 }
-bool IO::operator==(const int) {
-    return choice == -1;
+
+bool IO::operator==(const int num) {
+    return choice == num;
 }
 
 int IO::getChoice() const {

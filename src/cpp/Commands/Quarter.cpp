@@ -20,7 +20,7 @@ void Quarter::executeCommand(CandyGameState& gameState) {
 
     validateAbility(gameState);
 
-    cout << gameState.getCurrentTurnPlayer().getName() << "melakukan QUARTER! ";
+    cout << gameState.getCurrentTurnPlayer().getName() << " melakukan QUARTER!";
     
     int oldPoint = gameState.getPointPool();
     int newPoint = oldPoint / 4;

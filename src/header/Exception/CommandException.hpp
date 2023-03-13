@@ -17,7 +17,6 @@ public:
 	}
 
 	const char* what() const throw() {
-
 		return ("Maaf, kamu sudah pernah menggunakan ability " + Ability::parseAbility(targetType) + ".").c_str();
 	}
 };
@@ -33,7 +32,7 @@ public:
 
 	const char* what() const throw() {
 		// PERLU MEKANISME PRINT ENUM
-		return ("Ets, tidak bisa. Kamu tidak punya kartu Ability " + Ability::parseAbility(targetType) + ".").c_str();
+		return ("Eits, tidak bisa. Kamu tidak punya kartu Ability " + Ability::parseAbility(targetType) + ".").c_str();
 	}
 };
 

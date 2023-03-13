@@ -15,12 +15,10 @@ Double::Double() {
 
 // Execute method
 void Double::executeCommand(CandyGameState& gameState) {
-
-    
     int oldPoints = gameState.getPointPool();
     int newPoints = oldPoints * 2;
     gameState.setPointPool(newPoints);
 
-    cout << gameState.getCurrentTurnPlayer().getName() << "melakukan DOUBLE! Poin hadiah naik dari " << oldPoints << " menjadi " << newPoints << "!" << endl;
+    cout << gameState.getCurrentTurnPlayer().getName() << " melakukan DOUBLE! Poin hadiah naik dari " << oldPoints << " menjadi " << newPoints << "!" << endl;
     gameState.setNextTurn();
 }

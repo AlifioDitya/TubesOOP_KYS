@@ -24,7 +24,7 @@ void Abilityless::executeCommand(CandyGameState& gameState) {
 
     // Check if all players have used their abilities
     if (gameState.hasAllUsedAbility()) {
-        cout << "Ets, ternyata semua pemain sudah memakai kartu kemampuan. Yah kamu kena sendiri deh, kemampuanmu menjadi abilityless. Penggunaan kartu kamu sia-sia :(" << endl;
+        cout << "Eits, ternyata semua pemain sudah memakai kartu kemampuan. Yah kamu kena sendiri deh, kemampuanmu menjadi abilityless. Penggunaan kartu kamu sia-sia :(" << endl;
 
         gameState.getCurrentTurnPlayer().setNerfed(true);
     }

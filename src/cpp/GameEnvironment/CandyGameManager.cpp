@@ -226,7 +226,7 @@ void CandyGameManager::startRound() {
         currentPlayer.printHand();
         newl();
 
-        if (currentPlayer.getAbility() != AbilityTypes::None && !currentPlayer.hasUsedAbility()) {
+        if (currentPlayer.getAbility() != AbilityTypes::None){// && !currentPlayer.hasUsedAbility()) {
             cout << "Ability yang sedang dimiliki: " << Ability::parseAbility(currentPlayer.getAbility()) << endl << endl;
         }
 
@@ -317,7 +317,10 @@ void CandyGameManager::startSubGame() {
         // }
 
         // Meletakkan 1 kartu dari deck ke table
-        gameState.getTableCards().addItem(gameState.getDeckCards().drawCard());
+
+        if (gameState.getRound() < 6) {
+            gameState.getTableCards().addItem(gameState.getDeckCards().drawCard());
+        }
 
         cout << "Satu kartu diletakkan ke meja : " << gameState.getTableCards().getCards().back() << endl;
         newl(); 

@@ -46,10 +46,8 @@ bool playerHasUsedAbility(const CandyPlayer& player) {
 }
 bool CandyGameState::hasAllUsedAbility() const {
 
-    for (CandyPlayer p: this->playerList) {
-        if (!p.hasUsedAbility()) {
-            return false;
-        }
+    for (auto i = playerList.begin() + 1; i != playerList.end(); i++) {
+        if (!i -> hasUsedAbility()) return false;
     }
 
     return true;

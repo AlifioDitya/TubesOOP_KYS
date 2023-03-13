@@ -21,6 +21,7 @@ int SwapCard::selectCard(string playerName) {
     cout << "Silakan pilih kartu kanan/kiri dari " << playerName << endl;
     cout << "1. Kanan" << endl;
     cout << "2. Kiri" << endl;
+    cout << "Pilihanmu : ";
     
     IO inputIO;
     inputIO.getInput(1, 2);

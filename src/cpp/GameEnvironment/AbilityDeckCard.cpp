@@ -19,5 +19,4 @@ void AbilityDeckCard::defaultConfig() {
     srand(time(NULL));
     random_shuffle(temp.begin(), temp.end());
     deck = stack<AbilityTypes>(temp);
-    
 }

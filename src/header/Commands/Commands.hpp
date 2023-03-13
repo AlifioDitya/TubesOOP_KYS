@@ -4,14 +4,13 @@
 
 #include "../../enums/CmdTypes.hpp"
 #include "../GameEnvironment/CandyGameState.hpp"
+#include "BaseCommand.hpp"
 
 #include <string>
 
 using std::string;
 
-class Commands {
-protected:
-    CmdTypes command;
+class Commands: public BaseCommand<CmdTypes, CandyGameState> {
     
 public:
     // Default ctor
@@ -24,16 +23,14 @@ public:
  
     Commands& operator=(const Commands&);
 
-    // ========== Getters ==========
-    
-    // getter for command type
-    CmdTypes getCommandType() const;
 
-    // ========== Static Methods ==========
+    // ========== Other Methods ==========
 
     // Execute command
     virtual void executeCommand(CandyGameState&) = 0;
 
+    // ========== Static Methods ==========
+    
     // convert command string to type
     static CmdTypes parseCommand(string commandString);
 

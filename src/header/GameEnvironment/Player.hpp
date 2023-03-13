@@ -66,8 +66,11 @@ public:
     // Adds an item to the inventory
     virtual void addItem(const Card&);
 
-    // Removes an item from the inventory
+    // Removes all item from the inventory
     virtual void clear();
+
+    // remove 1 item from hand
+    Card PutCard(int idx);
 
     // Print hand
     void printHand();

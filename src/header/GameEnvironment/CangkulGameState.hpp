@@ -21,7 +21,7 @@ public:
     CangkulGameState();
 
     // Specified ctor
-    CangkulGameState(const vector<Player>& playerList, int roundNum, const TableCard& tableCard, const GameDeckCard& deckCard, const vector<Player>& winningList);
+    CangkulGameState(const vector<Player>& playerList, int roundNum, const TableCard& tableCard, const GameDeckCard& deckCard);
 
     // cctor
     CangkulGameState(const CangkulGameState&);
@@ -36,10 +36,16 @@ public:
 
 
     // ========== Setters ==========
+
     void setWinningList(const vector<Player>&);
 
     // move to next player turn
     void setNextTurn();
+
+    // ========== Other Methods ==========
+
+    // move player in winningList to playerList
+    void moveWinningList();
  
 
 };

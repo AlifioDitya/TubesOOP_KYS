@@ -28,13 +28,6 @@ Commands& Commands::operator=(const Commands& other) {
     return *this;
 }
 
-// ========== Getters ==========
-
-// Getter
-CmdTypes Commands::getCommandType() const {
-    return this->command;
-}
-
 // ========== Static Methods ==========
 
 CmdTypes Commands::parseCommand(string commandString) {

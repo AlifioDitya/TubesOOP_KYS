@@ -4,6 +4,7 @@
 
 #include "GameManager.hpp"
 #include "CangkulGameState.hpp"
+#include "../Commands/CangkulCommand.hpp"
 
 #include <map>
 
@@ -14,25 +15,35 @@ private:
     int playerCount;
     bool isClockwise;
     CangkulGameState gameState;
+    map<CangkulCmdTypes, CangkulCommand*> actions;
 
     // ========== Private Methods ==========
+
+    // get input of player count from user and set the atribute
+    void initializePlayerCount();
 
     // return initial player list with input name
     vector<Player> getInitialPlayerList(int playerNum) const;
    
     // get command input from user
-    // Commands* getPlayerCommand();
-
-    // initiate deck card (random or file input)
-
-    void initializePlayerCount();
-    void initializePlayerList();
+    CangkulCommand* getPlayerCommand();
 
     void startRound();
+    void startSubGame();
 public:
+
+    // Ctor
     CangkulGameManager();
+    // Dtor
     ~CangkulGameManager();
+
+    // ========== Methods ==========
+    
+    // Start whole game
     void startGame();
+
+    // ========== Static Atribute ==========
+    static int initialDraw;
 };
 
 #endif

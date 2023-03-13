@@ -29,6 +29,8 @@ class DeckCard : public InventoryHolder<T> {
 
     }
 
+    virtual void defaultConfig() = 0;
+
     // User-defined Ctor
     // initialize stack with cards ordered as in config and first-index card being at top
     DeckCard(const vector<T>& config) {

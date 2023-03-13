@@ -54,7 +54,10 @@ class CandyGameManager: public GameManager {
     // ========== Methods ==========
 
     // start whole game
-    void startGame();    
+    void startGame();
+
+    // ========== Static Atribute ==========
+    static int initialDraw;
 
 };
 

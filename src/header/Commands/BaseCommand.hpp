@@ -1,43 +1,39 @@
-// // Commands.hpp
-// #ifndef BASECOMMAND_HPP
-// #define BASECOMMAND_HPP
+// Commands.hpp
+#ifndef BASECOMMAND_HPP
+#define BASECOMMAND_HPP
 
 
-// #include <string>
+#include <string>
 
-// using std::string;
+using std::string;
 
-
-// class Commands {
-// protected:
-//     CmdTypes command;
+template <class T1, class T2>
+class BaseCommand {
+protected:
+    T1 command;
     
-// public:
-//     // Default ctor
-//     Commands();
+public:
+    // Default ctor
+    BaseCommand() {
 
-//     // dtor
-//     virtual ~Commands();
+    }
 
-//     // ========== Operators ==========
- 
-//     Commands& operator=(const Commands&);
+    // dtor
+    virtual ~BaseCommand() {
 
-//     // ========== Getters ==========
+    }
+
+    // ========== Getters ==========
     
-//     // getter for command type
-//     CmdTypes getCommandType() const;
+    // getter for command type
+    virtual T1 getCommandType() const {
+        return command;
+    }
 
-//     // ========== Static Methods ==========
+    // ========== Methods ==========
 
-//     // Execute command
-//     virtual void executeCommand(CandyGameState&) = 0;
+    // Execute command
+    virtual void executeCommand(T2&) = 0;
+};
 
-//     // convert command string to type
-//     static CmdTypes parseCommand(string commandString);
-
-//     // convert command type to string
-//     static string parseCommand(CmdTypes);
-// };
-
-// #endif
+#endif

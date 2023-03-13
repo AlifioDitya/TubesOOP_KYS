@@ -92,6 +92,14 @@ void Player::clear() {
     hand.clear();
 }
 
+Card Player::PutCard(int idx) {
+    Card temp = hand[idx];
+
+    hand.erase(hand.begin() + idx);
+    
+    return temp;
+}
+
 void Player::printHand() {
     if (hand.size() == 2) {
         cout << "[" << getHand()[0] << ", " << getHand()[1] << "]" << endl;

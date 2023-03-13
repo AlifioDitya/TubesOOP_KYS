@@ -7,6 +7,8 @@
 class GameManager {
     protected:
     
+    virtual void startSubGame() = 0;
+    virtual void startRound() = 0;
     public:
 
     // ========= Methods ==========

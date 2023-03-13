@@ -21,10 +21,10 @@ Rank Card::getRank() const {
 
 string Card::getColorString() const {
     map<Color, string> colorMap = {
-        {Color::Blue, "Blue"},
-        {Color::Green, "Green"},
-        {Color::Red, "Red"},
-        {Color::Yellow, "Yellow"},
+        {Color::Blue, "Biru"},
+        {Color::Green, "Hijau"},
+        {Color::Red, "Merah"},
+        {Color::Yellow, "Kuning"},
     };
 
     return colorMap[color];
@@ -47,6 +47,6 @@ double Card::getValue() const {
 }
 
 ostream& operator<<(ostream& o, const Card& card) {
-    o << card.getRank() << " " << card.getColorString();
+    o << card.getRank() << " (" << card.getColorString() << ")";
     return o;
 }

@@ -26,10 +26,13 @@ void Half::executeCommand(CandyGameState& gameState) {
              << ". Poin tidak berubah.. Giliran dilanjut!" << endl;
     }
 
-    // Halve the point pool
-    gameState.setPointPool(newPoint);
+    else {
+        // Halve the point pool
+        gameState.setPointPool(newPoint);
 
-    cout << "Poin hadiah turun dari " << oldPoint << " menjadi " << newPoint << "!" << endl;
+        cout << "Poin hadiah turun dari " << oldPoint << " menjadi " << newPoint << "!" << endl;
+
+    }
 
     gameState.setNextTurn();
 }

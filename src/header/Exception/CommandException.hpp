@@ -32,7 +32,7 @@ private:
 public:
 	MissingAbility(AbilityTypes targetType) {
 		this->targetType = targetType;
-		msg = "Eits, tidak bisa. Kamu tidak punya kartu Ability " + Ability::parseAbility(targetType) + ".";
+		msg = "Ets, tidak bisa. Kamu tidak punya kartu Ability " + Ability::parseAbility(targetType) + ".";
 	}
 
 	const char* what() const throw() {

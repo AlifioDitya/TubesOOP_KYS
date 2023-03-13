@@ -106,7 +106,7 @@ bool Player::hasPlayedThisRound() const {
 
 void Player::printHand() {
     if (hand.size() == 2) {
-        cout << "(" << getHand()[0] << ", " << getHand()[1] << ")" << endl;
+        cout << "[" << getHand()[0] << ", " << getHand()[1] << "]" << endl;
     }
 }
 

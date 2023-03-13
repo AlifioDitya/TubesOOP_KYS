@@ -30,12 +30,12 @@ void TableCard::setCards(const vector<Card>& cards) {
 
 void TableCard::showCards() {
     bool first = true;
-    cout << "(";
+    cout << "[";
     for (auto card : cards) {
         if (first) first = false;
         else cout << ", ";
         
         cout << card;
     }
-    cout << ")" << endl;
+    cout << "]" << endl;
 }

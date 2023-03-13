@@ -20,7 +20,7 @@ void GameDeckCard::defaultConfig() {
     }
 
     random_shuffle(tempCards.begin(), tempCards.end());
-
+    
     for (Card card: tempCards) {
         deck.push(card);
     }

@@ -24,8 +24,9 @@ class DeckCard : public InventoryHolder<T> {
 
    public:
     // initialize stack with cards with random order
-    DeckCard(){};
+    DeckCard() {
 
+    }
 
     // initialize stack with cards ordered as in config and first-index card being at top
     DeckCard(const vector<T>& config) {

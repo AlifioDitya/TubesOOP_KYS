@@ -176,7 +176,7 @@ class GameState {
 
     // Methods for printing player list
     void printPlayerList() const {
-        for (int i = 0; i < playerList.size(); i++) {
+        for (long unsigned int i = 0; i < playerList.size(); i++) {
             cout << i + 1 << ". " << playerList[i].getName() << endl;
         }
     }

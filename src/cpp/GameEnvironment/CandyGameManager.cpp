@@ -14,6 +14,8 @@
 #include "../../header/Commands/SwapCard.hpp"
 #include "../../header/Commands/Switch.hpp"
 #include "../../header/Cards/Combination.hpp"
+#include "../../header/GameEnvironment/GameState.hpp"
+#include "../../header/GameEnvironment/CandyGameState.hpp"
 
 #include <map>
 #include <iostream>

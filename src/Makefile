@@ -1,7 +1,7 @@
 CXX := g++
 CXXFLAGS := -c -Wall
 LFLAGS := -Wall
-EXECUTABLE := candy_game  # Final executable file name
+EXECUTABLE := candy_game.out  # Final executable file name
 
 # List of all the source files
 

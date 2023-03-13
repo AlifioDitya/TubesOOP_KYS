@@ -371,7 +371,7 @@ void CandyGameManager::startGame() {
 
         startSubGame();
         vector<CandyPlayer> playerList = gameState.getPlayerList();
-        CandyPlayer leaderPlayer = getMax(playerList);
+        leadingPlayer = getMax(playerList);
 
         counter++;
 
@@ -379,8 +379,8 @@ void CandyGameManager::startGame() {
 
     newl();
     border();
-    gameState.printLeaderBoard();
     cout << "Permainan Berakhir.";
+    gameState.printLeaderBoard();
     cout << "Permainan dimenangkan oleh " << leadingPlayer.getName() << endl;
     border();
     newl();

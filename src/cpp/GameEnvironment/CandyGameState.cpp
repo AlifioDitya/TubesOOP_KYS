@@ -73,5 +73,5 @@ void CandyGameState::setNextTurn() {
     GameState::setNextTurn();
 
     if (hasAllPlayed()) skipCurrentPlayer();
-    
+
 }

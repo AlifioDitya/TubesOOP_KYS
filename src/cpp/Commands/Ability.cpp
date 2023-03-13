@@ -12,7 +12,10 @@ void Ability::validateAbility(CandyGameState& gameState) {
 
     CandyPlayer currentPlayer = gameState.getCurrentTurnPlayer();
     // check if current player has matching ability
+
     if (!currentPlayer.hasAbility(abilityType)) {
+
+        
         throw MissingAbility(abilityType);
     }
 

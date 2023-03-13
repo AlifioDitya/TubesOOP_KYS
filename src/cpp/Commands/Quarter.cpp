@@ -27,14 +27,16 @@ void Quarter::executeCommand(CandyGameState& gameState) {
 
     // Check if point has reached one
     if (oldPoint <= 1) {
-        cout << "Sayangnya poin hadiah sudah bernilai " << oldPoint 
+        cout << " Sayangnya poin hadiah sudah bernilai " << oldPoint 
              << ". Poin tidak berubah.. Giliran dilanjut!" << endl;
     }
 
+    else {
     // Quarter the point pool
     gameState.setPointPool(newPoint);
 
-    cout << "Poin hadiah turun dari " << oldPoint << " menjadi " << newPoint << "!" << endl;
+    cout << " Poin hadiah turun dari " << oldPoint << " menjadi " << newPoint << "!" << endl;
+    }
 
     // Set the ability used flag to true and end the turn
     gameState.getCurrentTurnPlayer().setAbilityUsed(true);

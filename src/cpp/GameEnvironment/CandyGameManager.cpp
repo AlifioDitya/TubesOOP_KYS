@@ -232,14 +232,22 @@ void CandyGameManager::startRound() {
         cout << "10. SWITCH" << endl;
         cout << endl;
 
-        try {
+        bool stop = false;
+
+        while (!stop)
+        {
+            try {
             Commands* command = getPlayerCommand();
             command->executeCommand(gameState);
-        } catch (const exception& err) {
-            cout << err.what() << " Silahkan lakukan perintah lain." << endl;
+            stop = true;
+            } catch (const exception& err) {
+                cout << err.what() << " Silahkan lakukan perintah lain." << endl;
+            }
         }
+
     }
     
+    cout << endl;
     cout << "Satu putaran selesai!" << endl;
     cout << "==============================" << endl;
     cout << endl;
@@ -266,8 +274,8 @@ void CandyGameManager::startSubGame() {
     while(gameState.getRound() < 6) {
         // Round selanjutnya
         gameState.setRound(gameState.getRound() + 1);
-        startRound();
 
+        // testing
         if (gameState.getRound() == 1) {
             // Memberikan ability ke setiap player
 
@@ -279,6 +287,21 @@ void CandyGameManager::startSubGame() {
                 player.setAbility(gameState.getAbilities().drawCard());
             }
         }
+
+        startRound();
+
+        
+        // if (gameState.getRound() == 1) {
+        //     // Memberikan ability ke setiap player
+
+        //     cout << "Ability akan dibagikan ke setiap pemain!" << endl;
+        //     cout << endl;
+
+        //     for (long unsigned int i = 0; i < gameState.getPlayerList().size(); i++) {
+        //         CandyPlayer& player = gameState.getPlayerRefAt(i);
+        //         player.setAbility(gameState.getAbilities().drawCard());
+        //     }
+        // }
 
         // Meletakkan 1 kartu dari deck ke table
         gameState.getTableCards().addItem(gameState.getDeckCards().drawCard());

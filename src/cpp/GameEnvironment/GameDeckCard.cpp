@@ -1,6 +1,7 @@
 #include "../../header/GameEnvironment/GameDeckCard.hpp"
 #include "../../header/GameEnvironment/DeckCard.hpp"
 #include <algorithm>
+#include <iostream>
 
 using std::random_shuffle;
 
@@ -19,8 +20,11 @@ void GameDeckCard::defaultConfig() {
         }
     }
 
+    srand(time(NULL));
+
     random_shuffle(tempCards.begin(), tempCards.end());
     
+    // for (auto card: tempCards) std::cout << card << std::endl;
     for (Card card: tempCards) {
         deck.push(card);
     }

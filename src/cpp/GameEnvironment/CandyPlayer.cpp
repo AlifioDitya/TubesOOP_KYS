@@ -11,19 +11,21 @@ using std::endl;
 
 // Default ctor
 CandyPlayer::CandyPlayer() {
+    ability = AbilityTypes::None;
     usedAbility = false;
     nerfed = false;
 }
 
 // Specified ctor
 CandyPlayer::CandyPlayer(int id, const vector<Card>& hand, int point, string name, bool hasPlayed): Player(id, hand, point, name, hasPlayed) {
+    ability = AbilityTypes::None;
     usedAbility = false;
     nerfed = false;
 }
 
 // cctor
 CandyPlayer::CandyPlayer(const CandyPlayer& other): Player(other) {
-
+    ability = other.ability;
     usedAbility = other.usedAbility;
     nerfed = other.nerfed;
 }
@@ -34,6 +36,7 @@ CandyPlayer& CandyPlayer::operator=(const CandyPlayer& other) {
     if (this != &other) {
 
         Player::operator=(other);
+        ability = other.ability;
         usedAbility = other.usedAbility;
         nerfed = other.nerfed;
     }
@@ -58,6 +61,7 @@ void CandyPlayer::setNerfed(bool nerf) {
 
 // Set ability
 void CandyPlayer::setAbility(AbilityTypes ability) {
+
     this->ability = ability;
 }
 

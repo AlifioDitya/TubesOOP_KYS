@@ -19,8 +19,7 @@ template <class T>
 class GameState {
    protected:
     deque<T> playerList;
-    // giliran selalu indeks 0
-    // int currentTurnIdx;
+
     int round;
     int pointPool;
     TableCard tableCards;

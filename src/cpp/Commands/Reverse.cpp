@@ -46,6 +46,7 @@ void Reverse::executeCommand(CandyGameState& gameState) {
 
     // Set the ability used flag to true and end the turn
     gameState.getCurrentTurnPlayer().setAbilityUsed(true);
+    gameState.setIsReversed(true);
 
     // Player that executes reverse will get another turn
 

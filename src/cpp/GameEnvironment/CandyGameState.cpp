@@ -72,6 +72,6 @@ void CandyGameState::setNextTurn() {
 
     GameState::setNextTurn();
 
-    if (hasAllPlayed()) skipCurrentPlayer();
+    if (hasAllPlayed() && !(isReversed && (long unsigned int)getCurrentTurnPlayer().getId() != playerList.size())) skipCurrentPlayer();
 
 }

@@ -1,4 +1,5 @@
 #include "../../header/GameEnvironment/Player.hpp"
+#include "../../header/GameEnvironment/InventoryHolder.hpp"
 #include <string>
 #include <vector>
 #include <iostream>
@@ -84,6 +85,11 @@ int Player::countItems() const {
 // Returns player name
 string Player::getName() const {
     return name;
+}
+
+// Returns player point
+long long Player::getPoint() const {
+    return point;
 }
 
 // Adds an item to the inventory

@@ -1,4 +1,5 @@
 #include "../../header/GameEnvironment/CandyPlayer.hpp"
+#include "../../header/GameEnvironment/Player.hpp"
 #include <string>
 #include <vector>
 #include <iostream>

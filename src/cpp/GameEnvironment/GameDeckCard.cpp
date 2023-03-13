@@ -1,5 +1,5 @@
 #include "../../header/GameEnvironment/GameDeckCard.hpp"
-
+#include "../../header/GameEnvironment/DeckCard.hpp"
 #include <algorithm>
 using std::random_shuffle;
 

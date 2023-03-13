@@ -9,13 +9,14 @@ SOURCES=cpp/Card/Card.cpp cpp/Card/CardInterface.cpp cpp/Card/Combination.cpp \
         cpp/GameEnvironment/GameDeckCard.cpp cpp/GameEnvironment/AbilityDeckCard.cpp \
         cpp/GameEnvironment/CandyPlayer.cpp \
         cpp/GameEnvironment/CandyGameState.cpp \
-        cpp/Commands/Commands.cpp cpp/Commands/Ability.cpp cpp/Commands/Abilityless.cpp \
-        cpp/Commands/Double.cpp cpp/Commands/Half.cpp cpp/Commands/Next.cpp \
-        cpp/Commands/PlayerInvolvedAbility.cpp cpp/Commands/Quadruple.cpp cpp/Commands/Reroll.cpp \
-        cpp/Commands/SwapCard.cpp cpp/Commands/Switch.cpp \
-        cpp/GameEnvironment/GameManager.cpp \
-        cpp/GameEnvironment/CandyGameManager.cpp \
-        cpp/Program/IO.cpp main.cpp
+        cpp/Commands/Commands.cpp \
+        # cpp/Commands/Ability.cpp cpp/Commands/Abilityless.cpp \
+        # cpp/Commands/Double.cpp cpp/Commands/Half.cpp cpp/Commands/Next.cpp \
+        # cpp/Commands/PlayerInvolvedAbility.cpp cpp/Commands/Quadruple.cpp cpp/Commands/Reroll.cpp \
+        # cpp/Commands/SwapCard.cpp cpp/Commands/Switch.cpp \
+        # cpp/GameEnvironment/GameManager.cpp \
+        # cpp/GameEnvironment/CandyGameManager.cpp \
+        # cpp/Program/IO.cpp main.cpp
 
 # Generate a list of object files from the source file list
 OBJECTS=$(SOURCES:.cpp=.o)

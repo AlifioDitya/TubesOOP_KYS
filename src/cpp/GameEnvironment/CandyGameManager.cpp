@@ -153,9 +153,11 @@ void CandyGameManager::inititateDeck() {
 
     if (choiceIO == 1) {
         gameState.getDeckCards().defaultConfig();
+    
     } else {
         gameState.setDeckCards(readDeckConfig());
     }
+
 }
 
 vector<CandyPlayer> CandyGameManager::getInitialPlayerList(int playerNum) const {
@@ -164,12 +166,13 @@ vector<CandyPlayer> CandyGameManager::getInitialPlayerList(int playerNum) const 
 
     for (int i = 1; i <= playerNum; i++) {
         string playerName;
+
         // cout << "Masukkan nama pemain " << i << " : ";
         // cin >> playerName;
 
         // playerList.push_back(CandyPlayer(i, vector<Card>(), 0, playerName, false));
 
-        playerList.push_back(CandyPlayer(i, vector<Card>(), 0, "temp" + std::to_string(i), false));
+        playerList.push_back(CandyPlayer(i, vector<Card>(), 0, "temp" + std::to_string(i), false)); // testing
     }
 
     return playerList;
@@ -265,6 +268,8 @@ void CandyGameManager::startRound() {
 void CandyGameManager::startSubGame() {
     // Sub Game jika belum ada pemenang
     // Reset gamestate kecuali player dan turn
+    // gameState.setRound(5); // testing
+    // gameState.setPointPool(CandyGameState::winnerPoint); // testing
     gameState.setRound(0);
     gameState.setPointPool(CandyGameState::initialPoint);
     gameState.getTableCards().clear();
@@ -295,7 +300,7 @@ void CandyGameManager::startSubGame() {
                 player.setAbility(gameState.getAbilities().drawCard());
             }
         }
-
+        
         startRound();
 
         
@@ -336,6 +341,7 @@ void CandyGameManager::startSubGame() {
 
     CandyPlayer& winner = gameState.getPlayerRefAt(gameState.getPlayerIdx(combosMap[getMax(combos)].getId()));
     winner.addPoint(gameState.getPointPool());
+
 }
 
 void CandyGameManager::startGame() {
@@ -349,7 +355,7 @@ void CandyGameManager::startGame() {
 
     // Inisiasi gameState
     gameState = CandyGameState(getInitialPlayerList(7), 0, CandyGameState::initialPoint, TableCard(), GameDeckCard(), AbilityDeckCard(), false);
-
+    
     int counter = 0;
 
     do {

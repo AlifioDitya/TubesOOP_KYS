@@ -21,13 +21,14 @@ void IO::getInput(int lowerBound, int upperBound) {
         try {
             string userInput;
             cin >> userInput;
-            
+    
             for (auto c: userInput) {
+                
                 if (!isdigit(c)) {
                     throw UnmatchedType();
                 }
             }
-
+            
             temp = stoi(userInput);
             if (temp < lowerBound || temp > upperBound) {
                 throw InvalidChoice();
@@ -41,6 +42,7 @@ void IO::getInput(int lowerBound, int upperBound) {
     }
 
     choice = temp;
+
 }
 
 bool IO::operator==(const int num) {

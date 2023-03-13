@@ -20,6 +20,8 @@ void GameDeckCard::defaultConfig() {
         }
     }
 
+    
+
     srand(time(NULL));
 
     random_shuffle(tempCards.begin(), tempCards.end());

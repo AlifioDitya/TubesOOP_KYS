@@ -18,18 +18,20 @@ CandyGameState::CandyGameState() {
 
 // Specified ctor
 CandyGameState::CandyGameState(const vector<CandyPlayer>& playerList, int roundNum, int points, 
-        const TableCard& tableCard, const GameDeckCard& deckCard, const AbilityDeckCard& abilities, bool isReversed):      
+        const TableCard& tableCard, const GameDeckCard& deckCard, const AbilityDeckCard& abilities, int reversePlayerId):      
 
     GameState<CandyPlayer>(playerList, roundNum, points, tableCard, deckCard) 
 {
     // ABILITIES INITIATION
 
-    this->isReversed = isReversed;
+    this->reversePlayerId = reversePlayerId;
 }
 
 // Copy ctor
 CandyGameState::CandyGameState(const CandyGameState& gs):GameState<CandyPlayer>(gs) {
     // ABILITIES COPY
+    abilities = gs.abilities;
+    reversePlayerId = gs.reversePlayerId;
 }
 
 // Destructor
@@ -61,17 +63,23 @@ AbilityDeckCard& CandyGameState::getAbilities() {
     return abilities;
 }
 
-bool CandyGameState::getIsReversed() const {
-    return isReversed;
+int CandyGameState::getReversePlayerId() const {
+    return reversePlayerId;
 }
-void CandyGameState::setIsReversed(bool isReverse) {
-    this->isReversed = isReverse;
+void CandyGameState::setReversePlayerId(int reversePlayerId) {
+    this->reversePlayerId = reversePlayerId;
 }
 
 void CandyGameState::setNextTurn() {
 
     GameState::setNextTurn();
 
-    if (hasAllPlayed() && !(isReversed && (long unsigned int)getCurrentTurnPlayer().getId() != playerList.size())) skipCurrentPlayer();
+    if (hasAllPlayed())
+    {
+        if (playerList.back().getId() != reversePlayerId) skipCurrentPlayer();
+
+        // inisiasi round baru
+        reversePlayerId = 0;
+    }
 
 }

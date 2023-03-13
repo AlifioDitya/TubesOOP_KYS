@@ -13,7 +13,7 @@ using std::vector;
 class CandyGameState: public GameState<CandyPlayer> {
 private:
     AbilityDeckCard abilities;
-    bool isReversed;
+    int reversePlayerId;
 
 public:
     // Default ctor
@@ -21,7 +21,7 @@ public:
 
     // Specified ctor
     CandyGameState(const vector<CandyPlayer>& playerList, int roundNum, int points, const TableCard& tableCard, 
-        const GameDeckCard& deckCard, const AbilityDeckCard& abilities, bool isReversed);
+        const GameDeckCard& deckCard, const AbilityDeckCard& abilities, int reversePlayerId);
 
     // cctor
     CandyGameState(const CandyGameState&);
@@ -30,7 +30,7 @@ public:
     ~CandyGameState();
 
     // Predicates
-    bool getIsReversed() const;
+    int getReversePlayerId() const;
 
     // check if all player used ability
     bool hasAllUsedAbility() const;
@@ -39,7 +39,7 @@ public:
 
     void setNextTurn();
 
-    void setIsReversed(bool);
+    void setReversePlayerId(int);
     
     AbilityDeckCard& getAbilities();
 

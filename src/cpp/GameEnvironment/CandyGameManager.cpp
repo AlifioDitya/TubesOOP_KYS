@@ -259,7 +259,6 @@ void CandyGameManager::startSubGame() {
     gameState.setRound(0);
     gameState.setPointPool(CandyGameState::initialPoint);
     gameState.getTableCards().clear();
-    gameState.setIsReversed(false);
 
     // Reset deck
     inititateDeck();

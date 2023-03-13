@@ -44,3 +44,8 @@ string Card::getRankString() const {
 double Card::getValue() const {
     return value;
 }
+
+ostream& operator<<(ostream& o, const Card& card) {
+    o << card.getRank() << " " << card.getColorString();
+    return o;
+}

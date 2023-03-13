@@ -7,15 +7,14 @@
 #include "CardInterface.hpp"
 
 using std::string;
-
-using std::string;
+using std::ostream;
 
 class Card : public CardInterface {
-   private:
+private:
     Color color;
     Rank rank;
 
-   public:
+public:
     // CTOR with parameters
     Card(Color, Rank);
 
@@ -27,6 +26,8 @@ class Card : public CardInterface {
 
     // Getter for weight based on spec (assumed as high card)
     double getValue() const;
+    
+    friend ostream& operator<<(ostream&, const Card&);
 };
 
 #endif

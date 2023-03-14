@@ -26,7 +26,6 @@ private:
     Rank rank;
 
 public:
-     
     Card(Color, Rank);
 
     // ========== Operators ==========
@@ -46,21 +45,21 @@ public:
      * @return Color type
      */
     Color getColor() const;
-    
+
     /**
      * @brief Get the Rank of the card
      * 
      * @return Rank 
      */
     Rank getRank() const;
-    
+
     /**
      * @brief Get the string representation of the card color
      * 
      * @return Color string
      */
     string getColorString() const;
-    
+
     /**
      * @brief Get the string representation of the card rank
      * 
@@ -74,7 +73,6 @@ public:
      * @return Value of high card
      */
     double getValue() const;
-    
 };
 
 #endif

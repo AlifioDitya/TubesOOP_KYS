@@ -1,3 +1,4 @@
+// AbilityDeckCard.cpp
 #include "../../header/GameEnvironment/AbilityDeckCard.hpp"
 #include "../../header/GameEnvironment/DeckCard.hpp"
 
@@ -12,8 +13,7 @@ AbilityDeckCard::AbilityDeckCard() {
     defaultConfig();
 }
 
-AbilityDeckCard::AbilityDeckCard(const vector<AbilityTypes>& cards): DeckCard<AbilityTypes>(cards) {
-}
+AbilityDeckCard::AbilityDeckCard(const vector <AbilityTypes>& cards) : DeckCard<AbilityTypes>(cards) {}
 
 // ========== Methods ==========
 

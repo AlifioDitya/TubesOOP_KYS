@@ -14,8 +14,7 @@
  * 
  */
 class GameManager {
-    protected:
-    
+protected:
     /**
      * @brief Virtual method to be implemented by sub-classes to start a sub-game.
      * 
@@ -27,14 +26,13 @@ class GameManager {
      * 
      */
     virtual void startRound() = 0;
-    public:
 
+public:
     /**
      * @brief Initiates the start of a game.
      * 
      */
     virtual void startGame() = 0;
-
 };
 
 #endif

@@ -15,7 +15,6 @@
  * 
  */
 class Ability : public Commands {
-
 protected:
     AbilityTypes abilityType;
 
@@ -27,7 +26,6 @@ protected:
     void validateAbility(CandyGameState& gameState);
 
 public:
-
     /**
      * @brief Converts the ability from string to AbilityTypes
      * 
@@ -42,7 +40,6 @@ public:
      * @return string representation of an AbilityTypes object
      */
     static string parseAbility(AbilityTypes);
-
 };
 
 #endif

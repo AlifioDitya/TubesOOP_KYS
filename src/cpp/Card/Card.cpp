@@ -8,7 +8,7 @@ using std::endl;
 using std::map;
 
 Card::Card(Color color, Rank rank)
-    : CardInterface((double)rank / 10 + color * 0.03), color(color), rank(rank) {
+        : CardInterface((double) rank / 10 + color * 0.03), color(color), rank(rank) {
 }
 
 Color Card::getColor() const {
@@ -20,23 +20,31 @@ Rank Card::getRank() const {
 }
 
 string Card::getColorString() const {
-    map<Color, string> colorMap = {
-        {Color::Blue, "Biru"},
-        {Color::Green, "Hijau"},
-        {Color::Red, "Merah"},
-        {Color::Yellow, "Kuning"},
+    map <Color, string> colorMap = {
+            {Color::Blue,   "Biru"},
+            {Color::Green,  "Hijau"},
+            {Color::Red,    "Merah"},
+            {Color::Yellow, "Kuning"},
     };
 
     return colorMap[color];
 }
 
 string Card::getRankString() const {
-    map<Rank, string> rankMap = {
-        {Rank::One, "As"},        {Rank::Two, "Two"},     {Rank::Three, "Three"},
-        {Rank::Four, "Four"},     {Rank::Five, "Five"},   {Rank::Six, "Six"},
-        {Rank::Seven, "Seven"},   {Rank::Eight, "Eight"}, {Rank::Nine, "Nine"},
-        {Rank::Ten, "Ten"},       {Rank::Eleven, "Jack"}, {Rank::Twelve, "Queen"},
-        {Rank::Thirteen, "King"},
+    map <Rank, string> rankMap = {
+            {Rank::One,      "As"},
+            {Rank::Two,      "Two"},
+            {Rank::Three,    "Three"},
+            {Rank::Four,     "Four"},
+            {Rank::Five,     "Five"},
+            {Rank::Six,      "Six"},
+            {Rank::Seven,    "Seven"},
+            {Rank::Eight,    "Eight"},
+            {Rank::Nine,     "Nine"},
+            {Rank::Ten,      "Ten"},
+            {Rank::Eleven,   "Jack"},
+            {Rank::Twelve,   "Queen"},
+            {Rank::Thirteen, "King"},
     };
 
     return rankMap[rank];

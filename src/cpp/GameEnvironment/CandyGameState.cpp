@@ -1,4 +1,4 @@
-// GameState.cpp
+// CandyGameState.cpp
 #include "../../header/GameEnvironment/CandyGameState.hpp"
 
 #include <iostream>
@@ -17,18 +17,18 @@ CandyGameState::CandyGameState() {
     pointPool = initialPoint;
 }
 
-CandyGameState::CandyGameState(const vector<CandyPlayer>& playerList, int roundNum, uint64_t points, 
-        const TableCard& tableCard, const GameDeckCard& deckCard, const AbilityDeckCard& abilities, int reversePlayerId):      
-    
-    GameState<CandyPlayer>(playerList, roundNum, tableCard, deckCard) 
-{
+CandyGameState::CandyGameState(const vector <CandyPlayer>& playerList, int roundNum, uint64_t points,
+                               const TableCard& tableCard, const GameDeckCard& deckCard,
+                               const AbilityDeckCard& abilities, int reversePlayerId) :
+
+        GameState<CandyPlayer>(playerList, roundNum, tableCard, deckCard) {
     // ABILITIES INITIATION
     this->abilities = abilities;
     this->reversePlayerId = reversePlayerId;
     this->pointPool = points;
 }
 
-CandyGameState::CandyGameState(const CandyGameState& gs):GameState<CandyPlayer>(gs) {
+CandyGameState::CandyGameState(const CandyGameState& gs) : GameState<CandyPlayer>(gs) {
     // ABILITIES COPY
     abilities = gs.abilities;
     reversePlayerId = gs.reversePlayerId;
@@ -60,7 +60,7 @@ uint64_t CandyGameState::getPointPool() const {
 bool CandyGameState::hasAllUsedAbility() const {
 
     for (auto i = playerList.begin() + 1; i != playerList.end(); i++) {
-        if (!i -> hasUsedAbility()) return false;
+        if (!i->hasUsedAbility()) return false;
     }
 
     return true;
@@ -76,8 +76,7 @@ void CandyGameState::setNextTurn() {
 
     GameState::setNextTurn();
 
-    if (hasAllPlayed())
-    {
+    if (hasAllPlayed()) {
         if (playerList.back().getId() != reversePlayerId) skipCurrentPlayer();
 
         // inisiasi round baru
@@ -97,7 +96,7 @@ void CandyGameState::setPointPool(uint64_t points) {
 // ========== Other Methods ==========
 
 void CandyGameState::printLeaderBoard() const {
-    vector<CandyPlayer> list = getPlayerList();
+    vector <CandyPlayer> list = getPlayerList();
 
     sort(list.begin(), list.end());
 
@@ -112,9 +111,8 @@ void CandyGameState::printNextRoundTurn() const {
     auto i = playerList.begin() + 1;
     long unsigned int counter = 0;
 
-    while (counter < playerList.size())
-    {
-        cout << "<" << i->getName()<< "> ";
+    while (counter < playerList.size()) {
+        cout << "<" << i->getName() << "> ";
 
         int idx = i - playerList.begin();
         i = playerList.begin() + ((idx + 1) % playerList.size());

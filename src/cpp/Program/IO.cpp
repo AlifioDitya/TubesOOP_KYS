@@ -36,33 +36,32 @@ void IO::getInput(int lowerBound, int upperBound) {
 
             cout << "Pilihan : ";
             cin >> userInput;
-    
+
             for (auto c: userInput) {
-                
                 if (!isdigit(c)) {
                     throw UnmatchedType();
                 }
             }
-            
+
             temp = stoi(userInput);
             if (temp < lowerBound || temp > upperBound) {
                 throw InvalidChoice();
             }
-        } catch(const UnmatchedType& err) {
+        } catch (const UnmatchedType& err) {
             cout << err.what() << " Masukan harus berupa angka." << endl;
-        } catch(const exception& err) {
+        } catch (const exception& err) {
             cout << err.what() << endl;
             temp = -1;
         }
     }
 
     choice = temp;
-
 }
 
 void IO::newl() {
     cout << endl;
 }
+
 void IO::border() {
     cout << "==============================" << endl;
 }

@@ -8,14 +8,12 @@
 using std::cout;
 using std::endl;
 
- 
 Half::Half() {
     this->command = CmdTypes::Half;
 }
 
 // ========== Methods ==========
 
- 
 void Half::executeCommand(CandyGameState& gameState) {
     cout << gameState.getCurrentTurnPlayer().getName() << " melakukan HALF! ";
 
@@ -24,16 +22,13 @@ void Half::executeCommand(CandyGameState& gameState) {
 
     // Check if point has reached one
     if (oldPoint <= 1) {
-        cout << " Sayangnya poin hadiah sudah bernilai " << oldPoint 
+        cout << " Sayangnya poin hadiah sudah bernilai " << oldPoint
              << ". Poin tidak berubah.. Giliran dilanjut!" << endl;
-    }
-
-    else {
+    } else {
         // Halve the point pool
         gameState.setPointPool(newPoint);
 
         cout << " Poin hadiah turun dari " << oldPoint << " menjadi " << newPoint << "!" << endl;
-
     }
 
     gameState.setNextTurn();

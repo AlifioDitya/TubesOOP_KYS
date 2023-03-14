@@ -21,7 +21,7 @@ using std::string;
  * @extends BaseCommand
  * 
  */
-class CangkulCommand: public BaseCommand<CangkulCmdTypes, CangkulGameState> {
+class CangkulCommand : public BaseCommand<CangkulCmdTypes, CangkulGameState> {
 protected:
     /**
      * @brief Validate command by throwing exception if necessary

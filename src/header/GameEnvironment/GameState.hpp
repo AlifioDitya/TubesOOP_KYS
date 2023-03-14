@@ -27,13 +27,13 @@ using std::greater;
  * 
  * @tparam T Element type of the players in the game.
  */
-template <class T>
+template<class T>
 class GameState {
-   protected:
-   /**
-    * @brief Deque that contains the list of players
-    * 
-    */
+protected:
+    /**
+     * @brief Deque that contains the list of players
+     *
+     */
     deque<T> playerList;
 
     /**
@@ -54,7 +54,7 @@ class GameState {
      */
     GameDeckCard deckCards;
 
-   public:
+public:
     /**
      * @brief Construct a new Game State object
      * 
@@ -105,7 +105,7 @@ class GameState {
      * @brief Destroy the Game State object
      * 
      */
-    ~GameState(){};
+    ~GameState() {};
 
     /**
      * @brief Set the Player List
@@ -155,9 +155,7 @@ class GameState {
 
         if (hasAllPlayed()) {
             skipCurrentPlayer();
-        }
-
-        else {
+        } else {
             while (playerList[0].hasPlayedThisRound()) {
                 skipCurrentPlayer();
             }
@@ -175,7 +173,6 @@ class GameState {
     void setAllNotPlayed() {
         for (long unsigned int i = 0; i < getPlayerList().size(); i++) {
             T& player = getPlayerRefAt(i);
-
             player.setHasPlayed(false);
         }
     };
@@ -241,7 +238,7 @@ class GameState {
      * @return false otherwise.
      */
     bool hasAllPlayed() const {
-        for (auto player : playerList) {
+        for (auto player: playerList) {
             if (!player.hasPlayedThisRound())
                 return false;
         }
@@ -277,13 +274,9 @@ class GameState {
 
         if (i == playerList.end()) {
             cout << "(Tidak ada giliran player lain pada round ini)";
-        }
-
-        else
-        {
-            while (i != playerList.end() && !i->hasPlayedThisRound())
-            {
-                cout << "<" << i->getName()<< "> ";
+        } else {
+            while (i != playerList.end() && !i->hasPlayedThisRound()) {
+                cout << "<" << i->getName() << "> ";
                 i++;
             }
         }
@@ -311,7 +304,6 @@ class GameState {
             cout << i + 1 << ". " << playerVec[i].getName() << endl;
         }
     }
-
 };
 
 #endif

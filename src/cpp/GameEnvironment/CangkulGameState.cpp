@@ -1,30 +1,24 @@
+// CangkulGameState.cpp
 #include "../../header/GameEnvironment/CangkulGameState.hpp"
 
- 
 CangkulGameState::CangkulGameState() {
     startingPlayerId = 0;
 }
 
- 
-CangkulGameState::CangkulGameState(const vector<Player>& playerList, int roundNum, const TableCard& tableCard, const GameDeckCard& deckCard)
-    : GameState<Player>(playerList, roundNum, tableCard, deckCard)
-{   
+CangkulGameState::CangkulGameState(const vector <Player>& playerList, int roundNum, const TableCard& tableCard,
+                                   const GameDeckCard& deckCard)
+        : GameState<Player>(playerList, roundNum, tableCard, deckCard) {
     if (playerList.empty()) startingPlayerId = 0;
-
     else startingPlayerId = playerList.front().getId();
 }
 
- 
-CangkulGameState::CangkulGameState(const CangkulGameState& other): GameState<Player>(other) {
+CangkulGameState::CangkulGameState(const CangkulGameState& other) : GameState<Player>(other) {
     startingPlayerId = other.startingPlayerId;
     roundWinner = other.roundWinner;
     winningList = other.winningList;
 }
 
- 
-CangkulGameState::~CangkulGameState() {
-
-}
+CangkulGameState::~CangkulGameState() {}
 
 // ========== Getters ==========
 
@@ -42,8 +36,8 @@ Player CangkulGameState::getRoundWinner() {
 
 // ========== Predicates ==========
 
-
 // ========== Setters ==========
+
 void CangkulGameState::setWinningList(const vector<Player>& list) {
     this->winningList = deque<Player>(list.begin(), list.end());
 }
@@ -61,7 +55,7 @@ bool CangkulGameState::updateRoundWinner() {
     for (long unsigned int i = 1; i < tableCards.getCards().size(); i++) {
         if (tableCards.getCards()[i] > tableCards.getCards()[idxMax]) idxMax = i;
     }
-    
+
     if (idxMax == tableCards.getCards().size() - 1) {
         roundWinner = getCurrentTurnPlayer();
         return true;
@@ -69,7 +63,6 @@ bool CangkulGameState::updateRoundWinner() {
         return false;
     }
 }
-
 
 // ========== Others ==========
 
@@ -80,8 +73,6 @@ void CangkulGameState::moveWinningList() {
 
 void CangkulGameState::moveToWinningList() {
     Player currentPlayer = playerList.front();
-
     playerList.pop_front();
-
     winningList.push_back(currentPlayer);
 }

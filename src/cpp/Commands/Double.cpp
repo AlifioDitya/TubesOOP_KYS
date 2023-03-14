@@ -8,19 +8,18 @@
 using std::cout;
 using std::endl;
 
- 
 Double::Double() {
     this->command = CmdTypes::Double;
 }
 
 // ========== Methods ==========
 
- 
 void Double::executeCommand(CandyGameState& gameState) {
     uint64_t oldPoints = gameState.getPointPool();
-    uint64_t newPoints = oldPoints * (uint64_t)2;
+    uint64_t newPoints = oldPoints * (uint64_t) 2;
     gameState.setPointPool(newPoints);
 
-    cout << gameState.getCurrentTurnPlayer().getName() << " melakukan DOUBLE! Poin hadiah naik dari " << oldPoints << " menjadi " << newPoints << "!" << endl;
+    cout << gameState.getCurrentTurnPlayer().getName() << " melakukan DOUBLE! Poin hadiah naik dari " << oldPoints
+         << " menjadi " << newPoints << "!" << endl;
     gameState.setNextTurn();
 }

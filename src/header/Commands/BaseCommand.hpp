@@ -16,11 +16,11 @@ using std::string;
  * @tparam T1 Command type
  * @tparam T2 Game state type
  */
-template <class T1, class T2>
+template<class T1, class T2>
 class BaseCommand {
 protected:
     T1 command;
-    
+
 public:
     /**
      * @brief Construct a new Base Command object

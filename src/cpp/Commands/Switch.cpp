@@ -11,7 +11,6 @@ using std::cin;
 using std::endl;
 using std::find_if;
 
- 
 Switch::Switch() {
     this->command = CmdTypes::Ability;
     this->abilityType = AbilityTypes::Switch;
@@ -20,7 +19,6 @@ Switch::Switch() {
 // ========== Methods ==========
 
 void Switch::executeCommand(CandyGameState& gameState) {
-    
     validateAbility(gameState);
 
     cout << gameState.getCurrentTurnPlayer().getName() << " melakukan SWITCH!" << endl;
@@ -48,5 +46,4 @@ void Switch::executeCommand(CandyGameState& gameState) {
     // Set the ability used flag to true and end the turn
     gameState.getCurrentTurnPlayer().setAbilityUsed(true);
     gameState.setNextTurn();
-
 }

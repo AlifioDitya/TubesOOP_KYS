@@ -9,7 +9,6 @@
 using std::cout;
 using std::endl;
 
- 
 Quadruple::Quadruple() {
     this->command = CmdTypes::Ability;
     this->abilityType = AbilityTypes::Quadruple;
@@ -17,16 +16,15 @@ Quadruple::Quadruple() {
 
 // ========== Methods ==========
 
- 
 void Quadruple::executeCommand(CandyGameState& gameState) {
-
     validateAbility(gameState);
-    
+
     uint64_t oldPoints = gameState.getPointPool();
     uint64_t newPoints = oldPoints * 4;
     gameState.setPointPool(newPoints);
 
-    cout << gameState.getCurrentTurnPlayer().getName() << " melakukan QUADRUPLE! Poin hadiah naik dari " << oldPoints << " menjadi " << newPoints << "!" << endl; 
+    cout << gameState.getCurrentTurnPlayer().getName() << " melakukan QUADRUPLE! Poin hadiah naik dari " << oldPoints
+         << " menjadi " << newPoints << "!" << endl;
 
     // Set the ability used flag to true and end the turn
     gameState.getCurrentTurnPlayer().setAbilityUsed(true);

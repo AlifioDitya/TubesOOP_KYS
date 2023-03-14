@@ -1,4 +1,4 @@
-// Next.cpp
+// Put.cpp
 #include "../../header/Commands/Put.hpp"
 #include "../../enums/CangkulCmdTypes.hpp"
 #include "../../header/Exception/CommandException.hpp"
@@ -9,25 +9,20 @@
 using std::cout;
 using std::endl;
 
- 
 Put::Put() {
     this->command = CangkulCmdTypes::Put;
 }
 
-void Put::validateCommand(CangkulGameState& gameState) {
-
-}
+void Put::validateCommand(CangkulGameState& gameState) {}
 
 // ========== Methods ==========
 
- 
 void Put::executeCommand(CangkulGameState& gameState) {
-    
     validateCommand(gameState);
 
     cout << "Pilih kartu yang ingin diletakkan :" << endl;
-    
-    vector<Card> hand = gameState.getCurrentTurnPlayer().getHand();
+
+    vector <Card> hand = gameState.getCurrentTurnPlayer().getHand();
     for (unsigned long int i = 0; i < hand.size(); i++) {
         cout << i + 1 << ". " << hand[i] << endl;
     }
@@ -35,25 +30,28 @@ void Put::executeCommand(CangkulGameState& gameState) {
     IO choiceIO;
     choiceIO.getInput(1, hand.size());
 
-    if (gameState.getTableCards().countItems() > 0 && gameState.getTableCards().getCards().back().getColor() != hand[choiceIO.getChoice() - 1].getColor()) {
+    if (gameState.getTableCards().countItems() > 0 &&
+        gameState.getTableCards().getCards().back().getColor() != hand[choiceIO.getChoice() - 1].getColor()) {
         throw UnmatchedColor();
     }
 
     cout << "Kartu berhasil diletakkan! Giliran pemain dilanjutkan." << endl;
     gameState.getTableCards().addItem(gameState.getCurrentTurnPlayer().PutCard(choiceIO.getChoice() - 1));
+
     bool isCurrentPlayerWinner = gameState.updateRoundWinner();
 
     if (gameState.getCurrentTurnPlayer().countItems() == 0) {
-        cout << endl << gameState.getCurrentTurnPlayer().getName() << " berhasil menghabiskan kartunya" << endl << endl; 
+        cout << endl << gameState.getCurrentTurnPlayer().getName() << " berhasil menghabiskan kartunya" << endl << endl;
         gameState.moveToWinningList();
-        if (isCurrentPlayerWinner) gameState.setStartingPlayer(gameState.getCurrentTurnPlayer());
 
-    } 
-    
-    else {
+        if (isCurrentPlayerWinner) {
+            gameState.setStartingPlayer(gameState.getCurrentTurnPlayer());
+        }
+    } else {
+        if (isCurrentPlayerWinner) {
+            gameState.setStartingPlayer(gameState.getCurrentTurnPlayer());
+        }
 
-        if (isCurrentPlayerWinner) gameState.setStartingPlayer(gameState.getCurrentTurnPlayer());
-        
         gameState.setNextTurn();
     }
 }

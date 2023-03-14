@@ -22,7 +22,7 @@ using std::vector;
  * combination from the available cards.
  */
 class Combination : public CardInterface {
-   private:
+private:
     enum ComboMaxTimesTen {
         HighCard = 14,
         Pair = 28,
@@ -58,7 +58,7 @@ class Combination : public CardInterface {
      * @return false otherwise
      */
     bool hasFourOfAKind(const vector<Card>&);
-    
+
     /**
      * @brief Predicate to check whether the list of cards contains a full house.
      * 
@@ -113,18 +113,17 @@ class Combination : public CardInterface {
      */
     double calculateWeightedValue(vector<Card>, ComboTypes);
 
-   protected:
+protected:
     vector<Card> tableCards;
     vector<Card> handCards;
     vector<Card> bestCombination;
     ComboTypes comboType;
 
-   public:
-     
-     /**
-      * @brief Construct a new Combination object
-      * 
-      */
+public:
+    /**
+     * @brief Construct a new Combination object
+     *
+     */
     Combination(const vector<Card>&, const vector<Card>&);
 
     /**

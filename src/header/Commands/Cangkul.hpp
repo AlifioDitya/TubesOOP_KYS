@@ -15,7 +15,6 @@
  * 
  */
 class Cangkul : public CangkulCommand {
-
 private:
     /**
      * @brief Validate command by throwing exception if necessary
@@ -32,7 +31,7 @@ public:
     Cangkul();
 
     // ========== Methods ==========
-    
+
     /**
      * @brief xt
      * 

@@ -15,9 +15,7 @@
  * 
  */
 class PlayerInvolvedAbility : public Ability {
-
 protected:
-
     /**
      * @brief Returns the chosen player index
      * 
@@ -27,10 +25,6 @@ protected:
      * @return Index of selected player
      */
     int selectPlayer(CandyGameState& gameState, const vector<CandyPlayer>& playerList, string label);
-
-public:
-
-
 };
 
 #endif

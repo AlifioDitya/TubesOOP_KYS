@@ -15,7 +15,6 @@
  * 
  */
 class Skip : public CangkulCommand {
-
 private:
     /**
      * @brief Validate command by throwing exception if necessary

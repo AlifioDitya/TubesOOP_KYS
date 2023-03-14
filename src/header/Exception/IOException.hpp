@@ -16,22 +16,22 @@ using std::exception;
  * @exception Thrown when command string is invalid.
  * 
  */
-class InvalidCommandString: public exception {
-
-	const char* what() const throw() {
-		return "String input bukan command yang valid!";
-	}
+class InvalidCommandString : public exception {
+public:
+    const char *what() const throw() {
+        return "String input bukan command yang valid!";
+    }
 };
 
 /**
  * @exception Thrown when ability string is invalid.
  * 
  */
-class InvalidAbilityString: public exception {
-
-	const char* what() const throw() {
-		return "String input bukan ability yang valid!";
-	}
+class InvalidAbilityString : public exception {
+public:
+    const char *what() const throw() {
+        return "String input bukan ability yang valid!";
+    }
 };
 
 /**
@@ -40,10 +40,9 @@ class InvalidAbilityString: public exception {
  */
 class UnmatchedType : public exception {
 public:
-	const char* what() const throw() {
-
-		return "Tipe masukan tidak valid!";
-	}
+    const char *what() const throw() {
+        return "Tipe masukan tidak valid!";
+    }
 };
 
 /**
@@ -52,42 +51,42 @@ public:
  */
 class InvalidChoice : public exception {
 public:
-	const char* what() const throw() {
-		return "Nilai pilihan tidak valid!";
-	}
+    const char *what() const throw() {
+        return "Nilai pilihan tidak valid!";
+    }
 };
 
 /**
  * @exception Thrown when input is empty.
  * 
  */
-class EmptyChoice: public exception {
+class EmptyChoice : public exception {
 public:
-	const char* what() const throw() {
-		return "Tidak ada pilihan!";
-	}
+    const char *what() const throw() {
+        return "Tidak ada pilihan!";
+    }
 };
 
 /**
  * @exception Thrown when file is not found.
  * 
  */
-class FileNotFoundException: public exception {
+class FileNotFoundException : public exception {
 public:
-	const char* what() const throw() {
-		return "File tidak ditemukan!";
-	}
+    const char *what() const throw() {
+        return "File tidak ditemukan!";
+    }
 };
 
 /**
  * @exception Thrown when given file format is invalid.
  * 
  */
-class InvalidFileInputFormatException: public exception {
+class InvalidFileInputFormatException : public exception {
 public:
-	const char* what() const throw() {
-		return "Terdapat kesalahan format penulisan di dalam file";
-	}
+    const char *what() const throw() {
+        return "Terdapat kesalahan format penulisan di dalam file";
+    }
 };
 
 #endif

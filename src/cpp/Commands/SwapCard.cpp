@@ -29,7 +29,6 @@ int SwapCard::selectCard(string playerName) {
 // ========== Methods ==========
 
 void SwapCard::executeCommand(CandyGameState& gameState) {
-    
     validateAbility(gameState);
 
     cout << gameState.getCurrentTurnPlayer().getName() << " melakukan SWAPCARD." << endl;
@@ -40,13 +39,15 @@ void SwapCard::executeCommand(CandyGameState& gameState) {
 
     // Select Player 1
 
-    int selectPlayerIdx1 = selectPlayer(gameState, otherPlayers, "Silakan pilih pemain yang kartunya ingin Anda tukar:");
+    int selectPlayerIdx1 = selectPlayer(gameState, otherPlayers,
+                                        "Silakan pilih pemain yang kartunya ingin Anda tukar:");
     CandyPlayer selectedPlayer1 = otherPlayers[selectPlayerIdx1];
 
     otherPlayers.erase(otherPlayers.begin() + selectPlayerIdx1);
 
     // Select Player 2
-    int selectPlayerIdx2 = selectPlayer(gameState, otherPlayers, "Silakan pilih pemain lain yang kartunya ingin Anda tukar:");
+    int selectPlayerIdx2 = selectPlayer(gameState, otherPlayers,
+                                        "Silakan pilih pemain lain yang kartunya ingin Anda tukar:");
     CandyPlayer selectedPlayer2 = otherPlayers[selectPlayerIdx2];
 
     // Player indexes
@@ -63,10 +64,10 @@ void SwapCard::executeCommand(CandyGameState& gameState) {
     int selectCardIdx2 = selectCard(selectedPlayer2.getName());
 
     // swap
-    gameState.getPlayerRefAt(playerIdx1).switchCards(selectCardIdx1, selectCardIdx2, gameState.getPlayerRefAt(playerIdx2));
+    gameState.getPlayerRefAt(playerIdx1).switchCards(selectCardIdx1, selectCardIdx2,
+                                                     gameState.getPlayerRefAt(playerIdx2));
 
     // Set the ability used flag to true and end the turn
     gameState.getCurrentTurnPlayer().setAbilityUsed(true);
     gameState.setNextTurn();
-
 }

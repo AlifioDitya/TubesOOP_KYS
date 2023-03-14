@@ -22,13 +22,13 @@ using std::vector;
 *   @brief Class representing the game state for the Candy game.
 *   @extends GameState
 **/
-class CandyGameState: public GameState<CandyPlayer> {
+class CandyGameState : public GameState<CandyPlayer> {
 private:
     /**
     *   @brief Deck of ability cards.
     **/
     AbilityDeckCard abilities;
-    
+
     /**
     *   @brief ID of a player that calls the reverse ability.
     **/
@@ -55,8 +55,8 @@ public:
     *  @param abilities an AbilityDeckCard object representing the abilities deck card.
     *  @param reversePlayerId an integer representing the player id that used the reverse ability in this round.
     **/
-    CandyGameState(const vector<CandyPlayer>& playerList, int roundNum, uint64_t points, const TableCard& tableCard, 
-        const GameDeckCard& deckCard, const AbilityDeckCard& abilities, int reversePlayerId);
+    CandyGameState(const vector <CandyPlayer>& playerList, int roundNum, uint64_t points, const TableCard& tableCard,
+                   const GameDeckCard& deckCard, const AbilityDeckCard& abilities, int reversePlayerId);
 
     /**
     *   @brief Copy constructor for CandyGameState.
@@ -80,7 +80,7 @@ public:
     *   @brief Getter for pointPool.
     *   @return an unsigned 64-bit integer representing the point pool in the current round.
     **/
-    uint64_t getPointPool() const ;
+    uint64_t getPointPool() const;
 
     /**
     *   @brief Getter for abilities.
@@ -116,7 +116,7 @@ public:
     *   @param points an unsigned 64-bit integer representing the point pool prize in this round.
     **/
     void setPointPool(uint64_t points);
-    
+
     /**
     *   @brief Prints the leaderboard
     **/
@@ -127,7 +127,6 @@ public:
     **/
     void printNextRoundTurn() const;
 
-    
     /**
     *   @brief Initial points for the game
     **/

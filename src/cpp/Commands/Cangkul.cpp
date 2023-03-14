@@ -1,4 +1,4 @@
-// Skip.cpp
+// Cangkul.cpp
 #include "../../header/Commands/Cangkul.hpp"
 #include "../../enums/CangkulCmdTypes.hpp"
 #include "../../header/Exception/CommandException.hpp"
@@ -8,7 +8,6 @@
 using std::cout;
 using std::endl;
 
- 
 Cangkul::Cangkul() {
     this->command = CangkulCmdTypes::Cangkul;
 }
@@ -18,10 +17,8 @@ void Cangkul::validateCommand(CangkulGameState& gameState) {
         throw UnnecessaryAction(command);
     }
 
-    for (auto card : gameState.getCurrentTurnPlayer().getHand())
-    {
-        if (gameState.getTableCards().getCards().back().getColor() == card.getColor())
-        {
+    for (auto card: gameState.getCurrentTurnPlayer().getHand()) {
+        if (gameState.getTableCards().getCards().back().getColor() == card.getColor()) {
             throw UnnecessaryAction(command);
         }
     }
@@ -29,16 +26,14 @@ void Cangkul::validateCommand(CangkulGameState& gameState) {
 
 // ========== Methods ==========
 
-
- 
 void Cangkul::executeCommand(CangkulGameState& gameState) {
-
     validateCommand(gameState);
 
     cout << "Pemain melakukan cangkul!" << endl;
     cout << "Banyak kartu deck awal :" << gameState.getDeckCards().countItems() << endl;
+
     gameState.getCurrentTurnPlayer().addItem(gameState.getDeckCards().drawCard());
+
     cout << "Banyak kartu deck setelah cangkul :" << gameState.getDeckCards().countItems() << endl;
-    
     cout << "Pemain mendapatkan kartu " << gameState.getCurrentTurnPlayer().getHand().back();
 }

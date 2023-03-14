@@ -23,7 +23,7 @@ using std::deque;
  * @extends GameState
  * 
  */
-class CangkulGameState: public GameState<Player> {
+class CangkulGameState : public GameState<Player> {
 private:
     /**
      * @brief List of winners
@@ -58,7 +58,8 @@ public:
      * @param tableCard the list of cards in a table
      * @param deckCard the deck cards in game
      */
-    CangkulGameState(const vector<Player>& playerList, int roundNum, const TableCard& tableCard, const GameDeckCard& deckCard);
+    CangkulGameState(const vector <Player>& playerList, int roundNum, const TableCard& tableCard,
+                     const GameDeckCard& deckCard);
 
     /**
      * @brief Copy constructs a new Cangkul Game State
@@ -129,7 +130,6 @@ public:
      * 
      */
     void moveToWinningList();
-
 };
 
 #endif

@@ -17,6 +17,7 @@
 class SwapCard : public PlayerInvolvedAbility {
 private:
     int selectCard(string playerName);
+
 public:
     /**
      * @brief Construct a new Swap Card object

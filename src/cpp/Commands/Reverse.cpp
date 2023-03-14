@@ -1,4 +1,3 @@
-
 // Reverse.cpp
 #include "../../header/Commands/Reverse.hpp"
 #include "../../enums/CmdTypes.hpp"
@@ -21,10 +20,9 @@ Reverse::Reverse() {
 // ========== Methods ==========
 
 void Reverse::executeCommand(CandyGameState& gameState) {
-
     validateAbility(gameState);
 
-    vector<CandyPlayer> playerList = gameState.getPlayerList();
+    vector <CandyPlayer> playerList = gameState.getPlayerList();
 
     // Reverse player order after current player
     reverse(playerList.begin() + 1, playerList.end());
@@ -49,5 +47,4 @@ void Reverse::executeCommand(CandyGameState& gameState) {
     gameState.setReversePlayerId(gameState.getCurrentTurnPlayer().getId());
 
     // Player that executes reverse will get another turn
-
 }

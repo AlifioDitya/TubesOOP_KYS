@@ -16,12 +16,11 @@ using std::pair;
 int CangkulGameManager::initialDraw = 7;
 
 CangkulGameManager::CangkulGameManager() {
-    actions = map<CangkulCmdTypes, CangkulCommand*> {
-        {CangkulCmdTypes::Put, new class Put()},
-        {CangkulCmdTypes::Cangkul, new class Cangkul()}, 
-        {CangkulCmdTypes::Skip, new class Skip()}, 
+    actions = map <CangkulCmdTypes, CangkulCommand*> {
+            {CangkulCmdTypes::Put,     new class Put()},
+            {CangkulCmdTypes::Cangkul, new class Cangkul()},
+            {CangkulCmdTypes::Skip,    new class Skip()},
     };
-
 }
 
 CangkulGameManager::~CangkulGameManager() {
@@ -33,7 +32,6 @@ CangkulGameManager::~CangkulGameManager() {
 // ========== Private Methods ==========
 
 void CangkulGameManager::initializePlayerCount() {
-
     IO choiceIO;
 
     IO::newl();
@@ -64,7 +62,7 @@ CangkulCommand* CangkulGameManager::getPlayerCommand() {
 
             command = actions[commandType];
 
-        } catch(const exception& err) {
+        } catch (const exception& err) {
             cout << err.what() << endl;
         }
     } while (!command);
@@ -94,7 +92,6 @@ void CangkulGameManager::startRound() {
     gameState.setAllNotPlayed();
 
     if (gameState.getStartingPlayerId() != 0) {
-
         while (gameState.getCurrentTurnPlayer().getId() != gameState.getStartingPlayerId()) {
             gameState.skipCurrentPlayer();
         }
@@ -112,7 +109,7 @@ void CangkulGameManager::startRound() {
         if (gameState.getTableCards().countItems() > 0) {
             cout << "Berikut kartu pada table : " << endl;
             gameState.getTableCards().showCards();
-            cout<< endl;
+            cout << endl;
         } else {
             cout << "Kamu menentukan warna kartu pada round ini!" << endl;
             IO::newl();
@@ -133,19 +130,20 @@ void CangkulGameManager::startRound() {
 
         while (!stop) {
             try {
-            CangkulCommand* cangkulCommand = getPlayerCommand();
-            cangkulCommand->executeCommand(gameState);
-            stop = true;
+                CangkulCommand* cangkulCommand = getPlayerCommand();
+                cangkulCommand->executeCommand(gameState);
+                stop = true;
             } catch (const exception& err) {
                 cout << err.what() << " Silahkan lakukan perintah lain." << endl;
             }
         }
     }
-    
+
     IO::newl();
     if (gameState.hasAllPlayed()) {
         cout << "Satu putaran selesai!" << endl;
-        cout << gameState.getPlayerRefAt(gameState.getPlayerIdx(gameState.getStartingPlayerId())).getName() << " memiliki nilai kartu tertinggi pada round ini!" << endl;
+        cout << gameState.getPlayerRefAt(gameState.getPlayerIdx(gameState.getStartingPlayerId())).getName()
+             << " memiliki nilai kartu tertinggi pada round ini!" << endl;
     }
     IO::newl();
     IO::border();
@@ -156,7 +154,7 @@ void CangkulGameManager::startSubGame() {
     // Sub Game jika belum ada pemenang
     // Reset gamestate kecuali player dan turn
     gameState.setRound(0);
-    
+
     // Reset deck
     gameState.getDeckCards().defaultConfig();
 
@@ -167,7 +165,7 @@ void CangkulGameManager::startSubGame() {
     }
 
     // Main sampai sisa 1 orang terakhir
-    while(!(gameState.getPlayerList().size() == 1)) {
+    while (!(gameState.getPlayerList().size() == 1)) {
         // Round selanjutnya
         gameState.getTableCards().clear();
         gameState.setRound(gameState.getRound() + 1);
@@ -175,7 +173,7 @@ void CangkulGameManager::startSubGame() {
 
         cout << "ROUND " << gameState.getRound();
         IO::newl();
-        
+
         if (gameState.getRound() == 1) {
             gameState.setStartingPlayer(gameState.getCurrentTurnPlayer());
             gameState.getTableCards().addItem(gameState.getDeckCards().drawCard());
@@ -192,7 +190,7 @@ void CangkulGameManager::startSubGame() {
     IO::newl();
     cout << "Game Selesai." << endl;
     cout << "Berikut pemenang game ini: " << endl;
-    
+
     for (long unsigned int i = 0; i < gameState.getWinningList().size(); i++) {
         cout << i + 1 << ". " << gameState.getWinningList()[i].getName() << endl;
     }
@@ -217,7 +215,7 @@ void CangkulGameManager::startGame() {
     IO::newl();
 
     gameState = CangkulGameState(getInitialPlayerList(playerCount), 0, TableCard(), GameDeckCard());
-    
+
     bool stop = false;
 
     do {
@@ -241,11 +239,10 @@ void CangkulGameManager::startGame() {
         choiceIO.getInput(1, 2);
 
         if (choiceIO.getChoice() == 2) stop = true;
-    } while(!stop);
-    
+    } while (!stop);
+
     IO::newl();
     cout << "Game Diakhiri." << endl;
     IO::border();
     IO::newl();
 }
-

@@ -19,18 +19,18 @@ using std::map;
 *   @brief Class representing the game manager for the Candy game.
 *   @extends GameManager
 **/
-class CandyGameManager: public GameManager {
-    private:
+class CandyGameManager : public GameManager {
+private:
     /**
         @brief Map of available commands for the Candy game.
     **/
     map<CmdTypes, Commands*> actions;
-    
+
     /**
         @brief Map of available abilities for the Candy game.
     **/
     map<AbilityTypes, class Ability*> abilities;
-    
+
     /**
         @brief Representing the game state for the Candy game.
     **/
@@ -42,23 +42,23 @@ class CandyGameManager: public GameManager {
     *   @return vector of CandyPlayer objects representing the initial player list.
     **/
     vector<CandyPlayer> getInitialPlayerList(int playerNum) const;
-    
+
     /**
     *`  @brief Method to get the player command from the user.
     *`  @return pointer to a Commands object representing the user's command.
     **/
     Commands* getPlayerCommand();
-    
+
     /**
     *   @brief Method to initialize the deck card for the game.
     **/
-    void inititateDeck();
-    
+    void initiateDeck();
+
     /**
     *   @brief Method start round of the game.
     **/
     void startRound();
-    
+
     /**
     *   @brief Method to start a sub-game of the Candy game.
     **/
@@ -75,21 +75,19 @@ class CandyGameManager: public GameManager {
 
         T maxElmt = list[0];
 
-        for (auto i = list.begin() + 1; i != list.end(); i++)
-        {
+        for (auto i = list.begin() + 1; i != list.end(); i++) {
             if (i->getValue() > maxElmt.getValue()) maxElmt = *i;
         }
-        
+
         return maxElmt;
     }
 
-    public:
-
+public:
     /**
     *   @brief Default constructor for CandyGameManager class.
     **/
     CandyGameManager();
-    
+
     /**
     *   @brief Destructor for CandyGameManager class.
     **/
@@ -106,7 +104,6 @@ class CandyGameManager: public GameManager {
     *   @brief Integer value representing the number of initial draws for the game.
     **/
     static int initialDraw;
-
 };
 
 #endif

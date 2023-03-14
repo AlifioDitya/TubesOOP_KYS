@@ -20,12 +20,6 @@ using namespace std;
  * @extends Player
  * 
  */
-class CangkulPlayer: public Player {
-private:
-  
-
-public:
-    
-};
+class CangkulPlayer : public Player {};
 
 #endif

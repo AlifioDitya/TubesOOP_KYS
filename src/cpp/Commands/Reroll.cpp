@@ -11,7 +11,6 @@ using std::cout;
 using std::endl;
 using std::vector;
 
- 
 Reroll::Reroll() {
     this->command = CmdTypes::Ability;
     this->abilityType = AbilityTypes::Reroll;
@@ -19,13 +18,12 @@ Reroll::Reroll() {
 
 // ========== Methods ==========
 
-
 void Reroll::executeCommand(CandyGameState& gameState) {
     validateAbility(gameState);
-    
+
     // Get the deck
     GameDeckCard deck = gameState.getDeckCards();
-    vector<Card> newCards = deck.drawMany(2);
+    vector <Card> newCards = deck.drawMany(2);
 
     // Empty the player's hand
     cout << "Melakukan pembuangan dua kartu yang dimiliki" << endl;

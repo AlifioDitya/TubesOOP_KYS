@@ -23,7 +23,7 @@ using std::map;
 *   getting player commands, and starting rounds and subgames. It has a public method for starting the whole game.
 *   @extends GameManager
 **/
-class CangkulGameManager: public GameManager {
+class CangkulGameManager : public GameManager {
 private:
     int playerCount; // In-game player count
     CangkulGameState gameState; // Game state for the cangkul game
@@ -40,7 +40,7 @@ private:
     *   @return A vector of players with input names.
     **/
     vector<Player> getInitialPlayerList(int playerNum) const;
-   
+
     /**
     *   @brief Get command input from user.
     *   @return A pointer to a CangkulCommand object.
@@ -58,14 +58,14 @@ private:
      * 
      */
     void startSubGame();
-public:
 
+public:
     /**
      * @brief Construct a new Cangkul Game Manager object
      * 
      */
     CangkulGameManager();
-    
+
     /**
      * @brief Destroy a Cangkul Game
      * 

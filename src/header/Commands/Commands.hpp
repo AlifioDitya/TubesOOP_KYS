@@ -20,8 +20,7 @@ using std::string;
  * @extends BaseCommand
  * 
  */
-class Commands: public BaseCommand<CmdTypes, CandyGameState> {
-    
+class Commands : public BaseCommand<CmdTypes, CandyGameState> {
 public:
     /**
      * @brief Construct a new Commands object

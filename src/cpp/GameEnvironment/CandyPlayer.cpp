@@ -1,3 +1,4 @@
+// CandyPlayer.cpp
 #include "../../header/GameEnvironment/CandyPlayer.hpp"
 #include "../../header/GameEnvironment/Player.hpp"
 #include <string>
@@ -9,7 +10,6 @@ using std::vector;
 using std::cout;
 using std::endl;
 
- 
 CandyPlayer::CandyPlayer() {
     ability = AbilityTypes::None;
     point = 0;
@@ -17,17 +17,15 @@ CandyPlayer::CandyPlayer() {
     nerfed = false;
 }
 
- 
-CandyPlayer::CandyPlayer(int id, const vector<Card>& hand, uint64_t point, string name, bool hasPlayed): Player(id, hand, name, hasPlayed) {
-
+CandyPlayer::CandyPlayer(int id, const vector <Card>& hand, uint64_t point, string name, bool hasPlayed)
+        : Player(id, hand, name, hasPlayed) {
     this->ability = AbilityTypes::None;
     this->point = point;
     this->usedAbility = false;
     this->nerfed = false;
 }
 
- 
-CandyPlayer::CandyPlayer(const CandyPlayer& other): Player(other) {
+CandyPlayer::CandyPlayer(const CandyPlayer& other) : Player(other) {
     ability = other.ability;
     point = other.point;
     usedAbility = other.usedAbility;
@@ -37,9 +35,7 @@ CandyPlayer::CandyPlayer(const CandyPlayer& other): Player(other) {
 // ========== Operators ==========
 
 CandyPlayer& CandyPlayer::operator=(const CandyPlayer& other) {
-
     if (this != &other) {
-
         Player::operator=(other);
         ability = other.ability;
         point = other.point;
@@ -108,7 +104,6 @@ uint64_t CandyPlayer::getValue() const {
 }
 
 // ========= Other Methods ==========
-
 
 void CandyPlayer::addPoint(uint64_t addition) {
     point += addition;

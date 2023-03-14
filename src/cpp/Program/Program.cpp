@@ -8,7 +8,6 @@ using std::cin;
 using std::endl;
 
 void Program::start() {
-
     IO selection;
 
     cout << "Knock knock..." << endl << endl;
@@ -22,24 +21,23 @@ void Program::start() {
         IO::newl();
 
         selection.getInput(1, 3);
-    
+
         if (selection == 1) {
 
             do {
 
-            candyGameManager.startGame();
+                candyGameManager.startGame();
 
-            cout << "Lanjut?" << endl;
-            cout << "\t1. Main lagi" << endl;
-            cout << "\t2. Exit" << endl;
-            selection.getInput(1, 2);
+                cout << "Lanjut?" << endl;
+                cout << "\t1. Main lagi" << endl;
+                cout << "\t2. Exit" << endl;
+                selection.getInput(1, 2);
 
-            } while(selection == 1);
+            } while (selection == 1);
 
         } else if (selection == 2) {
 
             cangkulGameManager.startGame();
         }
-    } while(selection.getChoice() != 3);
-    
+    } while (selection.getChoice() != 3);
 }

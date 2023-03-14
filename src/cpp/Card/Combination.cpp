@@ -8,11 +8,11 @@ using std::endl;
 using std::sort;
 
 Combination::Combination(const vector<Card>& tableCards, const vector<Card>& handCards)
-    : CardInterface(0),
-      tableCards(tableCards),
-      handCards(handCards),
-      bestCombination(findBestCombination(tableCards, handCards)),
-      comboType(findComboType(bestCombination)) {
+        : CardInterface(0),
+          tableCards(tableCards),
+          handCards(handCards),
+          bestCombination(findBestCombination(tableCards, handCards)),
+          comboType(findComboType(bestCombination)) {
     this->value = calculateWeightedValue(bestCombination, comboType);
 }
 
@@ -95,7 +95,7 @@ double Combination::calculateWeightedValue(vector<Card> cards, ComboTypes type) 
         int encoded = (1 << cards[0].getRank()) | (1 << cards[1].getRank()) |
                       (1 << cards[2].getRank()) | (1 << cards[3].getRank()) |
                       (1 << cards[4].getRank());
-        double flushValue = (double)encoded / 10000 + cards[0].getColor() * 0.00003;
+        double flushValue = (double) encoded / 10000 + cards[0].getColor() * 0.00003;
         return ComboMaxTimesTen::Straight / 10 + flushValue;
     }
     if (type == ComboTypes::Straight)
@@ -180,6 +180,7 @@ pair<int, int> Combination::findPairIdx(const vector<Card>& cards) {
 vector<Card> Combination::getTableCards() const {
     return tableCards;
 };
+
 vector<Card> Combination::getHandCards() const {
     return handCards;
 }
@@ -187,6 +188,7 @@ vector<Card> Combination::getHandCards() const {
 vector<Card> Combination::getBestCombination() const {
     return bestCombination;
 }
+
 ComboTypes Combination::getComboType() const {
     return comboType;
 }

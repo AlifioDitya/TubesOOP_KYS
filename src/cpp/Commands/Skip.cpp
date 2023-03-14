@@ -13,7 +13,6 @@ Skip::Skip() {
 }
 
 void Skip::validateCommand(CangkulGameState& gameState) {
-
     if (gameState.getTableCards().countItems() == 0) {
         throw UnnecessaryAction(command);
     }
@@ -26,9 +25,7 @@ void Skip::validateCommand(CangkulGameState& gameState) {
 // ========== Methods ==========
 
 void Skip::executeCommand(CangkulGameState& gameState) {
-
     validateCommand(gameState);
-    
     cout << "Giliran pemain dilewatkan!" << endl;
     gameState.setNextTurn();
 }

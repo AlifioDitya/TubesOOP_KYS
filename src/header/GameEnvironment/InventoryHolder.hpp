@@ -15,18 +15,14 @@
  * 
  * @tparam T Element of the inventory
  */
-template <class T>
+template<class T>
 class InventoryHolder {
-
 public:
-
     /**
      * @brief Destroy the Inventory Holder object
      * 
      */
-    virtual ~InventoryHolder() {
-        
-    }
+    virtual ~InventoryHolder() {}
 
     /**
      * @brief Returns the number of items in the inventory.
@@ -47,6 +43,5 @@ public:
      */
     virtual void clear() = 0;
 };
-
 
 #endif

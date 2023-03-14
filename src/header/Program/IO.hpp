@@ -11,13 +11,13 @@
 *   @brief Class representing the Input/Output operations.
 **/
 class IO {
-    private:
+private:
     /**
     *   @brief Integer value for the user's choice
     **/
     int choice;
-    public:
-    
+
+public:
     /**
     *   @brief Constructor for IO class
     **/
@@ -30,13 +30,11 @@ class IO {
     **/
     bool operator==(const int);
 
-    
     /**
     *   @brief Getter method to get the user's choice.
     *   @return the integer value of the user's choice.
     **/
     int getChoice() const;
-
 
     /**
     *   @brief Method to get an integer input from the user in a specified range.
@@ -54,7 +52,6 @@ class IO {
     *   @brief Method to print border
     **/
     static void border();
-    
 };
 
 #endif

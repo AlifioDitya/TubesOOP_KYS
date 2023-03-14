@@ -12,18 +12,18 @@
  * 
  */
 class CardInterface {
-   protected:
-   /**
-    * @brief Value of the card
-    * 
-    */
+protected:
+    /**
+     * @brief Value of the card
+     *
+     */
     double value;
 
-   public:
-   /**
-    * @brief Construct a new Card Interface object
-    * 
-    */
+public:
+    /**
+     * @brief Construct a new Card Interface object
+     *
+     */
     CardInterface(double);
 
     /**
@@ -75,7 +75,7 @@ class CardInterface {
     bool operator<=(const CardInterface&);
 
     // ========== Getters ==========
-    
+
     /**
      * @brief Get the value of cards
      * 

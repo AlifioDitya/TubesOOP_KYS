@@ -14,16 +14,13 @@
 *   @brief Class representing a deck card of ability types.
 *   @extends DeckCard
 **/
-class AbilityDeckCard:public DeckCard<AbilityTypes> {
-    private:
-    
-    public:
-
+class AbilityDeckCard : public DeckCard<AbilityTypes> {
+public:
     /**
     *   @brief Constructor for AbilityDeckCard class
     **/
     AbilityDeckCard();
-    
+
     /**
     *   @brief Constructor for AbilityDeckCard class with an input vector of ability types.
     *   @param[in] abilities vector of ability types to initialize the deck card.

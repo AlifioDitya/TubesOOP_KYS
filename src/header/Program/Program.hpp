@@ -9,7 +9,6 @@
 #include "../GameEnvironment/CandyGameManager.hpp"
 #include "../GameEnvironment/CangkulGameManager.hpp"
 
-
 /**
 *   @class Program
 *   @brief Class representing the main program.
@@ -20,11 +19,12 @@ public:
     *   @brief Manager for Candy Game
     **/
     CandyGameManager candyGameManager;
+
     /**
     *   @brief Manager for Cangkul Game
     **/
     CangkulGameManager cangkulGameManager;
-    
+
     /*
     *   @brief Method to initiate the program
     */

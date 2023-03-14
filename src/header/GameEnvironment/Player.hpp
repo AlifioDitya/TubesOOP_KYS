@@ -21,7 +21,7 @@ using std::string;
  * @extends InventoryHolder
  * 
  */
-class Player: public InventoryHolder<Card> {
+class Player : public InventoryHolder<Card> {
 protected:
     /**
      * @brief Id of the player
@@ -84,7 +84,6 @@ public:
     Player& operator=(const Player&);
     // bool operator<(const Player&);
     // bool operator>(const Player& other);
-
 
     /**
      * @brief Get the player Id

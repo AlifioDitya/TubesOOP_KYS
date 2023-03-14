@@ -24,8 +24,8 @@ private:
      * 
      */
     std::vector<Card> cards;
-public:
 
+public:
     /**
      * @brief Returns the number of items in the inventory.
      * 

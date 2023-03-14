@@ -22,7 +22,7 @@ using std::string;
 *   @brief A class representing a player in a candy-themed card game.
 *   @extends Player
 **/
-class CandyPlayer: public Player {
+class CandyPlayer : public Player {
 private:
     bool usedAbility;   // Whether a player has used their ability.
     bool nerfed;        // Whether a player has been abilityless due to another player
@@ -43,9 +43,8 @@ public:
     *   @param name The player's name.
     *   @param hasPlayed Whether the player has played a card in the current round.
     **/
-    CandyPlayer(int id, const vector<Card>& hand, uint64_t point, string name, bool hasPlayed);
+    CandyPlayer(int id, const vector <Card>& hand, uint64_t point, string name, bool hasPlayed);
 
-    
     /**
      * @brief Copy constructor for the CandyPlayer class.
      * @param other The CandyPlayer object to be copied.
@@ -102,7 +101,7 @@ public:
     *  @return a boolean value indicating a player has the ability specified.
     **/
     bool hasAbility(AbilityTypes) const;
-    
+
     /**
     *  @brief Predicates to check if a player has used a specific ability.
     *  @return a boolean value indicating a player has used the ability specified.
@@ -132,7 +131,7 @@ public:
     *  @param point an unsigned integer of points to be added
     **/
     void addPoint(uint64_t);
-    
+
     /**
     *  @brief Method to switch cards with another player.
     **/

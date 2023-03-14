@@ -1,3 +1,4 @@
+// Player.cpp
 #include "../../header/GameEnvironment/Player.hpp"
 #include "../../header/GameEnvironment/InventoryHolder.hpp"
 #include <string>
@@ -9,22 +10,17 @@ using std::vector;
 using std::cout;
 using std::endl;
 
- 
-Player::Player(): Player(-1, vector<Card>(), "Username", false) {}
+Player::Player() : Player(-1, vector<Card>(), "Username", false) {}
 
- 
-Player::Player(int id, const vector<Card>& hand, string name, bool hasPlayed) {
+Player::Player(int id, const vector <Card>& hand, string name, bool hasPlayed) {
     this->playerID = id;
     this->hand = hand;
     this->name = name;
     this->hasPlayed = hasPlayed;
 }
 
- 
-Player::~Player() {
-}
+Player::~Player() {}
 
- 
 Player::Player(const Player& other) {
     playerID = other.playerID;
     name = other.name;
@@ -72,8 +68,7 @@ int Player::countItems() const {
 // Set player hand on index
 void Player::setHand(int idx, Card newCard) {
     this->hand[idx] = newCard;
-
-} 
+}
 
 void Player::setHand(vector<Card> newHand) {
     this->hand = newHand;
@@ -95,18 +90,18 @@ void Player::clear() {
 
 Card Player::PutCard(int idx) {
     Card temp = hand[idx];
-
     hand.erase(hand.begin() + idx);
-    
     return temp;
 }
 
 void Player::printHand() {
     cout << "[";
+
     for (long unsigned int i = 0; i < hand.size(); i++) {
         if (i != 0) cout << ", ";
         cout << hand[i];
     }
+
     cout << "]" << endl;
 }
 
@@ -115,4 +110,3 @@ void Player::printHand() {
 bool Player::hasPlayedThisRound() const {
     return hasPlayed;
 }
-// ...

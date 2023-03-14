@@ -28,24 +28,21 @@ using std::vector;
  * 
  * @tparam T type of the elements in the deck 
  */
-template <class T>
+template<class T>
 class DeckCard : public InventoryHolder<T> {
-   protected:
-   /**
-    * @brief Stack that holds the deck
-    * 
-    */
+protected:
+    /**
+     * @brief Stack that holds the deck
+     *
+     */
     stack<T> deck;
 
-   public:
-
+public:
     /**
      * @brief Construct a new Deck of Cards
      * 
      */
-    DeckCard() {
-
-    }
+    DeckCard() {}
 
     /**
      * @brief a Virtual function to be overriden for default configurations of the deck
@@ -100,6 +97,7 @@ class DeckCard : public InventoryHolder<T> {
         if (deck.empty()) {
             throw InsufficientCards();
         }
+
         T topCard = deck.top();
         deck.pop();
 

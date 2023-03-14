@@ -121,8 +121,8 @@ void CandyPlayer::switchCards(CandyPlayer& other) {
 }
 
 void CandyPlayer::switchCards(int idx1, int idx2, CandyPlayer& other) {
-    Card temp = this->getHand()[idx1];
-    this->setHand(idx1, other.getHand()[idx2]);
+    Card temp = hand[idx1];
+    this->setHand(idx1, other.hand[idx2]);
     other.setHand(idx2, temp);
 }
 

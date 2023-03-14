@@ -20,7 +20,7 @@ AbilityDeckCard::AbilityDeckCard(const vector<AbilityTypes>& cards): DeckCard<Ab
 void AbilityDeckCard::defaultConfig() {
     // INISIASI 
 
-    deque<AbilityTypes> temp {Reverse, Reroll, Quadruple, Quarter, SwapCard, Switch, Abilityless};
+    deque<AbilityTypes> temp {Reverse, Switch, Reroll, SwapCard, Quadruple, Quarter, Abilityless};
     srand(time(NULL));
     random_shuffle(temp.begin(), temp.end());
 

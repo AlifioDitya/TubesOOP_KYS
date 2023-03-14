@@ -37,8 +37,13 @@ void Put::validateCommand(CangkulGameState& gameState) {
         cout << endl << gameState.getCurrentTurnPlayer().getName() << " berhasil menghabiskan kartunya" << endl << endl; 
         gameState.moveToWinningList();
         if (isCurrentPlayerWinner) gameState.setStartingPlayer(gameState.getCurrentTurnPlayer());
-    } else {
+
+    } 
+    
+    else {
+
         if (isCurrentPlayerWinner) gameState.setStartingPlayer(gameState.getCurrentTurnPlayer());
+        
         gameState.setNextTurn();
     }
 }

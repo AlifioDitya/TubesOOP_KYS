@@ -100,11 +100,15 @@ vector<Player> CangkulGameManager::getInitialPlayerList(int playerNum) const {
 
 void CangkulGameManager::startRound() {
     gameState.setAllNotPlayed();
-    while (gameState.getCurrentTurnPlayer().getId() != gameState.getStartingPlayerId()) {
-        gameState.skipCurrentPlayer();
+
+    if (gameState.getStartingPlayerId() != 0) {
+
+        while (gameState.getCurrentTurnPlayer().getId() != gameState.getStartingPlayerId()) {
+            gameState.skipCurrentPlayer();
+        }
     }
 
-    while (!gameState.hasAllPlayed()) {
+    while (!gameState.hasAllPlayed() && gameState.getPlayerList().size() > 1) {
         // aksi pemain
         Player& currentPlayer = gameState.getCurrentTurnPlayer();
         newl();
@@ -116,6 +120,7 @@ void CangkulGameManager::startRound() {
             cout << "Berikut kartu pada table : " << endl;
             gameState.getTableCards().showCards();
             cout<< endl;
+
         } else {
             cout << "Kamu menentukan warna kartu pada round ini!" << endl;
             newl();

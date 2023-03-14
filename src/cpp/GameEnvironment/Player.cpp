@@ -102,7 +102,7 @@ Card Player::PutCard(int idx) {
 
 void Player::printHand() {
     cout << "[";
-    for (int i = 0; i < hand.size(); i++) {
+    for (long unsigned int i = 0; i < hand.size(); i++) {
         if (i != 0) cout << ", ";
         cout << hand[i];
     }

@@ -2,17 +2,22 @@
 
 // Default ctor
 CangkulGameState::CangkulGameState() {
-
+    startingPlayerId = 0;
 }
 
 // Specified ctor
 CangkulGameState::CangkulGameState(const vector<Player>& playerList, int roundNum, const TableCard& tableCard, const GameDeckCard& deckCard)
     : GameState<Player>(playerList, roundNum, tableCard, deckCard)
 {   
+    if (playerList.empty()) startingPlayerId = 0;
+
+    else startingPlayerId = playerList.front().getId();
 }
 
 // cctor
 CangkulGameState::CangkulGameState(const CangkulGameState& other): GameState<Player>(other) {
+    startingPlayerId = other.startingPlayerId;
+    roundWinner = other.roundWinner;
     winningList = other.winningList;
 }
 

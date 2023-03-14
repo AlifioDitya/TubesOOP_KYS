@@ -21,7 +21,7 @@ class CandyGameManager : public GameManager {
     vector<CandyPlayer> getInitialPlayerList(int playerNum) const;
     Commands* getPlayerCommand();
 
-    Combination* getPlayerCombo(const vector<Card>, const vector<Card>);
+    Combination* findComboType(const vector<Card> tableCards, const vector<Card> handCards);
 
     void inititateDeck();
     void startRound();

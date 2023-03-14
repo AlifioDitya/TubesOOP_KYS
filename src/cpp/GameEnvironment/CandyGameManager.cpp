@@ -9,6 +9,15 @@
 #include "../../header/Cards/Card.hpp"
 #include "../../header/Cards/Combination.hpp"
 #include "../../header/Cards/CombinationUtilities.hpp"
+#include "../../header/Cards/Combinations/Flush.hpp"
+#include "../../header/Cards/Combinations/FourOfAKind.hpp"
+#include "../../header/Cards/Combinations/FullHouse.hpp"
+#include "../../header/Cards/Combinations/HighCard.hpp"
+#include "../../header/Cards/Combinations/Pair.hpp"
+#include "../../header/Cards/Combinations/Straight.hpp"
+#include "../../header/Cards/Combinations/StraightFlush.hpp"
+#include "../../header/Cards/Combinations/ThreeOfAKind.hpp"
+#include "../../header/Cards/Combinations/TwoPair.hpp"
 #include "../../header/Commands/Abilityless.hpp"
 #include "../../header/Commands/Double.hpp"
 #include "../../header/Commands/Half.hpp"
@@ -204,42 +213,6 @@ Commands* CandyGameManager::getPlayerCommand() {
     return command;
 }
 
-Combination* CandyGameManager::getPlayerCombo(const vector<Card> tableCards,
-                                              const vector<Card> handCards) {
-    vector<Card> cards(tableCards);
-    cards.insert(cards.end(), handCards.begin(), handCards.end());
-    sort(cards.begin(), cards.end());
-
-    Combination* maxCombo;
-    double maxValue = -1;
-
-    for (long unsigned int i = 0; i < cards.size() - 1; i++) {
-        for (long unsigned int j = i + 1; j < cards.size(); j++) {
-            if ((cards[i].getValue() == handCards[0].getValue() ||
-                 cards[i].getValue() == handCards[1].getValue()) &&
-                (cards[j].getValue() == handCards[0].getValue() ||
-                 cards[j].getValue() == handCards[1].getValue()))
-                continue;
-
-            vector<Card> currPerm(cards);
-            currPerm.erase(currPerm.begin() + j);
-            currPerm.erase(currPerm.begin() + i);
-
-            Combination* currCombo = CombinationUtilities::findComboType(currPerm);
-            double currValue = currCombo->getValue();
-
-            if (currValue >= maxValue) {
-                if (maxValue != -1)
-                    delete maxCombo;
-                maxCombo = currCombo;
-                maxValue = currValue;
-            }
-        }
-    }
-
-    return maxCombo;
-}
-
 void CandyGameManager::startRound() {
     gameState.setAllNotPlayed();
 
@@ -296,6 +269,48 @@ void CandyGameManager::startRound() {
     cout << "Satu putaran selesai!" << endl;
     cout << "==============================" << endl;
     cout << endl;
+}
+
+// TODO: Test if this is removed
+template <>
+Combination* CandyGameManager::getMax(vector<Combination*>& list) {
+    // asumsi list.size() > 0
+
+    Combination* maxElmt = list[0];
+
+    for (auto i = list.begin() + 1; i != list.end(); i++) {
+        if ((*i)->getValue() > maxElmt->getValue())
+            maxElmt = *i;
+    }
+
+    return maxElmt;
+}
+
+Combination* CandyGameManager::findComboType(const vector<Card> tableCards,
+                                             const vector<Card> handCards) {
+    Combination* combo;
+    pair<int, int> cardPair;
+
+    if ((combo = StraightFlush::getStraightFlush(tableCards, handCards)) != NULL) {
+        return combo;
+    } else if ((combo = FourOfAKind::getFourOfAKind(tableCards, handCards)) != NULL) {
+        return combo;
+    } else if ((combo = FullHouse::getFullHouse(tableCards, handCards)) != NULL) {
+        return combo;
+    } else if ((combo = Flush::getFlush(tableCards, handCards)) != NULL) {
+        return combo;
+    } else if ((combo = Straight::getStraight(tableCards, handCards)) != NULL) {
+        return combo;
+    } else if ((combo = ThreeOfAKind::getThreeOfAKind(tableCards, handCards)) != NULL) {
+        return combo;
+    } else if ((combo = TwoPair::getTwoPair(tableCards, handCards)) != NULL) {
+        return combo;
+    } else if ((combo = Pair::getPair(tableCards, handCards)) != NULL) {
+        return combo;
+    } else {
+        combo = HighCard::getHighCard(tableCards, handCards);
+        return combo;
+    }
 }
 
 void CandyGameManager::startSubGame() {
@@ -357,16 +372,16 @@ void CandyGameManager::startSubGame() {
 
     class ComboCompare {
        public:
-        bool operator()(const Combination& a, const Combination& b) const {
-            return a.getValue() < b.getValue();
+        bool operator()(const Combination* a, const Combination* b) const {
+            return a->getValue() < b->getValue();
         }
     };
 
-    map<Combination, CandyPlayer, ComboCompare> combosMap;
-    vector<Combination> combos;
+    map<Combination*, CandyPlayer, ComboCompare> combosMap;
+    vector<Combination*> combos;
     // Hitung pemenang Sub Game berdasarkan combo
     for (auto player : gameState.getPlayerList()) {
-        Combination combo(gameState.getTableCards().getCards(), player.getHand());
+        Combination* combo = findComboType(gameState.getTableCards().getCards(), player.getHand());
         combosMap[combo] = player;
         combos.push_back(combo);
     }

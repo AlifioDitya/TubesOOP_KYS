@@ -4,7 +4,6 @@ using std::pair;
 using std::vector;
 
 namespace CombinationUtilities {
-Combination* findComboType(const vector<Card>&);
 bool ofSameColor(const vector<Card>&);
 bool inSequence(const vector<Card>&);
 bool hasFourOfAKind(const vector<Card>&);

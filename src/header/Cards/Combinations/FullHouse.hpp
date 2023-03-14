@@ -9,4 +9,5 @@ class FullHouse : public Combination {
     FullHouse(const vector<Card> cards);
     string getComboTypeString() const override;
     double getValue() const override;
+    static Combination* getFullHouse(const vector<Card> tableCards, const vector<Card> handCards);
 };

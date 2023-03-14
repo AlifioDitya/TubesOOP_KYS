@@ -10,4 +10,5 @@ class TwoPair : public Combination {
     TwoPair(const vector<Card> cards);
     string getComboTypeString() const override;
     double getValue() const override;
+    static Combination* getTwoPair(const vector<Card> tableCards, const vector<Card> handCards);
 };

@@ -9,4 +9,6 @@ class StraightFlush : public Combination {
     StraightFlush(const vector<Card> cards);
     string getComboTypeString() const override;
     double getValue() const override;
+    static Combination* getStraightFlush(const vector<Card> tableCards,
+                                         const vector<Card> handCards);
 };

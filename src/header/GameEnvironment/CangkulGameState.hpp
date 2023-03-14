@@ -1,4 +1,9 @@
-// GameState.hpp
+/**
+ * @file CangkulGameState.hpp
+ * @brief Header file for the cangkul game state
+ * This file contains the declaration of CangkulGameState class which is a derived class from the GameState class.
+ * It holds the game state of a cangkul game.
+ */
 #ifndef CANGKULGAMESTATE_HPP
 #define CANGKULGAMESTATE_HPP
 
@@ -12,51 +17,117 @@
 using std::vector;
 using std::deque;
 
+/**
+ * @class CangkulGameState
+ * @brief Class that holds the state of a cangkul game
+ * @extends GameState
+ * 
+ */
 class CangkulGameState: public GameState<Player> {
 private:
+    /**
+     * @brief List of winners
+     * 
+     */
     deque<Player> winningList;
+
+    /**
+     * @brief Id of the starting player
+     * 
+     */
     int startingPlayerId;
+
+    /**
+     * @brief Player that wins a round of a cangkul game
+     * 
+     */
     Player roundWinner;
 
 public:
-    // Default ctor
+    /**
+     * @brief Construct a new Cangkul Game State
+     * 
+     */
     CangkulGameState();
 
-    // Specified ctor
+    /**
+     * @brief Copy construct a new Cangkul Game State
+     * 
+     * @param playerList a list of players in a cangkul game
+     * @param roundNum the current round number
+     * @param tableCard the list of cards in a table
+     * @param deckCard the deck cards in game
+     */
     CangkulGameState(const vector<Player>& playerList, int roundNum, const TableCard& tableCard, const GameDeckCard& deckCard);
 
-    // cctor
+    /**
+     * @brief Copy constructs a new Cangkul Game State
+     * 
+     */
     CangkulGameState(const CangkulGameState&);
 
-    // dtor
+    /**
+     * @brief Destroy a Cangkul Game State
+     * 
+     */
     ~CangkulGameState();
 
-    // ========== Getters ==========
+    /**
+     * @brief Get the Winning List of players
+     * 
+     * @return a vector of players that wins the round
+     */
     vector<Player> getWinningList();
+
+    /**
+     * @brief Get the Starting Player Id
+     * 
+     * @return an integer value of the Id of a player that starts the game
+     */
     int getStartingPlayerId();
+
+    /**
+     * @brief Get the Round Winner
+     * 
+     * @return a Player object that wins the round
+     */
     Player getRoundWinner();
 
-    // ========== Predicates ==========
-
-
-    // ========== Setters ==========
+    /**
+     * @brief Set the Winning List of Players
+     * 
+     */
     void setWinningList(const vector<Player>&);
 
-    // move to next player turn
+    /**
+     * @brief Sets the the next turn
+     * 
+     */
     void setNextTurn();
 
-    // Set the starting player for next round
+    /**
+     * @brief Sets the starting player
+     * 
+     */
     void setStartingPlayer(Player);
 
-    // Set temporary round winner, return true if the current player is current winner
+    /**
+     * @brief Sets the temporary round winner
+     * @return true if the current player is the current winner.
+     * @return false otherwise
+     */
     bool updateRoundWinner();
 
-    // ========== Other Methods ==========
-
-    // move player in winningList to playerList
+    /**
+     * @brief Move a player in the winning list to a player list
+     * 
+     */
     void moveWinningList();
 
-    // move current player to winningList
+    /**
+     * @brief Move the current player to the winning list
+     * 
+     */
     void moveToWinningList();
 
 };

@@ -1,4 +1,8 @@
-// GameManager.hpp
+/**
+*   @file CandyGameManager.hpp
+*   @brief Header file for the CandyGameManager class.
+**/
+
 #ifndef CANDYGAMEMANAGER_HPP
 #define CANDYGAMEMANAGER_HPP
 
@@ -10,29 +14,64 @@
 
 using std::map;
 
+/**
+*   @class CandyGameManager
+*   @brief Class representing the game manager for the Candy game.
+*   @extends GameManager
+**/
 class CandyGameManager: public GameManager {
     private:
+    /**
+        @brief Map of available commands for the Candy game.
+    **/
     map<CmdTypes, Commands*> actions;
+    
+    /**
+        @brief Map of available abilities for the Candy game.
+    **/
     map<AbilityTypes, class Ability*> abilities;
+    
+    /**
+        @brief Representing the game state for the Candy game.
+    **/
     CandyGameState gameState;
 
-    // ========== Private Methods ==========
-    
-    // return initial player list with input name
+    /**
+    *   @brief Method to get the initial player list for the game.
+    *   @param[in] playerNum the number of players for the game.
+    *   @return vector of CandyPlayer objects representing the initial player list.
+    **/
     vector<CandyPlayer> getInitialPlayerList(int playerNum) const;
-    // get command input from user
+    
+    /**
+    *`  @brief Method to get the player command from the user.
+    *`  @return pointer to a Commands object representing the user's command.
+    **/
     Commands* getPlayerCommand();
-    // initiate deck card (random or file input)
+    
+    /**
+    *   @brief Method to initialize the deck card for the game.
+    **/
     void inititateDeck();
-    // start round
+    
+    /**
+    *   @brief Method start round of the game.
+    **/
     void startRound();
-    // start subgame
+    
+    /**
+    *   @brief Method to start a sub-game of the Candy game.
+    **/
     void startSubGame();
 
+    /**
+    *   @brief Template method to get the object with the highest value from a vector of objects with getValue() method member.
+    *   @tparam T the type of objects in the vector.
+    *   @param[in] list vector of objects to search for the maximum value.
+    *   @return the object with the maximum value.
+    **/
     template<class T>
-    // get object with highest value from getValue() method member
     T getMax(vector<T>& list) {
-        // asumsi list.size() > 0
 
         T maxElmt = list[0];
 
@@ -46,17 +85,26 @@ class CandyGameManager: public GameManager {
 
     public:
 
-    // Ctor
+    /**
+    *   @brief Default constructor for CandyGameManager class.
+    **/
     CandyGameManager();
-    // Dtor
+    
+    /**
+    *   @brief Destructor for CandyGameManager class.
+    **/
     ~CandyGameManager();
 
     // ========== Methods ==========
 
-    // start whole game
+    /**
+    *   @brief Method to start the Candy game.
+    **/
     void startGame();
 
-    // ========== Static Atribute ==========
+    /**
+    *   @brief Integer value representing the number of initial draws for the game.
+    **/
     static int initialDraw;
 
 };

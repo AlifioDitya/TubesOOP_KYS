@@ -381,7 +381,7 @@ void CandyGameManager::startGame() {
     IO::border();
     cout << "Permainan Berakhir.";
     gameState.printLeaderBoard();
-    cout << "Permainan dimenangkan oleh " << leadingPlayer.getName() << endl;
+    cout << "Permainan dimenangkan oleh " << leadingPlayer.getName() << "." << endl;
     IO::border();
     IO::newl();
 }

@@ -87,7 +87,7 @@ class DeckCard : public InventoryHolder<T> {
 
     // setter for deck atribute
     void setCards(const vector<T>& cards) {
-        deck = stack<T>(deque<T>(cards.begin(), cards.end()));
+        deck = stack<T>(deque<T>(cards.rbegin(), cards.rend()));
     }
 };
 

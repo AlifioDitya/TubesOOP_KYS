@@ -65,7 +65,7 @@ vector<Card> readDeckConfig() {
             fileName = fixFileExtension(fileName);
 
             // Ini nanti fileName ditambah directory ke folder txt
-            fileName = "{ini Directory txt}/" + fileName;
+            fileName = "../txt/" + fileName;
 
             ifstream configFile(fileName);
             if (configFile) {

@@ -105,6 +105,7 @@ void CangkulGameManager::startRound() {
         Player& currentPlayer = gameState.getCurrentTurnPlayer();
         IO::newl();
         IO::border();
+        IO::newl();
 
         cout << "Giliran pemain " << currentPlayer.getId() << " : " << currentPlayer.getName() << endl << endl;
 
@@ -112,7 +113,6 @@ void CangkulGameManager::startRound() {
             cout << "Berikut kartu pada table : " << endl;
             gameState.getTableCards().showCards();
             cout<< endl;
-
         } else {
             cout << "Kamu menentukan warna kartu pada round ini!" << endl;
             IO::newl();
@@ -173,13 +173,15 @@ void CangkulGameManager::startSubGame() {
         gameState.setRound(gameState.getRound() + 1);
 
 
-        cout << "ROUND " << gameState.getRound() << endl;
+        cout << "ROUND " << gameState.getRound();
         IO::newl();
         
         if (gameState.getRound() == 1) {
             gameState.setStartingPlayer(gameState.getCurrentTurnPlayer());
             gameState.getTableCards().addItem(gameState.getDeckCards().drawCard());
-            cout << "Satu kartu diletakkan ke meja : " << gameState.getTableCards().getCards().back() << endl;
+            IO::newl();
+            cout << "Satu kartu diletakkan ke meja : " << gameState.getTableCards().getCards().back();
+            IO::newl();
         }
 
         startRound();

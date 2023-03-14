@@ -1,6 +1,6 @@
 #include "../../header/Cards/CombinationUtilities.hpp"
 
-bool CombinationUtilities::ofSameColor(const vector<Card>& cards) {
+bool CombinationUtilities::ofSameColor(vector<Card>& cards) {
     int color = cards[0].getColor();
     for (long unsigned int i = 1; i < cards.size(); i++) {
         if (cards[i].getColor() != color)
@@ -9,7 +9,16 @@ bool CombinationUtilities::ofSameColor(const vector<Card>& cards) {
     return true;
 }
 
-bool CombinationUtilities::inSequence(const vector<Card>& cards) {
+bool CombinationUtilities::ofSameRank(vector<Card>& cards) {
+    int color = cards[0].getRank();
+    for (long unsigned int i = 1; i < cards.size(); i++) {
+        if (cards[i].getRank() != color)
+            return false;
+    }
+    return true;
+}
+
+bool CombinationUtilities::inSequence(vector<Card>& cards) {
     for (long unsigned int i = 0; i < cards.size() - 1; i++) {
         if (cards[i].getRank() != cards[i + 1].getRank() - 1)
             return false;
@@ -17,7 +26,7 @@ bool CombinationUtilities::inSequence(const vector<Card>& cards) {
     return true;
 }
 
-bool CombinationUtilities::isFullHouse(const vector<Card>& cards) {
+bool CombinationUtilities::isFullHouse(vector<Card>& cards) {
     if (cards.size() == 5) {
         pair<int, int> pairIdx = findPairIdx(cards);
         if (pairIdx.second == 1 || pairIdx.first == 3) {
@@ -35,7 +44,7 @@ bool CombinationUtilities::isFullHouse(const vector<Card>& cards) {
     return false;
 }
 
-bool CombinationUtilities::hasFourOfAKind(const vector<Card>& cards) {
+bool CombinationUtilities::hasFourOfAKind(vector<Card>& cards) {
     for (long unsigned int i = 0; i < cards.size() - 3; i++) {
         if (cards[i].getRank() == cards[i + 1].getRank() &&
             cards[i + 1].getRank() == cards[i + 2].getRank() &&
@@ -45,7 +54,7 @@ bool CombinationUtilities::hasFourOfAKind(const vector<Card>& cards) {
     return false;
 }
 
-bool CombinationUtilities::hasThreeOfAKind(const vector<Card>& cards) {
+bool CombinationUtilities::hasThreeOfAKind(vector<Card>& cards) {
     for (long unsigned int i = 0; i < cards.size() - 2; i++) {
         if (cards[i].getRank() == cards[i + 1].getRank() &&
             cards[i + 1].getRank() == cards[i + 2].getRank())
@@ -54,7 +63,11 @@ bool CombinationUtilities::hasThreeOfAKind(const vector<Card>& cards) {
     return false;
 }
 
-pair<int, int> CombinationUtilities::findPairIdx(const vector<Card>& cards) {
+bool CombinationUtilities::isTwoPair(vector<Card>& cards) {
+    return cards[0] == cards[1] && cards[1] != cards[2] && cards[2] == cards[3];
+}
+
+pair<int, int> CombinationUtilities::findPairIdx(vector<Card>& cards) {
     pair<int, int> cardPairIdx(-1, -1);
     for (long unsigned int i = 0; i < cards.size() - 1; i++) {
         if (cards[i].getRank() == cards[i + 1].getRank()) {

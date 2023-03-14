@@ -389,6 +389,10 @@ void CandyGameManager::startSubGame() {
     CandyPlayer& winner =
         gameState.getPlayerRefAt(gameState.getPlayerIdx(combosMap[getMax(combos)].getId()));
     winner.addPoint(gameState.getPointPool());
+
+    for (Combination* combo : combos) {
+        delete combo;
+    }
 }
 
 void CandyGameManager::startGame() {

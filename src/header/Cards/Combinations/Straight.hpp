@@ -1,9 +1,12 @@
 #include "../Combination.hpp"
 
 class Straight : public Combination {
+   private:
+    Straight(const vector<Card> tableCards, const vector<Card> handCards,
+             const vector<Card> bestCombination);
+
    public:
-    Straight(const vector<Card> cards);
     string getComboTypeString() const override;
-    double getValue() const override;
+    long double getValue() const override;
     static Combination* getStraight(const vector<Card> tableCards, const vector<Card> handCards);
 };

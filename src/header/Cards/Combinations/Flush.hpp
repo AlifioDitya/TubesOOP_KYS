@@ -2,11 +2,11 @@
 
 class Flush : public Combination {
    private:
-    Color flushColor;
+    Flush(const vector<Card> tableCards, const vector<Card> handCards,
+          const vector<Card> bestCombination);
 
    public:
-    Flush(const vector<Card> cards);
     string getComboTypeString() const override;
-    double getValue() const override;
+    long double getValue() const override;
     static Combination* getFlush(const vector<Card> tableCards, const vector<Card> handCards);
 };

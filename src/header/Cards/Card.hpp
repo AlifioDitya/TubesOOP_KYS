@@ -25,7 +25,7 @@ class Card : public CardInterface {
     string getRankString() const;
 
     // Getter for weight based on spec (assumed as high card)
-    double getValue() const override;
+    long double getValue() const override;
 
     friend ostream& operator<<(ostream&, const Card&);
 };

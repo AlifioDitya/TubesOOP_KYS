@@ -9,8 +9,12 @@ using std::endl;
 using std::map;
 using std::sort;
 
-Combination::Combination(const vector<Card> tableCards, const vector<Card> handCards)
-    : tableCards(tableCards), handCards(handCards) {
+Combination::Combination(const vector<Card> tableCards, const vector<Card> handCards,
+                         const vector<Card> bestCombination)
+    : CardInterface(),
+      tableCards(tableCards),
+      handCards(handCards),
+      bestCombination(bestCombination) {
 }
 
 Combination::~Combination() {
@@ -83,7 +87,6 @@ Straight flush:
 
 Four of a kind:
 1. Urutkan rank dari quad
-2. Urutkan value dari kicker
 
 Full House:
 1. Urutkan rank dari triplet

@@ -2,13 +2,12 @@
 
 class ThreeOfAKind : public Combination {
    private:
-    vector<Card> triple;
-    vector<Card> kickers;
+    ThreeOfAKind(const vector<Card> tableCards, const vector<Card> handCards,
+                 const vector<Card> bestCombination);
 
    public:
-    ThreeOfAKind(const vector<Card> cards);
     string getComboTypeString() const override;
-    double getValue() const override;
+    long double getValue() const override;
     static Combination* getThreeOfAKind(const vector<Card> tableCards,
                                         const vector<Card> handCards);
 };

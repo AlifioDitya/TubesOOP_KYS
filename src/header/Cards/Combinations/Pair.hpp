@@ -4,12 +4,11 @@
 
 class Pair : public Combination {
    private:
-    pair<Card, Card> pairCards;
-    vector<Card> kickers;
+    Pair(const vector<Card> tableCards, const vector<Card> handCards,
+         const vector<Card> bestCombination);
 
    public:
-    Pair(const vector<Card> cards);
     string getComboTypeString() const override;
-    double getValue() const override;
+    long double getValue() const override;
     static Combination* getPair(const vector<Card> tableCards, const vector<Card> handCards);
 };

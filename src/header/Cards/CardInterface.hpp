@@ -6,10 +6,11 @@ class CardInterface {
    public:
     virtual ~CardInterface();
     // Getter for value as specified weights in spec
-    double virtual getValue() const = 0;
+    long double virtual getValue() const = 0;
 
     // Comparison operators
     bool operator==(const CardInterface&);
+    bool operator!=(const CardInterface&);
     bool operator>(const CardInterface&);
     bool operator<(const CardInterface&);
     bool operator>=(const CardInterface&);

@@ -2,12 +2,11 @@
 
 class FullHouse : public Combination {
    private:
-    vector<Card> triple;
-    pair<Card, Card> cardPair;
+    FullHouse(const vector<Card> tableCards, const vector<Card> handCards,
+              const vector<Card> bestCombination);
 
    public:
-    FullHouse(const vector<Card> cards);
     string getComboTypeString() const override;
-    double getValue() const override;
+    long double getValue() const override;
     static Combination* getFullHouse(const vector<Card> tableCards, const vector<Card> handCards);
 };

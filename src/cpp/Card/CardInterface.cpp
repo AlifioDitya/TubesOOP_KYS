@@ -11,6 +11,10 @@ bool CardInterface::operator==(const CardInterface& other) {
     return this->getValue() == other.getValue();
 }
 
+bool CardInterface::operator!=(const CardInterface& other) {
+    return this->getValue() != other.getValue();
+}
+
 bool CardInterface::operator>(const CardInterface& other) {
     return this->getValue() > other.getValue();
 }

@@ -12,18 +12,6 @@ using std::vector;
 
 class Combination : public CardInterface {
    private:
-    enum ComboMaxTimesTen {
-        HighCard = 14,
-        Pair = 28,
-        TwoPair = 42,
-        ThreeOfAKind = 56,
-        Straight = 70,
-        Flush = 87,
-        FullHouse = 101,
-        FourOfAKind = 115,
-        StraightFlush = 129
-    };
-
     // vector<Card> findBestCombination(const vector<Card>& tableCards, const vector<Card>&
     // handCards); double calculateWeightedValue(vector<Card>, ComboTypes);
 
@@ -34,7 +22,8 @@ class Combination : public CardInterface {
     // ComboTypes comboType;
 
    public:
-    Combination(const vector<Card> tableCards, const vector<Card> handCards);
+    Combination(const vector<Card> tableCards, const vector<Card> handCards,
+                const vector<Card> bestCombination);
 
     ~Combination();
 
@@ -44,7 +33,7 @@ class Combination : public CardInterface {
     // ComboTypes getComboType() const;
     virtual string getComboTypeString() const;  // TODO: IMPLEMENTATION
 
-    virtual double getValue() const = 0;
+    virtual long double getValue() const = 0;
 };
 
 #endif

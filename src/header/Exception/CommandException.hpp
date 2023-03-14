@@ -1,3 +1,11 @@
+/**
+ * @file CommandException.hpp
+ * @brief Header file containing the declarations of custom commands exception classes used in the game.
+ * This file contains the declaration of custom exception classes that can be thrown during the execution of the game.
+ * These exceptions provide additional information and error messages to the user in case an exceptional situation occurs.
+ * 
+ */
+
 #ifndef COMMANDEXCEPTION_H
 #define COMMANDEXCEPTION_H
 
@@ -10,7 +18,10 @@
 
 using std::exception;
 
-// exception when ability is already used
+/**
+ * @exception Thrown when the player tries to use an ability that has already been used in the current round. 
+ * 
+ */
 class UsedAbility : public exception  {
 private:
 	AbilityTypes targetType;
@@ -28,7 +39,10 @@ public:
 	}
 };
 
-// exception when current player doesn't have the target ability
+/**
+ * @exception Thrown when current player doesn't have the target ability.
+ * 
+ */
 class MissingAbility : public exception  {
 private:
 	AbilityTypes targetType;
@@ -47,7 +61,10 @@ public:
 	}
 };
 
-// exception when ability is already nerfed
+/**
+ * @exception Thrown when a player's ability is nerfed by abilityless.
+ * 
+ */
 class NerfedAbility : public exception {
 private:
 	AbilityTypes targetType;
@@ -64,6 +81,10 @@ public:
 	}
 };
 
+/**
+ * @exception Thrown when an unnecessary action is done
+ * 
+ */
 class UnnecessaryAction: public exception {
 private:
 	CangkulCmdTypes targetType;
@@ -79,6 +100,10 @@ public:
 	}
 };
 
+/**
+ * @exception Thrown when skip is forbidden.
+ * 
+ */
 class ForbiddenSkip: public exception {
 public:
 
@@ -87,6 +112,10 @@ public:
 	}
 };
 
+/**
+ * @exception Thrown when a card color does not match.
+ * 
+ */
 class UnmatchedColor: public exception {
 public:
 

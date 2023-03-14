@@ -1,3 +1,10 @@
+/**
+ * @file IOException.hpp
+ * @brief Header file containing the declarations of custom I/O exception classes used in the game.
+ * This file contains the declaration of custom exception classes that can be thrown during the execution of the game.
+ * These exceptions provide additional information and error messages to the user in case an exceptional situation occurs.
+ * 
+ */
 #ifndef IOEXCEPTION_H
 #define IOEXCEPTION_H
 
@@ -5,7 +12,10 @@
 
 using std::exception;
 
-// exception when command string is invalid
+/**
+ * @exception Thrown when command string is invalid.
+ * 
+ */
 class InvalidCommandString: public exception {
 
 	const char* what() const throw() {
@@ -13,7 +23,10 @@ class InvalidCommandString: public exception {
 	}
 };
 
-// exception when ability string is invalid
+/**
+ * @exception Thrown when ability string is invalid.
+ * 
+ */
 class InvalidAbilityString: public exception {
 
 	const char* what() const throw() {
@@ -21,7 +34,10 @@ class InvalidAbilityString: public exception {
 	}
 };
 
-// exception when input type is invalid
+/**
+ * @exception Thrown when input type is invalid.
+ * 
+ */
 class UnmatchedType : public exception {
 public:
 	const char* what() const throw() {
@@ -30,7 +46,10 @@ public:
 	}
 };
 
-// exception when integer input is out of range
+/**
+ * @exception Thrown when the input is out of range.
+ * 
+ */
 class InvalidChoice : public exception {
 public:
 	const char* what() const throw() {
@@ -38,7 +57,10 @@ public:
 	}
 };
 
-// exception when input is empty
+/**
+ * @exception Thrown when input is empty.
+ * 
+ */
 class EmptyChoice: public exception {
 public:
 	const char* what() const throw() {
@@ -46,7 +68,10 @@ public:
 	}
 };
 
-// exception when file is not found
+/**
+ * @exception Thrown when file is not found.
+ * 
+ */
 class FileNotFoundException: public exception {
 public:
 	const char* what() const throw() {
@@ -54,7 +79,10 @@ public:
 	}
 };
 
-// exception when file format is invalid
+/**
+ * @exception Thrown when given file format is invalid.
+ * 
+ */
 class InvalidFileInputFormatException: public exception {
 public:
 	const char* what() const throw() {

@@ -47,8 +47,8 @@ void CangkulGameManager::initializePlayerCount() {
     newl();
     cout << "Pilihan Jumlah Pemain :" << endl;
     cout << "1. Dua Pemain" << endl;
-    cout << "1. Tiga Pemain" << endl;
-    cout << "1. Empat Pemain" << endl;
+    cout << "2. Tiga Pemain" << endl;
+    cout << "3. Empat Pemain" << endl;
 
     choiceIO.getInput(1, 3);
 
@@ -100,6 +100,9 @@ vector<Player> CangkulGameManager::getInitialPlayerList(int playerNum) const {
 
 void CangkulGameManager::startRound() {
     gameState.setAllNotPlayed();
+    while (gameState.getCurrentTurnPlayer().getId() != gameState.getStartingPlayerId()) {
+        gameState.skipCurrentPlayer();
+    }
 
     while (!gameState.hasAllPlayed()) {
         // aksi pemain
@@ -113,9 +116,7 @@ void CangkulGameManager::startRound() {
             cout << "Berikut kartu pada table : " << endl;
             gameState.getTableCards().showCards();
             cout<< endl;
-        }
-
-        else {
+        } else {
             cout << "Kamu menentukan warna kartu pada round ini!" << endl;
             newl();
         }
@@ -133,8 +134,7 @@ void CangkulGameManager::startRound() {
 
         bool stop = false;
 
-        while (!stop)
-        {
+        while (!stop) {
             try {
             CangkulCommand* cangkulCommand = getPlayerCommand();
             cangkulCommand->executeCommand(gameState);
@@ -143,20 +143,18 @@ void CangkulGameManager::startRound() {
                 cout << err.what() << " Silahkan lakukan perintah lain." << endl;
             }
         }
-
     }
     
     newl();
     cout << "Satu putaran selesai!" << endl;
-    border();
     newl();
+    border();
     newl();
 }
 
 void CangkulGameManager::startSubGame() {
     // Sub Game jika belum ada pemenang
     // Reset gamestate kecuali player dan turn
-
     gameState.setRound(0);
     
     // Reset deck
@@ -169,9 +167,8 @@ void CangkulGameManager::startSubGame() {
     }
 
     // Main sampai sisa 1 orang terakhir
-    while(!gameState.getPlayerList().size() == 1) {
+    while(!(gameState.getPlayerList().size() == 1)) {
         // Round selanjutnya
-
         gameState.getTableCards().clear();
         gameState.setRound(gameState.getRound() + 1);
 
@@ -179,16 +176,27 @@ void CangkulGameManager::startSubGame() {
         newl();
         
         if (gameState.getRound() == 1) {
-
-            cout << "Satu kartu diletakkan ke meja : " << gameState.getTableCards().getCards().back() << endl;
+            gameState.setStartingPlayer(gameState.getCurrentTurnPlayer());
             gameState.getTableCards().addItem(gameState.getDeckCards().drawCard());
+            cout << "Satu kartu diletakkan ke meja : " << gameState.getTableCards().getCards().back() << endl;
         }
 
         startRound();
-
-        newl(); 
     }
 
+    gameState.moveToWinningList();
+
+    newl();
+    cout << "Game Selesai." << endl;
+    cout << "Berikut pemenang game ini: " << endl;
+    
+    for (int i = 0; i < gameState.getWinningList().size(); i++) {
+        cout << i + 1 << ". " << gameState.getWinningList()[i].getName() << endl;
+    }
+
+    newl();
+    border();
+    newl();
 }
 
 // ========== Methods ==========
@@ -203,32 +211,34 @@ void CangkulGameManager::startGame() {
     bool stop = false;
 
     do {
-
         cout << "PERMAINAN BARU DIMULAI!" << endl;
 
         if (gameState.getWinningList().size() > 0) {
             cout << "Urutan pemain diambil dari hasil permainan sebelumnya!" << endl;
-
             gameState.moveWinningList();
         }
 
         startSubGame();
 
-        newl();
         cout << "Lanjut" << endl;
         cout << "1. Main lagi" << endl;
         cout << "2. Exit" << endl;
 
         IO choiceIO;
-        
         choiceIO.getInput(1, 2);
 
         if (choiceIO.getChoice() == 2) stop = true;
-
     } while(!stop);
+    gameState.moveToWinningList();
 
     newl();
-    cout << "Permainan Berakhir.";
+    cout << "Game Diakhiri." << endl;
+    newl();
     border();
     newl();
+}
+
+int main() {
+    CangkulGameManager cgm;
+    cgm.startGame();
 }

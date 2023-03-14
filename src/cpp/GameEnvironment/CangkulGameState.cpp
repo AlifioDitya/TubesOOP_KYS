@@ -27,6 +27,14 @@ vector<Player> CangkulGameState::getWinningList() {
     return vector<Player>(winningList.begin(), winningList.end());
 }
 
+int CangkulGameState::getStartingPlayerId() {
+    return startingPlayerId;
+}
+
+Player CangkulGameState::getRoundWinner() {
+    return roundWinner;
+}
+
 // ========== Predicates ==========
 
 
@@ -37,6 +45,24 @@ void CangkulGameState::setWinningList(const vector<Player>& list) {
 
 void CangkulGameState::setNextTurn() {
     GameState::setNextTurn();
+}
+
+void CangkulGameState::setStartingPlayer(Player startingPlayer) {
+    startingPlayerId = startingPlayer.getId();
+}
+
+bool CangkulGameState::updateRoundWinner() {
+    int idxMax = 0;
+    for (int i = 1; i < tableCards.getCards().size(); i++) {
+        if (tableCards.getCards()[i] > tableCards.getCards()[idxMax]) idxMax = i;
+    }
+    
+    if (idxMax == tableCards.getCards().size() - 1) {
+        roundWinner = getCurrentTurnPlayer();
+        return true;
+    } else {
+        return false;
+    }
 }
 
 

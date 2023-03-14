@@ -101,10 +101,14 @@ Card Player::PutCard(int idx) {
 }
 
 void Player::printHand() {
-    if (hand.size() == 2) {
-        cout << "[" << getHand()[0] << ", " << getHand()[1] << "]" << endl;
+    cout << "[";
+    for (int i = 0; i < hand.size(); i++) {
+        if (i != 0) cout << ", ";
+        cout << hand[i];
     }
+    cout << "]" << endl;
 }
+
 // ========== Predicates ==========
 
 bool Player::hasPlayedThisRound() const {

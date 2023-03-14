@@ -13,7 +13,6 @@ using std::map;
 class CangkulGameManager: public GameManager {
 private:
     int playerCount;
-    bool isClockwise;
     CangkulGameState gameState;
     map<CangkulCmdTypes, CangkulCommand*> actions;
 

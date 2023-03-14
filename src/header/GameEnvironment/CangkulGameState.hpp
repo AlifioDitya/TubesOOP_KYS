@@ -15,6 +15,8 @@ using std::deque;
 class CangkulGameState: public GameState<Player> {
 private:
     deque<Player> winningList;
+    int startingPlayerId;
+    Player roundWinner;
 
 public:
     // Default ctor
@@ -30,17 +32,24 @@ public:
     ~CangkulGameState();
 
     // ========== Getters ==========
-
     vector<Player> getWinningList();
+    int getStartingPlayerId();
+    Player getRoundWinner();
+
     // ========== Predicates ==========
 
 
     // ========== Setters ==========
-
     void setWinningList(const vector<Player>&);
 
     // move to next player turn
     void setNextTurn();
+
+    // Set the starting player for next round
+    void setStartingPlayer(Player);
+
+    // Set temporary round winner, return true if the current player is current winner
+    bool updateRoundWinner();
 
     // ========== Other Methods ==========
 

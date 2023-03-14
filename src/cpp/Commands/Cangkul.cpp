@@ -14,7 +14,6 @@ Cangkul::Cangkul() {
 }
 
 void Cangkul::validateCommand(CangkulGameState& gameState) {
-
     if (gameState.getTableCards().countItems() == 0) {
         throw UnnecessaryAction(command);
     }
@@ -25,10 +24,9 @@ void Cangkul::validateCommand(CangkulGameState& gameState) {
 
 // Execute method
 void Cangkul::executeCommand(CangkulGameState& gameState) {
-    
     cout << "Pemain melakukan cangkul!" << endl;
 
     gameState.getCurrentTurnPlayer().addItem(gameState.getDeckCards().drawCard());
-
+    
     cout << "Pemain mendapatkan kartu " << gameState.getCurrentTurnPlayer().getHand().back();
 }

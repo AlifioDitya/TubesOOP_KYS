@@ -60,3 +60,10 @@ void IO::getInput(int lowerBound, int upperBound) {
     choice = temp;
 
 }
+
+void IO::newl() {
+    cout << endl;
+}
+void IO::border() {
+    cout << "==============================" << endl;
+}

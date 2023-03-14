@@ -11,12 +11,12 @@ SOURCES=cpp/Card/Card.cpp cpp/Card/CardInterface.cpp cpp/Card/Combination.cpp \
         cpp/GameEnvironment/TableCard.cpp \
         cpp/GameEnvironment/GameDeckCard.cpp cpp/GameEnvironment/AbilityDeckCard.cpp \
         cpp/GameEnvironment/CandyPlayer.cpp \
-        cpp/GameEnvironment/CandyGameState.cpp \
-        cpp/Commands/Commands.cpp \
-        cpp/Commands/Double.cpp cpp/Commands/Half.cpp cpp/Commands/Next.cpp \
+        cpp/GameEnvironment/CandyGameState.cpp cpp/GameEnvironment/CangkulGameState \
+        cpp/Commands/Commands.cpp cpp/Commands/CangkulCommand.cpp \
+        cpp/Commands/Double.cpp cpp/Commands/Half.cpp cpp/Commands/Next.cpp cpp/Commands/Put.cpp cpp/Commands/Cangkul.cpp cpp/Commands/skip.cpp \
         cpp/Commands/Ability.cpp cpp/Commands/Quarter.cpp cpp/Commands/Quadruple.cpp cpp/Commands/Reroll.cpp cpp/Commands/Reverse.cpp \
         cpp/Commands/PlayerInvolvedAbility.cpp cpp/Commands/Abilityless.cpp cpp/Commands/SwapCard.cpp cpp/Commands/Switch.cpp \
-        cpp/GameEnvironment/CandyGameManager.cpp \
+        cpp/GameEnvironment/CandyGameManager.cpp cpp/GameEnvironment/CangkulGameManager.cpp \
         main.cpp
 
 # Generate a list of object files from the source file list

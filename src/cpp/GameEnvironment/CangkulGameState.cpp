@@ -57,8 +57,8 @@ void CangkulGameState::setStartingPlayer(Player startingPlayer) {
 }
 
 bool CangkulGameState::updateRoundWinner() {
-    int idxMax = 0;
-    for (int i = 1; i < tableCards.getCards().size(); i++) {
+    long unsigned int idxMax = 0;
+    for (long unsigned int i = 1; i < tableCards.getCards().size(); i++) {
         if (tableCards.getCards()[i] > tableCards.getCards()[idxMax]) idxMax = i;
     }
     

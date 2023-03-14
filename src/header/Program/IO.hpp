@@ -22,6 +22,11 @@ class IO {
     // get integer input in range [lowerBound, upperBound]
     void getInput(int lowerBound, int upperBound);
 
+    // ========== Static Method ========== 
+
+    static void newl();
+    static void border();
+    
 };
 
 #endif

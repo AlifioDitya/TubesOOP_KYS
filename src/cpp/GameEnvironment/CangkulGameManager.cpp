@@ -13,14 +13,6 @@ using std::cout;
 using std::endl;
 using std::pair;
 
-void border() {
-    cout << "==============================" << endl;
-}
-
-void newl() {
-    cout << endl;
-}
-
 int CangkulGameManager::initialDraw = 7;
 
 CangkulGameManager::CangkulGameManager() {
@@ -44,7 +36,7 @@ void CangkulGameManager::initializePlayerCount() {
 
     IO choiceIO;
 
-    newl();
+    IO::newl();
     cout << "Pilihan Jumlah Pemain :" << endl;
     cout << "1. Dua Pemain" << endl;
     cout << "2. Tiga Pemain" << endl;
@@ -66,7 +58,7 @@ CangkulCommand* CangkulGameManager::getPlayerCommand() {
         try {
             cout << "Pilihanmu (Contoh: PUT) : ";
             cin >> commandString;
-            newl();
+            IO::newl();
 
             CangkulCmdTypes commandType = CangkulCommand::parseCommand(commandString);
 
@@ -111,8 +103,8 @@ void CangkulGameManager::startRound() {
     while (!gameState.hasAllPlayed() && gameState.getPlayerList().size() > 1) {
         // aksi pemain
         Player& currentPlayer = gameState.getCurrentTurnPlayer();
-        newl();
-        border();
+        IO::newl();
+        IO::border();
 
         cout << "Giliran pemain " << currentPlayer.getId() << " : " << currentPlayer.getName() << endl << endl;
 
@@ -123,19 +115,19 @@ void CangkulGameManager::startRound() {
 
         } else {
             cout << "Kamu menentukan warna kartu pada round ini!" << endl;
-            newl();
+            IO::newl();
         }
 
         cout << "Berikut kartu yang kamu miliki : " << endl;
         currentPlayer.printHand();
-        newl();
+        IO::newl();
 
         cout << "Pilihan perintah: " << endl;
         cout << "1. PUT" << endl;
         cout << "2. CANGKUL" << endl;
         cout << "3. SKIP" << endl;
 
-        newl();
+        IO::newl();
 
         bool stop = false;
 
@@ -150,11 +142,11 @@ void CangkulGameManager::startRound() {
         }
     }
     
-    newl();
+    IO::newl();
     cout << "Satu putaran selesai!" << endl;
-    newl();
-    border();
-    newl();
+    IO::newl();
+    IO::border();
+    IO::newl();
 }
 
 void CangkulGameManager::startSubGame() {
@@ -178,7 +170,7 @@ void CangkulGameManager::startSubGame() {
         gameState.setRound(gameState.getRound() + 1);
 
         cout << "ROUND " << gameState.getRound() << endl;
-        newl();
+        IO::newl();
         
         if (gameState.getRound() == 1) {
             gameState.setStartingPlayer(gameState.getCurrentTurnPlayer());
@@ -191,17 +183,17 @@ void CangkulGameManager::startSubGame() {
 
     gameState.moveToWinningList();
 
-    newl();
+    IO::newl();
     cout << "Game Selesai." << endl;
     cout << "Berikut pemenang game ini: " << endl;
     
-    for (int i = 0; i < gameState.getWinningList().size(); i++) {
+    for (long unsigned int i = 0; i < gameState.getWinningList().size(); i++) {
         cout << i + 1 << ". " << gameState.getWinningList()[i].getName() << endl;
     }
 
-    newl();
-    border();
-    newl();
+    IO::newl();
+    IO::border();
+    IO::newl();
 }
 
 // ========== Methods ==========
@@ -236,14 +228,13 @@ void CangkulGameManager::startGame() {
     } while(!stop);
     gameState.moveToWinningList();
 
-    newl();
+    IO::newl();
     cout << "Game Diakhiri." << endl;
-    newl();
-    border();
-    newl();
+    IO::border();
+    IO::newl();
 }
 
-int main() {
-    CangkulGameManager cgm;
-    cgm.startGame();
-}
+// int main() {
+//     CangkulGameManager cgm;
+//     cgm.startGame();
+// }

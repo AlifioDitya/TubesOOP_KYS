@@ -133,7 +133,7 @@ class DeckCard : public InventoryHolder<T> {
      * @param cards Vector of cards to be set
      */
     void setCards(const vector<T>& cards) {
-        deck = stack<T>(deque<T>(cards.begin(), cards.end()));
+        deck = stack<T>(deque<T>(cards.rbegin(), cards.rend()));
     }
 };
 

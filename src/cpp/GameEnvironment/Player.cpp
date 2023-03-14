@@ -72,6 +72,7 @@ int Player::countItems() const {
 // Set player hand on index
 void Player::setHand(int idx, Card newCard) {
     this->hand[idx] = newCard;
+
 } 
 
 void Player::setHand(vector<Card> newHand) {

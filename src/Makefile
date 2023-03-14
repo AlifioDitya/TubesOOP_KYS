@@ -1,10 +1,9 @@
 CXX := g++
 CXXFLAGS := -c -Wall
 LFLAGS := -Wall
-EXECUTABLE := candy_game.out  # Final executable file name
+EXECUTABLE := ../bin/game.out  # Final executable file name
 
 # List of all the source files
-
 SOURCES=cpp/Card/Card.cpp cpp/Card/CardInterface.cpp cpp/Card/Combination.cpp \
         cpp/Program/IO.cpp \
         cpp/GameEnvironment/Player.cpp \
@@ -17,6 +16,7 @@ SOURCES=cpp/Card/Card.cpp cpp/Card/CardInterface.cpp cpp/Card/Combination.cpp \
         cpp/Commands/Ability.cpp cpp/Commands/Quarter.cpp cpp/Commands/Quadruple.cpp cpp/Commands/Reroll.cpp cpp/Commands/Reverse.cpp \
         cpp/Commands/PlayerInvolvedAbility.cpp cpp/Commands/Abilityless.cpp cpp/Commands/SwapCard.cpp cpp/Commands/Switch.cpp \
         cpp/GameEnvironment/CandyGameManager.cpp cpp/GameEnvironment/CangkulGameManager.cpp \
+        cpp/Program/Program.cpp \
         main.cpp
 
 # Generate a list of object files from the source file list
@@ -27,7 +27,7 @@ OBJECTS = $(SOURCES:.cpp=.o)
 	$(CXX) $(CXXFLAGS) $< -o $@
 
 # Default rule to build the executable
-all: $(SOURCES) $(EXECUTABLE)
+all: $(SOURCES) $(EXECUTABLE) cleanobj
 
 # Rule to build the executable
 $(EXECUTABLE): $(OBJECTS)
@@ -36,3 +36,7 @@ $(EXECUTABLE): $(OBJECTS)
 # Rule to clean up object files and the executable
 clean:
 	rm -f $(OBJECTS) $(EXECUTABLE)
+
+# Rule to clean up object files
+cleanobj:
+	rm -f $(OBJECTS)

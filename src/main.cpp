@@ -1,12 +1,10 @@
-#include "header/GameEnvironment/CandyGameManager.hpp"
-#include "header/GameEnvironment/CangkulGameManager.hpp"
+#include "header/Program/Program.hpp"
+#include "header/Program/IO.hpp"
 
 int main() {
-    CandyGameManager candyGameManager;
-    CangkulGameManager cangkulGameManager;
+    Program program;
 
-    candyGameManager.startGame();
-    // cangkulGameManager.startGame();
+    program.start();
 
     return 0;
 }

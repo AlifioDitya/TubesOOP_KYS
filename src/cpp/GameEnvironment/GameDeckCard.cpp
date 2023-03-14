@@ -26,6 +26,7 @@ void GameDeckCard::defaultConfig() {
 
     random_shuffle(tempCards.begin(), tempCards.end());
     
+    clear();
     // for (auto card: tempCards) std::cout << card << std::endl;
     for (Card card: tempCards) {
         deck.push(card);

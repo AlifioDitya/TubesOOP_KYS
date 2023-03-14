@@ -15,6 +15,16 @@ Put::Put() {
 }
 
 void Put::validateCommand(CangkulGameState& gameState) {
+
+}
+
+// ========== Methods ==========
+
+// Execute method
+void Put::executeCommand(CangkulGameState& gameState) {
+    
+    validateCommand(gameState);
+
     cout << "Pilih kartu yang ingin diletakkan :" << endl;
     
     vector<Card> hand = gameState.getCurrentTurnPlayer().getHand();
@@ -46,11 +56,4 @@ void Put::validateCommand(CangkulGameState& gameState) {
         
         gameState.setNextTurn();
     }
-}
-
-// ========== Methods ==========
-
-// Execute method
-void Put::executeCommand(CangkulGameState& gameState) {
-    validateCommand(gameState);
 }

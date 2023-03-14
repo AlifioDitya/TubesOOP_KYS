@@ -5,8 +5,8 @@ int main() {
     CandyGameManager candyGameManager;
     CangkulGameManager cangkulGameManager;
 
-    // candyGameManager.startGame();
-    cangkulGameManager.startGame();
+    candyGameManager.startGame();
+    // cangkulGameManager.startGame();
 
     return 0;
 }

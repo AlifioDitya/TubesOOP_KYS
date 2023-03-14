@@ -71,7 +71,7 @@ private:
 public:
 	UnnecessaryAction(CangkulCmdTypes targetType) {
 		this->targetType = targetType;
-		msg = "Aksi " + CangkulCommand::parseCommand(targetType) + " tidak diperlukan! Kamu harus menentukan warna kartu pada giliran ini.";
+		msg = "Aksi " + CangkulCommand::parseCommand(targetType) + " tidak diperlukan! Kamu dapat meletakkan salah satu kartu yang dimiliki.";
 	}
 
 	const char* what() const throw() {

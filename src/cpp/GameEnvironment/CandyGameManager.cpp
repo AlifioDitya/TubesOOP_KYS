@@ -273,6 +273,7 @@ void CandyGameManager::startSubGame() {
 
     // Setiap player ambil 2 kartu dari deck
     for (long unsigned int i = 0; i < gameState.getPlayerList().size(); i++) {
+        
         CandyPlayer& player = gameState.getPlayerRefAt(i);
         player.setHand(gameState.getDeckCards().drawMany(CandyGameManager::initialDraw));
     }

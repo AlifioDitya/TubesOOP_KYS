@@ -23,5 +23,7 @@ void AbilityDeckCard::defaultConfig() {
     deque<AbilityTypes> temp {Reverse, Reroll, Quadruple, Quarter, SwapCard, Switch, Abilityless};
     srand(time(NULL));
     random_shuffle(temp.begin(), temp.end());
+
+    clear();
     deck = stack<AbilityTypes>(temp);
 }

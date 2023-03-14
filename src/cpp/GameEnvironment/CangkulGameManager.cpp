@@ -143,7 +143,10 @@ void CangkulGameManager::startRound() {
     }
     
     IO::newl();
-    cout << "Satu putaran selesai!" << endl;
+    if (gameState.hasAllPlayed()) {
+        cout << "Satu putaran selesai!" << endl;
+        cout << gameState.getPlayerRefAt(gameState.getPlayerIdx(gameState.getStartingPlayerId())).getName() << " memiliki nilai kartu tertinggi pada round ini!" << endl;
+    }
     IO::newl();
     IO::border();
     IO::newl();
@@ -168,6 +171,7 @@ void CangkulGameManager::startSubGame() {
         // Round selanjutnya
         gameState.getTableCards().clear();
         gameState.setRound(gameState.getRound() + 1);
+
 
         cout << "ROUND " << gameState.getRound() << endl;
         IO::newl();
@@ -201,17 +205,27 @@ void CangkulGameManager::startSubGame() {
 void CangkulGameManager::startGame() {
     // Mulai game keseluruhan sampai ditemukan pemenang
 
+    IO::border();
+    cout << "INISIASI PERMAINAN CANGKUL" << endl;
+    IO::newl();
+
     // Inisiasi gameState
     initializePlayerCount();
+
+    IO::newl();
+
     gameState = CangkulGameState(getInitialPlayerList(playerCount), 0, TableCard(), GameDeckCard());
     
     bool stop = false;
 
     do {
+        IO::newl();
         cout << "PERMAINAN BARU DIMULAI!" << endl;
+        IO::newl();
 
         if (gameState.getWinningList().size() > 0) {
             cout << "Urutan pemain diambil dari hasil permainan sebelumnya!" << endl;
+            IO::newl();
             gameState.moveWinningList();
         }
 
@@ -226,8 +240,7 @@ void CangkulGameManager::startGame() {
 
         if (choiceIO.getChoice() == 2) stop = true;
     } while(!stop);
-    gameState.moveToWinningList();
-
+    
     IO::newl();
     cout << "Game Diakhiri." << endl;
     IO::border();

@@ -50,7 +50,7 @@ void IO::getInput(int lowerBound, int upperBound) {
                 throw InvalidChoice();
             }
         } catch(const UnmatchedType& err) {
-            cout << err.what() << " Choice should be number." << endl;
+            cout << err.what() << " Masukan harus berupa angka." << endl;
         } catch(const exception& err) {
             cout << err.what() << endl;
             temp = -1;

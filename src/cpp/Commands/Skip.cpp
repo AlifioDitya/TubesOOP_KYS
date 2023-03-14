@@ -29,6 +29,8 @@ void Skip::validateCommand(CangkulGameState& gameState) {
 // Execute method
 void Skip::executeCommand(CangkulGameState& gameState) {
 
+    validateCommand(gameState);
+    
     cout << "Giliran pemain dilewatkan!" << endl;
     gameState.setNextTurn();
 }

@@ -11,7 +11,7 @@ using std::cout;
 using std::endl;
 using std::vector;
 
-// ctor
+ 
 Reroll::Reroll() {
     this->command = CmdTypes::Ability;
     this->abilityType = AbilityTypes::Reroll;
@@ -19,7 +19,7 @@ Reroll::Reroll() {
 
 // ========== Methods ==========
 
-// Execute method
+
 void Reroll::executeCommand(CandyGameState& gameState) {
     validateAbility(gameState);
     

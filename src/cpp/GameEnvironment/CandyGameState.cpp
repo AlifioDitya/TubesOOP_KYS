@@ -11,14 +11,12 @@ using std::find_if;
 const uint64_t CandyGameState::initialPoint = 64;
 const uint64_t CandyGameState::winnerPoint = 4294967296;
 
-// Default ctor
 CandyGameState::CandyGameState() {
 
     reversePlayerId = 0;
     pointPool = initialPoint;
 }
 
-// Specified ctor
 CandyGameState::CandyGameState(const vector<CandyPlayer>& playerList, int roundNum, uint64_t points, 
         const TableCard& tableCard, const GameDeckCard& deckCard, const AbilityDeckCard& abilities, int reversePlayerId):      
     
@@ -30,7 +28,6 @@ CandyGameState::CandyGameState(const vector<CandyPlayer>& playerList, int roundN
     this->pointPool = points;
 }
 
-// Copy ctor
 CandyGameState::CandyGameState(const CandyGameState& gs):GameState<CandyPlayer>(gs) {
     // ABILITIES COPY
     abilities = gs.abilities;
@@ -38,7 +35,6 @@ CandyGameState::CandyGameState(const CandyGameState& gs):GameState<CandyPlayer>(
     pointPool = gs.pointPool;
 }
 
-// Destructor
 CandyGameState::~CandyGameState() {
     // No dynamic allocation
 }

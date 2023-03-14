@@ -8,7 +8,7 @@
 using std::cout;
 using std::endl;
 
-// ctor
+ 
 Cangkul::Cangkul() {
     this->command = CangkulCmdTypes::Cangkul;
 }
@@ -30,7 +30,7 @@ void Cangkul::validateCommand(CangkulGameState& gameState) {
 // ========== Methods ==========
 
 
-// Execute method
+ 
 void Cangkul::executeCommand(CangkulGameState& gameState) {
 
     validateCommand(gameState);

@@ -8,7 +8,6 @@
 using std::cout;
 using std::endl;
 
-// ctor
 Skip::Skip() {
     this->command = CangkulCmdTypes::Skip;
 }
@@ -26,7 +25,6 @@ void Skip::validateCommand(CangkulGameState& gameState) {
 
 // ========== Methods ==========
 
-// Execute method
 void Skip::executeCommand(CangkulGameState& gameState) {
 
     validateCommand(gameState);

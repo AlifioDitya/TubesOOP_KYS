@@ -9,10 +9,10 @@ using std::vector;
 using std::cout;
 using std::endl;
 
-// Default ctor
+ 
 Player::Player(): Player(-1, vector<Card>(), "Username", false) {}
 
-// Specified ctor
+ 
 Player::Player(int id, const vector<Card>& hand, string name, bool hasPlayed) {
     this->playerID = id;
     this->hand = hand;
@@ -20,11 +20,11 @@ Player::Player(int id, const vector<Card>& hand, string name, bool hasPlayed) {
     this->hasPlayed = hasPlayed;
 }
 
-// dtor
+ 
 Player::~Player() {
 }
 
-// cctor
+ 
 Player::Player(const Player& other) {
     playerID = other.playerID;
     name = other.name;

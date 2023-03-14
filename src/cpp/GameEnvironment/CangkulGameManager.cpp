@@ -249,7 +249,3 @@ void CangkulGameManager::startGame() {
     IO::newl();
 }
 
-// int main() {
-//     CangkulGameManager cgm;
-//     cgm.startGame();
-// }

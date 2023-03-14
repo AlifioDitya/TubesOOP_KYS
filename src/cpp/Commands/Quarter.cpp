@@ -10,7 +10,7 @@ using std::cout;
 using std::endl;
 using std::max;
 
-// ctor
+ 
 Quarter::Quarter() {
     this->command = CmdTypes::Ability;
     this->abilityType = AbilityTypes::Quarter;
@@ -18,7 +18,7 @@ Quarter::Quarter() {
 
 // ========== Methods ==========
 
-// Execute method
+ 
 void Quarter::executeCommand(CandyGameState& gameState) {
 
     validateAbility(gameState);

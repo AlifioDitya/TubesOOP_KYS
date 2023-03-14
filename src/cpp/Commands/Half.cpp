@@ -8,14 +8,14 @@
 using std::cout;
 using std::endl;
 
-// ctor
+ 
 Half::Half() {
     this->command = CmdTypes::Half;
 }
 
 // ========== Methods ==========
 
-// Execute method
+ 
 void Half::executeCommand(CandyGameState& gameState) {
     cout << gameState.getCurrentTurnPlayer().getName() << " melakukan HALF! ";
 

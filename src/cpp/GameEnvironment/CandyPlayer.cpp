@@ -9,7 +9,7 @@ using std::vector;
 using std::cout;
 using std::endl;
 
-// Default ctor
+ 
 CandyPlayer::CandyPlayer() {
     ability = AbilityTypes::None;
     point = 0;
@@ -17,7 +17,7 @@ CandyPlayer::CandyPlayer() {
     nerfed = false;
 }
 
-// Specified ctor
+ 
 CandyPlayer::CandyPlayer(int id, const vector<Card>& hand, uint64_t point, string name, bool hasPlayed): Player(id, hand, name, hasPlayed) {
 
     this->ability = AbilityTypes::None;
@@ -26,7 +26,7 @@ CandyPlayer::CandyPlayer(int id, const vector<Card>& hand, uint64_t point, strin
     this->nerfed = false;
 }
 
-// cctor
+ 
 CandyPlayer::CandyPlayer(const CandyPlayer& other): Player(other) {
     ability = other.ability;
     point = other.point;
@@ -125,6 +125,3 @@ void CandyPlayer::switchCards(int idx1, int idx2, CandyPlayer& other) {
     this->setHand(idx1, other.hand[idx2]);
     other.setHand(idx2, temp);
 }
-
-
-// ...

@@ -9,7 +9,6 @@ using std::cout;
 
 // ========== Protected Methods ==========
 
-// return player index that is chosen
 int PlayerInvolvedAbility::selectPlayer(CandyGameState& gameState, const vector<CandyPlayer>& playerList, string label) {
 
     if (playerList.empty()) {

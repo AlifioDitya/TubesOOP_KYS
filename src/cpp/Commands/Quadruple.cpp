@@ -9,7 +9,7 @@
 using std::cout;
 using std::endl;
 
-// ctor
+ 
 Quadruple::Quadruple() {
     this->command = CmdTypes::Ability;
     this->abilityType = AbilityTypes::Quadruple;
@@ -17,7 +17,7 @@ Quadruple::Quadruple() {
 
 // ========== Methods ==========
 
-// Execute method
+ 
 void Quadruple::executeCommand(CandyGameState& gameState) {
 
     validateAbility(gameState);

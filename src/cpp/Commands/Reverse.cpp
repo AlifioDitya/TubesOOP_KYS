@@ -13,7 +13,6 @@ using std::reverse;
 using std::swap;
 using std::rotate;
 
-// ctor
 Reverse::Reverse() {
     this->command = CmdTypes::Ability;
     this->abilityType = AbilityTypes::Reverse;
@@ -21,7 +20,6 @@ Reverse::Reverse() {
 
 // ========== Methods ==========
 
-// Execute method
 void Reverse::executeCommand(CandyGameState& gameState) {
 
     validateAbility(gameState);

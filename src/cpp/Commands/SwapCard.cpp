@@ -10,7 +10,6 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-// ctor
 SwapCard::SwapCard() {
     this->command = CmdTypes::Ability;
     this->abilityType = AbilityTypes::SwapCard;
@@ -29,7 +28,6 @@ int SwapCard::selectCard(string playerName) {
 
 // ========== Methods ==========
 
-// Execute method
 void SwapCard::executeCommand(CandyGameState& gameState) {
     
     validateAbility(gameState);

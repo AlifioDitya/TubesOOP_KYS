@@ -27,7 +27,6 @@ int IO::getChoice() const {
 
 // ========== Other Method ========== 
 
-// get integer input in range [lowerBound, upperBound]
 void IO::getInput(int lowerBound, int upperBound) {
     int temp = -1;
 

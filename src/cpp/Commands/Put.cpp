@@ -9,7 +9,7 @@
 using std::cout;
 using std::endl;
 
-// ctor
+ 
 Put::Put() {
     this->command = CangkulCmdTypes::Put;
 }
@@ -20,7 +20,7 @@ void Put::validateCommand(CangkulGameState& gameState) {
 
 // ========== Methods ==========
 
-// Execute method
+ 
 void Put::executeCommand(CangkulGameState& gameState) {
     
     validateCommand(gameState);

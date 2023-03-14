@@ -9,13 +9,12 @@ using std::map;
 using std::transform;
 using std::tolower;
 
-// ctor
+ 
 CangkulCommand::CangkulCommand() {
 
 }
 
 
-// dtor
 CangkulCommand::~CangkulCommand() {}
 
 // ========== Static Methods ==========

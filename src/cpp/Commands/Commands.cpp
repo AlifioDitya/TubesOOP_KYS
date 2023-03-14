@@ -9,18 +9,16 @@ using std::map;
 using std::transform;
 using std::tolower;
 
-// ctor
+ 
 Commands::Commands() {
 
 }
 
 
-// dtor
 Commands::~Commands() {}
 
 // ========== Operators ==========
 
-// operator=
 Commands& Commands::operator=(const Commands& other) {
     if (this != &other) {
         command = other.command;

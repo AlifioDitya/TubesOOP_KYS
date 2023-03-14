@@ -8,14 +8,14 @@
 using std::cout;
 using std::endl;
 
-// ctor
+ 
 Double::Double() {
     this->command = CmdTypes::Double;
 }
 
 // ========== Methods ==========
 
-// Execute method
+ 
 void Double::executeCommand(CandyGameState& gameState) {
     uint64_t oldPoints = gameState.getPointPool();
     uint64_t newPoints = oldPoints * (uint64_t)2;

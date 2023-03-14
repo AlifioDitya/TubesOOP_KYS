@@ -11,7 +11,7 @@ using std::cin;
 using std::endl;
 using std::find_if;
 
-// ctor
+ 
 Switch::Switch() {
     this->command = CmdTypes::Ability;
     this->abilityType = AbilityTypes::Switch;
@@ -19,7 +19,6 @@ Switch::Switch() {
 
 // ========== Methods ==========
 
-// Execute method
 void Switch::executeCommand(CandyGameState& gameState) {
     
     validateAbility(gameState);

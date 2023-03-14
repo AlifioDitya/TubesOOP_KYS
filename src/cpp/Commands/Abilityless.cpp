@@ -10,7 +10,7 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-// ctor
+ 
 Abilityless::Abilityless() {
     this->command = CmdTypes::Ability;
     this->abilityType = AbilityTypes::Abilityless;
@@ -18,7 +18,7 @@ Abilityless::Abilityless() {
 
 // ========== Methods ==========
 
-// Execute method
+ 
 void Abilityless::executeCommand(CandyGameState& gameState) {
 
     validateAbility(gameState);

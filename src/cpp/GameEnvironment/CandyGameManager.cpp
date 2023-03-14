@@ -1,8 +1,14 @@
 // GameManager.cpp
 #include "../../header/GameEnvironment/CandyGameManager.hpp"
+
+#include <algorithm>
+#include <fstream>
+#include <iostream>
+#include <map>
+
 #include "../../header/Cards/Card.hpp"
-#include "../../header/Exception/IOException.hpp"
-#include "../../header/Program/IO.hpp"
+#include "../../header/Cards/Combination.hpp"
+#include "../../header/Cards/CombinationUtilities.hpp"
 #include "../../header/Commands/Abilityless.hpp"
 #include "../../header/Commands/Double.hpp"
 #include "../../header/Commands/Half.hpp"
@@ -13,31 +19,26 @@
 #include "../../header/Commands/Reverse.hpp"
 #include "../../header/Commands/SwapCard.hpp"
 #include "../../header/Commands/Switch.hpp"
-#include "../../header/Cards/Combination.hpp"
-#include "../../header/GameEnvironment/GameState.hpp"
+#include "../../header/Exception/IOException.hpp"
 #include "../../header/GameEnvironment/CandyGameState.hpp"
-
-#include <map>
-#include <iostream>
-#include <fstream>
-#include <algorithm>
+#include "../../header/GameEnvironment/GameState.hpp"
+#include "../../header/Program/IO.hpp"
 
 using std::cin;
 using std::cout;
-using std::ifstream;
-using std::max_element;
 using std::endl;
+using std::ifstream;
 using std::map;
-
+using std::max_element;
 
 CandyGameManager::CandyGameManager() {
-    actions = map<CmdTypes, Commands*> {
+    actions = map<CmdTypes, Commands*>{
         {CmdTypes::Double, new class Double()},
-        {CmdTypes::Half, new class Half()}, 
-        {CmdTypes::Next, new class Next()}, 
+        {CmdTypes::Half, new class Half()},
+        {CmdTypes::Next, new class Next()},
     };
 
-    abilities = map<AbilityTypes, class Ability*> {
+    abilities = map<AbilityTypes, class Ability*>{
         {AbilityTypes::Abilityless, new class Abilityless()},
         {AbilityTypes::Quadruple, new class Quadruple()},
         {AbilityTypes::Quadruple, new class Quadruple()},
@@ -50,11 +51,11 @@ CandyGameManager::CandyGameManager() {
 }
 
 CandyGameManager::~CandyGameManager() {
-    for (auto action: actions) {
+    for (auto action : actions) {
         delete action.second;
     }
 
-    for (auto abilityPair: abilities) {
+    for (auto abilityPair : abilities) {
         delete abilityPair.second;
     }
 }
@@ -74,11 +75,16 @@ string fixFileExtension(string fileName) {
 }
 
 int stringToColorNum(string colorString) {
-    if (colorString == "H") return 0;
-    else if (colorString == "B") return 1;
-    else if (colorString == "K") return 2;
-    else if (colorString == "M") return 3;
-    else return -1;
+    if (colorString == "H")
+        return 0;
+    else if (colorString == "B")
+        return 1;
+    else if (colorString == "K")
+        return 2;
+    else if (colorString == "M")
+        return 3;
+    else
+        return -1;
 }
 
 vector<Card> readDeckConfig() {
@@ -111,19 +117,21 @@ vector<Card> readDeckConfig() {
 
                     int cardColor = stringToColorNum(temp.substr(0, idx));
                     int cardRank = stoi(temp.substr(idx + 1, len - 2));
-                    if (cardColor == -1 || cardRank < 1 || cardRank > 13) throw InvalidFileInputFormatException();
+                    if (cardColor == -1 || cardRank < 1 || cardRank > 13)
+                        throw InvalidFileInputFormatException();
                     v.push_back(Card(Color(cardColor), Rank(cardRank)));
                     cardCount++;
                 }
-                
+
                 // Ini mungkin bisa juga throw kartu kurang exception
-                if (cardCount != 52) throw InvalidFileInputFormatException();
+                if (cardCount != 52)
+                    throw InvalidFileInputFormatException();
                 return v;
             } else {
                 throw FileNotFoundException();
             }
 
-        } catch(const exception& err) {
+        } catch (const exception& err) {
             cout << err.what() << endl;
             v.clear();
         }
@@ -168,7 +176,6 @@ vector<CandyPlayer> CandyGameManager::getInitialPlayerList(int playerNum) const 
     return playerList;
 }
 
-
 Commands* CandyGameManager::getPlayerCommand() {
     // Menerima input aksi pemain saat ini
     IO choiceIO;
@@ -189,12 +196,48 @@ Commands* CandyGameManager::getPlayerCommand() {
             } else {
                 command = actions[commandType];
             }
-        } catch(const exception& err) {
+        } catch (const exception& err) {
             cout << err.what() << endl;
         }
     } while (!command);
 
     return command;
+}
+
+Combination* CandyGameManager::getPlayerCombo(const vector<Card> tableCards,
+                                              const vector<Card> handCards) {
+    vector<Card> cards(tableCards);
+    cards.insert(cards.end(), handCards.begin(), handCards.end());
+    sort(cards.begin(), cards.end());
+
+    Combination* maxCombo;
+    double maxValue = -1;
+
+    for (long unsigned int i = 0; i < cards.size() - 1; i++) {
+        for (long unsigned int j = i + 1; j < cards.size(); j++) {
+            if ((cards[i].getValue() == handCards[0].getValue() ||
+                 cards[i].getValue() == handCards[1].getValue()) &&
+                (cards[j].getValue() == handCards[0].getValue() ||
+                 cards[j].getValue() == handCards[1].getValue()))
+                continue;
+
+            vector<Card> currPerm(cards);
+            currPerm.erase(currPerm.begin() + j);
+            currPerm.erase(currPerm.begin() + i);
+
+            Combination* currCombo = CombinationUtilities::findComboType(currPerm);
+            double currValue = currCombo->getValue();
+
+            if (currValue >= maxValue) {
+                if (maxValue != -1)
+                    delete maxCombo;
+                maxCombo = currCombo;
+                maxValue = currValue;
+            }
+        }
+    }
+
+    return maxCombo;
 }
 
 void CandyGameManager::startRound() {
@@ -205,18 +248,22 @@ void CandyGameManager::startRound() {
         CandyPlayer& currentPlayer = gameState.getCurrentTurnPlayer();
         cout << endl;
         cout << "==============================" << endl;
-        cout << "Giliran pemain " << currentPlayer.getId() << " : " << currentPlayer.getName() << endl << endl;
+        cout << "Giliran pemain " << currentPlayer.getId() << " : " << currentPlayer.getName()
+             << endl
+             << endl;
 
         cout << "Berikut kartu pada table : " << endl;
         gameState.getTableCards().showCards();
-        cout<< endl;
+        cout << endl;
 
         cout << "Berikut kartu yang kamu miliki : " << endl;
         currentPlayer.printHand();
         cout << endl;
 
         if (currentPlayer.getAbility() != AbilityTypes::None && !currentPlayer.hasUsedAbility()) {
-            cout << "Ability yang sedang dimiliki: " << Ability::parseAbility(currentPlayer.getAbility()) << endl << endl;
+            cout << "Ability yang sedang dimiliki: "
+                 << Ability::parseAbility(currentPlayer.getAbility()) << endl
+                 << endl;
         }
 
         cout << "Pilihan perintah: " << endl;
@@ -234,19 +281,17 @@ void CandyGameManager::startRound() {
 
         bool stop = false;
 
-        while (!stop)
-        {
+        while (!stop) {
             try {
-            Commands* command = getPlayerCommand();
-            command->executeCommand(gameState);
-            stop = true;
+                Commands* command = getPlayerCommand();
+                command->executeCommand(gameState);
+                stop = true;
             } catch (const exception& err) {
                 cout << err.what() << " Silahkan lakukan perintah lain." << endl;
             }
         }
-
     }
-    
+
     cout << endl;
     cout << "Satu putaran selesai!" << endl;
     cout << "==============================" << endl;
@@ -271,7 +316,7 @@ void CandyGameManager::startSubGame() {
     }
 
     // Main sampai 6 round
-    while(gameState.getRound() < 6) {
+    while (gameState.getRound() < 6) {
         // Round selanjutnya
         gameState.setRound(gameState.getRound() + 1);
 
@@ -290,7 +335,6 @@ void CandyGameManager::startSubGame() {
 
         startRound();
 
-        
         // if (gameState.getRound() == 1) {
         //     // Memberikan ability ke setiap player
 
@@ -306,13 +350,14 @@ void CandyGameManager::startSubGame() {
         // Meletakkan 1 kartu dari deck ke table
         gameState.getTableCards().addItem(gameState.getDeckCards().drawCard());
 
-        cout << "Satu kartu diletakkan ke meja : " << gameState.getTableCards().getCards().back() << endl;
-        cout << endl; 
+        cout << "Satu kartu diletakkan ke meja : " << gameState.getTableCards().getCards().back()
+             << endl;
+        cout << endl;
     }
 
     class ComboCompare {
-        public:
-        bool operator() (const Combination& a, const Combination& b) const {
+       public:
+        bool operator()(const Combination& a, const Combination& b) const {
             return a.getValue() < b.getValue();
         }
     };
@@ -320,13 +365,14 @@ void CandyGameManager::startSubGame() {
     map<Combination, CandyPlayer, ComboCompare> combosMap;
     vector<Combination> combos;
     // Hitung pemenang Sub Game berdasarkan combo
-    for (auto player: gameState.getPlayerList()) {
+    for (auto player : gameState.getPlayerList()) {
         Combination combo(gameState.getTableCards().getCards(), player.getHand());
         combosMap[combo] = player;
         combos.push_back(combo);
     }
 
-    CandyPlayer& winner = gameState.getPlayerRefAt(gameState.getPlayerIdx(combosMap[getMax(combos)].getId()));
+    CandyPlayer& winner =
+        gameState.getPlayerRefAt(gameState.getPlayerIdx(combosMap[getMax(combos)].getId()));
     winner.addPoint(gameState.getPointPool());
 }
 
@@ -340,7 +386,8 @@ void CandyGameManager::startGame() {
     cout << endl;
 
     // Inisiasi gameState
-    gameState = CandyGameState(getInitialPlayerList(7), 0, CandyGameState::initialPoint, TableCard(), GameDeckCard(), AbilityDeckCard(), false);
+    gameState = CandyGameState(getInitialPlayerList(7), 0, CandyGameState::initialPoint,
+                               TableCard(), GameDeckCard(), AbilityDeckCard(), false);
 
     int counter = 0;
 
@@ -356,7 +403,7 @@ void CandyGameManager::startGame() {
         vector<CandyPlayer> playerList = gameState.getPlayerList();
         CandyPlayer leaderPlayer = getMax(playerList);
 
-    } while(leadingPlayer.getPoint() >= CandyGameState::winnerPoint);
+    } while (leadingPlayer.getPoint() >= CandyGameState::winnerPoint);
 
     cout << "Pemenangnya adalah " << leadingPlayer.getName() << endl;
 }

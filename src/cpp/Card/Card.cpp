@@ -7,8 +7,7 @@ using std::cout;
 using std::endl;
 using std::map;
 
-Card::Card(Color color, Rank rank)
-    : CardInterface((double)rank / 10 + color * 0.03), color(color), rank(rank) {
+Card::Card(Color color, Rank rank) : color(color), rank(rank) {
 }
 
 Color Card::getColor() const {
@@ -43,7 +42,7 @@ string Card::getRankString() const {
 }
 
 double Card::getValue() const {
-    return value;
+    return (double)rank / 10 + color * 0.03;
 }
 
 ostream& operator<<(ostream& o, const Card& card) {

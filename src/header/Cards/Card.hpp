@@ -6,15 +6,15 @@
 #include "../../enums/CardTypes.hpp"
 #include "CardInterface.hpp"
 
-using std::string;
 using std::ostream;
+using std::string;
 
 class Card : public CardInterface {
-private:
+   private:
     Color color;
     Rank rank;
 
-public:
+   public:
     // CTOR with parameters
     Card(Color, Rank);
 
@@ -25,8 +25,8 @@ public:
     string getRankString() const;
 
     // Getter for weight based on spec (assumed as high card)
-    double getValue() const;
-    
+    double getValue() const override;
+
     friend ostream& operator<<(ostream&, const Card&);
 };
 

@@ -4,7 +4,7 @@
 #include <utility>
 #include <vector>
 
-#include "../../enums/CombinationTypes.hpp"
+// #include "../../enums/CombinationTypes.hpp"
 #include "Card.hpp"
 
 using std::pair;
@@ -23,34 +23,28 @@ class Combination : public CardInterface {
         FourOfAKind = 115,
         StraightFlush = 129
     };
-    bool ofSameColor(const vector<Card>&);
-    bool inSequence(const vector<Card>&);
-    bool hasFourOfAKind(const vector<Card>&);
-    bool isFullHouse(const vector<Card>&);
-    bool hasThreeOfAKind(const vector<Card>&);
-    pair<int, int> findPairIdx(const vector<Card>&);
 
-    vector<Card> findBestCombination(const vector<Card>& tableCards, const vector<Card>& handCards);
-    ComboTypes findComboType(const vector<Card>&);
-    double calculateWeightedValue(vector<Card>, ComboTypes);
+    // vector<Card> findBestCombination(const vector<Card>& tableCards, const vector<Card>&
+    // handCards); double calculateWeightedValue(vector<Card>, ComboTypes);
 
    protected:
     vector<Card> tableCards;
     vector<Card> handCards;
     vector<Card> bestCombination;
-    ComboTypes comboType;
+    // ComboTypes comboType;
 
    public:
-    // CTOR
-    Combination(const vector<Card>&, const vector<Card>&);
+    Combination(const vector<Card> tableCards, const vector<Card> handCards);
 
     ~Combination();
 
     vector<Card> getTableCards() const;
     vector<Card> getHandCards() const;
     vector<Card> getBestCombination() const;
-    ComboTypes getComboType() const;
-    double getValue() const;
+    // ComboTypes getComboType() const;
+    virtual string getComboTypeString() const;  // TODO: IMPLEMENTATION
+
+    virtual double getValue() const = 0;
 };
 
 #endif

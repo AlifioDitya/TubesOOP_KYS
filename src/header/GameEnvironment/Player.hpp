@@ -11,9 +11,11 @@
 #include "../../enums/AbilityTypes.hpp"
 #include <vector>
 #include <string>
+#include <set>
 
 using std::vector;
 using std::string;
+using std::set;
 
 /**
  * @class Player
@@ -165,6 +167,10 @@ public:
      * @return false otherwise.
      */
     bool hasPlayedThisRound() const;
+
+    // ========== Easter egg methods ===========
+
+    void generateRandomHand();
 };
 
 #endif

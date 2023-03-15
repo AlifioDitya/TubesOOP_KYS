@@ -8,6 +8,7 @@
 
 #include "../GameEnvironment/CandyGameManager.hpp"
 #include "../GameEnvironment/CangkulGameManager.hpp"
+#include "../EasterEgg/TFCardGameManager.hpp"
 
 /**
 *   @class Program
@@ -24,6 +25,12 @@ public:
     *   @brief Manager for Cangkul Game
     **/
     CangkulGameManager cangkulGameManager;
+
+    /**
+     * @brief Manager for Easter egg game
+     * 
+     */
+    TFCardGameManager tfCardGameManager;
 
     /*
     *   @brief Method to initiate the program

@@ -9,6 +9,7 @@ using std::string;
 using std::vector;
 using std::cout;
 using std::endl;
+using std::swap;
 
 Player::Player() : Player(-1, vector<Card>(), "Username", false) {}
 
@@ -109,4 +110,19 @@ void Player::printHand() {
 
 bool Player::hasPlayedThisRound() const {
     return hasPlayed;
+}
+
+// ========== Easter egg methods ===========
+
+void Player::generateRandomHand() {
+    vector<Card> output;
+
+    // Generate random seed using current time
+    srand(time(0));
+    for (int i = 0; i < 4; i++) {
+        Card randCard(static_cast<Color>(0), static_cast<Rank>(rand() % 13 + 1));
+        output.push_back(randCard);
+    }
+
+    setHand(output);
 }

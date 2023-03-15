@@ -49,6 +49,7 @@
         "concepts": "cpp",
         "numbers": "cpp",
         "cstring": "cpp",
-        "map": "cpp"
+        "map": "cpp",
+        "unordered_set": "cpp"
     }
 }

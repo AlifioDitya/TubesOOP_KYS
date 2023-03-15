@@ -42,6 +42,8 @@ SOURCES := cpp/Card/Card.cpp \
         cpp/GameEnvironment/GameDeckCard.cpp \
         cpp/GameEnvironment/Player.cpp \
         cpp/GameEnvironment/TableCard.cpp \
+        cpp/EasterEgg/Solver.cpp \
+        cpp/EasterEgg/TFCardGameManager.cpp \
         cpp/Program/IO.cpp \
         cpp/Program/Program.cpp \
         main.cpp

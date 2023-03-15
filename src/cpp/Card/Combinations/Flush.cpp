@@ -4,8 +4,6 @@
 
 #include <algorithm>
 
-#include "../../../header/Cards/CombinationUtilities.hpp"
-
 using std::sort;
 
 Flush::Flush(const vector<Card> tableCards, const vector<Card> handCards,
@@ -35,7 +33,7 @@ long double Flush::getValue() const {
 
     long double colorEncoding = bestCombination[0].getColor() / 1e6;
 
-    return CombinationUtilities::ComboMaxTimesTen::Straight / 10 + rankEncoding + colorEncoding;
+    return ComboMaxTimesTen::Straight / 10 + rankEncoding + colorEncoding;
 }
 
 Combination* Flush::getFlush(const vector<Card> tableCards, const vector<Card> handCards) {
@@ -53,7 +51,7 @@ Combination* Flush::getFlush(const vector<Card> tableCards, const vector<Card> h
         cards.insert(cards.end(), currentHand.begin(), currentHand.end());
         sort(cards.begin(), cards.end());
 
-        if (CombinationUtilities::ofSameColor(cards)) {
+        if (ofSameColor(cards)) {
             Combination* flush = new Flush(currentTable, currentHand, cards);
             long double value = flush->getValue();
 
@@ -79,7 +77,7 @@ Combination* Flush::getFlush(const vector<Card> tableCards, const vector<Card> h
         cards.insert(cards.end(), currentHand.begin(), currentHand.end());
         sort(cards.begin(), cards.end());
 
-        if (CombinationUtilities::ofSameColor(cards)) {
+        if (ofSameColor(cards)) {
             Combination* flush = new Flush(currentTable, currentHand, cards);
             long double value = flush->getValue();
 
@@ -106,7 +104,7 @@ Combination* Flush::getFlush(const vector<Card> tableCards, const vector<Card> h
             cards.insert(cards.end(), currentHand.begin(), currentHand.end());
             sort(cards.begin(), cards.end());
 
-            if (CombinationUtilities::ofSameColor(cards)) {
+            if (ofSameColor(cards)) {
                 Combination* flush = new Flush(currentTable, currentHand, cards);
                 long double value = flush->getValue();
 

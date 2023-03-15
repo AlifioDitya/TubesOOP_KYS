@@ -4,8 +4,6 @@
 
 #include <algorithm>
 
-#include "../../../header/Cards/CombinationUtilities.hpp"
-
 using std::sort;
 
 FullHouse::FullHouse(const vector<Card> tableCards, const vector<Card> handCards,
@@ -56,8 +54,7 @@ long double FullHouse::getValue() const {
     }
     pc_encoding /= 1e7;
 
-    return CombinationUtilities::ComboMaxTimesTen::Flush / 10 + tr_encoding + pr_encoding +
-           tc_encoding + pc_encoding;
+    return ComboMaxTimesTen::Flush / 10 + tr_encoding + pr_encoding + tc_encoding + pc_encoding;
 }
 
 Combination* FullHouse::getFullHouse(const vector<Card> tableCards, const vector<Card> handCards) {
@@ -75,7 +72,7 @@ Combination* FullHouse::getFullHouse(const vector<Card> tableCards, const vector
         cards.insert(cards.end(), currentHand.begin(), currentHand.end());
         sort(cards.begin(), cards.end());
 
-        if (CombinationUtilities::isFullHouse(cards)) {
+        if (isFullHouse(cards)) {
             Combination* fullHouse = new FullHouse(currentTable, currentHand, cards);
             long double value = fullHouse->getValue();
 
@@ -101,7 +98,7 @@ Combination* FullHouse::getFullHouse(const vector<Card> tableCards, const vector
         cards.insert(cards.end(), currentHand.begin(), currentHand.end());
         sort(cards.begin(), cards.end());
 
-        if (CombinationUtilities::isFullHouse(cards)) {
+        if (isFullHouse(cards)) {
             Combination* fullHouse = new FullHouse(currentTable, currentHand, cards);
             long double value = fullHouse->getValue();
 
@@ -128,7 +125,7 @@ Combination* FullHouse::getFullHouse(const vector<Card> tableCards, const vector
             cards.insert(cards.end(), currentHand.begin(), currentHand.end());
             sort(cards.begin(), cards.end());
 
-            if (CombinationUtilities::isFullHouse(cards)) {
+            if (isFullHouse(cards)) {
                 Combination* fullHouse = new FullHouse(currentTable, currentHand, cards);
                 long double value = fullHouse->getValue();
 

@@ -4,8 +4,6 @@
 
 #include <algorithm>
 
-#include "../../../header/Cards/CombinationUtilities.hpp"
-
 using std::sort;
 
 Straight::Straight(const vector<Card> tableCards, const vector<Card> handCards,
@@ -35,7 +33,7 @@ long double Straight::getValue() const {
     }
     colorEncoding /= 1e5;
 
-    return CombinationUtilities::ComboMaxTimesTen::ThreeOfAKind / 10 + rankEncoding + colorEncoding;
+    return ComboMaxTimesTen::ThreeOfAKind / 10 + rankEncoding + colorEncoding;
 }
 
 Combination* Straight::getStraight(const vector<Card> tableCards, const vector<Card> handCards) {
@@ -53,7 +51,7 @@ Combination* Straight::getStraight(const vector<Card> tableCards, const vector<C
         cards.insert(cards.end(), currentHand.begin(), currentHand.end());
         sort(cards.begin(), cards.end());
 
-        if (CombinationUtilities::inSequence(cards)) {
+        if (inSequence(cards)) {
             Combination* straight = new Straight(currentTable, currentHand, cards);
             long double value = straight->getValue();
 
@@ -79,7 +77,7 @@ Combination* Straight::getStraight(const vector<Card> tableCards, const vector<C
         cards.insert(cards.end(), currentHand.begin(), currentHand.end());
         sort(cards.begin(), cards.end());
 
-        if (CombinationUtilities::inSequence(cards)) {
+        if (inSequence(cards)) {
             Combination* straight = new Straight(currentTable, currentHand, cards);
             long double value = straight->getValue();
 
@@ -106,7 +104,7 @@ Combination* Straight::getStraight(const vector<Card> tableCards, const vector<C
             cards.insert(cards.end(), currentHand.begin(), currentHand.end());
             sort(cards.begin(), cards.end());
 
-            if (CombinationUtilities::inSequence(cards)) {
+            if (inSequence(cards)) {
                 Combination* straight = new Straight(currentTable, currentHand, cards);
                 long double value = straight->getValue();
 

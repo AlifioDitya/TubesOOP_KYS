@@ -4,8 +4,6 @@
 
 #include <algorithm>
 
-#include "../../../header/Cards/CombinationUtilities.hpp"
-
 using std::sort;
 
 FourOfAKind::FourOfAKind(const vector<Card> tableCards, const vector<Card> handCards,
@@ -26,8 +24,7 @@ long double FourOfAKind::getValue() const {
     Format: r.r -> max:1.3
     */
 
-    return CombinationUtilities::ComboMaxTimesTen::FullHouse / 10 +
-           (bestCombination[0].getRank() - 1) / 10;
+    return ComboMaxTimesTen::FullHouse / 10 + (bestCombination[0].getRank() - 1) / 10;
 }
 
 Combination* FourOfAKind::getFourOfAKind(const vector<Card> tableCards,
@@ -48,7 +45,7 @@ Combination* FourOfAKind::getFourOfAKind(const vector<Card> tableCards,
             cards.insert(cards.end(), currentHand.begin(), currentHand.end());
             sort(cards.begin(), cards.end());
 
-            if (CombinationUtilities::ofSameRank(cards)) {
+            if (ofSameRank(cards)) {
                 Combination* foak = new FourOfAKind(currentTable, currentHand, cards);
                 long double value = foak->getValue();
 
@@ -77,7 +74,7 @@ Combination* FourOfAKind::getFourOfAKind(const vector<Card> tableCards,
             cards.insert(cards.end(), currentHand.begin(), currentHand.end());
             sort(cards.begin(), cards.end());
 
-            if (CombinationUtilities::ofSameRank(cards)) {
+            if (ofSameRank(cards)) {
                 Combination* foak = new FourOfAKind(currentTable, currentHand, cards);
                 long double value = foak->getValue();
 
@@ -104,7 +101,7 @@ Combination* FourOfAKind::getFourOfAKind(const vector<Card> tableCards,
             cards.insert(cards.end(), currentHand.begin(), currentHand.end());
             sort(cards.begin(), cards.end());
 
-            if (CombinationUtilities::ofSameRank(cards)) {
+            if (ofSameRank(cards)) {
                 Combination* foak = new FourOfAKind(currentTable, currentHand, cards);
                 long double value = foak->getValue();
 

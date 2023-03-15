@@ -20,35 +20,6 @@ Combination::Combination(const vector<Card> tableCards, const vector<Card> handC
 Combination::~Combination() {
 }
 
-// double Combination::calculateWeightedValue(vector<Card> cards, ComboTypes type) {
-//     sort(cards.begin(), cards.end());
-
-//     if (type == ComboTypes::StraightFlush)
-//         return ComboMaxTimesTen::FourOfAKind / 10 + cards[4].getValue();
-//     if (type == ComboTypes::FourOfAKind)
-//         return ComboMaxTimesTen::FullHouse / 10 + cards[2].getRank() / 10;
-//     if (type == ComboTypes::FullHouse)
-//         return ComboMaxTimesTen::Flush / 10 + cards[2].getRank() / 10;
-//     if (type == ComboTypes::Flush) {
-//         int encoded = (1 << cards[0].getRank()) | (1 << cards[1].getRank()) |
-//                       (1 << cards[2].getRank()) | (1 << cards[3].getRank()) |
-//                       (1 << cards[4].getRank());
-//         double flushValue = (double)encoded / 10000 + cards[0].getColor() * 0.00003;
-//         return ComboMaxTimesTen::Straight / 10 + flushValue;
-//     }
-//     if (type == ComboTypes::Straight)
-//         return ComboMaxTimesTen::ThreeOfAKind / 10 + cards[4].getValue();
-//     if (type == ComboTypes::ThreeOfAKind)
-//         return ComboMaxTimesTen::TwoPair / 10 + cards[2].getRank();
-//     if (type == ComboTypes::TwoPair) {
-//         Card high = cards[3].getRank() == cards[4].getRank() ? cards[4] : cards[3];
-//         return ComboMaxTimesTen::Pair / 10 + high.getValue();
-//     }
-//     if (type == ComboTypes::Pair)
-//         return ComboMaxTimesTen::HighCard / 10 + cards[findPairIdx(cards).second].getValue();
-//     return cards[4].getValue();
-// }
-
 vector<Card> Combination::getTableCards() const {
     return tableCards;
 };
@@ -60,25 +31,84 @@ vector<Card> Combination::getHandCards() const {
 vector<Card> Combination::getBestCombination() const {
     return bestCombination;
 }
-// ComboTypes Combination::getComboType() const {
-//     return comboType;
-// }
 
-string Combination::getComboTypeString() const {
-    // map<ComboTypes, string> comboMap = {
-    //     {ComboTypes::HighCard, "High Card"},
-    //     {ComboTypes::Pair, "Pair"},
-    //     {ComboTypes::TwoPair, "Two Pair"},
-    //     {ComboTypes::ThreeOfAKind, "Three of a Kind"},
-    //     {ComboTypes::Straight, "Straight"},
-    //     {ComboTypes::Flush, "Flush"},
-    //     {ComboTypes::FullHouse, "Full House"},
-    //     {ComboTypes::FourOfAKind, "Four of a Kind"},
-    //     {ComboTypes::StraightFlush, "Straight Flush"},
-    // };
+bool Combination::ofSameColor(vector<Card>& cards) {
+    int color = cards[0].getColor();
+    for (long unsigned int i = 1; i < cards.size(); i++) {
+        if (cards[i].getColor() != color)
+            return false;
+    }
+    return true;
+}
 
-    return "belom";
-    // return comboMap[comboType];
+bool Combination::ofSameRank(vector<Card>& cards) {
+    int color = cards[0].getRank();
+    for (long unsigned int i = 1; i < cards.size(); i++) {
+        if (cards[i].getRank() != color)
+            return false;
+    }
+    return true;
+}
+
+bool Combination::inSequence(vector<Card>& cards) {
+    for (long unsigned int i = 0; i < cards.size() - 1; i++) {
+        if (cards[i].getRank() != cards[i + 1].getRank() - 1)
+            return false;
+    }
+    return true;
+}
+
+bool Combination::isFullHouse(vector<Card>& cards) {
+    if (cards.size() == 5) {
+        pair<int, int> pairIdx = findPairIdx(cards);
+        if (pairIdx.second == 1 || pairIdx.first == 3) {
+            vector<Card> rest;
+            if (pairIdx.second == 1) {
+                rest.insert(rest.end(), cards.begin() + pairIdx.second + 1, cards.end());
+            } else {
+                rest.insert(rest.end(), cards.begin(), cards.end() - 2);
+            }
+
+            if (hasThreeOfAKind(rest))
+                return true;
+        }
+    }
+    return false;
+}
+
+bool Combination::hasFourOfAKind(vector<Card>& cards) {
+    for (long unsigned int i = 0; i < cards.size() - 3; i++) {
+        if (cards[i].getRank() == cards[i + 1].getRank() &&
+            cards[i + 1].getRank() == cards[i + 2].getRank() &&
+            cards[i + 2].getRank() == cards[i + 3].getRank())
+            return true;
+    }
+    return false;
+}
+
+bool Combination::hasThreeOfAKind(vector<Card>& cards) {
+    for (long unsigned int i = 0; i < cards.size() - 2; i++) {
+        if (cards[i].getRank() == cards[i + 1].getRank() &&
+            cards[i + 1].getRank() == cards[i + 2].getRank())
+            return true;
+    }
+    return false;
+}
+
+bool Combination::isTwoPair(vector<Card>& cards) {
+    return cards[0] == cards[1] && cards[1] != cards[2] && cards[2] == cards[3];
+}
+
+pair<int, int> Combination::findPairIdx(vector<Card>& cards) {
+    pair<int, int> cardPairIdx(-1, -1);
+    for (long unsigned int i = 0; i < cards.size() - 1; i++) {
+        if (cards[i].getRank() == cards[i + 1].getRank()) {
+            cardPairIdx.first = i - 1;
+            cardPairIdx.second = i;
+            return cardPairIdx;
+        }
+    }
+    return cardPairIdx;
 }
 
 /*

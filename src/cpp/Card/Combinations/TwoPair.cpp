@@ -4,8 +4,6 @@
 
 #include <algorithm>
 
-#include "../../../header/Cards/CombinationUtilities.hpp"
-
 using std::sort;
 
 TwoPair::TwoPair(const vector<Card> tableCards, const vector<Card> handCards,
@@ -48,8 +46,7 @@ long double TwoPair::getValue() const {
     }
     lc_encoding /= 1e7;
 
-    return CombinationUtilities::ComboMaxTimesTen::Flush / 10 + hr_encoding + lr_encoding +
-           hc_encoding + lc_encoding;
+    return ComboMaxTimesTen::Flush / 10 + hr_encoding + lr_encoding + hc_encoding + lc_encoding;
 }
 
 Combination* TwoPair::getTwoPair(const vector<Card> tableCards, const vector<Card> handCards) {
@@ -69,7 +66,7 @@ Combination* TwoPair::getTwoPair(const vector<Card> tableCards, const vector<Car
             cards.insert(cards.end(), currentHand.begin(), currentHand.end());
             sort(cards.begin(), cards.end());
 
-            if (CombinationUtilities::isTwoPair(cards)) {
+            if (isTwoPair(cards)) {
                 Combination* twoPair = new TwoPair(currentTable, currentHand, cards);
                 long double value = twoPair->getValue();
 
@@ -98,7 +95,7 @@ Combination* TwoPair::getTwoPair(const vector<Card> tableCards, const vector<Car
             cards.insert(cards.end(), currentHand.begin(), currentHand.end());
             sort(cards.begin(), cards.end());
 
-            if (CombinationUtilities::isTwoPair(cards)) {
+            if (isTwoPair(cards)) {
                 Combination* twoPair = new TwoPair(currentTable, currentHand, cards);
                 long double value = twoPair->getValue();
 
@@ -125,7 +122,7 @@ Combination* TwoPair::getTwoPair(const vector<Card> tableCards, const vector<Car
             cards.insert(cards.end(), currentHand.begin(), currentHand.end());
             sort(cards.begin(), cards.end());
 
-            if (CombinationUtilities::isTwoPair(cards)) {
+            if (isTwoPair(cards)) {
                 Combination* twoPair = new TwoPair(currentTable, currentHand, cards);
                 long double value = twoPair->getValue();
 

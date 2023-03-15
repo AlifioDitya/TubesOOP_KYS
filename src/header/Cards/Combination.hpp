@@ -20,14 +20,31 @@ using std::vector;
  * combination from the available cards.
  */
 class Combination : public CardInterface {
-   private:
-    // vector<Card> findBestCombination(const vector<Card>& tableCards, const vector<Card>&
-    // handCards); double calculateWeightedValue(vector<Card>, ComboTypes);
-
    protected:
+    enum ComboMaxTimesTen {
+        HighCard = 14,
+        Pair = 28,
+        TwoPair = 42,
+        ThreeOfAKind = 56,
+        Straight = 70,
+        Flush = 87,
+        FullHouse = 101,
+        FourOfAKind = 115,
+        StraightFlush = 129
+    };
+
     vector<Card> tableCards;
     vector<Card> handCards;
     vector<Card> bestCombination;
+
+    static bool ofSameColor(vector<Card>&);
+    static bool ofSameRank(vector<Card>&);
+    static bool inSequence(vector<Card>&);
+    static bool hasFourOfAKind(vector<Card>&);
+    static bool isFullHouse(vector<Card>&);
+    static bool hasThreeOfAKind(vector<Card>&);
+    static bool isTwoPair(vector<Card>&);
+    static pair<int, int> findPairIdx(vector<Card>&);
 
    public:
     /**
@@ -64,7 +81,7 @@ class Combination : public CardInterface {
      */
     vector<Card> getBestCombination() const;
 
-    virtual string getComboTypeString() const;  // TODO: IMPLEMENTATION
+    virtual string getComboTypeString() const = 0;  // TODO: IMPLEMENTATION
 
     /**
      * @brief Get the Value of cards

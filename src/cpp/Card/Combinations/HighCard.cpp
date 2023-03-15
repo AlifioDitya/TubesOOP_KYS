@@ -4,8 +4,6 @@
 
 #include <algorithm>
 
-#include "../../../header/Cards/CombinationUtilities.hpp"
-
 using std::sort;
 
 HighCard::HighCard(const vector<Card> tableCards, const vector<Card> handCards,

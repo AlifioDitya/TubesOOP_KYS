@@ -4,8 +4,6 @@
 
 #include <algorithm>
 
-#include "../../../header/Cards/CombinationUtilities.hpp"
-
 using std::sort;
 
 Pair::Pair(const vector<Card> tableCards, const vector<Card> handCards,
@@ -30,7 +28,7 @@ long double Pair::getValue() const {
     long double high = bestCombination[1].getValue();
     long double low = bestCombination[0].getValue() / 1e3;
 
-    return CombinationUtilities::ComboMaxTimesTen::HighCard / 10 + high + low;
+    return ComboMaxTimesTen::HighCard / 10 + high + low;
 }
 
 Combination* Pair::getPair(const vector<Card> tableCards, const vector<Card> handCards) {
@@ -48,7 +46,7 @@ Combination* Pair::getPair(const vector<Card> tableCards, const vector<Card> han
         cards.insert(cards.end(), currentHand.begin(), currentHand.end());
         sort(cards.begin(), cards.end());
 
-        if (CombinationUtilities::ofSameRank(cards)) {
+        if (ofSameRank(cards)) {
             Combination* cardPair = new Pair(currentTable, currentHand, cards);
             long double value = cardPair->getValue();
 
@@ -74,7 +72,7 @@ Combination* Pair::getPair(const vector<Card> tableCards, const vector<Card> han
         cards.insert(cards.end(), currentHand.begin(), currentHand.end());
         sort(cards.begin(), cards.end());
 
-        if (CombinationUtilities::ofSameRank(cards)) {
+        if (ofSameRank(cards)) {
             Combination* cardPair = new Pair(currentTable, currentHand, cards);
             long double value = cardPair->getValue();
 
@@ -96,7 +94,7 @@ Combination* Pair::getPair(const vector<Card> tableCards, const vector<Card> han
     vector<Card> cards(currentHand);
     sort(cards.begin(), cards.end());
 
-    if (CombinationUtilities::ofSameRank(cards)) {
+    if (ofSameRank(cards)) {
         Combination* cardPair = new Pair(currentTable, currentHand, cards);
         long double value = cardPair->getValue();
 

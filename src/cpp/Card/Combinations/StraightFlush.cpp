@@ -4,8 +4,6 @@
 
 #include <algorithm>
 
-#include "../../../header/Cards/CombinationUtilities.hpp"
-
 StraightFlush::StraightFlush(const vector<Card> tableCards, const vector<Card> handCards,
                              const vector<Card> bestCombination)
     : Combination(tableCards, handCards, bestCombination) {
@@ -24,7 +22,7 @@ long double StraightFlush::getValue() const {
     Format: h.hh -> max:1.4
     */
 
-    return CombinationUtilities::ComboMaxTimesTen::FourOfAKind / 10 + bestCombination[4].getValue();
+    return ComboMaxTimesTen::FourOfAKind / 10 + bestCombination[4].getValue();
 }
 
 Combination* StraightFlush::getStraightFlush(const vector<Card> tableCards,
@@ -43,7 +41,7 @@ Combination* StraightFlush::getStraightFlush(const vector<Card> tableCards,
         cards.insert(cards.end(), currentHand.begin(), currentHand.end());
         sort(cards.begin(), cards.end());
 
-        if (CombinationUtilities::inSequence(cards) && CombinationUtilities::ofSameColor(cards)) {
+        if (inSequence(cards) && ofSameColor(cards)) {
             Combination* straightFlush = new StraightFlush(currentTable, currentHand, cards);
             long double value = straightFlush->getValue();
 
@@ -69,7 +67,7 @@ Combination* StraightFlush::getStraightFlush(const vector<Card> tableCards,
         cards.insert(cards.end(), currentHand.begin(), currentHand.end());
         sort(cards.begin(), cards.end());
 
-        if (CombinationUtilities::inSequence(cards) && CombinationUtilities::ofSameColor(cards)) {
+        if (inSequence(cards) && ofSameColor(cards)) {
             Combination* straightFlush = new StraightFlush(currentTable, currentHand, cards);
             long double value = straightFlush->getValue();
 
@@ -96,8 +94,7 @@ Combination* StraightFlush::getStraightFlush(const vector<Card> tableCards,
             cards.insert(cards.end(), currentHand.begin(), currentHand.end());
             sort(cards.begin(), cards.end());
 
-            if (CombinationUtilities::inSequence(cards) &&
-                CombinationUtilities::ofSameColor(cards)) {
+            if (inSequence(cards) && ofSameColor(cards)) {
                 Combination* straightFlush = new StraightFlush(currentTable, currentHand, cards);
                 long double value = straightFlush->getValue();
 

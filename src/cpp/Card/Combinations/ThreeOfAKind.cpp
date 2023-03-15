@@ -4,8 +4,6 @@
 
 #include <algorithm>
 
-#include "../../../header/Cards/CombinationUtilities.hpp"
-
 ThreeOfAKind::ThreeOfAKind(const vector<Card> tableCards, const vector<Card> handCards,
                            const vector<Card> bestCombination)
     : Combination(tableCards, handCards, bestCombination) {
@@ -33,7 +31,7 @@ long double ThreeOfAKind::getValue() const {
     }
     color_encoding /= 1e3;
 
-    return CombinationUtilities::ComboMaxTimesTen::Flush / 10 + rank_encoding + color_encoding;
+    return ComboMaxTimesTen::Flush / 10 + rank_encoding + color_encoding;
 }
 
 Combination* ThreeOfAKind::getThreeOfAKind(const vector<Card> tableCards,
@@ -53,7 +51,7 @@ Combination* ThreeOfAKind::getThreeOfAKind(const vector<Card> tableCards,
             cards.insert(cards.end(), currentHand.begin(), currentHand.end());
             sort(cards.begin(), cards.end());
 
-            if (CombinationUtilities::ofSameRank(cards)) {
+            if (ofSameRank(cards)) {
                 Combination* toak = new ThreeOfAKind(currentTable, currentHand, cards);
                 long double value = toak->getValue();
 
@@ -81,7 +79,7 @@ Combination* ThreeOfAKind::getThreeOfAKind(const vector<Card> tableCards,
             cards.insert(cards.end(), currentHand.begin(), currentHand.end());
             sort(cards.begin(), cards.end());
 
-            if (CombinationUtilities::ofSameRank(cards)) {
+            if (ofSameRank(cards)) {
                 Combination* toak = new ThreeOfAKind(currentTable, currentHand, cards);
                 long double value = toak->getValue();
 
@@ -107,7 +105,7 @@ Combination* ThreeOfAKind::getThreeOfAKind(const vector<Card> tableCards,
         cards.insert(cards.end(), currentHand.begin(), currentHand.end());
         sort(cards.begin(), cards.end());
 
-        if (CombinationUtilities::ofSameRank(cards)) {
+        if (ofSameRank(cards)) {
             Combination* toak = new ThreeOfAKind(currentTable, currentHand, cards);
             long double value = toak->getValue();
 

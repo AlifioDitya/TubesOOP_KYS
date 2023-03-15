@@ -46,6 +46,14 @@ long double Card::getValue() const {
 }
 
 ostream& operator<<(ostream& o, const Card& card) {
-    o << card.getRank() << " (" << card.getColorString() << ")";
+    map<Color, int> terminalColorMapping = {
+        {Red, 31},
+        {Green, 32},
+        {Yellow, 33},
+        {Blue, 34}
+    };
+
+    o << "\033[;" << terminalColorMapping[card.getColor()] << "m" << card.getRank() << " (" << card.getColorString() << ")" << "\033[0m";
+
     return o;
 }

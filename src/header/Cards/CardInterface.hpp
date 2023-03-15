@@ -14,12 +14,6 @@
 class CardInterface {
    public:
     /**
-     * @brief Construct a new Card Interface object
-     *
-     */
-    CardInterface();
-
-    /**
      * @brief Destroy the Card Interface object
      *
      */

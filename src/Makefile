@@ -4,7 +4,10 @@ LFLAGS := -Wall
 EXECUTABLE := ../bin/game.out  # Final executable file name
 
 # List of all the source files
-SOURCES=cpp/Card/Card.cpp cpp/Card/CardInterface.cpp cpp/Card/Combination.cpp \
+SOURCES=cpp/Card/Card.cpp cpp/Card/CardInterface.cpp cpp/Card/Combination.cpp cpp/Card/CombinationUtilities.cpp \
+		cpp/Card/Combinations/Flush.cpp cpp/Card/Combinations/FourOfAKind.cpp cpp/Card/Combinations/FullHouse.cpp \
+		cpp/Card/Combinations/HighCard.cpp cpp/Card/Combinations/Pair.cpp cpp/Card/Combinations/Straight.cpp \
+		cpp/Card/Combinations/StraightFlush.cpp cpp/Card/Combinations/ThreeOfAKind.cpp cpp/Card/Combinations/TwoPair.cpp \
         cpp/Program/IO.cpp \
         cpp/GameEnvironment/Player.cpp \
         cpp/GameEnvironment/TableCard.cpp \
@@ -12,7 +15,7 @@ SOURCES=cpp/Card/Card.cpp cpp/Card/CardInterface.cpp cpp/Card/Combination.cpp \
         cpp/GameEnvironment/CandyPlayer.cpp \
         cpp/GameEnvironment/CandyGameState.cpp cpp/GameEnvironment/CangkulGameState \
         cpp/Commands/Commands.cpp cpp/Commands/CangkulCommand.cpp \
-        cpp/Commands/Double.cpp cpp/Commands/Half.cpp cpp/Commands/Next.cpp cpp/Commands/Put.cpp cpp/Commands/Cangkul.cpp cpp/Commands/skip.cpp \
+        cpp/Commands/Double.cpp cpp/Commands/Half.cpp cpp/Commands/Next.cpp cpp/Commands/Put.cpp cpp/Commands/Cangkul.cpp cpp/Commands/Skip.cpp \
         cpp/Commands/Ability.cpp cpp/Commands/Quarter.cpp cpp/Commands/Quadruple.cpp cpp/Commands/Reroll.cpp cpp/Commands/Reverse.cpp \
         cpp/Commands/PlayerInvolvedAbility.cpp cpp/Commands/Abilityless.cpp cpp/Commands/SwapCard.cpp cpp/Commands/Switch.cpp \
         cpp/GameEnvironment/CandyGameManager.cpp cpp/GameEnvironment/CangkulGameManager.cpp \

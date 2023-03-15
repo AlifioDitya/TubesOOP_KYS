@@ -38,7 +38,6 @@ using std::cout;
 using std::endl;
 using std::ifstream;
 using std::map;
-<<<<<<< HEAD
 using std::max_element;
 
 CandyGameManager::CandyGameManager() {
@@ -69,8 +68,6 @@ CandyGameManager::~CandyGameManager() {
         delete abilityPair.second;
     }
 }
-=======
->>>>>>> 331a2a6218ee26d91c50dc378ad37fd696ea21c2
 
 string fixFileExtension(string fileName) {
     // Fungsi memastikan fileName memiliki format .txt
@@ -152,35 +149,6 @@ vector<Card> readDeckConfig() {
 
 int CandyGameManager::initialDraw = 2;
 
-CandyGameManager::CandyGameManager() {
-    actions = map<CmdTypes, Commands*> {
-            {CmdTypes::Double, new class Double()},
-            {CmdTypes::Half,   new class Half()},
-            {CmdTypes::Next,   new class Next()},
-    };
-
-    abilities = map<AbilityTypes, class Ability*> {
-            {AbilityTypes::Abilityless, new class Abilityless()},
-            {AbilityTypes::Quadruple,   new class Quadruple()},
-            {AbilityTypes::Quadruple,   new class Quadruple()},
-            {AbilityTypes::Quarter,     new class Quarter()},
-            {AbilityTypes::Reroll,      new class Reroll()},
-            {AbilityTypes::Reverse,     new class Reverse()},
-            {AbilityTypes::SwapCard,    new class SwapCard()},
-            {AbilityTypes::Switch,      new class Switch()},
-    };
-}
-
-CandyGameManager::~CandyGameManager() {
-    for (auto action: actions) {
-        delete action.second;
-    }
-
-    for (auto abilityPair: abilities) {
-        delete abilityPair.second;
-    }
-}
-
 // ========== Private Methods ==========
 
 vector<CandyPlayer> CandyGameManager::getInitialPlayerList(int playerNum) const {
@@ -195,7 +163,8 @@ vector<CandyPlayer> CandyGameManager::getInitialPlayerList(int playerNum) const 
 
         // playerList.push_back(CandyPlayer(i, vector<Card>(), 0, playerName, false));
 
-        playerList.push_back(CandyPlayer(i, vector<Card>(), 0, "temp" + std::to_string(i), false)); // testing
+        playerList.push_back(
+            CandyPlayer(i, vector<Card>(), 0, "temp" + std::to_string(i), false));  // testing
     }
 
     return playerList;
@@ -255,18 +224,12 @@ void CandyGameManager::startRound() {
     while (!gameState.hasAllPlayed()) {
         // aksi pemain
         CandyPlayer& currentPlayer = gameState.getCurrentTurnPlayer();
-<<<<<<< HEAD
-        cout << endl;
-        cout << "==============================" << endl;
-        cout << "Giliran pemain " << currentPlayer.getId() << " : " << currentPlayer.getName()
-             << endl
-             << endl;
-=======
         IO::newl();
         IO::border();
 
-        cout << "Giliran pemain " << currentPlayer.getId() << " : " << currentPlayer.getName() << endl << endl;
->>>>>>> 331a2a6218ee26d91c50dc378ad37fd696ea21c2
+        cout << "Giliran pemain " << currentPlayer.getId() << " : " << currentPlayer.getName()
+             << endl
+             << endl;
 
         cout << "Berikut kartu pada table : " << endl;
         gameState.getTableCards().showCards();
@@ -277,12 +240,8 @@ void CandyGameManager::startRound() {
         IO::newl();
 
         if (currentPlayer.getAbility() != AbilityTypes::None && !currentPlayer.hasUsedAbility()) {
-<<<<<<< HEAD
             cout << "Ability yang sedang dimiliki: "
                  << Ability::parseAbility(currentPlayer.getAbility()) << endl
-=======
-            cout << "Ability yang sedang dimiliki: " << Ability::parseAbility(currentPlayer.getAbility()) << endl
->>>>>>> 331a2a6218ee26d91c50dc378ad37fd696ea21c2
                  << endl;
         }
 
@@ -312,11 +271,7 @@ void CandyGameManager::startRound() {
         }
     }
 
-<<<<<<< HEAD
-    cout << endl;
-=======
     IO::newl();
->>>>>>> 331a2a6218ee26d91c50dc378ad37fd696ea21c2
     cout << "Satu putaran selesai!" << endl;
     IO::border();
     IO::newl();
@@ -403,10 +358,6 @@ void CandyGameManager::startSubGame() {
 
         startRound();
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 331a2a6218ee26d91c50dc378ad37fd696ea21c2
         // if (gameState.getRound() == 1) {
         //     // Memberikan ability ke setiap player
 
@@ -425,26 +376,15 @@ void CandyGameManager::startSubGame() {
             gameState.getTableCards().addItem(gameState.getDeckCards().drawCard());
         }
 
-<<<<<<< HEAD
         cout << "Satu kartu diletakkan ke meja : " << gameState.getTableCards().getCards().back()
              << endl;
-        cout << endl;
+        IO::newl();
     }
 
     class ComboCompare {
        public:
         bool operator()(const Combination* a, const Combination* b) const {
             return a->getValue() < b->getValue();
-=======
-        cout << "Satu kartu diletakkan ke meja : " << gameState.getTableCards().getCards().back() << endl;
-        IO::newl();
-    }
-
-    class ComboCompare {
-    public:
-        bool operator()(const Combination& a, const Combination& b) const {
-            return a.getValue() < b.getValue();
->>>>>>> 331a2a6218ee26d91c50dc378ad37fd696ea21c2
         }
     };
 
@@ -461,12 +401,9 @@ void CandyGameManager::startSubGame() {
         gameState.getPlayerRefAt(gameState.getPlayerIdx(combosMap[getMax(combos)].getId()));
     winner.addPoint(gameState.getPointPool());
 
-<<<<<<< HEAD
     for (Combination* combo : combos) {
         delete combo;
     }
-=======
->>>>>>> 331a2a6218ee26d91c50dc378ad37fd696ea21c2
 }
 
 // ========== Methods ==========
@@ -481,13 +418,8 @@ void CandyGameManager::startGame() {
     IO::newl();
 
     // Inisiasi gameState
-<<<<<<< HEAD
     gameState = CandyGameState(getInitialPlayerList(7), 0, CandyGameState::initialPoint,
                                TableCard(), GameDeckCard(), AbilityDeckCard(), false);
-=======
-    gameState = CandyGameState(getInitialPlayerList(7), 0, CandyGameState::initialPoint, TableCard(), GameDeckCard(),
-                               AbilityDeckCard(), false);
->>>>>>> 331a2a6218ee26d91c50dc378ad37fd696ea21c2
 
     int counter = 0;
 
@@ -506,12 +438,7 @@ void CandyGameManager::startGame() {
         vector<CandyPlayer> playerList = gameState.getPlayerList();
         leadingPlayer = getMax(playerList);
 
-<<<<<<< HEAD
-    } while (leadingPlayer.getPoint() >= CandyGameState::winnerPoint);
-=======
         counter++;
->>>>>>> 331a2a6218ee26d91c50dc378ad37fd696ea21c2
-
     } while (leadingPlayer.getPoint() < CandyGameState::winnerPoint);
 
     IO::newl();

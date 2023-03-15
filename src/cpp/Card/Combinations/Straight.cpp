@@ -6,9 +6,7 @@
 
 using std::sort;
 
-Straight::Straight(const vector<Card> tableCards, const vector<Card> handCards,
-                   const vector<Card> bestCombination)
-    : Combination(tableCards, handCards, bestCombination) {
+Straight::Straight(const vector<Card>& combinationCards) : Combination(combinationCards) {
 }
 
 string Straight::getComboTypeString() const {
@@ -25,18 +23,18 @@ long double Straight::getValue() const {
     Format: r.rcccc-> max:1.3
     */
 
-    long double rankEncoding = bestCombination[4].getRank();
+    long double rankEncoding = combinationCards[4].getRank();
 
     long double colorEncoding = 0;
     for (int i = 0; i < 5; i++) {
-        colorEncoding += pow(4, i) * bestCombination[i].getColor();
+        colorEncoding += pow(4, i) * combinationCards[i].getColor();
     }
     colorEncoding /= 1e5;
 
     return THREEOFAKIND_MAX + rankEncoding + colorEncoding;
 }
 
-Combination* Straight::getStraight(const vector<Card> tableCards, const vector<Card> handCards) {
+Combination* Straight::getStraight(const vector<Card>& tableCards, const vector<Card>& handCards) {
     Combination* maxCombo = NULL;
     long double maxValue = 0;
 
@@ -52,7 +50,7 @@ Combination* Straight::getStraight(const vector<Card> tableCards, const vector<C
         sort(cards.begin(), cards.end());
 
         if (inSequence(cards)) {
-            Combination* straight = new Straight(currentTable, currentHand, cards);
+            Combination* straight = new Straight(cards);
             long double value = straight->getValue();
 
             if (maxCombo == NULL || maxValue < value) {
@@ -78,7 +76,7 @@ Combination* Straight::getStraight(const vector<Card> tableCards, const vector<C
         sort(cards.begin(), cards.end());
 
         if (inSequence(cards)) {
-            Combination* straight = new Straight(currentTable, currentHand, cards);
+            Combination* straight = new Straight(cards);
             long double value = straight->getValue();
 
             if (maxCombo == NULL || maxValue < value) {
@@ -105,7 +103,7 @@ Combination* Straight::getStraight(const vector<Card> tableCards, const vector<C
             sort(cards.begin(), cards.end());
 
             if (inSequence(cards)) {
-                Combination* straight = new Straight(currentTable, currentHand, cards);
+                Combination* straight = new Straight(cards);
                 long double value = straight->getValue();
 
                 if (maxCombo == NULL || maxValue < value) {

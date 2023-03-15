@@ -4,9 +4,7 @@
 
 #include <algorithm>
 
-ThreeOfAKind::ThreeOfAKind(const vector<Card> tableCards, const vector<Card> handCards,
-                           const vector<Card> bestCombination)
-    : Combination(tableCards, handCards, bestCombination) {
+ThreeOfAKind::ThreeOfAKind(const vector<Card>& combinationCards) : Combination(combinationCards) {
 }
 
 string ThreeOfAKind::getComboTypeString() const {
@@ -23,19 +21,19 @@ long double ThreeOfAKind::getValue() const {
 
     Format: r.rcc -> max:1.3
     */
-    long double rank_encoding = (bestCombination[0].getRank() - 1) / 10;
+    long double rank_encoding = (combinationCards[0].getRank() - 1) / 10;
 
     long double color_encoding = 0;
     for (int i = 0; i < 3; i++) {
-        color_encoding += pow(4, i) * bestCombination[i].getColor();
+        color_encoding += pow(4, i) * combinationCards[i].getColor();
     }
     color_encoding /= 1e3;
 
     return TWOPAIR_MAX + rank_encoding + color_encoding;
 }
 
-Combination* ThreeOfAKind::getThreeOfAKind(const vector<Card> tableCards,
-                                           const vector<Card> handCards) {
+Combination* ThreeOfAKind::getThreeOfAKind(const vector<Card>& tableCards,
+                                           const vector<Card>& handCards) {
     Combination* maxCombo = NULL;
     long double maxValue = 0;
 
@@ -52,7 +50,7 @@ Combination* ThreeOfAKind::getThreeOfAKind(const vector<Card> tableCards,
             sort(cards.begin(), cards.end());
 
             if (ofSameRank(cards)) {
-                Combination* toak = new ThreeOfAKind(currentTable, currentHand, cards);
+                Combination* toak = new ThreeOfAKind(cards);
                 long double value = toak->getValue();
 
                 if (maxCombo == NULL || maxValue < value) {
@@ -80,7 +78,7 @@ Combination* ThreeOfAKind::getThreeOfAKind(const vector<Card> tableCards,
             sort(cards.begin(), cards.end());
 
             if (ofSameRank(cards)) {
-                Combination* toak = new ThreeOfAKind(currentTable, currentHand, cards);
+                Combination* toak = new ThreeOfAKind(cards);
                 long double value = toak->getValue();
 
                 if (maxCombo == NULL || maxValue < value) {
@@ -106,7 +104,7 @@ Combination* ThreeOfAKind::getThreeOfAKind(const vector<Card> tableCards,
         sort(cards.begin(), cards.end());
 
         if (ofSameRank(cards)) {
-            Combination* toak = new ThreeOfAKind(currentTable, currentHand, cards);
+            Combination* toak = new ThreeOfAKind(cards);
             long double value = toak->getValue();
 
             if (maxCombo == NULL || maxValue < value) {

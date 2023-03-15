@@ -6,9 +6,7 @@
 
 using std::sort;
 
-FourOfAKind::FourOfAKind(const vector<Card> tableCards, const vector<Card> handCards,
-                         const vector<Card> bestCombination)
-    : Combination(tableCards, handCards, bestCombination) {
+FourOfAKind::FourOfAKind(const vector<Card>& combinationCards) : Combination(combinationCards) {
 }
 
 string FourOfAKind::getComboTypeString() const {
@@ -24,11 +22,11 @@ long double FourOfAKind::getValue() const {
     Format: r.r -> max:1.3
     */
 
-    return FULLHOUSE_MAX + (bestCombination[0].getRank() - 1) / 10;
+    return FULLHOUSE_MAX + (combinationCards[0].getRank() - 1) / 10;
 }
 
-Combination* FourOfAKind::getFourOfAKind(const vector<Card> tableCards,
-                                         const vector<Card> handCards) {
+Combination* FourOfAKind::getFourOfAKind(const vector<Card>& tableCards,
+                                         const vector<Card>& handCards) {
     Combination* maxCombo = NULL;
     long double maxValue = 0;
 
@@ -46,7 +44,7 @@ Combination* FourOfAKind::getFourOfAKind(const vector<Card> tableCards,
             sort(cards.begin(), cards.end());
 
             if (ofSameRank(cards)) {
-                Combination* foak = new FourOfAKind(currentTable, currentHand, cards);
+                Combination* foak = new FourOfAKind(cards);
                 long double value = foak->getValue();
 
                 if (maxCombo == NULL || maxValue < value) {
@@ -75,7 +73,7 @@ Combination* FourOfAKind::getFourOfAKind(const vector<Card> tableCards,
             sort(cards.begin(), cards.end());
 
             if (ofSameRank(cards)) {
-                Combination* foak = new FourOfAKind(currentTable, currentHand, cards);
+                Combination* foak = new FourOfAKind(cards);
                 long double value = foak->getValue();
 
                 if (maxCombo == NULL || maxValue < value) {
@@ -102,7 +100,7 @@ Combination* FourOfAKind::getFourOfAKind(const vector<Card> tableCards,
             sort(cards.begin(), cards.end());
 
             if (ofSameRank(cards)) {
-                Combination* foak = new FourOfAKind(currentTable, currentHand, cards);
+                Combination* foak = new FourOfAKind(cards);
                 long double value = foak->getValue();
 
                 if (maxCombo == NULL || maxValue < value) {

@@ -10,30 +10,28 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-// ctor
 Abilityless::Abilityless() {
     this->command = CmdTypes::Ability;
     this->abilityType = AbilityTypes::Abilityless;
 }
 
+// ========== Methods ==========
 
-// Execute method
 void Abilityless::executeCommand(CandyGameState& gameState) {
-
     validateAbility(gameState);
 
     // Check if all players have used their abilities
     if (gameState.hasAllUsedAbility()) {
-        cout << "Eits, ternyata semua pemain sudah memakai kartu kemampuan. Yah kamu kena sendiri deh, kemampuanmu menjadi abilityless. Penggunaan kartu kamu sia-sia :(" << endl;
+        cout
+                << "Eits, ternyata semua pemain sudah memakai kartu kemampuan. Yah kamu kena sendiri deh, kemampuanmu menjadi abilityless. Penggunaan kartu kamu sia-sia :("
+                << endl;
 
         gameState.getCurrentTurnPlayer().setNerfed(true);
-    }
-
-    else {
+    } else {
         cout << gameState.getCurrentTurnPlayer().getName() << " akan mematikan kartu ability lawan!" << endl;
-    
+
         // Get list of players other than currently playing
-        vector<CandyPlayer> otherPlayers = gameState.getPlayerList();
+        vector <CandyPlayer> otherPlayers = gameState.getPlayerList();
         otherPlayers.erase(otherPlayers.begin());
 
         // Select player to nerf
@@ -41,20 +39,16 @@ void Abilityless::executeCommand(CandyGameState& gameState) {
 
         // jika player yang dipilih sudah memakai ability
         if (otherPlayers[selectIdx].hasUsedAbility()) {
-            cout << "Kartu ability " << otherPlayers[selectIdx].getName() << " telah dipakai sebelumnya. Yah sayang penggunaan kartu ini sia-sia :(" << endl;
-        }
-
-        else {
-   
+            cout << "Kartu ability " << otherPlayers[selectIdx].getName()
+                 << " telah dipakai sebelumnya. Yah sayang penggunaan kartu ini sia-sia :(" << endl;
+        } else {
             int idx = gameState.getPlayerIdx(otherPlayers[selectIdx].getId());
-             gameState.getPlayerRefAt(idx).setNerfed(true);
+            gameState.getPlayerRefAt(idx).setNerfed(true);
             cout << "Kartu ability " << gameState.getPlayerRefAt(idx).getName() << " telah dimatikan." << endl;
         }
-
     }
 
     // Set the ability used flag to true and end the turn
     gameState.getCurrentTurnPlayer().setAbilityUsed(true);
     gameState.setNextTurn();
-
 }

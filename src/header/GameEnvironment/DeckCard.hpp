@@ -1,4 +1,8 @@
-// DeckCard.hpp
+/**
+ * @file DeckCard.hpp
+ * @brief Header file for the class DeckCard
+ * 
+ */
 #ifndef DECK_CARD_HPP
 #define DECK_CARD_HPP
 
@@ -17,49 +21,95 @@ using std::random_shuffle;
 using std::stack;
 using std::vector;
 
-template <class T>
+/**
+ * @class DeckCard
+ * @brief Class that holds the deck cards in a given card game.
+ * @extends InventoryHolder
+ * 
+ * @tparam T type of the elements in the deck 
+ */
+template<class T>
 class DeckCard : public InventoryHolder<T> {
-   protected:
+protected:
+    /**
+     * @brief Stack that holds the deck
+     *
+     */
     stack<T> deck;
 
-   public:
-    // initialize stack with cards with random order
-    DeckCard() {
+public:
+    /**
+     * @brief Construct a new Deck of Cards
+     * 
+     */
+    DeckCard() {}
 
-    }
+    /**
+     * @brief a Virtual function to be overriden for default configurations of the deck
+     * 
+     */
+    virtual void defaultConfig() = 0;
 
-    // initialize stack with cards ordered as in config and first-index card being at top
+    /**
+     * @brief Copy constructs a new Deck Card object. Initializes stack with cards ordered as in config
+     * and first-index card being at top
+     * 
+     * @param config Configuration for the deck order
+     */
     DeckCard(const vector<T>& config) {
         for (int i = config.size() - 1; i >= 0; i--) {
             deck.push(config[i]);
         }
     }
 
-    // Returns the number of items in the inventory
+    /**
+     * @brief Counts the items in a deck
+     * 
+     * @return Integer value of the number of items in the inventory
+     */
     int countItems() const {
         return deck.size();
     }
 
-    // Adds an item to the inventory
+    /**
+     * @brief Adds an item to the inventory
+     * 
+     * @param card Card to be added to the inventory
+     */
     void addItem(const T& card) {
         deck.push(card);
     }
 
+    /**
+     * @brief Clear all of the cards in the inventory
+     * 
+     */
     void clear() {
         while (!deck.empty()) deck.pop();
     }
 
-    // Draw top card from deck stack
+    /**
+     * @brief Draws the top card of a deck
+     * 
+     * @return Element at the top of the deck
+     */
     T drawCard() {
         if (deck.empty()) {
             throw InsufficientCards();
         }
+
         T topCard = deck.top();
         deck.pop();
 
         return topCard;
     }
 
+    /**
+     * @brief Draws multiple cards from the top of the stack
+     * 
+     * @param amount integer value of the amount of cards to be drawn
+     * @return a vector of cards that are drawn.
+     */
     vector<T> drawMany(int amount) {
         vector<Card> drawCards;
 
@@ -75,8 +125,13 @@ class DeckCard : public InventoryHolder<T> {
         return drawCards;
     }
 
+    /**
+     * @brief Set the list of cards
+     * 
+     * @param cards Vector of cards to be set
+     */
     void setCards(const vector<T>& cards) {
-        deck = stack<T>(deque<T>(cards.begin(), cards.end()));
+        deck = stack<T>(deque<T>(cards.rbegin(), cards.rend()));
     }
 };
 

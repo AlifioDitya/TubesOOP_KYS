@@ -1,9 +1,10 @@
-#include "header/GameEnvironment/CandyGameManager.hpp"
+#include "header/Program/Program.hpp"
+#include "header/Program/IO.hpp"
 
 int main() {
-    CandyGameManager gameManager;
+    Program program;
 
-    gameManager.startGame();
+    program.start();
 
     return 0;
 }

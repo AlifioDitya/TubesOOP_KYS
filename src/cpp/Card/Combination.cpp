@@ -52,6 +52,7 @@ Combination::~Combination() {
 vector<Card> Combination::getTableCards() const {
     return tableCards;
 };
+
 vector<Card> Combination::getHandCards() const {
     return handCards;
 }

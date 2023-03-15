@@ -13,15 +13,30 @@ IO::IO() {
     choice = -1;
 }
 
-// get integer input in range [lowerBound, upperBound]
+// ========== Operators ==========
+
+bool IO::operator==(const int num) {
+    return choice == num;
+}
+
+// ========== Getters ==========
+
+int IO::getChoice() const {
+    return choice;
+}
+
+// ========== Other Method ========== 
+
 void IO::getInput(int lowerBound, int upperBound) {
     int temp = -1;
 
     while (temp == -1) {
         try {
             string userInput;
+
+            cout << "Pilihan : ";
             cin >> userInput;
-            
+
             for (auto c: userInput) {
                 if (!isdigit(c)) {
                     throw UnmatchedType();
@@ -32,9 +47,9 @@ void IO::getInput(int lowerBound, int upperBound) {
             if (temp < lowerBound || temp > upperBound) {
                 throw InvalidChoice();
             }
-        } catch(const UnmatchedType& err) {
-            cout << err.what() << " Choice should be number." << endl;
-        } catch(const exception& err) {
+        } catch (const UnmatchedType& err) {
+            cout << err.what() << " Masukan harus berupa angka." << endl;
+        } catch (const exception& err) {
             cout << err.what() << endl;
             temp = -1;
         }
@@ -43,10 +58,10 @@ void IO::getInput(int lowerBound, int upperBound) {
     choice = temp;
 }
 
-bool IO::operator==(const int num) {
-    return choice == num;
+void IO::newl() {
+    cout << endl;
 }
 
-int IO::getChoice() const {
-    return choice;
+void IO::border() {
+    cout << "==============================" << endl;
 }

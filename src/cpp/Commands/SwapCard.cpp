@@ -10,7 +10,6 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-// ctor
 SwapCard::SwapCard() {
     this->command = CmdTypes::Ability;
     this->abilityType = AbilityTypes::SwapCard;
@@ -18,18 +17,18 @@ SwapCard::SwapCard() {
 
 int SwapCard::selectCard(string playerName) {
 
-    cout << "Silakan pilih kartu kanan/kiri dari " << playerName << endl;
-    cout << "1. Kanan" << endl;
-    cout << "2. Kiri" << endl;
-    
+    cout << "Silakan pilih kartu kanan/kiri dari " << playerName << " :" << endl;
+    cout << "1. Kiri" << endl;
+    cout << "2. Kanan" << endl;
+
     IO inputIO;
     inputIO.getInput(1, 2);
     return inputIO.getChoice() - 1;
 }
 
-// Execute method
+// ========== Methods ==========
+
 void SwapCard::executeCommand(CandyGameState& gameState) {
-    
     validateAbility(gameState);
 
     cout << gameState.getCurrentTurnPlayer().getName() << " melakukan SWAPCARD." << endl;
@@ -40,33 +39,35 @@ void SwapCard::executeCommand(CandyGameState& gameState) {
 
     // Select Player 1
 
-    int selectIdx1 = selectPlayer(gameState, otherPlayers, "Silakan pilih pemain yang kartunya ingin Anda tukar:");
-    CandyPlayer selectedPlayer1 = otherPlayers[selectIdx1];
+    int selectPlayerIdx1 = selectPlayer(gameState, otherPlayers,
+                                        "Silakan pilih pemain yang kartunya ingin Anda tukar:");
+    CandyPlayer selectedPlayer1 = otherPlayers[selectPlayerIdx1];
 
-    otherPlayers.erase(otherPlayers.begin() + selectIdx1);
+    otherPlayers.erase(otherPlayers.begin() + selectPlayerIdx1);
 
     // Select Player 2
-    int selectIdx2 = selectPlayer(gameState, otherPlayers, "Silakan pilih pemain lain yang kartunya ingin Anda tukar:");
-    CandyPlayer selectedPlayer2 = otherPlayers[selectIdx2];
+    int selectPlayerIdx2 = selectPlayer(gameState, otherPlayers,
+                                        "Silakan pilih pemain lain yang kartunya ingin Anda tukar:");
+    CandyPlayer selectedPlayer2 = otherPlayers[selectPlayerIdx2];
+
+    // Player indexes
+
+    int playerIdx1 = gameState.getPlayerIdx(selectedPlayer1.getId());
+    int playerIdx2 = gameState.getPlayerIdx(selectedPlayer2.getId());
 
     // Select card to take from player 1
-    selectIdx1 = selectCard(selectedPlayer1.getName());
+    int selectCardIdx1 = selectCard(selectedPlayer1.getName());
 
     cout << endl;
 
     // Select card to take from player 2
-    selectIdx2 = selectCard(selectedPlayer2.getName());
+    int selectCardIdx2 = selectCard(selectedPlayer2.getName());
 
-    // Swap the cards
-
-    int idx1 = gameState.getPlayerIdx(otherPlayers[selectIdx1].getId());
-    int idx2 = gameState.getPlayerIdx(otherPlayers[selectIdx2].getId());
-
-
-    gameState.getPlayerRefAt(idx1).switchCards(selectIdx1, selectIdx2, gameState.getPlayerRefAt(idx2));
+    // swap
+    gameState.getPlayerRefAt(playerIdx1).switchCards(selectCardIdx1, selectCardIdx2,
+                                                     gameState.getPlayerRefAt(playerIdx2));
 
     // Set the ability used flag to true and end the turn
     gameState.getCurrentTurnPlayer().setAbilityUsed(true);
     gameState.setNextTurn();
-
 }

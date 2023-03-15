@@ -10,38 +10,36 @@ using std::cout;
 using std::endl;
 using std::max;
 
-// ctor
 Quarter::Quarter() {
     this->command = CmdTypes::Ability;
     this->abilityType = AbilityTypes::Quarter;
 }
 
-// Execute method
-void Quarter::executeCommand(CandyGameState& gameState) {
+// ========== Methods ==========
 
+void Quarter::executeCommand(CandyGameState& gameState) {
     validateAbility(gameState);
 
     cout << gameState.getCurrentTurnPlayer().getName() << " melakukan QUARTER!";
-    
-    int oldPoint = gameState.getPointPool();
-    int newPoint = oldPoint / 4;
+
+    uint64_t oldPoint = gameState.getPointPool();
+    uint64_t newPoint = oldPoint / 4;
 
     // Check if point has reached one
     if (oldPoint <= 1) {
-        cout << " Sayangnya poin hadiah sudah bernilai " << oldPoint 
+        cout << " Sayangnya poin hadiah sudah bernilai " << oldPoint
              << ". Poin tidak berubah.. Giliran dilanjut!" << endl;
-    }
+    } else {
+        // Quarter the point pool
 
-    else {
-    // Quarter the point pool
-    gameState.setPointPool(max(newPoint, 1));
+        if (newPoint <= 0) newPoint = 1;
+        gameState.setPointPool(newPoint);
 
-    cout << " Poin hadiah turun dari " << oldPoint << " menjadi " << gameState.getPointPool() << "!" << endl;
+        cout << " Poin hadiah turun dari " << oldPoint << " menjadi " << gameState.getPointPool() << "!" << endl;
     }
 
     // Set the ability used flag to true and end the turn
     gameState.getCurrentTurnPlayer().setAbilityUsed(true);
 
     gameState.setNextTurn();
-
 }

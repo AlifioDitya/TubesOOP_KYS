@@ -1,7 +1,9 @@
 #ifndef CARDENUMS_HPP
 #define CARDENUMS_HPP
 
-enum Color { Green = 0, Blue = 1, Yellow = 2, Red = 3 };
+enum Color {
+    Green = 0, Blue = 1, Yellow = 2, Red = 3
+};
 
 enum Rank {
     One = 1,

@@ -1,4 +1,8 @@
-// Player.hpp
+/**
+ * @file CangkulPlayer.hpp
+ * @brief Header file for the cangkul player class.
+ * 
+ */
 #ifndef CANGKULPLAYER_HPP
 #define CANGKULPLAYER_HPP
 
@@ -10,12 +14,12 @@
 
 using namespace std;
 
-class CangkulPlayer: public Player {
-private:
-  
-
-public:
-    
-};
+/**
+ * @class CangkulPlayer
+ * @brief Class for a cangkul player
+ * @extends Player
+ * 
+ */
+class CangkulPlayer : public Player {};
 
 #endif

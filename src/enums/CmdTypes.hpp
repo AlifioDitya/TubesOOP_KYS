@@ -6,7 +6,6 @@ enum CmdTypes {
     Half = 2,
     Next = 3,
     Ability = 4
-
 };
 
 #endif

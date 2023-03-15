@@ -9,6 +9,9 @@
 #define IOEXCEPTION_H
 
 #include <exception>
+#include <string>
+
+using std::string;
 
 using std::exception;
 
@@ -83,9 +86,15 @@ public:
  * 
  */
 class InvalidFileInputFormatException : public exception {
+private:
+    string msg;
 public:
+
+    InvalidFileInputFormatException(string msg) {
+        this->msg = msg;
+    }
     const char *what() const throw() {
-        return "Terdapat kesalahan format penulisan di dalam file";
+        return msg.c_str();
     }
 };
 

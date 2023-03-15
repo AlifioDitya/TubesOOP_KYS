@@ -121,20 +121,20 @@ vector<Card> readDeckConfig() {
                     int idx = temp.find(' '), len = temp.length();
 
                     if ((idx != 1) || !(len >= 3 && len <= 5)) {
-                        throw InvalidFileInputFormatException();
+                        throw InvalidFileInputFormatException("Panjang baris file tidak valid!");
                     }
 
                     int cardColor = stringToColorNum(temp.substr(0, idx));
                     int cardRank = stoi(temp.substr(idx + 1, len - 2));
                     if (cardColor == -1 || cardRank < 1 || cardRank > 13)
-                        throw InvalidFileInputFormatException();
+                        throw InvalidFileInputFormatException("Nilai atau warna kartu tidak valid!");
                     v.push_back(Card(Color(cardColor), Rank(cardRank)));
                     cardCount++;
                 }
 
                 // Ini mungkin bisa juga throw kartu kurang exception
                 if (cardCount != 52)
-                    throw InvalidFileInputFormatException();
+                    throw InvalidFileInputFormatException("Kartu pada file harus berjumlah 52!");
                 
                 // testing
                 // for (long unsigned int i = 0; i < v.size()-1; i++) {
@@ -150,7 +150,13 @@ vector<Card> readDeckConfig() {
                 throw FileNotFoundException();
             }
 
-        } catch (const exception& err) {
+        }
+        
+        catch (const std::invalid_argument & err) {
+            cout << "Setiap baris harus mengikuti format kode huruf warna (kapital) diikuti angka [1..13]! (CONTOH: B 13 untuk kartu 13 Biru)" << endl;
+        } 
+        
+        catch (const exception& err) {
             cout << err.what() << endl;
             v.clear();
         }
@@ -339,6 +345,7 @@ void CandyGameManager::startSubGame() {
     gameState.setRound(0);
     gameState.setPointPool(CandyGameState::initialPoint);
     gameState.getTableCards().clear();
+    gameState.setAllNoAbility();
 
     // Reset deck
     initiateDeck();
@@ -370,34 +377,34 @@ void CandyGameManager::startSubGame() {
         }
 
 
-        // ================== testing ================
-        bool dup = false;
-        vector<Card> tempCards = gameState.getDeckCards().temp;
+        // ================== // testing ================
+        // bool dup = false;
+        // vector<Card> tempCards = gameState.getDeckCards().temp;
 
-        for (auto player: gameState.getPlayerList()) {
-            vector<Card> temp3 = player.getHand();
-            tempCards.insert(tempCards.end(), temp3.begin(), temp3.end());
-        } 
+        // for (auto player: gameState.getPlayerList()) {
+        //     vector<Card> temp3 = player.getHand();
+        //     tempCards.insert(tempCards.end(), temp3.begin(), temp3.end());
+        // } 
 
-        vector<Card> temp2 =  gameState.getTableCards().getCards();
-        tempCards.insert(tempCards.end(), temp2.begin(), temp2.end());
+        // vector<Card> temp2 =  gameState.getTableCards().getCards();
+        // tempCards.insert(tempCards.end(), temp2.begin(), temp2.end());
 
-        cout << tempCards.size() << endl;
+        // cout << tempCards.size() << endl;
         
-        for (int i = 0; i < tempCards.size()-1; i++) {
-            cout << (tempCards[i]) << endl;
-            for (int j = i + 1; j < tempCards.size(); j++) {            
-                if (tempCards[i] == tempCards[j]) {
-                    std::cout << "NOOOOO" << std::endl;
-                    dup = true;
-                }
-            }
-        }
+        // for (int i = 0; i < tempCards.size()-1; i++) {
+        //     cout << (tempCards[i]) << endl;
+        //     for (int j = i + 1; j < tempCards.size(); j++) {            
+        //         if (tempCards[i] == tempCards[j]) {
+        //             std::cout << "NOOOOO" << std::endl;
+        //             dup = true;
+        //         }
+        //     }
+        // }
 
-        cout << tempCards.back() << endl;
-        std::cout << "yes" << std::endl;
+        // cout << tempCards.back() << endl;
+        // std::cout << "yes" << std::endl;
 
-        if (dup) throw exception();
+        // if (dup) throw exception();
 
         // ===============================
 

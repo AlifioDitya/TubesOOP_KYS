@@ -106,6 +106,11 @@ public:
     void setNextTurn();
 
     /**
+    *   @brief Method to set all ability of player to none and hasUsedAbility to false
+    **/
+    void setAllNoAbility();
+
+    /**
     *   @brief Setter for the reversePlayerId
     *   @param playerId an integer representing the player id that used the reverse ability in this round.
     **/

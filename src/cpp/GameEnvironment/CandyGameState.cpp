@@ -93,6 +93,13 @@ void CandyGameState::setPointPool(uint64_t points) {
     pointPool = points;
 };
 
+void CandyGameState::setAllNoAbility() {
+    for (long unsigned int i = 0; i < playerList.size(); i++) {
+        playerList[i].setAbility(AbilityTypes::None);
+        playerList[i].setAbilityUsed(false);
+    }
+}
+
 // ========== Other Methods ==========
 
 void CandyGameState::printLeaderBoard() const {

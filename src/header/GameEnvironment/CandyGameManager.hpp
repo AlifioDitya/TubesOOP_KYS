@@ -1,26 +1,27 @@
 /**
-*   @file CandyGameManager.hpp
-*   @brief Header file for the CandyGameManager class.
-**/
+ *   @file CandyGameManager.hpp
+ *   @brief Header file for the CandyGameManager class.
+ **/
 
 #ifndef CANDYGAMEMANAGER_HPP
 #define CANDYGAMEMANAGER_HPP
 
-#include "GameManager.hpp"
-#include "CandyGameState.hpp"
-#include "../Commands/Commands.hpp"
-
 #include <map>
+
+#include "../Cards/Combination.hpp"
+#include "../Commands/Commands.hpp"
+#include "CandyGameState.hpp"
+#include "GameManager.hpp"
 
 using std::map;
 
 /**
-*   @class CandyGameManager
-*   @brief Class representing the game manager for the Candy game.
-*   @extends GameManager
-**/
+ *   @class CandyGameManager
+ *   @brief Class representing the game manager for the Candy game.
+ *   @extends GameManager
+ **/
 class CandyGameManager : public GameManager {
-private:
+   private:
     /**
         @brief Map of available commands for the Candy game.
     **/
@@ -37,72 +38,75 @@ private:
     CandyGameState gameState;
 
     /**
-    *   @brief Method to get the initial player list for the game.
-    *   @param[in] playerNum the number of players for the game.
-    *   @return vector of CandyPlayer objects representing the initial player list.
-    **/
+     *   @brief Method to get the initial player list for the game.
+     *   @param[in] playerNum the number of players for the game.
+     *   @return vector of CandyPlayer objects representing the initial player list.
+     **/
     vector<CandyPlayer> getInitialPlayerList(int playerNum) const;
 
     /**
-    *`  @brief Method to get the player command from the user.
-    *`  @return pointer to a Commands object representing the user's command.
-    **/
+     *`  @brief Method to get the player command from the user.
+     *`  @return pointer to a Commands object representing the user's command.
+     **/
     Commands* getPlayerCommand();
 
+    Combination* findComboType(const vector<Card> tableCards, const vector<Card> handCards);
+
     /**
-    *   @brief Method to initialize the deck card for the game.
-    **/
+     *   @brief Method to initialize the deck card for the game.
+     **/
     void initiateDeck();
 
     /**
-    *   @brief Method start round of the game.
-    **/
+     *   @brief Method start round of the game.
+     **/
     void startRound();
 
     /**
-    *   @brief Method to start a sub-game of the Candy game.
-    **/
+     *   @brief Method to start a sub-game of the Candy game.
+     **/
     void startSubGame();
 
     /**
-    *   @brief Template method to get the object with the highest value from a vector of objects with getValue() method member.
-    *   @tparam T the type of objects in the vector.
-    *   @param[in] list vector of objects to search for the maximum value.
-    *   @return the object with the maximum value.
-    **/
-    template<class T>
+     *   @brief Template method to get the object with the highest value from a vector of objects
+     *with getValue() method member.
+     *   @tparam T the type of objects in the vector.
+     *   @param[in] list vector of objects to search for the maximum value.
+     *   @return the object with the maximum value.
+     **/
+    template <class T>
     T getMax(vector<T>& list) {
-
         T maxElmt = list[0];
 
         for (auto i = list.begin() + 1; i != list.end(); i++) {
-            if (i->getValue() > maxElmt.getValue()) maxElmt = *i;
+            if (i->getValue() > maxElmt.getValue())
+                maxElmt = *i;
         }
 
         return maxElmt;
     }
 
-public:
+   public:
     /**
-    *   @brief Default constructor for CandyGameManager class.
-    **/
+     *   @brief Default constructor for CandyGameManager class.
+     **/
     CandyGameManager();
 
     /**
-    *   @brief Destructor for CandyGameManager class.
-    **/
+     *   @brief Destructor for CandyGameManager class.
+     **/
     ~CandyGameManager();
 
     // ========== Methods ==========
 
     /**
-    *   @brief Method to start the Candy game.
-    **/
+     *   @brief Method to start the Candy game.
+     **/
     void startGame();
 
     /**
-    *   @brief Integer value representing the number of initial draws for the game.
-    **/
+     *   @brief Integer value representing the number of initial draws for the game.
+     **/
     static int initialDraw;
 };
 

@@ -1,8 +1,23 @@
 // CandyGameManager.cpp
 #include "../../header/GameEnvironment/CandyGameManager.hpp"
+
+#include <algorithm>
+#include <fstream>
+#include <iostream>
+#include <map>
+
 #include "../../header/Cards/Card.hpp"
-#include "../../header/Exception/IOException.hpp"
-#include "../../header/Program/IO.hpp"
+#include "../../header/Cards/Combination.hpp"
+#include "../../header/Cards/CombinationUtilities.hpp"
+#include "../../header/Cards/Combinations/Flush.hpp"
+#include "../../header/Cards/Combinations/FourOfAKind.hpp"
+#include "../../header/Cards/Combinations/FullHouse.hpp"
+#include "../../header/Cards/Combinations/HighCard.hpp"
+#include "../../header/Cards/Combinations/Pair.hpp"
+#include "../../header/Cards/Combinations/Straight.hpp"
+#include "../../header/Cards/Combinations/StraightFlush.hpp"
+#include "../../header/Cards/Combinations/ThreeOfAKind.hpp"
+#include "../../header/Cards/Combinations/TwoPair.hpp"
 #include "../../header/Commands/Abilityless.hpp"
 #include "../../header/Commands/Double.hpp"
 #include "../../header/Commands/Half.hpp"
@@ -13,21 +28,46 @@
 #include "../../header/Commands/Reverse.hpp"
 #include "../../header/Commands/SwapCard.hpp"
 #include "../../header/Commands/Switch.hpp"
-#include "../../header/Cards/Combination.hpp"
-#include "../../header/GameEnvironment/GameState.hpp"
+#include "../../header/Exception/IOException.hpp"
 #include "../../header/GameEnvironment/CandyGameState.hpp"
-
-#include <map>
-#include <iostream>
-#include <fstream>
-#include <algorithm>
+#include "../../header/GameEnvironment/GameState.hpp"
+#include "../../header/Program/IO.hpp"
 
 using std::cin;
 using std::cout;
-using std::ifstream;
-using std::max_element;
 using std::endl;
+using std::ifstream;
 using std::map;
+using std::max_element;
+
+CandyGameManager::CandyGameManager() {
+    actions = map<CmdTypes, Commands*>{
+        {CmdTypes::Double, new class Double()},
+        {CmdTypes::Half, new class Half()},
+        {CmdTypes::Next, new class Next()},
+    };
+
+    abilities = map<AbilityTypes, class Ability*>{
+        {AbilityTypes::Abilityless, new class Abilityless()},
+        {AbilityTypes::Quadruple, new class Quadruple()},
+        {AbilityTypes::Quadruple, new class Quadruple()},
+        {AbilityTypes::Quarter, new class Quarter()},
+        {AbilityTypes::Reroll, new class Reroll()},
+        {AbilityTypes::Reverse, new class Reverse()},
+        {AbilityTypes::SwapCard, new class SwapCard()},
+        {AbilityTypes::Switch, new class Switch()},
+    };
+}
+
+CandyGameManager::~CandyGameManager() {
+    for (auto action : actions) {
+        delete action.second;
+    }
+
+    for (auto abilityPair : abilities) {
+        delete abilityPair.second;
+    }
+}
 
 string fixFileExtension(string fileName) {
     // Fungsi memastikan fileName memiliki format .txt
@@ -44,11 +84,16 @@ string fixFileExtension(string fileName) {
 }
 
 int stringToColorNum(string colorString) {
-    if (colorString == "H") return 0;
-    else if (colorString == "B") return 1;
-    else if (colorString == "K") return 2;
-    else if (colorString == "M") return 3;
-    else return -1;
+    if (colorString == "H")
+        return 0;
+    else if (colorString == "B")
+        return 1;
+    else if (colorString == "K")
+        return 2;
+    else if (colorString == "M")
+        return 3;
+    else
+        return -1;
 }
 
 vector<Card> readDeckConfig() {
@@ -81,13 +126,15 @@ vector<Card> readDeckConfig() {
 
                     int cardColor = stringToColorNum(temp.substr(0, idx));
                     int cardRank = stoi(temp.substr(idx + 1, len - 2));
-                    if (cardColor == -1 || cardRank < 1 || cardRank > 13) throw InvalidFileInputFormatException();
+                    if (cardColor == -1 || cardRank < 1 || cardRank > 13)
+                        throw InvalidFileInputFormatException();
                     v.push_back(Card(Color(cardColor), Rank(cardRank)));
                     cardCount++;
                 }
 
                 // Ini mungkin bisa juga throw kartu kurang exception
-                if (cardCount != 52) throw InvalidFileInputFormatException();
+                if (cardCount != 52)
+                    throw InvalidFileInputFormatException();
                 return v;
             } else {
                 throw FileNotFoundException();
@@ -101,35 +148,6 @@ vector<Card> readDeckConfig() {
 }
 
 int CandyGameManager::initialDraw = 2;
-
-CandyGameManager::CandyGameManager() {
-    actions = map<CmdTypes, Commands*> {
-            {CmdTypes::Double, new class Double()},
-            {CmdTypes::Half,   new class Half()},
-            {CmdTypes::Next,   new class Next()},
-    };
-
-    abilities = map<AbilityTypes, class Ability*> {
-            {AbilityTypes::Abilityless, new class Abilityless()},
-            {AbilityTypes::Quadruple,   new class Quadruple()},
-            {AbilityTypes::Quadruple,   new class Quadruple()},
-            {AbilityTypes::Quarter,     new class Quarter()},
-            {AbilityTypes::Reroll,      new class Reroll()},
-            {AbilityTypes::Reverse,     new class Reverse()},
-            {AbilityTypes::SwapCard,    new class SwapCard()},
-            {AbilityTypes::Switch,      new class Switch()},
-    };
-}
-
-CandyGameManager::~CandyGameManager() {
-    for (auto action: actions) {
-        delete action.second;
-    }
-
-    for (auto abilityPair: abilities) {
-        delete abilityPair.second;
-    }
-}
 
 // ========== Private Methods ==========
 
@@ -145,7 +163,8 @@ vector<CandyPlayer> CandyGameManager::getInitialPlayerList(int playerNum) const 
 
         // playerList.push_back(CandyPlayer(i, vector<Card>(), 0, playerName, false));
 
-        playerList.push_back(CandyPlayer(i, vector<Card>(), 0, "temp" + std::to_string(i), false)); // testing
+        playerList.push_back(
+            CandyPlayer(i, vector<Card>(), 0, "temp" + std::to_string(i), false));  // testing
     }
 
     return playerList;
@@ -208,7 +227,9 @@ void CandyGameManager::startRound() {
         IO::newl();
         IO::border();
 
-        cout << "Giliran pemain " << currentPlayer.getId() << " : " << currentPlayer.getName() << endl << endl;
+        cout << "Giliran pemain " << currentPlayer.getId() << " : " << currentPlayer.getName()
+             << endl
+             << endl;
 
         cout << "Berikut kartu pada table : " << endl;
         gameState.getTableCards().showCards();
@@ -219,7 +240,8 @@ void CandyGameManager::startRound() {
         IO::newl();
 
         if (currentPlayer.getAbility() != AbilityTypes::None && !currentPlayer.hasUsedAbility()) {
-            cout << "Ability yang sedang dimiliki: " << Ability::parseAbility(currentPlayer.getAbility()) << endl
+            cout << "Ability yang sedang dimiliki: "
+                 << Ability::parseAbility(currentPlayer.getAbility()) << endl
                  << endl;
         }
 
@@ -247,7 +269,6 @@ void CandyGameManager::startRound() {
                 cout << err.what() << " Silahkan lakukan perintah lain." << endl;
             }
         }
-
     }
 
     IO::newl();
@@ -255,6 +276,48 @@ void CandyGameManager::startRound() {
     IO::border();
     IO::newl();
     IO::newl();
+}
+
+// TODO: Test if this is removed
+template <>
+Combination* CandyGameManager::getMax(vector<Combination*>& list) {
+    // asumsi list.size() > 0
+
+    Combination* maxElmt = list[0];
+
+    for (auto i = list.begin() + 1; i != list.end(); i++) {
+        if ((*i)->getValue() > maxElmt->getValue())
+            maxElmt = *i;
+    }
+
+    return maxElmt;
+}
+
+Combination* CandyGameManager::findComboType(const vector<Card> tableCards,
+                                             const vector<Card> handCards) {
+    Combination* combo;
+    pair<int, int> cardPair;
+
+    if ((combo = StraightFlush::getStraightFlush(tableCards, handCards)) != NULL) {
+        return combo;
+    } else if ((combo = FourOfAKind::getFourOfAKind(tableCards, handCards)) != NULL) {
+        return combo;
+    } else if ((combo = FullHouse::getFullHouse(tableCards, handCards)) != NULL) {
+        return combo;
+    } else if ((combo = Flush::getFlush(tableCards, handCards)) != NULL) {
+        return combo;
+    } else if ((combo = Straight::getStraight(tableCards, handCards)) != NULL) {
+        return combo;
+    } else if ((combo = ThreeOfAKind::getThreeOfAKind(tableCards, handCards)) != NULL) {
+        return combo;
+    } else if ((combo = TwoPair::getTwoPair(tableCards, handCards)) != NULL) {
+        return combo;
+    } else if ((combo = Pair::getPair(tableCards, handCards)) != NULL) {
+        return combo;
+    } else {
+        combo = HighCard::getHighCard(tableCards, handCards);
+        return combo;
+    }
 }
 
 void CandyGameManager::startSubGame() {
@@ -295,7 +358,6 @@ void CandyGameManager::startSubGame() {
 
         startRound();
 
-
         // if (gameState.getRound() == 1) {
         //     // Memberikan ability ke setiap player
 
@@ -314,29 +376,34 @@ void CandyGameManager::startSubGame() {
             gameState.getTableCards().addItem(gameState.getDeckCards().drawCard());
         }
 
-        cout << "Satu kartu diletakkan ke meja : " << gameState.getTableCards().getCards().back() << endl;
+        cout << "Satu kartu diletakkan ke meja : " << gameState.getTableCards().getCards().back()
+             << endl;
         IO::newl();
     }
 
     class ComboCompare {
-    public:
-        bool operator()(const Combination& a, const Combination& b) const {
-            return a.getValue() < b.getValue();
+       public:
+        bool operator()(const Combination* a, const Combination* b) const {
+            return a->getValue() < b->getValue();
         }
     };
 
-    map<Combination, CandyPlayer, ComboCompare> combosMap;
-    vector<Combination> combos;
+    map<Combination*, CandyPlayer, ComboCompare> combosMap;
+    vector<Combination*> combos;
     // Hitung pemenang Sub Game berdasarkan combo
-    for (auto player: gameState.getPlayerList()) {
-        Combination combo(gameState.getTableCards().getCards(), player.getHand());
+    for (auto player : gameState.getPlayerList()) {
+        Combination* combo = findComboType(gameState.getTableCards().getCards(), player.getHand());
         combosMap[combo] = player;
         combos.push_back(combo);
     }
 
-    CandyPlayer& winner = gameState.getPlayerRefAt(gameState.getPlayerIdx(combosMap[getMax(combos)].getId()));
+    CandyPlayer& winner =
+        gameState.getPlayerRefAt(gameState.getPlayerIdx(combosMap[getMax(combos)].getId()));
     winner.addPoint(gameState.getPointPool());
 
+    for (Combination* combo : combos) {
+        delete combo;
+    }
 }
 
 // ========== Methods ==========
@@ -351,8 +418,8 @@ void CandyGameManager::startGame() {
     IO::newl();
 
     // Inisiasi gameState
-    gameState = CandyGameState(getInitialPlayerList(7), 0, CandyGameState::initialPoint, TableCard(), GameDeckCard(),
-                               AbilityDeckCard(), false);
+    gameState = CandyGameState(getInitialPlayerList(7), 0, CandyGameState::initialPoint,
+                               TableCard(), GameDeckCard(), AbilityDeckCard(), false);
 
     int counter = 0;
 
@@ -372,7 +439,6 @@ void CandyGameManager::startGame() {
         leadingPlayer = getMax(playerList);
 
         counter++;
-
     } while (leadingPlayer.getPoint() < CandyGameState::winnerPoint);
 
     IO::newl();

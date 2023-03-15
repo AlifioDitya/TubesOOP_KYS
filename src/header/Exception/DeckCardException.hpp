@@ -23,4 +23,11 @@ public:
     }
 };
 
+class DuplicateCard: public exception {
+public:
+    const char *what() const throw() {
+        return "Ada kartu duplikat dalam deck!";
+    }
+};
+
 #endif

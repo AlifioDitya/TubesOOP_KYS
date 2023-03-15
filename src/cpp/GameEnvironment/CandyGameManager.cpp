@@ -28,6 +28,7 @@
 #include "../../header/Commands/SwapCard.hpp"
 #include "../../header/Commands/Switch.hpp"
 #include "../../header/Exception/IOException.hpp"
+#include "../../header/Exception/DeckCardException.hpp"
 #include "../../header/GameEnvironment/CandyGameState.hpp"
 #include "../../header/GameEnvironment/GameState.hpp"
 #include "../../header/Program/IO.hpp"
@@ -134,6 +135,16 @@ vector<Card> readDeckConfig() {
                 // Ini mungkin bisa juga throw kartu kurang exception
                 if (cardCount != 52)
                     throw InvalidFileInputFormatException();
+                
+                // testing
+                // for (long unsigned int i = 0; i < v.size()-1; i++) {
+                //     for (long unsigned int j = i + 1; j < v.size(); j++) {            
+                //         if (v[i] == v[j]) {
+                //             throw DuplicateCard();
+                //         }
+                //     }
+                // }
+            
                 return v;
             } else {
                 throw FileNotFoundException();
@@ -145,6 +156,7 @@ vector<Card> readDeckConfig() {
         }
     }
 }
+
 
 int CandyGameManager::initialDraw = 2;
 
@@ -172,7 +184,6 @@ vector<CandyPlayer> CandyGameManager::getInitialPlayerList(int playerNum) const 
 Commands* CandyGameManager::getPlayerCommand() {
     // Menerima input aksi pemain saat ini
     IO choiceIO;
-    CandyPlayer currentPlayer = gameState.getCurrentTurnPlayer();
     string commandString;
     Commands* command = nullptr;
 

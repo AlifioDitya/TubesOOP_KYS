@@ -31,7 +31,7 @@ long double ThreeOfAKind::getValue() const {
     }
     color_encoding /= 1e3;
 
-    return ComboMaxTimesTen::Flush / 10 + rank_encoding + color_encoding;
+    return TWOPAIR_MAX + rank_encoding + color_encoding;
 }
 
 Combination* ThreeOfAKind::getThreeOfAKind(const vector<Card> tableCards,

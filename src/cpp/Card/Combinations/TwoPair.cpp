@@ -46,7 +46,7 @@ long double TwoPair::getValue() const {
     }
     lc_encoding /= 1e7;
 
-    return ComboMaxTimesTen::Flush / 10 + hr_encoding + lr_encoding + hc_encoding + lc_encoding;
+    return PAIR_MAX + hr_encoding + lr_encoding + hc_encoding + lc_encoding;
 }
 
 Combination* TwoPair::getTwoPair(const vector<Card> tableCards, const vector<Card> handCards) {

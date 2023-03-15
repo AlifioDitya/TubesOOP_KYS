@@ -28,7 +28,7 @@ long double Pair::getValue() const {
     long double high = bestCombination[1].getValue();
     long double low = bestCombination[0].getValue() / 1e3;
 
-    return ComboMaxTimesTen::HighCard / 10 + high + low;
+    return HIGHCARD_MAX + high + low;
 }
 
 Combination* Pair::getPair(const vector<Card> tableCards, const vector<Card> handCards) {

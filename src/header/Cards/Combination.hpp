@@ -21,17 +21,15 @@ using std::vector;
  */
 class Combination : public CardInterface {
    protected:
-    enum ComboMaxTimesTen {
-        HighCard = 14,
-        Pair = 28,
-        TwoPair = 42,
-        ThreeOfAKind = 56,
-        Straight = 70,
-        Flush = 87,
-        FullHouse = 101,
-        FourOfAKind = 115,
-        StraightFlush = 129
-    };
+    const long double HIGHCARD_MAX = 1.4;
+    const long double PAIR_MAX = 1.4 + HIGHCARD_MAX;
+    const long double TWOPAIR_MAX = 1.3 + PAIR_MAX;
+    const long double THREEOFAKIND_MAX = 1.3 + TWOPAIR_MAX;
+    const long double STRAIGHT_MAX = 1.3 + THREEOFAKIND_MAX;
+    const long double FLUSH_MAX = 3.8 + STRAIGHT_MAX;
+    const long double FULLHOUSE_MAX = 1.3 + FLUSH_MAX;
+    const long double FOUROFAKIND_MAX = 1.3 + FULLHOUSE_MAX;
+    const long double STRAIGHTFLUSH_MAX = 1.4 + FOUROFAKIND_MAX;
 
     vector<Card> tableCards;
     vector<Card> handCards;

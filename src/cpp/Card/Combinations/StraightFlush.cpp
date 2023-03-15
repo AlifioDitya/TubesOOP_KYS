@@ -22,7 +22,7 @@ long double StraightFlush::getValue() const {
     Format: h.hh -> max:1.4
     */
 
-    return ComboMaxTimesTen::FourOfAKind / 10 + bestCombination[4].getValue();
+    return FOUROFAKIND_MAX + bestCombination[4].getValue();
 }
 
 Combination* StraightFlush::getStraightFlush(const vector<Card> tableCards,

@@ -33,7 +33,7 @@ long double Straight::getValue() const {
     }
     colorEncoding /= 1e5;
 
-    return ComboMaxTimesTen::ThreeOfAKind / 10 + rankEncoding + colorEncoding;
+    return THREEOFAKIND_MAX + rankEncoding + colorEncoding;
 }
 
 Combination* Straight::getStraight(const vector<Card> tableCards, const vector<Card> handCards) {

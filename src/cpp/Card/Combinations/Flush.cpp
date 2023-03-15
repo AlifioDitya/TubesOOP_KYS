@@ -33,7 +33,7 @@ long double Flush::getValue() const {
 
     long double colorEncoding = bestCombination[0].getColor() / 1e6;
 
-    return ComboMaxTimesTen::Straight / 10 + rankEncoding + colorEncoding;
+    return STRAIGHT_MAX + rankEncoding + colorEncoding;
 }
 
 Combination* Flush::getFlush(const vector<Card> tableCards, const vector<Card> handCards) {

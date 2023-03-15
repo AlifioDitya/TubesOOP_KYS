@@ -54,7 +54,7 @@ long double FullHouse::getValue() const {
     }
     pc_encoding /= 1e7;
 
-    return ComboMaxTimesTen::Flush / 10 + tr_encoding + pr_encoding + tc_encoding + pc_encoding;
+    return FLUSH_MAX + tr_encoding + pr_encoding + tc_encoding + pc_encoding;
 }
 
 Combination* FullHouse::getFullHouse(const vector<Card> tableCards, const vector<Card> handCards) {

@@ -8,7 +8,6 @@
 
 #include "../../header/Cards/Card.hpp"
 #include "../../header/Cards/Combination.hpp"
-#include "../../header/Cards/CombinationUtilities.hpp"
 #include "../../header/Cards/Combinations/Flush.hpp"
 #include "../../header/Cards/Combinations/FourOfAKind.hpp"
 #include "../../header/Cards/Combinations/FullHouse.hpp"

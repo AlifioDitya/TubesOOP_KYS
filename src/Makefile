@@ -7,7 +7,6 @@ EXECUTABLE := ../bin/game.out  # Final executable file path and its name
 SOURCES := cpp/Card/Card.cpp \
 		cpp/Card/CardInterface.cpp \
 		cpp/Card/Combination.cpp \
-		cpp/Card/CombinationUtilities.cpp \
 		cpp/Card/Combinations/Flush.cpp \
 		cpp/Card/Combinations/FourOfAKind.cpp \
 		cpp/Card/Combinations/FullHouse.cpp \

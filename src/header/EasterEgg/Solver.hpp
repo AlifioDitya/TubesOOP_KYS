@@ -4,8 +4,10 @@
 #include "../Cards/Card.hpp"
 #include "../GameEnvironment/Player.hpp"
 #include <string>
+#include <set>
 
 using std::string;
+using std::set;
 
 class Solver {
 private:
@@ -16,7 +18,7 @@ public:
 
     void setCards(vector<Card> cards);
 
-    vector<vector<Card>> getPermutations(int l, int r);
+    set<vector<Card>> getPermutations(int l, int r);
 
     double evaluateExpr(double num1, char op, double num2);
 
@@ -25,6 +27,8 @@ public:
     void solve24();
 
     void printSolutions();
+
+    void clearSolutions();
 };
 
 #endif

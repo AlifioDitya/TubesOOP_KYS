@@ -1,15 +1,19 @@
 #include "../../header/EasterEgg/TFCardGameManager.hpp"
 #include "../../header/Program/IO.hpp"
 #include <iostream>
+#include <limits>
 
 using std::cout;
 using std::endl;
 using std::getline;
 using std::cin;
+using std::numeric_limits;
+using std::streamsize;
 
 void TFCardGameManager::startGame() {
     IO selection;
 
+    IO::newl();
     cout << "Anda nyasar ke STIMA land..." << endl;
     cout << endl;
 
@@ -27,13 +31,17 @@ void TFCardGameManager::startGame() {
 
         selection.getInput(1,3);
 
-        if (selection == 2) {
-            player.generateRandomHand();
+        if (selection == 1) {
+            cout << "Masukkan empat angka terpisah oleh spasi: " << endl;
+            player.inputHand(4);
+        } else if (selection == 2) {
+            player.generateRandomHand(4);
         } else {
             running = false;
             break;
         }
 
+        cout << endl;
         cout << "Kartu anda adalah:" << endl;
         player.printHand();
         cout << endl;
@@ -42,6 +50,8 @@ void TFCardGameManager::startGame() {
 
         string blank;
         cout << "Klik enter untuk melihat solusi." << endl;
+        // Clear input stream
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         getline(cin, blank);
 
         solver.solve24();
@@ -51,7 +61,7 @@ void TFCardGameManager::startGame() {
         // Option to re-run or terminate
         char rerun;
         do {
-            cout << "Apakah anda ingin mencoba lagi? [y/n]\n\Pilihan : ";
+            cout << "Apakah anda ingin mencoba lagi? [y/n]\n\nPilihan : ";
             cin >> rerun;
             cout << endl;
 
@@ -61,7 +71,7 @@ void TFCardGameManager::startGame() {
             }
         } while (rerun != 'y' && rerun != 'n');
         
+        solver.clearSolutions();
+
     } while (running);
-    
-    IO::newl();
 }

@@ -170,7 +170,9 @@ public:
 
     // ========== Easter egg methods ===========
 
-    void generateRandomHand();
+    void generateRandomHand(int amount);
+
+    void inputHand(int amount);
 };
 
 #endif

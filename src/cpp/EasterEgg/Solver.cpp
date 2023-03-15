@@ -25,26 +25,20 @@ void Solver::setCards(vector<Card> cards) {
     this->cards = cards;
 }
 
-vector<vector<Card>> Solver::getPermutations(int l, int r) {
-    // Permutations saved in a vector of vectors
-    vector<vector<Card>> permutations;
+set<vector<Card>> Solver::getPermutations(int l, int r) {
+    // Permutations saved in a set of vectors
+    set<vector<Card>> permutations;
 
     // Base case: Last element of vector reached, save permutated cards
     if (l == r) {
-        if (find(permutations.begin(), permutations.end(), cards) != permutations.end()) {
-            permutations.push_back(cards);
-        }
+        permutations.insert(this->cards);
     } else {
     // Recursion: Permute sub sections of cards
         for (int i = l; i <= r; i++) {
-            swap(cards[l], cards[i]);
+            swap(this->cards[l], this->cards[i]);
             auto subPerm = getPermutations(l + 1, r);
-
-            for (int j = 0; j < subPerm.size(); j++) {
-                permutations.push_back(subPerm[j]);
-            }
-
-            swap(cards[l], cards[i]);
+            permutations.insert(subPerm.begin(), subPerm.end());
+            swap(this->cards[l], this->cards[i]);
         }
     }
 
@@ -59,15 +53,13 @@ double Solver::evaluateExpr(double num1, char op, double num2) {
         return num1 - num2;
     } else if (op == '*') {
         return num1 * num2;
-    } else if (op == '/') {
+    } else {
         // Note: Zero division of doubles results in `inf`
-        return num1 / num2;
+        return (double) num1 / (double) num2;
     }
-
-    return num1;
 }
 
-void Solver::calculateSolutions(vector<Card>) {
+void Solver::calculateSolutions(vector<Card> cardVec) {
     string equation;
 
     vector<char> ops = {'+', '-', '*', '/'};
@@ -77,43 +69,43 @@ void Solver::calculateSolutions(vector<Card>) {
         for (int j = 0; j < 4; j++) {
             for (int k = 0; k < 4; k++) {
                 // Parentheses style 1: ((num1 op1 num2) op2 num3) op3 num 4
-                if (fabs(evaluateExpr(evaluateExpr(evaluateExpr((double) cards[0].getRank(), ops[i], (double) cards[1].getRank()), ops[j], (double) cards[2].getRank()), ops[k], (double) cards[3].getValue()) - 24.0) < 1e-8) {
-                    equation = "((" + to_string(cards[0].getRank()) + " " + ops[i] + " " + to_string(cards[1].getRank()) + ") " + ops[j] + " " + to_string(cards[2].getRank()) + ") " + ops[k] + " " + to_string(cards[3].getValue());
+                if (fabs(evaluateExpr(evaluateExpr(evaluateExpr((double) cardVec[0].getRank(), ops[i], (double) cardVec[1].getRank()), ops[j], (double) cardVec[2].getRank()), ops[k], (double) cardVec[3].getRank()) - 24.0) < 1e-8) {
+                    equation = "((" + to_string(cardVec[0].getRank()) + " " + ops[i] + " " + to_string(cardVec[1].getRank()) + ") " + ops[j] + " " + to_string(cardVec[2].getRank()) + ") " + ops[k] + " " + to_string(cardVec[3].getRank());
                     solutions.push_back(equation);
                 }
 
                 // Parentheses style 2: (num1 op1 (num2 op2 num3)) op3 num4
-                if (fabs(evaluateExpr(evaluateExpr((double) cards[0].getRank(), ops[i], evaluateExpr((double) cards[1].getRank(), ops[j], (double) cards[2].getRank())), ops[k], (double) cards[3].getValue()) - 24.0) < 1e-8) {
-                    equation = "(" + to_string(cards[0].getRank()) + " " + ops[i] + " " + "(" + to_string(cards[2].getRank()) + " " + ops[j] + " " + to_string(cards[3].getValue()) + "))" + " " + ops[k] + " " + to_string(cards[3].getValue());
+                if (fabs(evaluateExpr(evaluateExpr((double) cardVec[0].getRank(), ops[i], evaluateExpr((double) cardVec[1].getRank(), ops[j], (double) cardVec[2].getRank())), ops[k], (double) cardVec[3].getRank()) - 24.0) < 1e-8) {
+                    equation = "(" + to_string(cardVec[0].getRank()) + " " + ops[i] + " " + "(" + to_string(cardVec[2].getRank()) + " " + ops[j] + " " + to_string(cardVec[3].getRank()) + "))" + " " + ops[k] + " " + to_string(cardVec[3].getRank());
                     solutions.push_back(equation);
                 }
 
                 // Parentheses style 3: (num1 op1 num2) op2 (num3 op3 num4)
-                if (fabs(evaluateExpr(evaluateExpr((double) cards[0].getRank(), ops[i], (double) cards[1].getRank()), ops[j], evaluateExpr((double) cards[2].getRank(), ops[k], (double) cards[3].getValue())) - 24.0) < 1e-8) {
-                    equation = "(" + to_string(cards[0].getRank()) + " " + ops[i] + " " + to_string(cards[1].getRank()) + ") " + ops[j] + " (" + to_string(cards[2].getRank()) + " " + ops[k] + " " + to_string(cards[3].getValue()) + ")";
+                if (fabs(evaluateExpr(evaluateExpr((double) cardVec[0].getRank(), ops[i], (double) cardVec[1].getRank()), ops[j], evaluateExpr((double) cardVec[2].getRank(), ops[k], (double) cardVec[3].getRank())) - 24.0) < 1e-8) {
+                    equation = "(" + to_string(cardVec[0].getRank()) + " " + ops[i] + " " + to_string(cardVec[1].getRank()) + ") " + ops[j] + " (" + to_string(cardVec[2].getRank()) + " " + ops[k] + " " + to_string(cardVec[3].getRank()) + ")";
                     solutions.push_back(equation);
                 }
 
                 // Parentheses style 4: num1 op1 ((num2 op2 num3) op3 num4)
-                if (fabs(evaluateExpr((double) cards[0].getRank(), ops[i], evaluateExpr(evaluateExpr((double) cards[1].getRank(), ops[j], (double) cards[2].getRank()), ops[k], (double) cards[3].getValue())) - 24.0) < 1e-8) {
-                    equation = to_string(cards[0].getRank()) + " " + ops[i] + " ((" + to_string(cards[1].getRank()) + " " + ops[j] + " " + to_string(cards[2].getRank()) + ") " + ops[k] + " " + to_string((int) + (double) cards[3].getValue()) + ")";
+                if (fabs(evaluateExpr((double) cardVec[0].getRank(), ops[i], evaluateExpr(evaluateExpr((double) cardVec[1].getRank(), ops[j], (double) cardVec[2].getRank()), ops[k], (double) cardVec[3].getRank())) - 24.0) < 1e-8) {
+                    equation = to_string(cardVec[0].getRank()) + " " + ops[i] + " ((" + to_string(cardVec[1].getRank()) + " " + ops[j] + " " + to_string(cardVec[2].getRank()) + ") " + ops[k] + " " + to_string((int) + (double) cardVec[3].getRank()) + ")";
                     solutions.push_back(equation);
                 }
 
                 // Parentheses style 5: num1 op1 (num2 op2 (num3 op3 num4))
-                if (fabs(evaluateExpr((double) cards[0].getRank(), ops[i], evaluateExpr((double) cards[1].getRank(), ops[j], evaluateExpr((double) cards[2].getRank(), ops[k], (double) cards[3].getValue()))) - 24.0) < 1e-8) {
-                    equation = to_string(cards[0].getRank()) + " " + ops[i] + " (" + to_string(cards[1].getRank()) + " " + ops[j] + " (" + to_string(cards[2].getRank()) + " " + ops[k] + " " + to_string(cards[3].getValue()) + "))";
+                if (fabs(evaluateExpr((double) cardVec[0].getRank(), ops[i], evaluateExpr((double) cardVec[1].getRank(), ops[j], evaluateExpr((double) cardVec[2].getRank(), ops[k], (double) cardVec[3].getRank()))) - 24.0) < 1e-8) {
+                    equation = to_string(cardVec[0].getRank()) + " " + ops[i] + " (" + to_string(cardVec[1].getRank()) + " " + ops[j] + " (" + to_string(cardVec[2].getRank()) + " " + ops[k] + " " + to_string(cardVec[3].getRank()) + "))";
                     solutions.push_back(equation);
                 }
             }
         }
     }
+
 }
 
 void Solver::solve24() {
-    vector<vector<Card>> permCards = getPermutations(0, cards.size()-1);
+    set<vector<Card>> permCards = getPermutations(0, cards.size()-1);
 
-    // Sequentially iterate through a set of permutated cards
     for (auto it = permCards.begin(); it != permCards.end(); it++) {
         auto permVector = *it;
         calculateSolutions(permVector);
@@ -127,7 +119,7 @@ void Solver::printSolutions() {
     if (solutions.size() != 0) {
         // Solutions found
         cout << "Solusi menghasilkan angka 24:" << endl;
-        for (int i = 0; i < solutions.size(); i++) {
+        for (long unsigned int i = 0; i < solutions.size(); i++) {
             cout << (i+1) << ". " << solutions[i] << endl;
         }
         cout << endl << solutions.size() << " solusi unik ditemukan.\n" << endl;    
@@ -135,4 +127,8 @@ void Solver::printSolutions() {
         // No solutions
         cout << "Tidak ada solusi yang ditemukan.\n" << endl;
     }
+}
+
+void Solver::clearSolutions() {
+    this->solutions.clear();
 }

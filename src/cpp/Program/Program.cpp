@@ -10,7 +10,7 @@ using std::endl;
 void Program::start() {
     IO selection;
 
-    cout << "Knock knock..." << endl << endl;
+    cout << "Knock knock..." << endl;
 
     do {
         IO::newl();

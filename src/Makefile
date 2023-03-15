@@ -56,7 +56,7 @@ OBJECTS := $(SOURCES:.cpp=.o)
 	$(CXX) $(CXXFLAGS) $< -o $@
 
 # Default rule to build the executable
-all: $(SOURCES) $(EXECUTABLE) clean_obj
+all: $(SOURCES) $(EXECUTABLE)
 
 # Rule to build the executable
 $(EXECUTABLE): $(OBJECTS)

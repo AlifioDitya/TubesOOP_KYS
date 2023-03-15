@@ -360,33 +360,33 @@ void CandyGameManager::startSubGame() {
 
 
         // ================== testing ================
-        // bool dup = false;
-        // vector<Card> tempCards = gameState.getDeckCards().temp;
+        bool dup = false;
+        vector<Card> tempCards = gameState.getDeckCards().temp;
 
-        // for (auto player: gameState.getPlayerList()) {
-        //     vector<Card> temp3 = player.getHand();
-        //     tempCards.insert(tempCards.end(), temp3.begin(), temp3.end());
-        // } 
+        for (auto player: gameState.getPlayerList()) {
+            vector<Card> temp3 = player.getHand();
+            tempCards.insert(tempCards.end(), temp3.begin(), temp3.end());
+        } 
 
-        // vector<Card> temp2 =  gameState.getTableCards().getCards();
-        // tempCards.insert(tempCards.end(), temp2.begin(), temp2.end());
+        vector<Card> temp2 =  gameState.getTableCards().getCards();
+        tempCards.insert(tempCards.end(), temp2.begin(), temp2.end());
 
-        // cout << tempCards.size() << endl;
+        cout << tempCards.size() << endl;
         
-        // for (int i = 0; i < tempCards.size()-1; i++) {
-        //     cout << (tempCards[i]) << endl;
-        //     for (int j = i + 1; j < tempCards.size(); j++) {            
-        //         if (tempCards[i] == tempCards[j]) {
-        //             std::cout << "NOOOOO" << std::endl;
-        //             dup = true;
-        //         }
-        //     }
-        // }
+        for (int i = 0; i < tempCards.size()-1; i++) {
+            cout << (tempCards[i]) << endl;
+            for (int j = i + 1; j < tempCards.size(); j++) {            
+                if (tempCards[i] == tempCards[j]) {
+                    std::cout << "NOOOOO" << std::endl;
+                    dup = true;
+                }
+            }
+        }
 
-        // cout << tempCards.back() << endl;
-        // std::cout << "yes" << std::endl;
+        cout << tempCards.back() << endl;
+        std::cout << "yes" << std::endl;
 
-        // if (dup) throw exception();
+        if (dup) throw exception();
 
         // ===============================
 

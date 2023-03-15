@@ -10,7 +10,7 @@
 
 /**
  * @class Cangkul
- * @brief Class that defines the Cangkul commands
+ * @brief Class that defines the Cangkul command
  * @extends CangkulCommand
  * 
  */
@@ -25,7 +25,7 @@ private:
 
 public:
     /**
-     * @brief Construct a new Cangkul game
+     * @brief Construct a new Cangkul object
      * 
      */
     Cangkul();
@@ -33,7 +33,7 @@ public:
     // ========== Methods ==========
 
     /**
-     * @brief xt
+     * @brief Executes Cangkul
      * 
      * @param gameState State of the game to be applied to
      */

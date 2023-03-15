@@ -38,6 +38,7 @@ protected:
     stack<T> deck;
 
 public:
+    // vector<T> temp; // testing
     /**
      * @brief Construct a new Deck of Cards
      * 
@@ -101,6 +102,8 @@ public:
         T topCard = deck.top();
         deck.pop();
 
+        // temp.erase(temp.begin()); // testing
+
         return topCard;
     }
 
@@ -120,6 +123,8 @@ public:
         for (int i = 0; i < amount; i++) {
             drawCards.push_back(deck.top());
             deck.pop();
+            // temp.erase(temp.begin());  //testing
+ 
         }
 
         return drawCards;
@@ -132,6 +137,8 @@ public:
      */
     void setCards(const vector<T>& cards) {
         deck = stack<T>(deque<T>(cards.rbegin(), cards.rend()));
+
+        // temp = cards; //testing
     }
 };
 

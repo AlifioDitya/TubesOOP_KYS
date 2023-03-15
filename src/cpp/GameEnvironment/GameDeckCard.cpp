@@ -3,7 +3,6 @@
 #include "../../header/GameEnvironment/DeckCard.hpp"
 #include <algorithm>
 #include <iostream>
-
 using std::random_shuffle;
 
 GameDeckCard::GameDeckCard() {
@@ -24,9 +23,10 @@ void GameDeckCard::defaultConfig() {
     }
 
     srand(time(NULL));
-
+    
     random_shuffle(tempCards.begin(), tempCards.end());
 
+    // temp = vector<Card> (tempCards.rbegin(), tempCards.rend()); // testing
     clear();
     // for (auto card: tempCards) std::cout << card << std::endl;
     for (Card card: tempCards) {

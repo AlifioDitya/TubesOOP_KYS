@@ -17,6 +17,7 @@
  */
 class GameDeckCard : public DeckCard<Card> {
 public:
+
     /**
      * @brief Construct a new Game Deck Card object.
      * 

@@ -27,8 +27,8 @@ class CardInterface {
      * @param other The card to compare against.
      * @return true if the cards are equal, false otherwise.
      */
-    bool operator==(const CardInterface&);
-    bool operator!=(const CardInterface&);
+    friend bool operator==(const CardInterface&, const CardInterface&);
+    friend bool operator!=(const CardInterface&, const CardInterface&);
 
     /**
      * @brief Greater-than operator for comparing two cards.
@@ -36,7 +36,7 @@ class CardInterface {
      * @param other The card to compare against.
      * @return true if this card is greater than the other card, false otherwise.
      */
-    bool operator>(const CardInterface&);
+    friend bool operator>(const CardInterface&, const CardInterface&);
 
     /**
      * @brief Less-than operator for comparing two cards.
@@ -44,7 +44,7 @@ class CardInterface {
      * @param other The card to compare against.
      * @return true if this card is less than the other card, false otherwise.
      */
-    bool operator<(const CardInterface&);
+    friend bool operator<(const CardInterface&, const CardInterface&);
 
     /**
      * @brief Greater-than-or-equal-to operator for comparing two cards.
@@ -52,7 +52,7 @@ class CardInterface {
      * @param other The card to compare against.
      * @return true if this card is greater than or equal to the other card, false otherwise.
      */
-    bool operator>=(const CardInterface&);
+    friend bool operator>=(const CardInterface&, const CardInterface&);
 
     /**
      * @brief Less-than-or-equal-to operator for comparing two cards.
@@ -60,7 +60,7 @@ class CardInterface {
      * @param other The card to compare against.
      * @return true if this card is less than or equal to the other card, false otherwise.
      */
-    bool operator<=(const CardInterface&);
+    friend bool operator<=(const CardInterface&, const CardInterface&);
 
     // ========== Getters ==========
 

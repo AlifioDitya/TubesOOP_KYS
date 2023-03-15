@@ -6,9 +6,7 @@
 
 using std::sort;
 
-FullHouse::FullHouse(const vector<Card> tableCards, const vector<Card> handCards,
-                     const vector<Card> bestCombination)
-    : Combination(tableCards, handCards, bestCombination) {
+FullHouse::FullHouse(const vector<Card>& combinationCards) : Combination(combinationCards) {
 }
 
 string FullHouse::getComboTypeString() const {
@@ -31,12 +29,12 @@ long double FullHouse::getValue() const {
     vector<Card> triplet;
     vector<Card> pair;
 
-    if (bestCombination[2].getRank() == bestCombination[1].getRank()) {
-        pair.insert(pair.end(), bestCombination.begin() + 3, bestCombination.end());
-        triplet.insert(triplet.end(), bestCombination.begin(), bestCombination.begin() + 3);
+    if (combinationCards[2].getRank() == combinationCards[1].getRank()) {
+        pair.insert(pair.end(), combinationCards.begin() + 3, combinationCards.end());
+        triplet.insert(triplet.end(), combinationCards.begin(), combinationCards.begin() + 3);
     } else {
-        pair.insert(pair.end(), bestCombination.begin(), bestCombination.begin() + 2);
-        triplet.insert(triplet.end(), bestCombination.begin() + 2, bestCombination.end());
+        pair.insert(pair.end(), combinationCards.begin(), combinationCards.begin() + 2);
+        triplet.insert(triplet.end(), combinationCards.begin() + 2, combinationCards.end());
     }
 
     long double tr_encoding = (triplet[0].getRank() - 1) / 10;
@@ -57,7 +55,8 @@ long double FullHouse::getValue() const {
     return FLUSH_MAX + tr_encoding + pr_encoding + tc_encoding + pc_encoding;
 }
 
-Combination* FullHouse::getFullHouse(const vector<Card> tableCards, const vector<Card> handCards) {
+Combination* FullHouse::getFullHouse(const vector<Card>& tableCards,
+                                     const vector<Card>& handCards) {
     Combination* maxCombo = NULL;
     long double maxValue = 0;
 
@@ -73,7 +72,7 @@ Combination* FullHouse::getFullHouse(const vector<Card> tableCards, const vector
         sort(cards.begin(), cards.end());
 
         if (isFullHouse(cards)) {
-            Combination* fullHouse = new FullHouse(currentTable, currentHand, cards);
+            Combination* fullHouse = new FullHouse(cards);
             long double value = fullHouse->getValue();
 
             if (maxCombo == NULL || maxValue < value) {
@@ -99,7 +98,7 @@ Combination* FullHouse::getFullHouse(const vector<Card> tableCards, const vector
         sort(cards.begin(), cards.end());
 
         if (isFullHouse(cards)) {
-            Combination* fullHouse = new FullHouse(currentTable, currentHand, cards);
+            Combination* fullHouse = new FullHouse(cards);
             long double value = fullHouse->getValue();
 
             if (maxCombo == NULL || maxValue < value) {
@@ -126,7 +125,7 @@ Combination* FullHouse::getFullHouse(const vector<Card> tableCards, const vector
             sort(cards.begin(), cards.end());
 
             if (isFullHouse(cards)) {
-                Combination* fullHouse = new FullHouse(currentTable, currentHand, cards);
+                Combination* fullHouse = new FullHouse(cards);
                 long double value = fullHouse->getValue();
 
                 if (maxCombo == NULL || maxValue < value) {

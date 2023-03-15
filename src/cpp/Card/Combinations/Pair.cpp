@@ -6,9 +6,7 @@
 
 using std::sort;
 
-Pair::Pair(const vector<Card> tableCards, const vector<Card> handCards,
-           const vector<Card> bestCombination)
-    : Combination(tableCards, handCards, bestCombination) {
+Pair::Pair(const vector<Card>& combinationCards) : Combination(combinationCards) {
 }
 
 string Pair::getComboTypeString() const {
@@ -25,13 +23,13 @@ long double Pair::getValue() const {
 
     Format: h.hhlll -> max:1.4
     */
-    long double high = bestCombination[1].getValue();
-    long double low = bestCombination[0].getValue() / 1e3;
+    long double high = combinationCards[1].getValue();
+    long double low = combinationCards[0].getValue() / 1e3;
 
     return HIGHCARD_MAX + high + low;
 }
 
-Combination* Pair::getPair(const vector<Card> tableCards, const vector<Card> handCards) {
+Combination* Pair::getPair(const vector<Card>& tableCards, const vector<Card>& handCards) {
     Combination* maxCombo = NULL;
     long double maxValue = 0;
 
@@ -47,7 +45,7 @@ Combination* Pair::getPair(const vector<Card> tableCards, const vector<Card> han
         sort(cards.begin(), cards.end());
 
         if (ofSameRank(cards)) {
-            Combination* cardPair = new Pair(currentTable, currentHand, cards);
+            Combination* cardPair = new Pair(cards);
             long double value = cardPair->getValue();
 
             if (maxCombo == NULL || maxValue < value) {
@@ -73,7 +71,7 @@ Combination* Pair::getPair(const vector<Card> tableCards, const vector<Card> han
         sort(cards.begin(), cards.end());
 
         if (ofSameRank(cards)) {
-            Combination* cardPair = new Pair(currentTable, currentHand, cards);
+            Combination* cardPair = new Pair(cards);
             long double value = cardPair->getValue();
 
             if (maxCombo == NULL || maxValue < value) {
@@ -95,7 +93,7 @@ Combination* Pair::getPair(const vector<Card> tableCards, const vector<Card> han
     sort(cards.begin(), cards.end());
 
     if (ofSameRank(cards)) {
-        Combination* cardPair = new Pair(currentTable, currentHand, cards);
+        Combination* cardPair = new Pair(cards);
         long double value = cardPair->getValue();
 
         if (maxCombo == NULL || maxValue < value) {

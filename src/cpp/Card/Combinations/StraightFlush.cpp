@@ -4,9 +4,7 @@
 
 #include <algorithm>
 
-StraightFlush::StraightFlush(const vector<Card> tableCards, const vector<Card> handCards,
-                             const vector<Card> bestCombination)
-    : Combination(tableCards, handCards, bestCombination) {
+StraightFlush::StraightFlush(const vector<Card>& combinationCards) : Combination(combinationCards) {
 }
 
 string StraightFlush::getComboTypeString() const {
@@ -22,11 +20,11 @@ long double StraightFlush::getValue() const {
     Format: h.hh -> max:1.4
     */
 
-    return FOUROFAKIND_MAX + bestCombination[4].getValue();
+    return FOUROFAKIND_MAX + combinationCards[4].getValue();
 }
 
-Combination* StraightFlush::getStraightFlush(const vector<Card> tableCards,
-                                             const vector<Card> handCards) {
+Combination* StraightFlush::getStraightFlush(const vector<Card>& tableCards,
+                                             const vector<Card>& handCards) {
     Combination* maxCombo = NULL;
     long double maxValue = 0;
 
@@ -42,7 +40,7 @@ Combination* StraightFlush::getStraightFlush(const vector<Card> tableCards,
         sort(cards.begin(), cards.end());
 
         if (inSequence(cards) && ofSameColor(cards)) {
-            Combination* straightFlush = new StraightFlush(currentTable, currentHand, cards);
+            Combination* straightFlush = new StraightFlush(cards);
             long double value = straightFlush->getValue();
 
             if (maxCombo == NULL || maxValue < value) {
@@ -68,7 +66,7 @@ Combination* StraightFlush::getStraightFlush(const vector<Card> tableCards,
         sort(cards.begin(), cards.end());
 
         if (inSequence(cards) && ofSameColor(cards)) {
-            Combination* straightFlush = new StraightFlush(currentTable, currentHand, cards);
+            Combination* straightFlush = new StraightFlush(cards);
             long double value = straightFlush->getValue();
 
             if (maxCombo == NULL || maxValue < value) {
@@ -95,7 +93,7 @@ Combination* StraightFlush::getStraightFlush(const vector<Card> tableCards,
             sort(cards.begin(), cards.end());
 
             if (inSequence(cards) && ofSameColor(cards)) {
-                Combination* straightFlush = new StraightFlush(currentTable, currentHand, cards);
+                Combination* straightFlush = new StraightFlush(cards);
                 long double value = straightFlush->getValue();
 
                 if (maxCombo == NULL || maxValue < value) {

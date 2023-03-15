@@ -6,9 +6,7 @@
 
 using std::sort;
 
-Flush::Flush(const vector<Card> tableCards, const vector<Card> handCards,
-             const vector<Card> bestCombination)
-    : Combination(tableCards, handCards, bestCombination) {
+Flush::Flush(const vector<Card>& combinationCards) : Combination(combinationCards) {
 }
 
 string Flush::getComboTypeString() const {
@@ -27,16 +25,16 @@ long double Flush::getValue() const {
 
     long double rankEncoding = 0;
     for (int i = 0; i < 5; i++) {
-        rankEncoding += pow(13, i) * (bestCombination[i].getRank() - 1);
+        rankEncoding += pow(13, i) * (combinationCards[i].getRank() - 1);
     }
     rankEncoding /= 1e5;
 
-    long double colorEncoding = bestCombination[0].getColor() / 1e6;
+    long double colorEncoding = combinationCards[0].getColor() / 1e6;
 
     return STRAIGHT_MAX + rankEncoding + colorEncoding;
 }
 
-Combination* Flush::getFlush(const vector<Card> tableCards, const vector<Card> handCards) {
+Combination* Flush::getFlush(const vector<Card>& tableCards, const vector<Card>& handCards) {
     Combination* maxCombo = NULL;
     long double maxValue = 0;
 
@@ -52,7 +50,7 @@ Combination* Flush::getFlush(const vector<Card> tableCards, const vector<Card> h
         sort(cards.begin(), cards.end());
 
         if (ofSameColor(cards)) {
-            Combination* flush = new Flush(currentTable, currentHand, cards);
+            Combination* flush = new Flush(cards);
             long double value = flush->getValue();
 
             if (maxCombo == NULL || maxValue < value) {
@@ -78,7 +76,7 @@ Combination* Flush::getFlush(const vector<Card> tableCards, const vector<Card> h
         sort(cards.begin(), cards.end());
 
         if (ofSameColor(cards)) {
-            Combination* flush = new Flush(currentTable, currentHand, cards);
+            Combination* flush = new Flush(cards);
             long double value = flush->getValue();
 
             if (maxCombo == NULL || maxValue < value) {
@@ -105,7 +103,7 @@ Combination* Flush::getFlush(const vector<Card> tableCards, const vector<Card> h
             sort(cards.begin(), cards.end());
 
             if (ofSameColor(cards)) {
-                Combination* flush = new Flush(currentTable, currentHand, cards);
+                Combination* flush = new Flush(cards);
                 long double value = flush->getValue();
 
                 if (maxCombo == NULL || maxValue < value) {

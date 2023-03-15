@@ -6,9 +6,7 @@
 
 using std::sort;
 
-TwoPair::TwoPair(const vector<Card> tableCards, const vector<Card> handCards,
-                 const vector<Card> bestCombination)
-    : Combination(tableCards, handCards, bestCombination) {
+TwoPair::TwoPair(const vector<Card>& combinationCards) : Combination(combinationCards) {
 }
 
 string TwoPair::getComboTypeString() const {
@@ -28,8 +26,8 @@ long double TwoPair::getValue() const {
 
     Format: h.hllhhll -> max:1.3
     */
-    vector<Card> high(bestCombination.begin() + 2, bestCombination.end());
-    vector<Card> low(bestCombination.begin(), bestCombination.begin() + 2);
+    vector<Card> high(combinationCards.begin() + 2, combinationCards.end());
+    vector<Card> low(combinationCards.begin(), combinationCards.begin() + 2);
 
     long double hr_encoding = (high[0].getRank() - 1) / 10;
     long double lr_encoding = (low[0].getRank() - 1) / 1000;
@@ -49,7 +47,7 @@ long double TwoPair::getValue() const {
     return PAIR_MAX + hr_encoding + lr_encoding + hc_encoding + lc_encoding;
 }
 
-Combination* TwoPair::getTwoPair(const vector<Card> tableCards, const vector<Card> handCards) {
+Combination* TwoPair::getTwoPair(const vector<Card>& tableCards, const vector<Card>& handCards) {
     Combination* maxCombo = NULL;
     long double maxValue = 0;
 
@@ -67,7 +65,7 @@ Combination* TwoPair::getTwoPair(const vector<Card> tableCards, const vector<Car
             sort(cards.begin(), cards.end());
 
             if (isTwoPair(cards)) {
-                Combination* twoPair = new TwoPair(currentTable, currentHand, cards);
+                Combination* twoPair = new TwoPair(cards);
                 long double value = twoPair->getValue();
 
                 if (maxCombo == NULL || maxValue < value) {
@@ -96,7 +94,7 @@ Combination* TwoPair::getTwoPair(const vector<Card> tableCards, const vector<Car
             sort(cards.begin(), cards.end());
 
             if (isTwoPair(cards)) {
-                Combination* twoPair = new TwoPair(currentTable, currentHand, cards);
+                Combination* twoPair = new TwoPair(cards);
                 long double value = twoPair->getValue();
 
                 if (maxCombo == NULL || maxValue < value) {
@@ -123,7 +121,7 @@ Combination* TwoPair::getTwoPair(const vector<Card> tableCards, const vector<Car
             sort(cards.begin(), cards.end());
 
             if (isTwoPair(cards)) {
-                Combination* twoPair = new TwoPair(currentTable, currentHand, cards);
+                Combination* twoPair = new TwoPair(cards);
                 long double value = twoPair->getValue();
 
                 if (maxCombo == NULL || maxValue < value) {

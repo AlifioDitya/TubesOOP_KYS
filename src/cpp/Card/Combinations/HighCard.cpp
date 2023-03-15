@@ -6,9 +6,7 @@
 
 using std::sort;
 
-HighCard::HighCard(const vector<Card> tableCards, const vector<Card> handCards,
-                   const vector<Card> bestCombination)
-    : Combination(tableCards, handCards, bestCombination) {
+HighCard::HighCard(const vector<Card>& combinationCards) : Combination(combinationCards) {
 }
 
 string HighCard::getComboTypeString() const {
@@ -16,17 +14,14 @@ string HighCard::getComboTypeString() const {
 }
 
 long double HighCard::getValue() const {
-    return bestCombination[0].getValue();
+    return combinationCards[0].getValue();
 }
 
-Combination* HighCard::getHighCard(const vector<Card> tableCards, const vector<Card> handCards) {
-    Card first = handCards[0];
-    Card second = handCards[1];
-    Card high = first > second ? first : second;
+Combination* HighCard::getHighCard(const vector<Card>& tableCards, const vector<Card>& handCards) {
+    Card high = handCards[0] > handCards[1] ? handCards[0] : handCards[1];
 
-    vector<Card> emptyTable;
     vector<Card> hand;
     hand.push_back(high);
 
-    return new HighCard(emptyTable, hand, hand);
+    return new HighCard(hand);
 }

@@ -8,26 +8,26 @@ using std::endl;
 CardInterface::~CardInterface() {
 }
 
-bool CardInterface::operator==(const CardInterface& other) {
-    return this->getValue() == other.getValue();
+bool operator==(const CardInterface& lhs, const CardInterface& rhs) {
+    return lhs.getValue() == rhs.getValue();
 }
 
-bool CardInterface::operator!=(const CardInterface& other) {
-    return this->getValue() != other.getValue();
+bool operator!=(const CardInterface& lhs, const CardInterface& rhs) {
+    return !(lhs == rhs);
 }
 
-bool CardInterface::operator>(const CardInterface& other) {
-    return this->getValue() > other.getValue();
+bool operator>(const CardInterface& lhs, const CardInterface& rhs) {
+    return lhs.getValue() > rhs.getValue();
 }
 
-bool CardInterface::operator<(const CardInterface& other) {
-    return this->getValue() < other.getValue();
+bool operator<(const CardInterface& lhs, const CardInterface& rhs) {
+    return rhs > lhs;
 }
 
-bool CardInterface::operator>=(const CardInterface& other) {
-    return this->getValue() >= other.getValue();
+bool operator>=(const CardInterface& lhs, const CardInterface& rhs) {
+    return !(lhs < rhs);
 }
 
-bool CardInterface::operator<=(const CardInterface& other) {
-    return this->getValue() <= other.getValue();
+bool operator<=(const CardInterface& lhs, const CardInterface& rhs) {
+    return !(lhs > rhs);
 }

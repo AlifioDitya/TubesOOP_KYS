@@ -31,26 +31,23 @@ class Combination : public CardInterface {
     const long double FOUROFAKIND_MAX = 1.3 + FULLHOUSE_MAX;
     const long double STRAIGHTFLUSH_MAX = 1.4 + FOUROFAKIND_MAX;
 
-    vector<Card> tableCards;
-    vector<Card> handCards;
-    vector<Card> bestCombination;
+    vector<Card> combinationCards;
 
-    static bool ofSameColor(vector<Card>&);
-    static bool ofSameRank(vector<Card>&);
-    static bool inSequence(vector<Card>&);
-    static bool hasFourOfAKind(vector<Card>&);
-    static bool isFullHouse(vector<Card>&);
-    static bool hasThreeOfAKind(vector<Card>&);
-    static bool isTwoPair(vector<Card>&);
-    static pair<int, int> findPairIdx(vector<Card>&);
+    static bool ofSameColor(const vector<Card>&);
+    static bool ofSameRank(const vector<Card>&);
+    static bool inSequence(const vector<Card>&);
+    static bool hasFourOfAKind(const vector<Card>&);
+    static bool isFullHouse(const vector<Card>&);
+    static bool hasThreeOfAKind(const vector<Card>&);
+    static bool isTwoPair(const vector<Card>&);
+    static pair<int, int> findPairIdx(const vector<Card>&);
 
    public:
     /**
      * @brief Construct a new Combination object
      *
      */
-    Combination(const vector<Card> tableCards, const vector<Card> handCards,
-                const vector<Card> bestCombination);
+    Combination(const vector<Card>& combinationCards);
 
     /**
      * @brief Destroy the Combination object
@@ -59,27 +56,18 @@ class Combination : public CardInterface {
     ~Combination();
 
     /**
-     * @brief Get the Cards on the table
-     *
-     * @return Table cards
-     */
-    vector<Card> getTableCards() const;
-
-    /**
-     * @brief Get the Hand Cards
-     *
-     * @return Hand cards
-     */
-    vector<Card> getHandCards() const;
-
-    /**
      * @brief Get the Best Combination of cards
      *
      * @return Best card combination
      */
-    vector<Card> getBestCombination() const;
+    vector<Card> getCombinationCards() const;
 
-    virtual string getComboTypeString() const = 0;  // TODO: IMPLEMENTATION
+    /**
+     * @brief Get string representation of combination type
+     *
+     * @return Best card combination
+     */
+    virtual string getComboTypeString() const = 0;
 
     /**
      * @brief Get the Value of cards

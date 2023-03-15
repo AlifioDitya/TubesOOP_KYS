@@ -119,7 +119,7 @@ vector<Card> readDeckConfig() {
                 while (getline(configFile, temp)) {
                     int idx = temp.find(' '), len = temp.length();
 
-                    if ((idx != 1) || !(len == 4 || len == 5)) {
+                    if ((idx != 1) || !(len >= 3 && len <= 5)) {
                         throw InvalidFileInputFormatException();
                     }
 
@@ -409,12 +409,11 @@ void CandyGameManager::startSubGame() {
 
         if (gameState.getRound() < 6) {
             gameState.getTableCards().addItem(gameState.getDeckCards().drawCard());
-        }
+            cout << "Satu kartu diletakkan ke meja : " << gameState.getTableCards().getCards().back()
+                << endl;
 
-        cout << "Satu kartu diletakkan ke meja : " << gameState.getTableCards().getCards().back()
-             << endl;
-        
-        IO::newl();
+            IO::newl();
+        }
     }
 
     class ComboCompare {

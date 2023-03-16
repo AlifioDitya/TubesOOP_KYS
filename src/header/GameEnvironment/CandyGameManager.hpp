@@ -50,6 +50,12 @@ class CandyGameManager : public GameManager {
      **/
     Commands* getPlayerCommand();
 
+    /**
+     *   @brief Method to get the best possible combination of cards from given lists
+     *   @param tableCards list of 5 table cards
+     *   @param tableCards list of 2 hand cards
+     *   @return Polymorphic Combination pointer of combination type
+     **/
     Combination* findComboType(const vector<Card> tableCards, const vector<Card> handCards);
 
     /**

@@ -36,6 +36,8 @@ void TFCardGameManager::startGame() {
             player.inputHand(4);
         } else if (selection == 2) {
             player.generateRandomHand(4);
+            // Clear input stream
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         } else {
             running = false;
             break;
@@ -49,9 +51,7 @@ void TFCardGameManager::startGame() {
         solver.setCards(player.getHand());
 
         string blank;
-        cout << "Klik enter untuk melihat solusi." << endl;
-        // Clear input stream
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Klik enter untuk melihat solusi.";
         getline(cin, blank);
 
         solver.solve24();

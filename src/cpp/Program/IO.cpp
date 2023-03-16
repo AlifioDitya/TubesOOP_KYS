@@ -67,12 +67,12 @@ void IO::getInput(int lowerBound, int upperBound) {
 
 vector<int> IO::inputCardStream(int n) {
     string input;
-    getline(cin, input);
     vector<int> output = {};
     string token;
 
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    getline(cin, input);
 
     stringstream ss(input);
 

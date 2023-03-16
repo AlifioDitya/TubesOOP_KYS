@@ -47,21 +47,11 @@ bool Combination::inSequence(const vector<Card>& cards) {
 }
 
 bool Combination::isFullHouse(const vector<Card>& cards) {
-    if (cards.size() == 5) {
-        pair<int, int> pairIdx = findPairIdx(cards);
-        if (pairIdx.second == 1 || pairIdx.first == 3) {
-            vector<Card> rest;
-            if (pairIdx.second == 1) {
-                rest.insert(rest.end(), cards.begin() + pairIdx.second + 1, cards.end());
-            } else {
-                rest.insert(rest.end(), cards.begin(), cards.end() - 2);
-            }
-
-            if (hasThreeOfAKind(rest))
-                return true;
-        }
-    }
-    return false;
+    return ((cards[0].getRank() == cards[1].getRank() && cards[1].getRank() != cards[2].getRank() &&
+             cards[2].getRank() == cards[3].getRank() &&
+             cards[3].getRank() == cards[4].getRank()) ||
+            (cards[0].getRank() == cards[1].getRank() && cards[1].getRank() == cards[2].getRank() &&
+             cards[2].getRank() != cards[3].getRank() && cards[3].getRank() == cards[4].getRank()));
 }
 
 bool Combination::hasFourOfAKind(const vector<Card>& cards) {
@@ -84,7 +74,8 @@ bool Combination::hasThreeOfAKind(const vector<Card>& cards) {
 }
 
 bool Combination::isTwoPair(const vector<Card>& cards) {
-    return cards[0] == cards[1] && cards[1] != cards[2] && cards[2] == cards[3];
+    return cards[0].getRank() == cards[1].getRank() && cards[1].getRank() != cards[2].getRank() &&
+           cards[2].getRank() == cards[3].getRank();
 }
 
 pair<int, int> Combination::findPairIdx(const vector<Card>& cards) {

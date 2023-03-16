@@ -37,8 +37,8 @@ long double FullHouse::getValue() const {
         triplet.insert(triplet.end(), combinationCards.begin() + 2, combinationCards.end());
     }
 
-    long double tr_encoding = (triplet[0].getRank() - 1) / 10;
-    long double pr_encoding = (pair[0].getRank() - 1) / 1000;
+    long double tr_encoding = (long double)(triplet[0].getRank() - 1) / 10;
+    long double pr_encoding = (long double)(pair[0].getRank() - 1) / 1000;
 
     long double tc_encoding = 0;
     for (int i = 0; i < 3; i++) {

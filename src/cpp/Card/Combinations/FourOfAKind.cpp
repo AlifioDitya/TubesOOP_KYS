@@ -22,7 +22,7 @@ long double FourOfAKind::getValue() const {
     Format: r.r -> max:1.3
     */
 
-    return FULLHOUSE_MAX + (combinationCards[0].getRank() - 1) / 10;
+    return FULLHOUSE_MAX + (long double)(combinationCards[0].getRank() - 1) / 10;
 }
 
 Combination* FourOfAKind::getFourOfAKind(const vector<Card>& tableCards,

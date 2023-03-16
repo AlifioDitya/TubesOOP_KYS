@@ -21,15 +21,15 @@ using std::vector;
  */
 class Combination : public CardInterface {
    protected:
-    const long double HIGHCARD_MAX = 1.4;
-    const long double PAIR_MAX = 1.4 + HIGHCARD_MAX;
-    const long double TWOPAIR_MAX = 1.3 + PAIR_MAX;
-    const long double THREEOFAKIND_MAX = 1.3 + TWOPAIR_MAX;
-    const long double STRAIGHT_MAX = 1.3 + THREEOFAKIND_MAX;
-    const long double FLUSH_MAX = 3.8 + STRAIGHT_MAX;
-    const long double FULLHOUSE_MAX = 1.3 + FLUSH_MAX;
-    const long double FOUROFAKIND_MAX = 1.3 + FULLHOUSE_MAX;
-    const long double STRAIGHTFLUSH_MAX = 1.4 + FOUROFAKIND_MAX;
+    const long double HIGHCARD_MAX = 100;
+    const long double PAIR_MAX = 100 + HIGHCARD_MAX;
+    const long double TWOPAIR_MAX = 100 + PAIR_MAX;
+    const long double THREEOFAKIND_MAX = 100 + TWOPAIR_MAX;
+    const long double STRAIGHT_MAX = 100 + THREEOFAKIND_MAX;
+    const long double FLUSH_MAX = 300 + STRAIGHT_MAX;
+    const long double FULLHOUSE_MAX = 100 + FLUSH_MAX;
+    const long double FOUROFAKIND_MAX = 100 + FULLHOUSE_MAX;
+    const long double STRAIGHTFLUSH_MAX = 100 + FOUROFAKIND_MAX;
 
     vector<Card> combinationCards;
 

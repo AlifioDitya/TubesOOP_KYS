@@ -29,7 +29,7 @@ long double Flush::getValue() const {
     }
     rankEncoding /= 1e5;
 
-    long double colorEncoding = combinationCards[0].getColor() / 1e6;
+    long double colorEncoding = (long double)combinationCards[0].getColor() / 1e6;
 
     return STRAIGHT_MAX + rankEncoding + colorEncoding;
 }

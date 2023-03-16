@@ -21,7 +21,7 @@ long double ThreeOfAKind::getValue() const {
 
     Format: r.rcc -> max:1.3
     */
-    long double rank_encoding = (combinationCards[0].getRank() - 1) / 10;
+    long double rank_encoding = (long double)(combinationCards[0].getRank() - 1) / 10;
 
     long double color_encoding = 0;
     for (int i = 0; i < 3; i++) {

@@ -362,19 +362,19 @@ void CandyGameManager::startSubGame() {
         gameState.setRound(gameState.getRound() + 1);
 
         // testing
-        if (gameState.getRound() == 1) {
-            // Memberikan ability ke setiap player
+        // if (gameState.getRound() == 1) {
+        //     // Memberikan ability ke setiap player
 
-            cout << "Ability akan dibagikan ke setiap pemain!" << endl;
-            IO::newl();
+        //     cout << "Ability akan dibagikan ke setiap pemain!" << endl;
+        //     IO::newl();
 
-            for (long unsigned int i = 0; i < gameState.getPlayerList().size(); i++) {
-                CandyPlayer& player = gameState.getPlayerRefAt(i);
+        //     for (long unsigned int i = 0; i < gameState.getPlayerList().size(); i++) {
+        //         CandyPlayer& player = gameState.getPlayerRefAt(i);
 
-                player.setAbility(gameState.getAbilities().drawCard());
+        //         player.setAbility(gameState.getAbilities().drawCard());
         
-            }
-        }
+        //     }
+        // }
 
 
         // ================== // testing ================
@@ -411,17 +411,17 @@ void CandyGameManager::startSubGame() {
 
         startRound();
 
-        // if (gameState.getRound() == 1) {
-        //     // Memberikan ability ke setiap player
+        if (gameState.getRound() == 1) {
+            // Memberikan ability ke setiap player
 
-        //     cout << "Ability akan dibagikan ke setiap pemain!" << endl;
-        //     newl();
+            cout << "Ability akan dibagikan ke setiap pemain!" << endl;
+            IO::newl();
 
-        //     for (long unsigned int i = 0; i < gameState.getPlayerList().size(); i++) {
-        //         CandyPlayer& player = gameState.getPlayerRefAt(i);
-        //         player.setAbility(gameState.getAbilities().drawCard());
-        //     }
-        // }
+            for (long unsigned int i = 0; i < gameState.getPlayerList().size(); i++) {
+                CandyPlayer& player = gameState.getPlayerRefAt(i);
+                player.setAbility(gameState.getAbilities().drawCard());
+            }
+        }
 
         // Meletakkan 1 kartu dari deck ke table
 

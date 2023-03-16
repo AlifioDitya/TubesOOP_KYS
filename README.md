@@ -4,7 +4,7 @@ This repository contains a C++ program that simulates popular card games such as
 
 ## Getting Started
 ### Prerequisites
-To run this program, you will need a Linux environment with the G++ compiler installed. We recommend using WSL with Ubuntu distribution as it has been tested on such environment.
+To run this program, you will need a Linux OS with the G++ compiler and makefile installed. We recommend using WSL with Ubuntu distribution as it has been tested on such environment.
 
 ### Installation
 1. Clone this repository

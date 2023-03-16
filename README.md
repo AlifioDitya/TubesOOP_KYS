@@ -9,32 +9,32 @@ To run this program, you will need a Linux OS with the G++ compiler and makefile
 ### Installation
 1. Clone this repository
     ``` bash
-    git clone https://github.com/AlifioDitya/TubesOOP_KYS.git
+    $ git clone https://github.com/AlifioDitya/TubesOOP_KYS.git
     ```
 2. Create a `bin` folder at the root
     ``` bash
-    mkdir bin
+    $ mkdir bin
     ```
 3. Navigate to the `src` folder
     ``` bash
-    cd src
+    $ cd src
     ```
 4. Compile the program using the makefile
     ``` bash
-    make all
+    $ make all
     ```
 
 ### Usage
 To run the program, compile the program and navigate to the `bin` folder. Execute the following command:
 ``` bash
-./game.out
+$ ./game.out
 ```
 You will be prompted to choose which card game to simulate. Follow the on-screen instructions to play the game.
 
 ### Cleaning Up
 To remove residual object codes, navigate to the `src` folder and execute the following command:
 ``` bash
-make clean
+$ make clean
 ```
 
 ### Authors

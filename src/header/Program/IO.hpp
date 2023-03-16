@@ -6,6 +6,10 @@
 #ifndef IO_HPP
 #define IO_HPP
 
+#include <vector>
+
+using std::vector;
+
 /**
 *   @class Program
 *   @brief Class representing the Input/Output operations.
@@ -42,6 +46,9 @@ public:
     *   @param[in] upperBound the upper bound of the input range.
     **/
     void getInput(int lowerBound, int upperBound);
+
+
+    vector<int> inputCardStream(int n);
 
     /**
     *   @brief Method to print newline character

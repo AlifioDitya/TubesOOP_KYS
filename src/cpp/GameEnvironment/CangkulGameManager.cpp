@@ -12,6 +12,8 @@ using std::cin;
 using std::cout;
 using std::endl;
 using std::pair;
+using std::getline;
+using std::ws;
 
 int CangkulGameManager::initialDraw = 7;
 
@@ -78,7 +80,7 @@ vector<Player> CangkulGameManager::getInitialPlayerList(int playerNum) const {
         string playerName;
 
         cout << "Masukkan nama pemain " << i << " : ";
-        cin >> playerName;
+        getline(cin >> ws, playerName);
 
         playerList.push_back(Player(i, vector<Card>(), playerName, false));
 

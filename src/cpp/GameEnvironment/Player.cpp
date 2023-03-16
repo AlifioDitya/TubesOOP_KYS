@@ -1,13 +1,18 @@
 // Player.cpp
 #include "../../header/GameEnvironment/Player.hpp"
 #include "../../header/GameEnvironment/InventoryHolder.hpp"
+#include "../../header/Program/IO.hpp"
 #include <string>
 #include <vector>
 #include <iostream>
+#include <limits>
 
 using std::string;
 using std::vector;
 using std::cout;
+using std::cin;
+using std::numeric_limits;
+using std::streamsize;
 using std::endl;
 
 Player::Player() : Player(-1, vector<Card>(), "Username", false) {}
@@ -109,4 +114,39 @@ void Player::printHand() {
 
 bool Player::hasPlayedThisRound() const {
     return hasPlayed;
+}
+
+// ========== Easter egg methods ===========
+
+void Player::generateRandomHand(int amount) {
+    vector<Card> output;
+
+    // Generate random seed using current time
+    srand(time(0));
+    for (int i = 0; i < amount; i++) {
+        Card randCard(static_cast<Color>(0), static_cast<Rank>(rand() % 13 + 1));
+        output.push_back(randCard);
+    }
+
+    setHand(output);
+}
+
+void Player::inputHand(int amount) {
+    IO input;
+    vector<int> newHandNumber;
+
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    newHandNumber = input.inputCardStream(amount);
+    while (newHandNumber.size() != (long unsigned int) amount) {
+        newHandNumber = input.inputCardStream(amount);
+    }
+
+    vector<Card> newHandCards;
+
+    for (unsigned long int i = 0; i < newHandNumber.size(); i++) {
+        Card card(static_cast<Color>(0), static_cast<Rank>(newHandNumber[i]));
+        newHandCards.push_back(card);
+    }
+
+    setHand(newHandCards);
 }

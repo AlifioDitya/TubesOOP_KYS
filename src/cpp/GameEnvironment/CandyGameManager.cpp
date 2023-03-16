@@ -39,6 +39,8 @@ using std::endl;
 using std::ifstream;
 using std::map;
 using std::max_element;
+using std::getline;
+using std::ws;
 
 CandyGameManager::CandyGameManager() {
     actions = map<CmdTypes, Commands*>{
@@ -176,7 +178,7 @@ vector<CandyPlayer> CandyGameManager::getInitialPlayerList(int playerNum) const 
         string playerName;
 
         // cout << "Masukkan nama pemain " << i << " : ";
-        // cin >> playerName;
+        // getline(cin >> ws, playerName);
 
         // playerList.push_back(CandyPlayer(i, vector<Card>(), 0, playerName, false));
 
@@ -362,19 +364,19 @@ void CandyGameManager::startSubGame() {
         gameState.setRound(gameState.getRound() + 1);
 
         // testing
-        if (gameState.getRound() == 1) {
-            // Memberikan ability ke setiap player
+        // if (gameState.getRound() == 1) {
+        //     // Memberikan ability ke setiap player
 
-            cout << "Ability akan dibagikan ke setiap pemain!" << endl;
-            IO::newl();
+        //     cout << "Ability akan dibagikan ke setiap pemain!" << endl;
+        //     IO::newl();
 
-            for (long unsigned int i = 0; i < gameState.getPlayerList().size(); i++) {
-                CandyPlayer& player = gameState.getPlayerRefAt(i);
+        //     for (long unsigned int i = 0; i < gameState.getPlayerList().size(); i++) {
+        //         CandyPlayer& player = gameState.getPlayerRefAt(i);
 
-                player.setAbility(gameState.getAbilities().drawCard());
+        //         player.setAbility(gameState.getAbilities().drawCard());
         
-            }
-        }
+        //     }
+        // }
 
 
         // ================== // testing ================
@@ -411,17 +413,17 @@ void CandyGameManager::startSubGame() {
 
         startRound();
 
-        // if (gameState.getRound() == 1) {
-        //     // Memberikan ability ke setiap player
+        if (gameState.getRound() == 1) {
+            // Memberikan ability ke setiap player
 
-        //     cout << "Ability akan dibagikan ke setiap pemain!" << endl;
-        //     newl();
+            cout << "Ability akan dibagikan ke setiap pemain!" << endl;
+            IO::newl();
 
-        //     for (long unsigned int i = 0; i < gameState.getPlayerList().size(); i++) {
-        //         CandyPlayer& player = gameState.getPlayerRefAt(i);
-        //         player.setAbility(gameState.getAbilities().drawCard());
-        //     }
-        // }
+            for (long unsigned int i = 0; i < gameState.getPlayerList().size(); i++) {
+                CandyPlayer& player = gameState.getPlayerRefAt(i);
+                player.setAbility(gameState.getAbilities().drawCard());
+            }
+        }
 
         // Meletakkan 1 kartu dari deck ke table
 

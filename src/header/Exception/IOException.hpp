@@ -70,6 +70,13 @@ public:
     }
 };
 
+class UnmatchedStream : public exception {
+public:
+    const char *what() const throw() {
+        return "Jumlah masukan tidak valid!";
+    }
+};
+
 /**
  * @exception Thrown when file is not found.
  * 

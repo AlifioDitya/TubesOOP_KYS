@@ -97,6 +97,7 @@ void CandyGameState::setAllNoAbility() {
     for (long unsigned int i = 0; i < playerList.size(); i++) {
         playerList[i].setAbility(AbilityTypes::None);
         playerList[i].setAbilityUsed(false);
+        playerList[i].setNerfed(false);
     }
 }
 

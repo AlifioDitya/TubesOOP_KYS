@@ -138,14 +138,13 @@ vector<Card> readDeckConfig() {
                 if (cardCount != 52)
                     throw InvalidFileInputFormatException("Kartu pada file harus berjumlah 52!");
                 
-                // testing
-                // for (long unsigned int i = 0; i < v.size()-1; i++) {
-                //     for (long unsigned int j = i + 1; j < v.size(); j++) {            
-                //         if (v[i] == v[j]) {
-                //             throw DuplicateCard();
-                //         }
-                //     }
-                // }
+                for (long unsigned int i = 0; i < v.size()-1; i++) {
+                    for (long unsigned int j = i + 1; j < v.size(); j++) {            
+                        if (v[i] == v[j]) {
+                            throw DuplicateCard();
+                        }
+                    }
+                }
             
                 return v;
             } else {
@@ -177,13 +176,10 @@ vector<CandyPlayer> CandyGameManager::getInitialPlayerList(int playerNum) const 
     for (int i = 1; i <= playerNum; i++) {
         string playerName;
 
-        // cout << "Masukkan nama pemain " << i << " : ";
-        // getline(cin >> ws, playerName);
+        cout << "Masukkan nama pemain " << i << " : ";
+        getline(cin >> ws, playerName);
 
-        // playerList.push_back(CandyPlayer(i, vector<Card>(), 0, playerName, false));
-
-        playerList.push_back(
-            CandyPlayer(i, vector<Card>(), 0, "temp" + std::to_string(i), false));  // testing
+        playerList.push_back(CandyPlayer(i, vector<Card>(), 0, playerName, false));
     }
 
     return playerList;
@@ -342,8 +338,7 @@ Combination* CandyGameManager::findComboType(const vector<Card> tableCards,
 void CandyGameManager::startSubGame() {
     // Sub Game jika belum ada pemenang
     // Reset gamestate kecuali player dan turn
-    // gameState.setRound(5); // testing
-    // gameState.setPointPool(CandyGameState::winnerPoint); // testing
+
     gameState.setRound(0);
     gameState.setPointPool(CandyGameState::initialPoint);
     gameState.getTableCards().clear();
@@ -362,54 +357,6 @@ void CandyGameManager::startSubGame() {
     while (gameState.getRound() < 6) {
         // Round selanjutnya
         gameState.setRound(gameState.getRound() + 1);
-
-        // testing
-        // if (gameState.getRound() == 1) {
-        //     // Memberikan ability ke setiap player
-
-        //     cout << "Ability akan dibagikan ke setiap pemain!" << endl;
-        //     IO::newl();
-
-        //     for (long unsigned int i = 0; i < gameState.getPlayerList().size(); i++) {
-        //         CandyPlayer& player = gameState.getPlayerRefAt(i);
-
-        //         player.setAbility(gameState.getAbilities().drawCard());
-        
-        //     }
-        // }
-
-
-        // ================== // testing ================
-        // bool dup = false;
-        // vector<Card> tempCards = gameState.getDeckCards().temp;
-
-        // for (auto player: gameState.getPlayerList()) {
-        //     vector<Card> temp3 = player.getHand();
-        //     tempCards.insert(tempCards.end(), temp3.begin(), temp3.end());
-        // } 
-
-        // vector<Card> temp2 =  gameState.getTableCards().getCards();
-        // tempCards.insert(tempCards.end(), temp2.begin(), temp2.end());
-
-        // cout << tempCards.size() << endl;
-        
-        // for (int i = 0; i < tempCards.size()-1; i++) {
-        //     cout << (tempCards[i]) << endl;
-        //     for (int j = i + 1; j < tempCards.size(); j++) {            
-        //         if (tempCards[i] == tempCards[j]) {
-        //             std::cout << "NOOOOO" << std::endl;
-        //             dup = true;
-        //         }
-        //     }
-        // }
-
-        // cout << tempCards.back() << endl;
-        // std::cout << "yes" << std::endl;
-
-        // if (dup) throw exception();
-
-        // ===============================
-
 
         startRound();
 

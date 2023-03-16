@@ -83,8 +83,6 @@ vector<Player> CangkulGameManager::getInitialPlayerList(int playerNum) const {
         getline(cin >> ws, playerName);
 
         playerList.push_back(Player(i, vector<Card>(), playerName, false));
-
-        // playerList.push_back(Player(i, vector<Card>(), "temp" + std::to_string(i), false)); // testing
     }
 
     return playerList;

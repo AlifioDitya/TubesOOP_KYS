@@ -61,14 +61,14 @@ public:
     /**
      * @brief Overloaded less-than operator for the CandyPlayer class.
      * @param other The CandyPlayer object to be compared with.
-     * @return True if this player's ID is less than the other player's ID, false otherwise.
+     * @return True if this player's points is less than the other player's points, false otherwise.
      */
     bool operator<(const CandyPlayer& other);
 
     /**
      * @brief Overloaded more-than operator for the CandyPlayer class.
      * @param other The CandyPlayer object to be compared with.
-     * @return True if this player's ID is more than the other player's ID, false otherwise.
+     * @return True if this player's points is more than the other player's points, false otherwise.
      */
     bool operator>(const CandyPlayer& other);
 

@@ -11,11 +11,15 @@ To run this program, you will need a Linux environment with the G++ compiler ins
     ``` bash
     git clone https://github.com/AlifioDitya/TubesOOP_KYS.git
     ```
-2. Navigate to the `src` folder
+2. Create a `bin` folder at the root
+    ``` bash
+    mkdir bin
+    ```
+3. Navigate to the `src` folder
     ``` bash
     cd src
     ```
-3. Compile the program using the makefile
+4. Compile the program using the makefile
     ``` bash
     make all
     ```

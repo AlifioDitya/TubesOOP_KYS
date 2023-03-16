@@ -40,7 +40,6 @@ void TFCardGameManager::startGame() {
             player.generateRandomHand(4);
             // Clear input stream
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << endl;
         } else {
             running = false;
             break;
@@ -77,4 +76,6 @@ void TFCardGameManager::startGame() {
         solver.clearSolutions();
 
     } while (running);
+
+    cout << "*** Teleportasi kembali ke OOP ***" << endl;
 }

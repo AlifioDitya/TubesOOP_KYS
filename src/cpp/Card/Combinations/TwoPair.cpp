@@ -3,8 +3,11 @@
 #include <math.h>
 
 #include <algorithm>
+#include <iostream>
 
 using std::sort;
+using std::cout;
+using std::endl;
 
 TwoPair::TwoPair(const vector<Card>& combinationCards) : Combination(combinationCards) {
 }
@@ -29,11 +32,11 @@ long double TwoPair::getValue() const {
     vector<Card> high(combinationCards.begin() + 2, combinationCards.end());
     vector<Card> low(combinationCards.begin(), combinationCards.begin() + 2);
 
-    long double hr_encoding = (high[0].getRank() - 1) / 10;
-    long double lr_encoding = (low[0].getRank() - 1) / 1000;
+    long double hr_encoding = (long double)(high[0].getRank() - 1) / 10;
+    long double lr_encoding = (long double)(low[0].getRank() - 1) / 1000;
 
     long double hc_encoding = 0;
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 2; i++) {
         hc_encoding += pow(4, i) * high[i].getColor();
     }
     hc_encoding /= 1e5;

@@ -23,7 +23,7 @@ long double Straight::getValue() const {
     Format: r.rcccc-> max:1.3
     */
 
-    long double rankEncoding = combinationCards[4].getRank();
+    long double rankEncoding = (long double)(combinationCards[4].getRank() - 1) / 10;
 
     long double colorEncoding = 0;
     for (int i = 0; i < 5; i++) {

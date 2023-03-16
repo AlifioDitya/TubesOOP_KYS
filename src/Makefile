@@ -38,7 +38,7 @@ SOURCES := cpp/Card/Card.cpp \
         cpp/GameEnvironment/CandyGameState.cpp \
         cpp/GameEnvironment/CandyPlayer.cpp \
         cpp/GameEnvironment/CangkulGameManager.cpp \
-        cpp/GameEnvironment/CangkulGameState \
+        cpp/GameEnvironment/CangkulGameState.cpp \
         cpp/GameEnvironment/GameDeckCard.cpp \
         cpp/GameEnvironment/Player.cpp \
         cpp/GameEnvironment/TableCard.cpp \
@@ -69,3 +69,7 @@ clean:
 # Rule to clean up object files
 clean_obj:
 	rm -f $(OBJECTS)
+
+# Rule to generate documentation using doxygen
+diagrams:
+	cd ../docs && doxygen Doxyfile

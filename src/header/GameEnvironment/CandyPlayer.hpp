@@ -73,6 +73,13 @@ public:
     bool operator>(const CandyPlayer& other);
 
     /**
+     * @brief Overloaded equal operator for the CandyPlayer class.
+     * @param other The CandyPlayer object to be compared with.
+     * @return True if this player's points is equal to other player's points, false otherwise.
+     */
+    bool operator==(const CandyPlayer& other);
+
+    /**
     *  @brief Setter if a player has used their ability.
     *  @param abilityUsed a boolean value to set a player's ability usage status.
     **/

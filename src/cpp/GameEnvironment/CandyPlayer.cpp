@@ -54,6 +54,10 @@ bool CandyPlayer::operator>(const CandyPlayer& other) {
     return point > other.point;
 }
 
+bool CandyPlayer::operator==(const CandyPlayer& other) {
+    return point == other.point;
+}
+
 // ========== Setters ==========
 
 // Set ability used

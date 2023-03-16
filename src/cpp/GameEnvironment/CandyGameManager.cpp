@@ -293,21 +293,6 @@ void CandyGameManager::startRound() {
     IO::newl();
 }
 
-// TODO: Test if this is removed
-template <>
-Combination* CandyGameManager::getMax(vector<Combination*>& list) {
-    // asumsi list.size() > 0
-
-    Combination* maxElmt = list[0];
-
-    for (auto i = list.begin() + 1; i != list.end(); i++) {
-        if ((*i)->getValue() > maxElmt->getValue())
-            maxElmt = *i;
-    }
-
-    return maxElmt;
-}
-
 Combination* CandyGameManager::findComboType(const vector<Card> tableCards,
                                              const vector<Card> handCards) {
     Combination* combo;
@@ -413,7 +398,7 @@ void CandyGameManager::startSubGame() {
 void CandyGameManager::startGame() {
     // Mulai game keseluruhan sampai ditemukan pemenang
 
-    CandyPlayer leadingPlayer;
+    CandyPlayer* leadingPlayer = nullptr;
 
     IO::newl();
     cout << "PERMAINAN DIMULAI!" << endl;
@@ -437,17 +422,20 @@ void CandyGameManager::startGame() {
         }
 
         startSubGame();
-        vector<CandyPlayer> playerList = gameState.getPlayerList();
+
+        vector<CandyPlayer*> playerList;
+        for (unsigned long int i = 0; i < gameState.getPlayerList().size(); i++) {
+            playerList.push_back(&gameState.getPlayerRefAt(i));
+        }
+        
         leadingPlayer = getMax(playerList);
 
         counter++;
-    } while (leadingPlayer.getPoint() < CandyGameState::winnerPoint);
+    } while (leadingPlayer->getPoint() < CandyGameState::winnerPoint);
 
-    IO::newl();
-    IO::border();
     cout << "Permainan Berakhir.";
     gameState.printLeaderBoard();
-    cout << "Permainan dimenangkan oleh " << leadingPlayer.getName() << "." << endl;
+    cout << "Permainan dimenangkan oleh " << leadingPlayer->getName() << "." << endl;
     IO::border();
     IO::newl();
 }

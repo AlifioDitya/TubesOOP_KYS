@@ -79,7 +79,7 @@ class CandyGameManager : public GameManager {
         T maxElmt = list[0];
 
         for (auto i = list.begin() + 1; i != list.end(); i++) {
-            if (i->getValue() > maxElmt.getValue())
+            if ((*i)->getValue() > maxElmt->getValue())
                 maxElmt = *i;
         }
 

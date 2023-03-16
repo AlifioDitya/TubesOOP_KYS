@@ -39,6 +39,8 @@ using std::endl;
 using std::ifstream;
 using std::map;
 using std::max_element;
+using std::getline;
+using std::ws;
 
 CandyGameManager::CandyGameManager() {
     actions = map<CmdTypes, Commands*>{
@@ -176,7 +178,7 @@ vector<CandyPlayer> CandyGameManager::getInitialPlayerList(int playerNum) const 
         string playerName;
 
         // cout << "Masukkan nama pemain " << i << " : ";
-        // cin >> playerName;
+        // getline(cin >> ws, playerName);
 
         // playerList.push_back(CandyPlayer(i, vector<Card>(), 0, playerName, false));
 

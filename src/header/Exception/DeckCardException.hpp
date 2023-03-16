@@ -23,6 +23,10 @@ public:
     }
 };
 
+/**
+ * @exception Thrown when there are duplicate cards in the input file.
+ * 
+ */
 class DuplicateCard: public exception {
 public:
     const char *what() const throw() {

@@ -1,6 +1,7 @@
 // Player.cpp
 #include "../../header/GameEnvironment/Player.hpp"
 #include "../../header/GameEnvironment/InventoryHolder.hpp"
+#include "../../header/Program/IO.hpp"
 #include <string>
 #include <vector>
 #include <iostream>
@@ -109,4 +110,38 @@ void Player::printHand() {
 
 bool Player::hasPlayedThisRound() const {
     return hasPlayed;
+}
+
+// ========== Easter egg methods ===========
+
+void Player::generateRandomHand(int amount) {
+    vector<Card> output;
+
+    // Generate random seed using current time
+    srand(time(0));
+    for (int i = 0; i < amount; i++) {
+        Card randCard(static_cast<Color>(0), static_cast<Rank>(rand() % 13 + 1));
+        output.push_back(randCard);
+    }
+
+    setHand(output);
+}
+
+void Player::inputHand(int amount) {
+    IO input;
+    vector<int> newHandNumber;
+
+    while (newHandNumber.size() != (long unsigned int) amount) {
+        newHandNumber = input.inputCardStream(amount);
+        cout << endl;
+    }
+
+    vector<Card> newHandCards;
+
+    for (unsigned long int i = 0; i < newHandNumber.size(); i++) {
+        Card card(static_cast<Color>(0), static_cast<Rank>(newHandNumber[i]));
+        newHandCards.push_back(card);
+    }
+
+    setHand(newHandCards);
 }

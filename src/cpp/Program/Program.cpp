@@ -10,7 +10,7 @@ using std::endl;
 void Program::start() {
     IO selection;
 
-    cout << "Knock knock..." << endl << endl;
+    cout << "Knock knock..." << endl;
 
     do {
         IO::newl();
@@ -20,7 +20,7 @@ void Program::start() {
         cout << "3. Exit" << endl;
         IO::newl();
 
-        selection.getInput(1, 3);
+        selection.getInput(1, 4);
 
         if (selection == 1) {
 
@@ -38,6 +38,12 @@ void Program::start() {
         } else if (selection == 2) {
 
             cangkulGameManager.startGame();
+
+        } else if (selection == 4) {
+
+            tfCardGameManager.startGame();
+
         }
+        
     } while (selection.getChoice() != 3);
 }

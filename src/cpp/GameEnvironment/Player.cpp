@@ -5,10 +5,14 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <limits>
 
 using std::string;
 using std::vector;
 using std::cout;
+using std::cin;
+using std::numeric_limits;
+using std::streamsize;
 using std::endl;
 
 Player::Player() : Player(-1, vector<Card>(), "Username", false) {}
@@ -131,9 +135,10 @@ void Player::inputHand(int amount) {
     IO input;
     vector<int> newHandNumber;
 
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    newHandNumber = input.inputCardStream(amount);
     while (newHandNumber.size() != (long unsigned int) amount) {
         newHandNumber = input.inputCardStream(amount);
-        cout << endl;
     }
 
     vector<Card> newHandCards;

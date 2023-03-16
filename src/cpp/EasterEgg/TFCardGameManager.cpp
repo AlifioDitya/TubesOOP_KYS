@@ -30,20 +30,22 @@ void TFCardGameManager::startGame() {
         IO::newl();
 
         selection.getInput(1,3);
+        cout << endl;
 
         if (selection == 1) {
-            cout << "Masukkan empat angka terpisah oleh spasi: " << endl;
+            cout << "Masukkan empat muka kartu terpisah oleh spasi." << endl;
+            cout << endl;
             player.inputHand(4);
         } else if (selection == 2) {
             player.generateRandomHand(4);
             // Clear input stream
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << endl;
         } else {
             running = false;
             break;
         }
 
-        cout << endl;
         cout << "Kartu anda adalah:" << endl;
         player.printHand();
         cout << endl;
@@ -53,6 +55,7 @@ void TFCardGameManager::startGame() {
         string blank;
         cout << "Klik enter untuk melihat solusi.";
         getline(cin, blank);
+        cout << endl;
 
         solver.solve24();
 

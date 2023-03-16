@@ -70,11 +70,10 @@ vector<int> IO::inputCardStream(int n) {
     vector<int> output = {};
     string token;
 
-    cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cout << "Input: ";
     getline(cin, input);
-
     stringstream ss(input);
+    cout << endl;
 
     // Process input stream as tokenized strings separated by spaces
     while (ss >> token) {
@@ -105,18 +104,13 @@ vector<int> IO::inputCardStream(int n) {
             } else {
                 output.push_back(value);
             }
-
         }
-
     }
 
-    try {
-        if (output.size() != (long unsigned int) n) {
-            // Invalid input format
-            throw UnmatchedStream();
-        }
-    } catch (const UnmatchedStream& err) {
-        cout << err.what() << " Mohon masukkan angka sebanyak " << n << " buah terpisah oleh spasi.";
+    if (output.size() != (long unsigned int) n) {
+        // Invalid card size or input format
+        cout << "Mohon masukkan angka sebanyak " << n << " buah terpisah oleh spasi.\n" << endl;
+        return vector<int>();
     }
 
     return output;
